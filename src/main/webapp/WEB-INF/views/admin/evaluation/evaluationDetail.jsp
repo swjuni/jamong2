@@ -5,7 +5,18 @@
 <style type="text/css">
 
 </style>
-
+<script type="text/javascript" src="<c:url value='/assets/js/lib/jquery.min.js'/>"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#del').click(function(){
+			if(confirm("삭제하시겠습니까?")){
+				location.href="<c:url value='/admin/evaluation/evaluationDelete.do?evalNo=${map["EVAL_NO"] }'/>";
+			}else{  //삭제 취소
+				event.preventDefault();
+			}			
+		});
+	});
+</script>
 <!-- 각자가 분담해서 디자인할 바디 태그 -->
     <div class="content-wrap">
         <div class="main">
@@ -97,8 +108,7 @@
                                     <br><br>
 									<!-- <button class="btn btn-primary" type="submit">등록</button> -->
 									<div class="text-center">
-							            <input type = "Button" value="글삭제" class="btn btn-danger"
-							            onclick="location.href='<c:url value='/admin/evaluation/evaluationList.do'/>'">
+							            <input type = "Button" value="글삭제" class="btn btn-danger" id="del">&nbsp;&nbsp;
 							            <input type = "Button" value="글목록" class="btn btn-primary"
 							            onclick="location.href='<c:url value='/admin/evaluation/evaluationList.do'/>'">
 							        </div>

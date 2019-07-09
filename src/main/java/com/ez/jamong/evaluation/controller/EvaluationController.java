@@ -71,4 +71,30 @@ public class EvaluationController {
 		
 		return "admin/evaluation/evaluationDetail";
 	}
+	
+	@RequestMapping(value="/evaluationDelete.do")
+	public String evaluationDelete_get(@RequestParam(defaultValue = "0") int evalNo, Model model) {
+		logger.info("관리자 FAQ 삭제 요청, 파라미터 evalNo={}",evalNo);
+		
+		if(evalNo==0) {
+			model.addAttribute("msg", "잘못된 URL 접근입니다");
+			model.addAttribute("url", "/admin/evaluation/evaluationList.do");
+			return "common/message";
+		}
+		
+		int cnt = evaluationService.deleteEvaluation(evalNo);
+		
+		String msg="", url="/admin/evaluation/evaluationDetail.do?evalNo="+evalNo;
+		if(cnt>0) {
+			msg="서비스 평가 삭제 성공";
+			url="/admin/evaluation/evaluationList.do";
+		}else {
+			msg="서비스 평가 삭제 실패";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
 }
