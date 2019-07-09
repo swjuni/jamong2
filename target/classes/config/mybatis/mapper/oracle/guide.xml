@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.guide">
+	<insert id="guideAdd" parameterType="guideVo">
+		<selectKey resultType="int" keyProperty="guideNo" order="BEFORE">
+			select guide_seq.nextval from dual
+		</selectKey>
+		insert into GUIDE(GUIDE_NO, PAGE_NAME, CONTENT, ADMIN_NO) 
+		values(#{guideNo},#{pageName},#{content},#{adminNo})
+	</insert>
+
+	<select id="selectAll" resultType="guideVo">
+		select * from GUIDE
+	</select>
+	
+	<select id="selectByNo" parameterType="int" resultType="guideVo">
+		select * from GUIDE
+		where GUIDE_NO=#{guideNo}
+	</select>
+
+	<update id="updateGuide" parameterType="guideVo">
+		update GUIDE set PAGE_NAME=#{pageName}, CONTENT=#{content}
+		where GUIDE_NO=#{guideNo}
+	</update>
+		
+	<delete id="deleteGuide" parameterType="int">
+		delete from GUIDE where GUIDE_NO=#{guideNo}
+	</delete>
+	
+</mapper>

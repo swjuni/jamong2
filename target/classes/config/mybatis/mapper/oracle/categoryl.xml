@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.categoryl">
+
+	<insert id="categorylAdd" parameterType="categorylVo">
+		<selectKey resultType="int" keyProperty="categoryNo" order="BEFORE">
+			select category_l_seq.nextval from dual
+		</selectKey>
+		insert into category_l
+		values(#{categoryNo}, #{categoryNameL}, #{categoryDesc}, #{imgName}, #{imgOriginalName}, #{imgSize})
+	</insert>
+	
+	<select id="selectCategorylAll" resultType="categorylVo">
+		select * from category_l
+	</select>
+	
+	<select id="selectCategorylByNo" parameterType="int" resultType="categorylVo">
+		select * from category_l
+		where CATEGORY_NO=#{categoryNo}
+	</select>
+	
+	<update id="updateCategoryl" parameterType="categorylVo">
+		update category_l
+		set CATEGORY_NAME_L=#{categoryNameL}, CATEGORY_DESC=#{categoryDesc}
+			<if test="imgName!=null and imgName!=''">
+				, IMG_NAME=#{imgName}, IMG_SIZE=#{imgSize}, IMG_ORIGINAL_NAME=#{imgOriginalName}
+			</if>
+		where CATEGORY_NO=#{categoryNo}
+	</update>
+	
+	<delete id="deleteCategoryl" parameterType="int">
+		delete from category_l
+		where CATEGORY_NO=#{categoryNo}
+	</delete>
+
+</mapper>

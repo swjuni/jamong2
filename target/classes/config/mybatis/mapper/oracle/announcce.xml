@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.announcce">
+	<insert id="announcceAdd" parameterType="announcceVo">
+		<selectKey resultType="int" keyProperty="announceNo" order="BEFORE">
+			select announcce_seq.nextval from dual
+		</selectKey>
+		insert into announcce(ANNOUNCE_NO, TITLE, CONTENT, FILE_NAME,
+		 				ORIGINAL_FILE_NAME, FILE_SIZE,ADMIN_NO) 
+		values(#{announceNo},#{title},#{content},
+			#{fileName},#{originalFileName},#{fileSize},#{adminNo})
+	</insert>
+	
+	<select id="selectAll" resultType="announcceVo">
+		select a.*, (sysdate-cast(regdate as date))*24 as new_Img_Term from announcce a
+	</select>
+	
+	<update id="updateReadCount" parameterType="int">
+		update ANNOUNCCE
+		set READ_COUNT=READ_COUNT+1 
+		where ANNOUNCE_NO=#{announceNo}
+	</update>
+	
+	<select id="selectByNo" parameterType="int" resultType="announcceVo">
+		select * from ANNOUNCCE
+		where ANNOUNCE_NO=#{announceNo}
+	</select>
+	
+	<update id="updateAnnouncce" parameterType="announcceVo">
+		update announcce set TITLE=#{title}, CONTENT=#{content}
+			<if test="fileName!=null and fileName!=''">
+				, FILE_NAME=#{fileName}, FILE_SIZE=#{fileSize}, ORIGINAL_FILE_NAME=#{originalFileName}
+			</if>
+		where ANNOUNCE_NO=#{announceNo}
+	</update>	
+
+	<delete id="deleteAnnouncce" parameterType="int">
+		delete from announcce where ANNOUNCE_NO=#{announceNo}
+	</delete>
+	
+</mapper>

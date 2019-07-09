@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.report">
+
+	<resultMap type="hashmap" id="reportResult">
+		<result property="reportDesc" column="report_desc" jdbcType="CLOB" javaType="java.lang.String" />
+	</resultMap>
+	
+ 	<select id="selectReported" parameterType="searchVo" resultMap="reportResult">
+		select *
+		from
+		(
+		    select A.*, rownum as RNUM 
+		    from
+		    (
+		       select * from reportview
+		       <where>
+				<if test="searchKeyword != null and searchKeyword != ''">
+					${searchCondition} like '%' || #{searchKeyword} || '%'
+				</if>
+				<if test='searchUseYn=="N"'>
+					and delflag is null
+				</if>
+				<if test='searchUseYn=="Y"'>
+					and delflag is not null
+				</if>
+				</where>
+				order by report_no
+		    ) A
+		)
+		<![CDATA[ where RNUM>#{firstRecordIndex}  
+		and RNUM<=#{firstRecordIndex} + #{recordCountPerPage}]]>
+	</select>
+	
+	<select id="selectTotalCount" parameterType="searchVo" resultType="int">
+		select count(*) from reportview
+		<where>
+		<if test="searchKeyword != null and searchKeyword != ''">
+			${searchCondition} like '%' || #{searchKeyword} || '%'
+		</if>
+		<if test='searchUseYn=="N"'>
+			and delflag is null
+		</if>
+		<if test='searchUseYn=="Y"'>
+			and delflag is not null
+		</if>
+		</where>
+	</select>
+	
+	<update id="acceptReport" parameterType="hashmap">
+		update report
+		set delflag='Y', admin_no=#{adminNo}
+		where report_no=#{reportNo}
+	</update>
+
+	<update id="refuseReport" parameterType="hashmap">
+		update report
+		set delflag='N', admin_no=#{adminNo}
+		where report_no=#{reportNo}
+	</update>
+</mapper>

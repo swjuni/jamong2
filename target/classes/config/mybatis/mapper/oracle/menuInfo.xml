@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.menuInfo">
+	<select id="selectMenuInfoAll" resultType="menuinfoVo">
+		select * from menu_info
+	</select>
+
+	<select id="selectMenuInfoByNo" parameterType="int" resultType="menuinfoVo">
+		select * from menu_info
+		where PRODUCT_NO=#{productNo}
+	</select>
+	
+	<update id="updateMenuInfo" parameterType="menuinfoVo">
+		update menu_info
+		set CATEGORY_TYPE_NO=#{categoryTypeNo}, PRODUCT_NAME=#{PRODUCT_NAME},
+			EVAL_SCORE=#{evalScore}, SUMMARY=#{summary}, DETAIL_DESC=#{detailDesc},
+			REGDATE=sysdate, ORDER_LEVEL=#{orderLevel}, RECOMMEND=#{recommend}, 
+			ACTIVATION=#{activation}, EXPERT_NO=#{expertNo}
+		where PRODUCT_NO=#{productNo}
+	</update>
+	
+	<update id="updateActivation" parameterType="menuinfoVo">
+		update menu_info
+		set ACTIVATION=#{activation}
+		where PRODUCT_NO=#{productNo}
+	</update>
+	
+	<update id="suspendedByPdNo" parameterType="int">
+		update menu_info
+		set activation='N'
+		where product_no=#{productNo}
+	</update>
+	
+	<delete id="deleteMenuInfo" parameterType="int">
+		delete from menu_info
+		where PRODUCT_NO=#{productNo}
+	</delete>
+	
+	<!-- mapmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm -->
+	<select id="selectMenuinfoAllView" resultType="map">
+		select * from menuinfoView
+	</select>
+	
+	<select id="selectMenuinfoView" parameterType="int" resultType="map">
+		select * from menuinfoView
+		where PRODUCT_NO=#{productNo}
+	</select>
+	
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.expert">
+
+ 	<select id="selectExpertSearch" parameterType="searchVo" resultType="hashmap">
+		select *
+		from
+		(
+		    select A.*, rownum as RNUM 
+		    from
+		    (
+		        select * from expertView
+				<where>
+				<if test="searchKeyword != null and searchKeyword != ''">
+					${searchCondition} like '%' || #{searchKeyword} || '%'
+				</if>
+				<if test="searchUseYn=='OUT'">
+					and outdate is not null
+				</if>
+				<if test="searchUseYn=='STAY'">
+					and outdate is null
+				</if>
+				<if test="searchUseYn=='ACTIVATE'">
+					and activation='Y'
+				</if>
+				<if test="searchUseYn=='NONACTIVATE'">
+					and activation='N'
+				</if>
+				</where>		
+		    ) A
+		)
+		<![CDATA[ where RNUM>#{firstRecordIndex}  
+		and RNUM<=#{firstRecordIndex} + #{recordCountPerPage}]]>
+	</select>
+	
+	<select id="selectTotalCount" parameterType="searchVo" resultType="int">
+		select count(*) from expertView		
+		<where>
+			<if test="searchKeyword != null and searchKeyword != ''">
+				${searchCondition} like '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="searchUseYn=='OUT'">
+				and outdate is not null
+			</if>
+			<if test="searchUseYn=='STAY'">
+				and outdate is null
+			</if>
+			<if test="searchUseYn=='ACTIVATE'">
+				and activation='Y'
+			</if>
+			<if test="searchUseYn=='NONACTIVATE'">
+				and activation='N'
+			</if>
+		</where>	
+	</select>
+</mapper>

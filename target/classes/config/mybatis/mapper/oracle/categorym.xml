@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.categorym">
+
+	<insert id="categorymAdd" parameterType="categorymVo">
+		<selectKey resultType="int" keyProperty="categoryNoM" order="BEFORE">
+			select category_m_seq.nextval from dual
+		</selectKey>
+		insert into category_m
+		values(#{categoryNoM}, #{categoryNoL}, #{categoryName}, #{categoryDesc}, #{imgName}, #{imgOriginalName}, #{imgSize})
+	</insert>
+	
+	<select id="selectCategorymAll" resultType="categorymVo">
+		select * from category_m
+	</select>
+	
+	<select id="selectCategorymByNo" parameterType="int" resultType="categorymVo">
+		select * from category_m
+		where CATEGORY_NO_M=#{categoryNoM}
+	</select>
+	
+	<update id="updateCategorym" parameterType="categorymVo">
+		update category_m
+		set CATEGORY_NAME=#{categoryName}, CATEGORY_DESC=#{categoryDesc}
+			<if test="imgName!=null and imgName!=''">
+				, IMG_NAME=#{imgName}, IMG_SIZE=#{imgSize}, IMG_ORIGINAL_NAME=#{imgOriginalName}
+			</if>
+		where CATEGORY_NO_M=#{categoryNoM}
+	</update>
+	
+	<delete id="deleteCategorym" parameterType="int">
+		delete from category_m
+		where CATEGORY_NO_M=#{categoryNoM}
+	</delete>
+
+	<!-- mapmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm -->
+	<select id="selectCategoryAllView" resultType="map">
+		select * from categoryView
+	</select>
+	
+	<select id="selectCategoryView" parameterType="int" resultType="map">
+		select * from categoryView
+		where CATEGORY_NO_M=#{categoryNoM}
+	</select>
+	
+	<!-- 전문가+일반회원 조회 -->
+	<select id="selectUser" resultType="int">
+		select count(*) 
+		from user_info where outdate is null
+	</select>
+		
+	<!-- 전문가 수 조회 -->
+	<select id="selectPro" resultType="int">
+		select count(*) 
+		from user_info a join EXPERT b on
+		a.USER_NO = b.USER_NO
+		where outdate is null
+	</select>
+	
+	<!-- 카테고리별 상품수-->
+	<select id="selectCategotyMenuCount" resultType="statisticsVo">
+		select CATEGORY_NAME,count(*) "CATEGORY_COUNT" from
+		(select * from MENU_INFO a join CATEGORY_M b on
+		a.CATEGORY_TYPE_NO = b.CATEGORY_NO_M)
+		group by CATEGORY_NAME
+	</select>
+	
+</mapper>
