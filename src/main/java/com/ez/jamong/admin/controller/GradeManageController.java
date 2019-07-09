@@ -21,7 +21,7 @@ public class GradeManageController {
 	@Autowired
 	private AuthorService admingradeService;
 	
-	@RequestMapping("/grade.do")
+	@RequestMapping("/grade.do") 
 	public String gradeManage(Model model) {
 		logger.info("등급관리 화면");
 		

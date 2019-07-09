@@ -22,7 +22,7 @@ public class StatisticsAdminController {
 	@Autowired
 	private StatisticsService statisticsService;
 	
-	@RequestMapping("/admin/statistics/User_statistics.do")
+	@RequestMapping("/admin/statistics/User_statistics.do") 
 	public String loginAdmin(Model model, HttpSession session) {
 		logger.info("카테고리,회원 통계 화면");
 		

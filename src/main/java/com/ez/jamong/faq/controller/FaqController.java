@@ -58,7 +58,7 @@ public class FaqController {
 	public String faqAdd_post(@ModelAttribute FaqVO faqVo, Model model) {
 		logger.info("관리자 FAQ 등록 요청");
 		
-		faqVo.setAdminNo(4); //나중에 admin session 값에 연결된 adminNo 등록해야함
+		faqVo.setAdminNo(1); //나중에 admin session 값에 연결된 adminNo 등록해야함
 		
 		int cnt = faqService.faqAdd(faqVo);
 		logger.info("FAQ등록 결과 cnt={}",cnt);

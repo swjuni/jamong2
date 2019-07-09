@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StatisticsSalesController {
 	private Logger logger = LoggerFactory.getLogger(LoginAdminController.class);
 	
-	@RequestMapping("/admin/statistics/Sales_statistics.do")
+	@RequestMapping("/admin/statistics/Sales_statistics.do") 
 	public String loginAdmin() {
 		logger.info("�α��� ������");
 		return "admin/statistics/Sales_statistics";

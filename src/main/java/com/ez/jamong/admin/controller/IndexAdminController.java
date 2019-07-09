@@ -11,7 +11,7 @@ public class IndexAdminController {
 	
 	@RequestMapping("/admin/index_admin.do")
 	public String indexAdmin() {
-		logger.info("관리자 인덱스 화면 요청");
+		logger.info("관리자 인덱스 화면 요청하기");
 		return "admin/index_admin";
 	}
 }

@@ -65,7 +65,7 @@ public class AnnouncceController {
 		announcceVo.setFileSize(fileSize);
 		announcceVo.setOriginalFileName(originalFileName);
 		
-		announcceVo.setAdminNo(21);	//나중에 admin session 값에 연결된 adminNo 등록해야함
+		announcceVo.setAdminNo(1);	//나중에 admin session 값에 연결된 adminNo 등록해야함
 		
 		int cnt = announcceService.announcceAdd(announcceVo);
 		logger.info("공지사항 등록 결과, cnt={}", cnt);

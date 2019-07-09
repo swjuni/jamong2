@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SearchPwdAdminController {
 	private Logger logger = LoggerFactory.getLogger(SearchPwdAdminController.class);
 	
-	@RequestMapping("/admin/login/SearchPwd.do")
+	@RequestMapping("/admin/login/SearchPwd.do") 
 	public String searchPwd() {
 		logger.info("������ ��й�ȣ ã�� ������");
 		return "admin/login/SearchPwd";

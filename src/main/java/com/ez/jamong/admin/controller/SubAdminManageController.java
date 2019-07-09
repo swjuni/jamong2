@@ -20,7 +20,7 @@ public class SubAdminManageController {
 	@Autowired
 	private AdminService adminService;
 	
-	@RequestMapping("/manage/sub_admin.do")
+	@RequestMapping("/manage/sub_admin.do") 
 	public String gradeManage(Model model) {
 		logger.info("등급관리 화면");
 		

@@ -24,7 +24,7 @@ public class LoginAdminController {
 	
 	@Autowired private AdminService adminService;
 	
-	@RequestMapping(value="/login.do",method=RequestMethod.GET)
+	@RequestMapping(value="/login.do",method=RequestMethod.GET)  
 	public String loginAdmin_get() {
 		logger.info("관리자 로그인화면 보기");
 		

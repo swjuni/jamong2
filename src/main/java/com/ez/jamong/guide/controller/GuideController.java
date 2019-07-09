@@ -45,7 +45,7 @@ public class GuideController {
 	public String guideAdd_post(@ModelAttribute GuideVO guideVo, HttpServletRequest request, Model model) {
 		logger.info("관리자 안내 페이지 등록 요청, 파라미터 guideVo={}", guideVo);
 		
-		guideVo.setAdminNo(4);	//나중에 admin session 값에 연결된 adminNo 등록해야함
+		guideVo.setAdminNo(1);	//나중에 admin session 값에 연결된 adminNo 등록해야함
 		
 		int cnt = guideService.guideAdd(guideVo);
 		logger.info("안내 페이지 등록 결과, cnt={}", cnt);
