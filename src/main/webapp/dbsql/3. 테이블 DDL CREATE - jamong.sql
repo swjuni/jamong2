@@ -8,16 +8,22 @@ CREATE TABLE USER_INFO (
 	ZIPCODE        VARCHAR2(10)  NULL,     -- 우편번호
 	ADDRESS        VARCHAR2(100) NULL,     -- 주소
 	ADDRESS_DETAIL VARCHAR2(100) NULL,     -- 상세주소
-	REGDATE        TIMESTAMP     DEFAULT sysdate, -- 등록일
-	OUTDATE        TIMESTAMP     NULL,     -- 탈퇴일
-	ACTIVATION     VARCHAR2(10)  DEFAULT 'y', -- 활성화
-	AUTHOR_NO      NUMBER        NOT NULL  -- 권한번호
+	REGDATE        DATE          DEFAULT sysdate, -- 등록일
+	OUTDATE        DATE          NULL,     -- 탈퇴일
+	ACTIVATION     VARCHAR2(10)  DEFAULT 'Y', -- 활성화
+	AUTHOR_NO      NUMBER        DEFAULT 6 NOT NULL -- 권한번호
 );
 
 -- 회원정보 기본키
 CREATE UNIQUE INDEX UserInfo
 	ON USER_INFO ( -- 회원정보
 		USER_NO ASC -- 회원번호
+	);
+
+-- 회원정보 유니크 인덱스
+CREATE UNIQUE INDEX UIX_USER_INFO
+	ON USER_INFO ( -- 회원정보
+		USER_ID ASC -- 아이디
 	);
 
 -- 회원정보
@@ -28,6 +34,14 @@ ALTER TABLE USER_INFO
 			USER_NO -- 회원번호
 		);
 
+-- 회원정보
+ALTER TABLE USER_INFO
+	ADD
+		CONSTRAINT UK_USER_INFO -- 회원정보 유니크 제약
+		UNIQUE (
+			USER_ID -- 아이디
+		);
+
 -- 상품
 CREATE TABLE MENU_INFO (
 	PRODUCT_NO       NUMBER        NOT NULL, -- 상품번호
@@ -36,7 +50,7 @@ CREATE TABLE MENU_INFO (
 	EVAL_SCORE       NUMBER        NULL,     -- 상품평가점수
 	SUMMARY          CLOB          NULL,     -- 요약설명
 	DETAIL_DESC      CLOB          NULL,     -- 상세설명
-	REGDATE          TIMESTAMP     DEFAULT SYSDATE, -- 등록일
+	REGDATE          DATE          DEFAULT SYSDATE, -- 등록일
 	ORDER_LEVEL      NUMBER        NULL,     -- 정렬레벨
 	RECOMMEND        VARCHAR2(10)  NULL,     -- 추천
 	ACTIVATION       VARCHAR2(10)  DEFAULT 'Y', -- 활성화
@@ -91,8 +105,8 @@ CREATE TABLE ANNOUNCCE (
 	FILE_NAME          VARCHAR2(100) NULL,     -- 파일명
 	ORIGINAL_FILE_NAME VARCHAR2(100) NULL,     -- 원본파일명
 	FILE_SIZE          NUMBER        NULL,     -- 파일사이즈
-	READ_COUNT         NUMBER        NULL,     -- 조회수
-	REGDATE            TIMESTAMP     DEFAULT sysdate, -- 작성일
+	READ_COUNT         NUMBER        DEFAULT 0, -- 조회수
+	REGDATE            DATE          DEFAULT sysdate, -- 작성일
 	DELFLAG            VARCHAR2(50)  DEFAULT 'N', -- 삭제여부
 	ADMIN_NO           NUMBER        NOT NULL  -- 관리자번호
 );
@@ -116,8 +130,8 @@ CREATE TABLE FAQ (
 	FAQ_NO      NUMBER        NOT NULL, -- FAQ번호
 	FAQ_TITLE   VARCHAR2(150) NOT NULL, -- 제목
 	FAQ_CONTENT CLOB          NOT NULL, -- 내용
-	FAQ_REGDATE TIMESTAMP     DEFAULT sysdate, -- 작성일
-	FAQ_DELFALG VARCHAR2(10)  DEFAULT 'N' NOT NULL , -- 삭제여부
+	FAQ_REGDATE DATE          DEFAULT sysdate, -- 작성일
+	FAQ_DELFLAG VARCHAR2(10)  DEFAULT 'N' NOT NULL , -- 삭제여부
 	FAQ_CATE_NO NUMBER        NOT NULL, -- FAQ카테고리번호
 	ADMIN_NO    NUMBER        NULL      -- 관리자번호
 );
@@ -186,7 +200,7 @@ CREATE TABLE LOGS (
 	USER_NO    NUMBER        NOT NULL, -- 회원번호
 	LOGIN_IP   VARCHAR2(100) NULL,     -- 로그인IP
 	LOGIN_OS   VARCHAR2(100) NULL,     -- 로그인OS
-	LOGIN_TIME TIMESTAMP     DEFAULT sysdate -- 로그인시간
+	LOGIN_TIME DATE          DEFAULT sysdate -- 로그인시간
 );
 
 -- 회원_로그인로그 기본키
@@ -206,10 +220,10 @@ ALTER TABLE LOGS
 -- 고객_주문
 CREATE TABLE ORDERS (
 	ORDER_LIST_NO  NUMBER       NOT NULL, -- 고객_주문번호
-	ORDER_DATE     TIMESTAMP    DEFAULT sysdate, -- 주문일
+	ORDER_DATE     DATE         DEFAULT sysdate, -- 주문일
 	PURCHASE_PRICE NUMBER       NULL,     -- 패키지구매시점금액
 	COUPON_CHECK   VARCHAR2(10) DEFAULT 'N', -- 쿠폰적용여부
-	PURCHASE_DATE  TIMESTAMP    NULL,     -- 구매확정일자
+	PURCHASE_DATE  DATE         NULL,     -- 구매확정일자
 	DELFALG        VARCHAR2(10) DEFAULT 'N' NOT NULL , -- 의뢰마감결과
 	PAY_CHECK      VARCHAR2(10) DEFAULT 'N', -- 결제여부
 	PACK_NO        NUMBER       NOT NULL, -- 패키지번호
@@ -258,7 +272,7 @@ CREATE TABLE PAY (
 	ORDER_NO   NUMBER        NOT NULL, -- 고객_주문번호
 	PAY_METHOD VARCHAR2(100) NULL,     -- 결제수단
 	PRICE      NUMBER        DEFAULT 0 NOT NULL , -- 결제금액
-	REGDATE    TIMESTAMP     DEFAULT sysdate -- 결제일
+	REGDATE    DATE          DEFAULT sysdate -- 결제일
 );
 
 -- 결제 기본키
@@ -290,6 +304,12 @@ CREATE UNIQUE INDEX PK_TABLE29
 		ADMIN_NO ASC -- 관리자번호
 	);
 
+-- 관리자 유니크 인덱스
+CREATE UNIQUE INDEX UIX_ADMINISTRATOR
+	ON ADMINISTRATOR ( -- 관리자
+		ADMIN_ID ASC -- 아이디
+	);
+
 -- 관리자
 ALTER TABLE ADMINISTRATOR
 	ADD
@@ -298,12 +318,20 @@ ALTER TABLE ADMINISTRATOR
 			ADMIN_NO -- 관리자번호
 		);
 
+-- 관리자
+ALTER TABLE ADMINISTRATOR
+	ADD
+		CONSTRAINT UK_ADMINISTRATOR -- 관리자 유니크 제약
+		UNIQUE (
+			ADMIN_ID -- 아이디
+		);
+
 -- 전문가승인
 CREATE TABLE EXPERT_REQUEST (
 	EXPERT_NO       NUMBER        NOT NULL, -- 전문가번호
 	REQUEST_CONTENT VARCHAR2(100) NULL,     -- 승인요청내용
-	REQUEST_DATE    TIMESTAMP     DEFAULT SYSDATE, -- 신청일
-	APPROVE_DATE    TIMESTAMP     NULL,     -- 승인일
+	REQUEST_DATE    DATE          DEFAULT SYSDATE, -- 신청일
+	APPROVE_DATE    DATE          NULL,     -- 승인일
 	DELFLAG         VARCHAR2(10)  DEFAULT 'N' NOT NULL , -- 승인여부
 	USER_NO         NUMBER        NOT NULL, -- 회원번호
 	ADMIN_NO        NUMBER        NOT NULL  -- 관리자번호
@@ -372,11 +400,11 @@ ALTER TABLE CATEGORY_M
 -- 배너
 CREATE TABLE ADS (
 	ADS_NO             NUMBER        NOT NULL, -- 배너_번호
-	EXPERT_NO          NUMBER        NULL,     -- 전문가정보번호
+	EXPERT_NO          NUMBER        NOT NULL, -- 전문가정보번호
 	CATEGORY_NO        NUMBER        NOT NULL, -- 카테고리중번호
 	REQUEST_PERIOD     NUMBER        NOT NULL, -- 신청기간
-	START_DATE         TIMESTAMP     NULL,     -- 광고시작
-	END_DATE           TIMESTAMP     NULL,     -- 광고마감
+	START_DATE         DATE          NULL,     -- 광고시작
+	END_DATE           DATE          NULL,     -- 광고마감
 	PRICE              NUMBER        NOT NULL, -- 금액
 	FILE_NAME          VARCHAR2(100) NOT NULL, -- 파일명
 	ORIGINAL_FILE_NAME VARCHAR2(100) NOT NULL, -- 원본파일명
@@ -502,12 +530,12 @@ ALTER TABLE EXPERT
 
 -- 서비스평가
 CREATE TABLE EVALUATION (
-	EVAL_NO    NUMBER    NOT NULL, -- 서비스평가번호
-	PRODUCT_NO NUMBER    NOT NULL, -- 상품번호
-	EVAL_SCORE NUMBER    DEFAULT 0, -- 평가점수
-	REVIEW     CLOB      NULL,     -- 이용후기
-	COL        TIMESTAMP DEFAULT SYSDATE, -- 평가일
-	USER_NO    NUMBER    NOT NULL  -- 회원번호
+	EVAL_NO    NUMBER NOT NULL, -- 서비스평가번호
+	PRODUCT_NO NUMBER NOT NULL, -- 상품번호
+	EVAL_SCORE NUMBER DEFAULT 0, -- 평가점수
+	REVIEW     CLOB   NULL,     -- 이용후기
+	COL        DATE   DEFAULT SYSDATE, -- 평가일
+	USER_NO    NUMBER NOT NULL  -- 회원번호
 );
 
 -- 서비스평가 기본키
@@ -530,8 +558,8 @@ CREATE TABLE COUPON (
 	CP_NAME       VARCHAR2(50) NULL,     -- 쿠폰명
 	CP_PRICE      NUMBER       NOT NULL, -- 쿠폰금액
 	MIN_PRICE     NUMBER       NULL,     -- 적용최저금액
-	EXPIRY_PERIOD TIMESTAMP    NULL,     -- 적용기간
-	DATE_OF_ISSUE TIMESTAMP    DEFAULT SYSDATE, -- 발행일
+	EXPIRY_PERIOD DATE         NULL,     -- 적용기간
+	DATE_OF_ISSUE DATE         DEFAULT SYSDATE, -- 발행일
 	COL5          VARCHAR2(10) NULL,     -- 쿠폰종료여부
 	ADMIN_NO      NUMBER       NOT NULL, -- 관리자번호
 	USER_NO       NUMBER       NOT NULL, -- 회원번호
@@ -644,8 +672,9 @@ ALTER TABLE CATEGORY
 CREATE TABLE REPORT (
 	REPORT_NO   NUMBER       NOT NULL, -- 전문가신고번호
 	REPORT_DESC CLOB         NOT NULL, -- 신고내용
-	REPORT_DATE TIMESTAMP    NOT NULL, -- 신고일
-	DELFLAG     VARCHAR2(10) DEFAULT 'N', -- 승인여부
+	REPORT_DATE DATE         NOT NULL, -- 신고일
+	DELFLAG     VARCHAR2(10) NULL,     -- 승인여부
+	REPORT_TYPE VARCHAR(150) NULL,     -- 신고타입
 	USER_NO     NUMBER       NOT NULL, -- 회원번호
 	EXPERT_NO   NUMBER       NOT NULL, -- 전문가정보번호
 	PRODUCT_NO  NUMBER       NOT NULL, -- 상품번호
@@ -714,8 +743,8 @@ CREATE TABLE SCHEDULE (
 	SCHE_NO    NUMBER        NOT NULL, -- 전문가일정번호
 	SCHE_NAME  VARCHAR2(100) NULL,     -- 일정명
 	SCHE_DESC  VARCHAR2(200) NULL,     -- 일정내용
-	START_DATE TIMESTAMP     NOT NULL, -- 일정시작시간
-	END_DATE   TIMESTAMP     NOT NULL, -- 일정마감시간
+	START_DATE DATE          NOT NULL, -- 일정시작시간
+	END_DATE   DATE          NOT NULL, -- 일정마감시간
 	EXPERT_NO  NUMBER        NOT NULL  -- 전문가정보번호
 );
 
