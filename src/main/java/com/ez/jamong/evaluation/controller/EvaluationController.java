@@ -1,5 +1,9 @@
 package com.ez.jamong.evaluation.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.sql.Clob;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ez.jamong.evaluation.model.EvaluationService;
-import com.ez.jamong.evaluation.model.EvaluationVO;
 
 @Controller
 @RequestMapping("/admin/evaluation")
@@ -44,10 +47,27 @@ public class EvaluationController {
 			return "common/message";
 		}
 		
-		EvaluationVO evaluationVo=evaluationService.selectByNo(evalNo);
-		logger.info("상세보기 결과 vo={}", evaluationVo);
-		
-		model.addAttribute("vo", evaluationVo);
+		Map<String, Object> map=evaluationService.selectByNo(evalNo);
+		logger.info("상세보기 결과 map={}", map);
+		StringBuffer strOut = null;
+		if(map.get("REVIEW") instanceof java.sql.Clob) {
+			strOut = new StringBuffer();
+			String str="";
+			Clob clob = (java.sql.Clob)map.get("REVIEW");
+			BufferedReader br;
+			try {
+				br = new BufferedReader(clob.getCharacterStream());
+				while((str=br.readLine())!=null) {
+					strOut.append(str+"<br>");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		model.addAttribute("map", map);
+		model.addAttribute("review", strOut);
 		
 		return "admin/evaluation/evaluationDetail";
 	}

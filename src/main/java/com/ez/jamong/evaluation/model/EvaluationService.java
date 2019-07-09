@@ -5,6 +5,6 @@ import java.util.Map;
 
 public interface EvaluationService {
 	List<Map<String, Object>> selectAll();
-	EvaluationVO selectByNo(int evalNo);
+	Map<String, Object> selectByNo(int evalNo);
 	int deleteEvaluation(int evalNo);
 }

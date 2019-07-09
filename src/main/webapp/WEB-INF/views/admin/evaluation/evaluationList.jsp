@@ -73,7 +73,7 @@
 	                                                    <td style="text-align: center;">${map['EVAL_NO'] }</td>
 	                                                    <td style="text-align: center;">${map['CATEGORY_NAME_L'] }</td>
 	                                                    <td style="text-align: center;">${map['CATEGORY_NAME'] }</td>
-	                                                    <td><a href="<c:url value='/admin/evaluation/evaluationDetail.do?evalno=${map["EVALNO"] }'/>" class="text-primary">${map['PRODUCT_NAME'] }</a></td>
+	                                                    <td><a href="<c:url value='/admin/evaluation/evaluationDetail.do?evalNo=${map["EVAL_NO"] }'/>" class="text-primary">${map['PRODUCT_NAME'] }</a></td>
 														<td class="text-center"><span class="badge badge-primary">${map['EVAL_SCORE'] }</span></td>
 	                                                    <td style="text-align: center;">${map['USER_ID'] }</td>
 	                                                    <td style="text-align: center;"><fmt:formatDate value="${map['COL'] }" pattern="yyyy-MM-dd"/></td>

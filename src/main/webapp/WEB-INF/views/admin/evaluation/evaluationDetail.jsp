@@ -48,47 +48,47 @@
                                             <tbody>
                                                 <tr>
                                                     <th style="width: 25%">no</th>
-                                                    <td style="width: 75%">1</td>
+                                                    <td style="width: 75%">${map['EVAL_NO'] }</td>
                                                     <td style="width: 0%"></td>
                                                 </tr>
                                                 <tr>
                                                     <th>평가일</th>
-                                                    <td>2018-01-01</td>
+                                                    <td><fmt:formatDate value="${map['COL'] }" pattern="yyyy-MM-dd"/></td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
                                                     <th>회원ID</th>
-                                                    <td>홍길동</td>
+                                                    <td>${map['USER_ID'] }</td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
                                                     <th>카테고리(대)</th>
-                                                    <td>IT</td>
+                                                    <td>${map['CATEGORY_NAME_L'] }</td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
                                                     <th>카테고리(중)</th>
-                                                    <td>java</td>
+                                                    <td>${map['CATEGORY_NAME'] }</td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
                                                     <th>상품명</th>
-                                                    <td class="color-primary">코딩 지원</td>
+                                                    <td class="color-primary">${map['PRODUCT_NAME'] }</td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
                                                     <th>평가점수</th>
-                                                    <td><span class="badge badge-primary">10</span></td>
+                                                    <td><span class="badge badge-primary">${map['EVAL_SCORE'] }</span></td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
                                                     <th>전문가닉네임</th>
-                                                    <td>자바신</td>
+                                                    <td>${map['ID'] }</td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
                                                     <th>이용 후기</th>
-                                                    <td>내용 불러오기</td>
+                                                    <td>${review }</td>
                                                     <td></td>
                                                 </tr>
                                             </tbody>

@@ -18,9 +18,20 @@
 		on m.EXPERT_NO = ex.EXPERT_NO
 	</select>
 	
-	<select id="selectByNo" parameterType="int" resultType="evaluationVo">
-		select * from EVALUATION
-		where EVAL_NO=#{evalNo}
+	<select id="selectByNo" parameterType="int" resultType="map">
+		select e.EVAL_NO, e.PRODUCT_NO, e.EVAL_SCORE, e.REVIEW, e.COL, e.USER_NO,
+		cl.CATEGORY_NAME_L, cm.CATEGORY_NAME, m.PRODUCT_NAME, u.USER_ID, id 
+		from EVALUATION e join MENU_INFO m 
+		on e.PRODUCT_NO = m.PRODUCT_NO
+		join CATEGORY_M cm
+		on m.CATEGORY_TYPE_NO = cm.CATEGORY_NO_M
+		join CATEGORY_L cl
+		on cm.CATEGORY_NO_L = cl.CATEGORY_NO
+		join USER_INFO u
+		on e.USER_NO = u.USER_NO
+		join EXPERT ex
+		on m.EXPERT_NO = ex.EXPERT_NO
+		where e.EVAL_NO=#{evalNo}
 	</select>
 
 	<delete id="deleteEvaluation" parameterType="int">

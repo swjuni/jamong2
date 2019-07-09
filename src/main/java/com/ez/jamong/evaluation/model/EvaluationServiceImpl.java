@@ -16,7 +16,7 @@ public class EvaluationServiceImpl implements EvaluationService{
 	}
 
 	@Override
-	public EvaluationVO selectByNo(int evalNo) {
+	public Map<String, Object> selectByNo(int evalNo) {
 		return evaluationDao.selectByNo(evalNo);
 	}
 

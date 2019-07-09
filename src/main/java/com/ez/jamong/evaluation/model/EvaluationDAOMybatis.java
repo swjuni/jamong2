@@ -16,7 +16,7 @@ public class EvaluationDAOMybatis implements EvaluationDAO{
 		return sqlSession.selectList(namespace+"selectAll");
 	}
 	@Override
-	public EvaluationVO selectByNo(int evalNo) {
+	public Map<String, Object> selectByNo(int evalNo) {
 		return sqlSession.selectOne(namespace+"selectByNo", evalNo);
 	}
 	@Override
