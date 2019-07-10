@@ -90,7 +90,7 @@
 	                                            </div>
 	                                            
 										        <div class="form-group">  
-										 			<textarea id="faqContent" name="faqContent" rows="8" cols="100" class="form-control">${vo.faqContent }</textarea>
+										 			<textarea id="faqContent" name="faqContent" class="form-control" style="width: 90%">${vo.faqContent }</textarea>
 										        </div>
 												<script type="text/javascript">
 													//스마트에디터2 생성 코드
