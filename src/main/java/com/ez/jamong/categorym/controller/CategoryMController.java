@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ez.jamong.categoryl.model.CategoryLService;
+import com.ez.jamong.categoryl.model.CategoryLVO;
 import com.ez.jamong.categorym.model.CategoryMService;
 import com.ez.jamong.categorym.model.CategoryMVO;
 import com.ez.jamong.common.FileUploadUtility;
@@ -25,6 +27,7 @@ public class CategoryMController {
 	private Logger logger = LoggerFactory.getLogger(CategoryMController.class);
 
 	@Autowired private CategoryMService categorymService;
+	@Autowired private CategoryLService categorylService;
 	@Autowired private FileUploadUtility fileUtility;
 	
 	@RequestMapping("/admin/categorym/categoryList.do")
@@ -40,10 +43,10 @@ public class CategoryMController {
 	}
 	
 	@RequestMapping(value = "/admin/categorym/categoryAdd.do", method = RequestMethod.GET)
-	public String categorymAdd_get(@RequestParam(defaultValue = "0") int categoryNoM, Model model) {
-		logger.info("카테고리(중) 등록 화면 요청, 파라미터 categoryNoM={}", categoryNoM);
+	public String categorymAdd_get(Model model) {
+		logger.info("카테고리(중) 등록 화면 요청");
 		
-		List<CategoryMVO> list = categorymService.selectCategorymAll();
+		List<CategoryLVO> list = categorylService.selectCategorylAll();
 		model.addAttribute("list", list);
 		
 		return "admin/categorym/categoryAdd";
