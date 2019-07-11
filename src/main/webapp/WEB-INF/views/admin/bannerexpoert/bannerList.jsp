@@ -86,7 +86,7 @@
 		                                                    	${map['REQUEST_PERIOD']}
 		                                                    </td>
 		                                                    <td>
-		                                                    	${map['PRICE']}		                                                    
+		                                                    	<fmt:formatNumber value="${map['PRICE'] }" pattern="#,###" />원                                         
 		                                                    </td>
 		                                                    <td>
 		                                                    	<c:if test="${map['APPROVE_DELFLAG'] == 'Y' }">
