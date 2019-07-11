@@ -68,11 +68,11 @@
 	                    							<tr>
 	                    								<th>서비스 기간</th>
 	                    								<td>
-	                    								<c:if test="${map['START_DATE'] != null}">
+	                    								<c:if test="${map['START_DATE'] != null && map['APPROVE_DELFLAG'] != 'C'}">
 	                    								${map['START_DATE'] } ~ ${map ['END_DATE'] }
 	                    								</c:if>
-	                    								<c:if test="${map['START_DATE'] == null}">
-	                    									아직 승인되지 않았습니다.
+	                    								<c:if test="${map['START_DATE'] == null || map['APPROVE_DELFLAG'] == 'C'}">
+	                    									승인되지 않았습니다.
 	                    								</c:if>
 	                    								</td>
 	                    								<td></td>
