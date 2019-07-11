@@ -139,7 +139,7 @@
 								            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${map["ADS_NO"] }&activation=${""}&approveDelflag=${map["APPROVE_DELFLAG"] }'/>'">&nbsp;&nbsp;
 							            </c:if>
 							            <input type = "Button" value="삭제" class="btn btn-primary"
-				            			onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDelete.do'/>'">&nbsp;&nbsp;
+				            			onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDelete.do?adsNo=${map["ADS_NO"] }&fileName=${map["FILE_NAME"] }'/>'">&nbsp;&nbsp;
 							            <input type = "Button" value="글목록" class="btn btn-primary"
 							            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerList.do'/>'">
 							        </div>

@@ -50,4 +50,9 @@ public class BannerExServiceImpl implements BannerExService{
 		return bannerExDao.endDate(vo);
 	}
 
+	@Override
+	public int deleteBanner(int adsNo) {
+		return bannerExDao.deleteBanner(adsNo);
+	}
+
 }

@@ -12,4 +12,5 @@ public interface BannerExDAO {
 	public int updateApprove(BannerExVO vo);
 	public int updateDate(BannerExVO vo);
 	public int endDate(BannerExVO vo);
+	public int deleteBanner(int adsNo);
 }

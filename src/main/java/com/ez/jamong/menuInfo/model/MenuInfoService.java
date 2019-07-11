@@ -12,4 +12,5 @@ public interface MenuInfoService {
 	public int deleteMenuInfo(int productNo);
 	public Map<String, Object> selectMenuinfoView(int productNo);
 	public List<Map<String, Object>> selectMenuinfoAllView();
+	
 }

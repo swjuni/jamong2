@@ -36,7 +36,14 @@
 		set START_DATE=#{startDate}, END_DATE=sysdate
 		where ADS_NO=#{adsNo}
 	</update>
-
+	
+	<delete id="deleteBanner" parameterType="int">
+		delete from ads
+		where ADS_NO=#{ADS_NO}
+	</delete>
+	
+	
+	<!-- mappppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp -->
 	<select id="selectAdsAllView" resultType="map">
 		select * from absView
 	</select>
