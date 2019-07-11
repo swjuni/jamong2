@@ -124,7 +124,7 @@ public class CategoryMController {
 			return "common/message";
 		}
 		CategoryMVO categoryVo = categorymService.selectCategorymByNo(categoryNoM);
-		List<CategoryMVO> list = categorymService.selectCategorymAll();
+		List<CategoryLVO> list = categorylService.selectCategorylAll();
 		logger.info("카테고리(중) 상세보기 결과 vo={}", categoryVo);
 		
 		String fileInfo = fileUtility.getFileInfo(request, categoryVo, FileUploadUtility.CATEGORYM_UPLOAD);
@@ -229,7 +229,7 @@ public class CategoryMController {
 					logger.info("첨부 파일 삭제 결과 bool={}",bool);
 				}
 			}else {
-				msg="카테고리(중) 삭제 실패";
+				msg="첨부 파일이 없는 카테고리(중)가 삭제 되었습니다.";
 				
 			}
 

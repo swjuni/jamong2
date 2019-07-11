@@ -54,9 +54,9 @@
 										</div>
 										<div class="center">
 											<input type="submit" value="삭제" class="btn btn-primary"
-												onclick="submitContents(frmWrite)" />&nbsp;&nbsp; <input
-												type="button" value="취소" class="btn btn-primary"
-												onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${adsNo }'/>'">
+												onclick="submitContents(frmWrite)" />&nbsp;&nbsp; 
+											<input type="button" value="취소" class="btn btn-primary"
+												onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${vo.adsNo }'/>'">
 										</div>
 									</form>
 								</div>
