@@ -214,7 +214,7 @@ public class CategoryLController {
 					logger.info("첨부 파일 삭제 결과 bool={}",bool);
 				}
 			}else {
-				msg="카테고리(대) 삭제 실패";
+				msg="첨부 파일이 없는  카테고리(대)가 삭제 되었습니다.";
 				
 			}
 
