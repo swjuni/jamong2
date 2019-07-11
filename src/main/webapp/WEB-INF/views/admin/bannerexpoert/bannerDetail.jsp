@@ -42,50 +42,102 @@
                                 </div>
                                 <div class="card-body">
 									<div class="user-profile">
-                    					<div class="row">
-                    						<div class="col-lg-12">
-                    							<div class="user-profile-name">배너명 가져오기</div>
-                    						</div>
-                    						<div class="col-lg-12">
-                    							<div class="user-profile-name">카테고리(대)> 카테고리(중) 가져오기</div>
-                    						</div>
-                    						<div class="col-lg-12">
-                    							<div class="user-profile-name">상품명 가져오기</div>
-                    						</div>
-                    						<div class="col-lg-12">
-                    							<div class="user-profile-name">전문가 닉네임 가져오기</div>
-                    						</div>
-                    						<div class="col-lg-12">
-                    							<div class="user-profile-name">광고기간 가져오기</div>
-                    						</div>
-                    						<div class="col-lg-12">
-                    							<div class="user-profile-name">배너 서비스 시작일 ~ 배너서비스 종료일 가져오기</div>
-                    						</div>
-                    						<div class="col-lg-12">
-                    							<div class="user-profile-name">승인여부 가져오기</div>
-                    						</div>
-                    						<div class="col-lg-12">
-                    							<div class="user-profile-name">활성화 상태 가져오기</div>
-                    							<!-- 정지를 누르면 활성화 중지 -->
-                    						</div>
-                    						<div class="col-lg-12">
-                    							<div class="user-profile-name">금액 가져오기</div>
-                    							<div class="user-profile-name">전문가 마일리지 가져오기</div>
-                    							<div class="user-profile-name">총 금액 가져오기</div>
-                    						</div>
-                    						<div class="user-photo m-b-30">
-			                         				<img class="img-fluid" src="<c:url value='/assets/images/user-profile.jpg'/>" alt=""/>
-											</div>
-								 			<span>file_name 가져오기</span>
-                   						</div>
-               						</div>
+									
+										<table class="table">
+	                    						<tbody>
+	                    							<tr>
+	                    								<th>No</th>
+	                    								<td>${map['ADS_NO'] }</td>
+	                    								<td></td>
+	                    							</tr>
+	                    							<tr>
+	                    								<th>카테고리</th>
+	                    								<td>${map['CATEGORY_NAME_L'] } > ${map['CATEGORY_NAME'] }</td>
+	                    								<td></td>
+	                    							</tr>
+	                    							<tr>
+	                    								<th>전문가 닉네임</th>
+	                    								<td>${map['ID'] }</td>
+	                    								<td></td>
+	                    							</tr>
+	                    							<tr>
+	                    								<th>광고기간</th>
+	                    								<td>${map['REQUEST_PERIOD'] }</td>
+	                    								<td></td>
+	                    							</tr>
+	                    							<tr>
+	                    								<th>서비스 기간</th>
+	                    								<td>
+	                    								<c:if test="${map['START_DATE'] != null}">
+	                    								${map['START_DATE'] } ~ ${map ['END_DATE'] }
+	                    								</c:if>
+	                    								<c:if test="${map['START_DATE'] == null}">
+	                    									아직 승인되지 않았습니다.
+	                    								</c:if>
+	                    								</td>
+	                    								<td></td>
+	                    							</tr>
+	                                                <tr>
+	                                                    <th>승인 상태</th>
+	                                                    <td>
+	                                                    <c:if test="${map['APPROVE_DELFLAG'] == 'Y' }">
+					                                    	승인
+	                                                    </c:if>
+	                                                    <c:if test="${map['APPROVE_DELFLAG'] == 'N' }">
+							                            	승인 요청중
+	                                                   	</c:if>
+	                                                   	<c:if test="${map['APPROVE_DELFLAG'] == 'C' }">
+							                            	승인 취소
+	                                                   	</c:if>
+	                                                    </td>
+	                                                    <td></td>
+	                                                </tr>
+	                                                <tr>
+	                                                    <th>활성화 상태</th>
+	                                                    <td>
+	                                                    <c:if test="${map['ACTIVATION'] == 'Y' }">
+					                                    	활성화
+	                                                    </c:if>
+	                                                    <c:if test="${map['ACTIVATION'] == 'N' }">
+					                                    	비활성화
+	                                                    </c:if>
+	                                                    </td>
+	                                                    <td></td>
+	                                                </tr>
+	                                                <tr>
+	                                                    <th>금액</th>
+	                                                    <td><fmt:formatNumber value="${map['PRICE'] }" pattern="#,###" />원</td>
+	                                                    <td></td>
+	                                                </tr>
+	                    						</tbody>
+	                    					</table>
+	                    					<br>
+	                    					<br>
 							        
 									<!-- <button class="btn btn-primary" type="submit">등록</button> -->
 									<div class="text-center">
-							            <input type = "button" value="활성화" class="btn btn-primary"
-							            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do'/>'">&nbsp;&nbsp;
-							            <input type = "button" value="비활성화" class="btn btn-primary"
-							            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do'/>'">&nbsp;&nbsp;
+							            <c:if test="${map['APPROVE_DELFLAG'] == 'Y' }">
+								            <input type = "button" value="승인 취소" class="btn btn-primary"
+								            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${map["ADS_NO"] }&activation=${map["ACTIVATION"] }&approveDelflag=${map["APPROVE_DELFLAG"] }'/>'">&nbsp;&nbsp;
+											
+											
+								            <c:if test="${map['ACTIVATION'] == 'Y' }">
+									            <input type = "button" value="비활성화" class="btn btn-primary"
+									            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${map["ADS_NO"] }&activation=${map["ACTIVATION"] }&approveDelflag=${""}'/>'">&nbsp;&nbsp;
+											</c:if>
+											<c:if test="${map['ACTIVATION'] == 'N' }">
+									            <input type = "button" value="활성화" class="btn btn-primary"
+									            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${map["ADS_NO"] }&activation=${map["ACTIVATION"] }&approveDelflag=${""}'/>'">&nbsp;&nbsp;
+								            </c:if>
+										</c:if>
+										<c:if test="${map['APPROVE_DELFLAG'] == 'N' }">
+								            <input type = "button" value="승인 요청" class="btn btn-primary"
+								            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${map["ADS_NO"] }&activation=${""}&approveDelflag=${map["APPROVE_DELFLAG"] }'/>'">&nbsp;&nbsp;
+							            </c:if>
+							            <c:if test="${map['APPROVE_DELFLAG'] == 'C' }">
+								            <input type = "button" value="승인" class="btn btn-primary"
+								            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${map["ADS_NO"] }&activation=${""}&approveDelflag=${map["APPROVE_DELFLAG"] }'/>'">&nbsp;&nbsp;
+							            </c:if>
 							            <input type = "Button" value="삭제" class="btn btn-primary"
 				            			onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDelete.do'/>'">&nbsp;&nbsp;
 							            <input type = "Button" value="글목록" class="btn btn-primary"
@@ -97,6 +149,7 @@
                         </div>
                         <!-- /# column -->
                     </div>
+                  </div>
                 </section>
             </div>
         </div>

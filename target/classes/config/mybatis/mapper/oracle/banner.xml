@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.banner">
+
+	<select id="selectAdsAll" resultType="bannerExVo">
+		select * from ads
+	</select>
+	
+	<select id="selectAdsByNo" parameterType="int" resultType="bannerExVo">
+		select * from ads
+		where ADS_NO=#{adsNo}
+	</select>
+	
+	<update id="updateActivation" parameterType="bannerExVo">
+		update ads
+		set ACTIVATION=#{activation}
+		where ADS_NO=#{adsNo}
+	</update>
+
+	<update id="updateApprove" parameterType="bannerExVo">
+		update ads
+		set APPROVE_DELFLAG=#{approveDelflag}
+		where ADS_NO=#{adsNo}
+	</update>
+
+	<update id="updateDate" parameterType="bannerExVo">
+		update ads
+		set START_DATE=sysdate, END_DATE=sysdate + #{requestPeriod}
+		where ADS_NO=#{adsNo}
+	</update>
+
+	<update id="endDate" parameterType="bannerExVo">
+		update ads
+		set START_DATE=#{startDate}, END_DATE=sysdate
+		where ADS_NO=#{adsNo}
+	</update>
+
+	<select id="selectAdsAllView" resultType="map">
+		select * from absView
+	</select>
+
+	<select id="selectAdsView" parameterType="int" resultType="map">
+		select * from absView
+		where ADS_NO=#{adsNo}
+	</select>
+</mapper>
+
+
+

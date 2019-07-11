@@ -103,7 +103,7 @@ public class CategoryMController {
 		
 		Map<String, Object> map = categorymService.selectCategoryView(categoryNoM);
 		logger.info("목록 파라미터, map={}", map);
-		
+
 		String fileInfo = fileUtility.getFileInfo(request, categoryVo, FileUploadUtility.CATEGORYM_UPLOAD);
 		
 		model.addAttribute("vo", categoryVo);

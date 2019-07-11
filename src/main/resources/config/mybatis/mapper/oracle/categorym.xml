@@ -4,6 +4,17 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.categorym">
 
+	<resultMap type="map" id="categoryViewResult">
+		<result property="CATEGORY_NO_M" column="CATEGORY_NO_M"/>
+		<result property="CATEGORY_NO_L" column="CATEGORY_NO_L"/>
+		<result property="CATEGORY_NAME" column="CATEGORY_NAME"/>
+		<result property="CATEGORY_DESC" column="CATEGORY_DESC" jdbcType="CLOB" javaType="string"/>
+		<result property="IMG_NAME" column="IMG_NAME"/>
+		<result property="IMG_ORIGINAL_NAME" column="IMG_ORIGINAL_NAME"/>
+		<result property="IMG_SIZE" column="IMG_SIZE"/>
+		<result property="CATEGORY_NAME_L" column="CATEGORY_NAME_L"/>
+	</resultMap>
+
 	<insert id="categorymAdd" parameterType="categorymVo">
 		<selectKey resultType="int" keyProperty="categoryNoM" order="BEFORE">
 			select category_m_seq.nextval from dual
@@ -36,11 +47,12 @@
 	</delete>
 
 	<!-- mapmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm -->
-	<select id="selectCategoryAllView" resultType="map">
+	<!-- 카테고리(중) + 카테고리(대) 이름 -->
+	<select id="selectCategoryAllView" resultMap="categoryViewResult">
 		select * from categoryView
 	</select>
 	
-	<select id="selectCategoryView" parameterType="int" resultType="map">
+	<select id="selectCategoryView" parameterType="map" resultMap="categoryViewResult">
 		select * from categoryView
 		where CATEGORY_NO_M=#{categoryNoM}
 	</select>
