@@ -21,27 +21,29 @@
 		//수정버튼
 		$('.edit1').click(function(){//목록 텍스트를 input타입으로 변경
 			/* $(this).siblings().contents().wrap( '<p class="myclass">aa</p>' ); */
-			$(this).parent().siblings().not( '.authorno1' ).contents().remove();
-			var $a = $('<input type="text" class="mid">');
-			$(this).parent().siblings().not( '.authorno1' ).append($a);
+			$(this).parent().siblings('.name1').contents().remove();
+			$(this).parent().siblings('.authorlev1').contents().remove();
+			$(this).parent().siblings('.name1').append('<input type="text" class="mid">');
+			$(this).parent().siblings('.authorlev1').append('<input type="text" class="mid">');
 			$('.ok1').css('display','unset');
 			$(this).css('display','none');
 			$(this).siblings('.del1').css('display','none');
 		});
 		$('.edit2').click(function(){//목록 텍스트를 input타입으로 변경
-			/* $(this).siblings().contents().wrap( '<p class="myclass">aa</p>' ); */
-			$(this).parent().siblings().not( '.authorno2' ).contents().remove();
-			var $a = $('<input type="text" class="mid">');
-			$(this).parent().siblings().not( '.authorno2' ).append($a);
+			$(this).parent().siblings('.name2').contents().remove();
+			$(this).parent().siblings('.authorlev2').contents().remove();
+			$(this).parent().siblings('.name2').append('<input type="text" class="mid">');
+			$(this).parent().siblings('.authorlev2').append('<input type="text" class="mid">');
 			$('.ok2').css('display','unset');
 			$(this).css('display','none');
 			$(this).siblings('.del2').css('display','none');
 		});
 		$('.edit3').click(function(){//목록 텍스트를 input타입으로 변경
 			/* $(this).siblings().contents().wrap( '<p class="myclass">aa</p>' ); */
-			$(this).parent().siblings().not( '.authorno3' ).contents().remove();
-			var $a = $('<input type="text" class="mid">');
-			$(this).parent().siblings().not( '.authorno3' ).append($a);
+			$(this).parent().siblings('.name3').contents().remove();
+			$(this).parent().siblings('.authorlev3').contents().remove();
+			$(this).parent().siblings('.name3').append('<input type="text" class="mid">');
+			$(this).parent().siblings('.authorlev3').append('<input type="text" class="mid">');
 			$('.ok3').css('display','unset');
 			$(this).css('display','none');
 			$(this).siblings('.del3').css('display','none');
@@ -53,7 +55,7 @@
 		$('.ok1').click(function(){
 			var $authorNo = $(this).parent().siblings('.authorno1').html();
 			var $authorName = $(this).parent().siblings('.name1').children().val();
-			var $authorDesc = $(this).parent().siblings('.desc1').children().val();
+			var $authorDesc = $(this).parent().siblings('.desc1').html();
 			var $authorLev = $(this).parent().siblings('.authorlev1').children().val();
 			alert($authorNo+","+$authorName+","+$authorDesc+","+$authorLev);
 			$.ajax({
@@ -76,7 +78,7 @@
 		$('.ok2').click(function(){
 			var $authorNo = $(this).parent().siblings('.authorno2').html();
 			var $authorName = $(this).parent().siblings('.name2').children().val();
-			var $authorDesc = $(this).parent().siblings('.desc2').children().val();
+			var $authorDesc = $(this).parent().siblings('.desc2').html();
 			var $authorLev = $(this).parent().siblings('.authorlev2').children().val();
 			alert($authorNo+","+$authorName+","+$authorDesc+","+$authorLev);
 			$.ajax({
@@ -99,7 +101,7 @@
 		$('.ok3').click(function(){
 			var $authorNo = $(this).parent().siblings('.authorno3').html();
 			var $authorName = $(this).parent().siblings('.name3').children().val();
-			var $authorDesc = $(this).parent().siblings('.desc3').children().val();
+			var $authorDesc = $(this).parent().siblings('.desc3').html();
 			var $authorLev = $(this).parent().siblings('.authorlev3').children().val();
 			alert($authorNo+","+$authorName+","+$authorDesc+","+$authorLev);
 			$.ajax({
@@ -166,7 +168,7 @@
 		});
 		
 		//일반회원 등급 등록 버튼
-		$('.gradeinserttr').click(function(){
+		$('.insertok').click(function(){
 			var $authorName = $(this).parent().siblings().children('.gradename3').val();
 			var $authorDesc = $(this).parent().siblings().children('.gradedesc3').val();
 			var $authorLev = $(this).parent().siblings().children('.gradelev3').val();
@@ -282,9 +284,9 @@
 						</c:forEach>
 					</c:if>
 						<tr style="visibility: hidden" class="gradeinserttr1">
-							<td><input type="text" class="gradename1"></td>
-							<td><input type="text" class="gradedesc1"></td>
-							<td><input type="text" class="gradelev1"></td>
+							<td><input type="text" class="gradename1" placeholder="권한명"></td>
+							<td><input type="text" class="gradedesc1" value="관리자" disabled="disabled"></td>
+							<td><input type="text" class="gradelev1" placeholder="권한 레벨"></td>
 							<td><button type="button" class="insertok btn btn-info m-b-10 m-l-5">등록</button></td>
 						</tr>
 
@@ -334,9 +336,9 @@
 					</c:if>
 						
 						<tr style="visibility: hidden" class="gradeinserttr2">
-							<td><input type="text" class="gradename2"></td>
-							<td><input type="text" class="gradedesc2"></td>
-							<td><input type="text" class="gradelev2"></td>
+							<td><input type="text" class="gradename2" placeholder="권한명"></td>
+							<td><input type="text" class="gradedesc2" value="전문가" disabled="disabled"></td>
+							<td><input type="text" class="gradelev2" placeholder="권한 레벨"></td>
 							<td><button type="button" class="insertok btn btn-info m-b-10 m-l-5">등록</button></td>
 						</tr>
 
@@ -390,9 +392,9 @@
 					</c:if>
 						
 						<tr style="visibility: hidden" class="gradeinserttr3">
-							<td><input type="text" class="gradename3"></td>
-							<td><input type="text" class="gradedesc3"></td>
-							<td><input type="text" class="gradelev3"></td>
+							<td><input type="text" class="gradename3" placeholder="권한명"></td>
+							<td><input type="text" class="gradedesc3" value="일반회원" disabled="disabled"></td>
+							<td><input type="text" class="gradelev3" placeholder="권한 레벨"></td>
 							<td><button type="button" class="insertok btn btn-info m-b-10 m-l-5">등록</button></td>
 						</tr>
 						

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -105,9 +106,9 @@ public class ExpertAdminController {
 	public String acceptMulti(@ModelAttribute ReportListVO reportCol,
 			@RequestParam String searchUseYn,@RequestParam String searchKeyword,
 			@RequestParam String searchCondition, @RequestParam(defaultValue = "1") int currentPage,
-			Model model) {
+			HttpSession session,Model model) {
 		logger.info("신고승인, reportCol={}, searchUseYn={}",reportCol,searchUseYn);
-		int adminNo=1;
+		int adminNo=(Integer)session.getAttribute("adminNo");
 		List<ReportVO> list=reportCol.getReportCol();
 		
 		//db
@@ -137,9 +138,9 @@ public class ExpertAdminController {
 	public String refuseMulti(@ModelAttribute ReportListVO reportCol,
 			@RequestParam String searchUseYn,@RequestParam String searchKeyword,
 			@RequestParam String searchCondition, @RequestParam(defaultValue = "1") int currentPage,
-			Model model) {
+			HttpSession session,Model model) {
 		logger.info("신고거부, reportCol={}",reportCol);
-		int adminNo=1;
+		int adminNo=(Integer)session.getAttribute("adminNo");
 		List<ReportVO> list=reportCol.getReportCol();
 		
 		//db
@@ -169,8 +170,8 @@ public class ExpertAdminController {
 	public String acceptOne(@RequestParam(defaultValue = "0") int reportNo, @RequestParam(defaultValue = "0") int productNo,
 			@RequestParam String searchUseYn,@RequestParam String searchKeyword,
 			@RequestParam String searchCondition, @RequestParam(defaultValue = "1") int currentPage,
-			Model model) {
-		int adminNo=1;
+			HttpSession session, Model model) {
+		int adminNo=(Integer)session.getAttribute("adminNo");
 		logger.info("신고승인하나, reportNo={}, productNo={}",reportNo, productNo);
 		
 		//db
@@ -195,8 +196,8 @@ public class ExpertAdminController {
 	@RequestMapping(value = "/refuseOne.do", method = RequestMethod.GET)
 	public String refuseOne(@RequestParam(defaultValue = "0") int reportNo,
 			@RequestParam String searchUseYn,@RequestParam String searchKeyword,
-			@RequestParam String searchCondition, @RequestParam(defaultValue = "1") int currentPage, Model model) {
-		int adminNo=1;
+			HttpSession session, @RequestParam String searchCondition, @RequestParam(defaultValue = "1") int currentPage, Model model) {
+		int adminNo=(Integer)session.getAttribute("adminNo");
 		logger.info("신고거부하나, reportNo={},currentPage={}",reportNo,currentPage);
 		
 		int cnt=reportService.refuseOne(reportNo, adminNo);

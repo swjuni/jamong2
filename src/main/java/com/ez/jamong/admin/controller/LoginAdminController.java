@@ -47,8 +47,10 @@ public class LoginAdminController {
 			
 			//세션
 			HttpSession session = request.getSession();
-			session.setAttribute("adminUserid", userid);
-			session.setAttribute("adminUserName", adminVo.getAdminName());
+			session.setAttribute("adminId", userid);
+			session.setAttribute("adminName", adminVo.getAdminName());
+			session.setAttribute("adminAuthor", adminVo.getAuthorNo());
+			session.setAttribute("adminNo", adminVo.getAdminNo());
 			
 			//쿠키
 			Cookie ck = new Cookie("ck_admin_userid", userid);

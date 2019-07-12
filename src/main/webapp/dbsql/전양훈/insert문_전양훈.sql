@@ -36,6 +36,13 @@ select * from ads;
 commit;
 
 --상품 년도 변경
+update menu_info
+set regdate = add_months(regdate, -12) 
+where product_no=2; 
+
+commit;
+
+--배너 년도 변경
 update ads
 set start_date = add_months(start_date, -12) 
 where ads_no=4; 

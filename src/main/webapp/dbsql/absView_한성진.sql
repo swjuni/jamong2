@@ -6,3 +6,4 @@ join categoryView c
 on c.CATEGORY_NO_M = a.CATEGORY_NO
 join ADMINISTRATOR ad
 on ad.ADMIN_NO = a.ADMIN_NO;
+commit;
