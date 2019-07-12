@@ -48,4 +48,22 @@
 		where PRODUCT_NO=#{productNo}
 	</select>
 	
+	<!-- 상품 년도별로 개수 가져오기 -->
+	<select id="selectMenuinfoYearCount" resultType="map">
+		SELECT * FROM (
+		select TO_CHAR(regdate,'YYYY') REGDATE,count(*) COUNT from menu_info
+		group by TO_CHAR(regdate,'YYYY')
+		)
+		ORDER BY REGDATE
+	</select>
+	
+	<!-- 배너 년도별로 개수 가져오기 -->
+	<select id="selectAdsYearCount" resultType="map">
+		SELECT * FROM (
+		select TO_CHAR(START_DATE,'YYYY') START_DATE,count(*) COUNT from ads
+		group by TO_CHAR(START_DATE,'YYYY')
+		)
+		ORDER BY START_DATE
+	</select>
+	
 </mapper>

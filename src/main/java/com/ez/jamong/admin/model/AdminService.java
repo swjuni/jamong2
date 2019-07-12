@@ -16,4 +16,7 @@ public interface AdminService{
 	public int adminLoginCheck(String userid,String pwd);
 	public AdminVO selectAdmin(String userid);
 	public List<AdminVO> selectAdminAll();
+	public int gradeAdminUpdate(AdminVO vo);
+	public int insertAdmin(AdminVO vo);
+	public int deleteAdmin(String id);
 }

@@ -7,14 +7,234 @@
 <!-- 버튼 클릭 이벤트 -->
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('button[name=add]').click(function(){
-			if($(this).html()=='추가'){
-			$(this).parents().eq(2).next().children().last().css("display", "contents");
-			$(this).html('취소');
-			}else{
-			$(this).parents().eq(2).next().children().last().css("display", "none");
-			$(this).html('추가');
-			}
+		//관리자 추가 버튼
+		$('.addd1').click(function(){
+			$('.gradeinserttr1').css('visibility','visible');
+		});
+		$('.addd2').click(function(){
+			$('.gradeinserttr2').css('visibility','visible');
+		});
+		$('.addd3').click(function(){
+			$('.gradeinserttr3').css('visibility','visible');
+		});
+
+		//수정버튼
+		$('.edit1').click(function(){//목록 텍스트를 input타입으로 변경
+			/* $(this).siblings().contents().wrap( '<p class="myclass">aa</p>' ); */
+			$(this).parent().siblings().not( '.authorno1' ).contents().remove();
+			var $a = $('<input type="text" class="mid">');
+			$(this).parent().siblings().not( '.authorno1' ).append($a);
+			$('.ok1').css('display','unset');
+			$(this).css('display','none');
+			$(this).siblings('.del1').css('display','none');
+		});
+		$('.edit2').click(function(){//목록 텍스트를 input타입으로 변경
+			/* $(this).siblings().contents().wrap( '<p class="myclass">aa</p>' ); */
+			$(this).parent().siblings().not( '.authorno2' ).contents().remove();
+			var $a = $('<input type="text" class="mid">');
+			$(this).parent().siblings().not( '.authorno2' ).append($a);
+			$('.ok2').css('display','unset');
+			$(this).css('display','none');
+			$(this).siblings('.del2').css('display','none');
+		});
+		$('.edit3').click(function(){//목록 텍스트를 input타입으로 변경
+			/* $(this).siblings().contents().wrap( '<p class="myclass">aa</p>' ); */
+			$(this).parent().siblings().not( '.authorno3' ).contents().remove();
+			var $a = $('<input type="text" class="mid">');
+			$(this).parent().siblings().not( '.authorno3' ).append($a);
+			$('.ok3').css('display','unset');
+			$(this).css('display','none');
+			$(this).siblings('.del3').css('display','none');
+		});
+		
+		
+		//수정확인
+		//수정확인버튼
+		$('.ok1').click(function(){
+			var $authorNo = $(this).parent().siblings('.authorno1').html();
+			var $authorName = $(this).parent().siblings('.name1').children().val();
+			var $authorDesc = $(this).parent().siblings('.desc1').children().val();
+			var $authorLev = $(this).parent().siblings('.authorlev1').children().val();
+			alert($authorNo+","+$authorName+","+$authorDesc+","+$authorLev);
+			$.ajax({
+	    		url :"<c:url value='/admin/manage/admin_grade_update.do'/>",
+	    		type: 'post',
+	    		data:{
+	    			authorNo:$authorNo,
+	    			authorName:$authorName,
+	    			authorDesc:$authorDesc,
+	    			authorLev:$authorLev
+	    		},
+	    		
+	    		dataType: "json",
+	    		success : function(res) {
+	    		alert("관리자 등급 수정이 완료되었습니다");
+	    		}
+	    		});
+		});
+		//수정확인버튼
+		$('.ok2').click(function(){
+			var $authorNo = $(this).parent().siblings('.authorno2').html();
+			var $authorName = $(this).parent().siblings('.name2').children().val();
+			var $authorDesc = $(this).parent().siblings('.desc2').children().val();
+			var $authorLev = $(this).parent().siblings('.authorlev2').children().val();
+			alert($authorNo+","+$authorName+","+$authorDesc+","+$authorLev);
+			$.ajax({
+	    		url :"<c:url value='/admin/manage/admin_grade_update.do'/>",
+	    		type: 'post',
+	    		data:{
+	    			authorNo:$authorNo,
+	    			authorName:$authorName,
+	    			authorDesc:$authorDesc,
+	    			authorLev:$authorLev
+	    		},
+	    		
+	    		dataType: "json",
+	    		success : function(res) {
+	    		alert("전문가 등급 수정이 완료되었습니다");
+	    		}
+	    		});
+		});
+		//수정확인버튼
+		$('.ok3').click(function(){
+			var $authorNo = $(this).parent().siblings('.authorno3').html();
+			var $authorName = $(this).parent().siblings('.name3').children().val();
+			var $authorDesc = $(this).parent().siblings('.desc3').children().val();
+			var $authorLev = $(this).parent().siblings('.authorlev3').children().val();
+			alert($authorNo+","+$authorName+","+$authorDesc+","+$authorLev);
+			$.ajax({
+	    		url :"<c:url value='/admin/manage/admin_grade_update.do'/>",
+	    		type: 'post',
+	    		data:{
+	    			authorNo:$authorNo,
+	    			authorName:$authorName,
+	    			authorDesc:$authorDesc,
+	    			authorLev:$authorLev
+	    		},
+	    		
+	    		dataType: "json",
+	    		success : function(res) {
+	    		alert("일반회원 등급 수정이 완료되었습니다");
+	    		}
+	    		});
+		});
+		
+		//관리자 등급 등록 버튼
+		$('.insertok').click(function(){
+			var $authorName = $(this).parent().siblings().children('.gradename1').val();
+			var $authorDesc = $(this).parent().siblings().children('.gradedesc1').val();
+			var $authorLev = $(this).parent().siblings().children('.gradelev1').val();
+			alert($authorName+","+$authorDesc+","+$authorLev);
+			
+			$.ajax({
+	    		url :"<c:url value='/admin/manage/grade_insert.do'/>",
+	    		type: 'post',
+	    		data:{
+	    			authorName:$authorName,
+	    			authorDesc:"관리자",
+	    			authorLev:$authorLev
+	    		},
+	    		
+	    		dataType: "json",
+	    		success : function(res) {
+	    		alert("등급 등록이 완료되었습니다");
+	    		}
+	    		});
+		});
+		
+		//전문가 등급 등록 버튼
+		$('.insertok').click(function(){
+			var $authorName = $(this).parent().siblings().children('.gradename2').val();
+			var $authorDesc = $(this).parent().siblings().children('.gradedesc2').val();
+			var $authorLev = $(this).parent().siblings().children('.gradelev2').val();
+			alert($authorName+","+$authorDesc+","+$authorLev);
+			
+			$.ajax({
+	    		url :"<c:url value='/admin/manage/grade_insert.do'/>",
+	    		type: 'post',
+	    		data:{
+	    			authorName:$authorName,
+	    			authorDesc:"전문가",
+	    			authorLev:$authorLev
+	    		},
+	    		
+	    		dataType: "json",
+	    		success : function(res) {
+	    		alert("등급 등록이 완료되었습니다");
+	    		}
+	    		});
+		});
+		
+		//일반회원 등급 등록 버튼
+		$('.gradeinserttr').click(function(){
+			var $authorName = $(this).parent().siblings().children('.gradename3').val();
+			var $authorDesc = $(this).parent().siblings().children('.gradedesc3').val();
+			var $authorLev = $(this).parent().siblings().children('.gradelev3').val();
+			alert($authorName+","+$authorDesc+","+$authorLev);
+			
+			$.ajax({
+	    		url :"<c:url value='/admin/manage/grade_insert.do'/>",
+	    		type: 'post',
+	    		data:{
+	    			authorName:$authorName,
+	    			authorDesc:"일반회원",
+	    			authorLev:$authorLev
+	    		},
+	    		
+	    		dataType: "json",
+	    		success : function(res) {
+	    		alert("등급 등록이 완료되었습니다");
+	    		}
+	    		});
+		});
+		
+		//관리자 등급 삭제 버튼
+		$('.del1').click(function(){
+			var $authorName = $(this).parent().siblings('.name1').html();
+			alert($authorName);
+			
+			$.ajax({
+	    		url :"<c:url value='/admin/manage/grade_delete.do'/>",
+	    		type: 'post',
+	    		data:{name:$authorName}
+	    		,
+	    		dataType: "text",
+	    		success : function(res) {
+	    		alert("관리자 등급 삭제가 완료되었습니다");
+	    		}
+	    		});
+		});
+		//전문가 등급 삭제 버튼
+		$('.del2').click(function(){
+			var $authorName = $(this).parent().siblings('.name2').html();
+			alert($authorName);
+			
+			$.ajax({
+	    		url :"<c:url value='/admin/manage/grade_delete.do'/>",
+	    		type: 'post',
+	    		data:{name:$authorName}
+	    		,
+	    		dataType: "text",
+	    		success : function(res) {
+	    		alert("전문가 등급 삭제가 완료되었습니다");
+	    		}
+	    		});
+		});
+		//관리자 등급 삭제 버튼
+		$('.del3').click(function(){
+			var $authorName = $(this).parent().siblings('.name3').html();
+			alert($authorName);
+			
+			$.ajax({
+	    		url :"<c:url value='/admin/manage/grade_delete.do'/>",
+	    		type: 'post',
+	    		data:{name:$authorName}
+	    		,
+	    		dataType: "text",
+	    		success : function(res) {
+	    		alert("일반회원 등급 삭제가 완료되었습니다");
+	    		}
+	    		});
 		});
 	});
 </script>
@@ -38,7 +258,7 @@
 							<th>권한 설명</th>
 							<th>권한 레벨</th>
 							<th><button type="button"
-									class="btn btn-success m-b-10 m-l-5" name="add">추가</button></th>
+									class="addd1 btn btn-success m-b-10 m-l-5" name="add">추가</button></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -50,30 +270,22 @@
 					<c:if test="${!empty list1 }">
 						<c:forEach var="vo" items="${list1 }">
 						<tr>
-							<th scope="row"><span class="admin1">${vo.authorNo }</span></th>
-							<td><span class="txt">${vo.authorName }</span><input type="text" class="edit" placeholder="${vo.authorName }"></td>
-							<td><span class="txt">${vo.authorDesc }</span><input type="text" class="edit" placeholder="${vo.authorDesc }"></td>
-							<td><span class="badge badge-primary txt" style="margin-left: 15px">${vo.authorLev }</span>
-								<input type="text" class="edit" placeholder="${vo.authorLev }">
-							</td>
-							<td><button type="button"
-									class="btn btn-danger m-b-10 m-l-5"
-									onclick = "location.href = '#' ">삭제</button>
-								<button type="button" class="btn btn-info m-b-10 m-l-5" 
-								onclick = "location.href = '#' " >수정</button>
-								<button type="button" class="btn btn-info m-b-10 m-l-5" 
-								onclick = "location.href = '#' " style="display: none">확인</button>
+							<td class="authorno1">${vo.authorNo }</td>
+							<td class="name1">${vo.authorName }</td>
+							<td class="desc1">${vo.authorDesc }</td>
+							<td class="authorlev1">${vo.authorLev }</td>
+							<td><button type="button" class="del1 btn btn-danger m-b-10 m-l-5">삭제</button>
+								<button type="button" class="edit1 btn btn-info m-b-10 m-l-5" >수정</button>
+								<button type="button" class="ok1 btn btn-info m-b-10 m-l-5" style="display: none" >확인</button>
 							</td>
 						</tr>
 						</c:forEach>
 					</c:if>
-						<tr style="display:none">
-							<th scope="row"></th>
-							<td><input type="text" name=""></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><button type="button" class="btn btn-info m-b-10 m-l-5"
-								onclick = "location.href = '<c:url value='#'/>' ">등록</button></td>
+						<tr style="visibility: hidden" class="gradeinserttr1">
+							<td><input type="text" class="gradename1"></td>
+							<td><input type="text" class="gradedesc1"></td>
+							<td><input type="text" class="gradelev1"></td>
+							<td><button type="button" class="insertok btn btn-info m-b-10 m-l-5">등록</button></td>
 						</tr>
 
 					</tbody>
@@ -98,7 +310,7 @@
 							<th>권한 설명</th>
 							<th>권한 레벨</th>
 							<th><button type="button"
-									class="btn btn-success m-b-10 m-l-5" name="add">추가</button></th>
+									class="addd2 btn btn-success m-b-10 m-l-5" name="add">추가</button></th>
 						</tr>
 					</thead>
 					<c:if test="${empty list2 }">	 
@@ -109,27 +321,23 @@
 					<c:if test="${!empty list2 }">
 						<c:forEach var="vo" items="${list2 }">
 						<tr>
-							<th scope="row">${vo.authorNo }</th>
-							<td>${vo.authorName }</td>
-							<td>${vo.authorDesc }</td>
-							<td><span class="badge badge-primary" style="margin-left: 15px">${vo.authorLev }</span></td>
-							<td><button type="button"
-									class="btn btn-danger m-b-10 m-l-5"
-									onclick = "location.href = '#' ">삭제</button>
-								<button type="button" class="btn btn-info m-b-10 m-l-5" 
-								onclick = "location.href = '#' ">수정</button>
+							<td class="authorno2">${vo.authorNo }</td>
+							<td class="name2">${vo.authorName }</td>
+							<td class="desc2">${vo.authorDesc }</td>
+							<td class="authorlev2">${vo.authorLev }</td>
+							<td><button type="button" class="del2 btn btn-danger m-b-10 m-l-5">삭제</button>
+								<button type="button" class="edit2 btn btn-info m-b-10 m-l-5" >수정</button>
+								<button type="button" class="ok2 btn btn-info m-b-10 m-l-5"  style="display: none"  >확인</button>
 							</td>
 						</tr>
 						</c:forEach>
 					</c:if>
 						
-						<tr style="display:none">
-							<th scope="row"></th>
-							<td><input type="text" name=""></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><button type="button" class="btn btn-info m-b-10 m-l-5"
-								onclick = "location.href = '<c:url value='#'/>' ">등록</button></td>
+						<tr style="visibility: hidden" class="gradeinserttr2">
+							<td><input type="text" class="gradename2"></td>
+							<td><input type="text" class="gradedesc2"></td>
+							<td><input type="text" class="gradelev2"></td>
+							<td><button type="button" class="insertok btn btn-info m-b-10 m-l-5">등록</button></td>
 						</tr>
 
 					</tbody>
@@ -155,7 +363,7 @@
 							<th>권한 설명</th>
 							<th>권한 레벨</th>
 							<th><button type="button"
-									class="btn btn-success m-b-10 m-l-5" name="add">추가</button></th>
+									class="addd3 btn btn-success m-b-10 m-l-5" name="add">추가</button></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -169,27 +377,23 @@
 					<c:if test="${!empty list3 }">
 						<c:forEach var="vo" items="${list3 }">
 						<tr>
-							<th scope="row">${vo.authorNo }</th>
-							<td>${vo.authorName }</td>
-							<td>${vo.authorDesc }</td>
-							<td><span class="badge badge-primary" style="margin-left: 15px">${vo.authorLev }</span></td>
-							<td><button type="button"
-									class="btn btn-danger m-b-10 m-l-5"
-									onclick = "location.href = '#' ">삭제</button>
-								<button type="button" class="btn btn-info m-b-10 m-l-5" 
-								onclick = "location.href = '#' ">수정</button>
+							<td class="authorno3">${vo.authorNo }</td>
+							<td class="name3">${vo.authorName }</td>
+							<td class="desc3">${vo.authorDesc }</td>
+							<td class="authorlev3">${vo.authorLev }</td>
+							<td><button type="button" class="del3 btn btn-danger m-b-10 m-l-5">삭제</button>
+								<button type="button" class="edit3 btn btn-info m-b-10 m-l-5" >수정</button>
+								<button type="button" class="ok3 btn btn-info m-b-10 m-l-5"  style="display: none" >확인</button>
 							</td>
 						</tr>
 						</c:forEach>
 					</c:if>
 						
-						<tr style="display:none">
-							<th scope="row"></th>
-							<td><input type="text" name=""></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td><button type="button" class="btn btn-info m-b-10 m-l-5"
-								onclick = "location.href = '<c:url value='#'/>' ">등록</button></td>
+						<tr style="visibility: hidden" class="gradeinserttr3">
+							<td><input type="text" class="gradename3"></td>
+							<td><input type="text" class="gradedesc3"></td>
+							<td><input type="text" class="gradelev3"></td>
+							<td><button type="button" class="insertok btn btn-info m-b-10 m-l-5">등록</button></td>
 						</tr>
 						
 

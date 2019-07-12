@@ -2,6 +2,12 @@
     
 <!-- 관리자 홈 top include -->
 <%@include file="../inc/admin_top.jsp" %>
+	<!--  Chart js -->
+    <script src="<c:url value='/assets/js/lib/chart-js/Chart.bundle.js'/>"></script>
+    <!-- chart api  -->
+    
+    
+    
 <style type="text/css">
 	.dt-buttons{
 		margin-bottom: 0;
@@ -152,7 +158,7 @@
                     </div>
                   </div>
                   <div class="panel-body">
-                    <canvas id="pieChart"></canvas>
+                    <canvas id=""></canvas>
                   </div>
                 </div>
               </div>
@@ -207,7 +213,6 @@
 	
 	<!-- 화면별 고유 scripit init -->
     <script src="<c:url value='/assets/js/lib/data-table/datatables.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/lib/data-table/buttons.dataTables.min.js'/>"></script>
     <script src="<c:url value='/assets/js/lib/data-table/dataTables.buttons.min.js'/>"></script>
     <script src="<c:url value='/assets/js/lib/data-table/buttons.flash.min.js'/>"></script>
     <script src="<c:url value='/assets/js/lib/data-table/jszip.min.js'/>"></script>
@@ -218,37 +223,45 @@
     <script src="<c:url value='/assets/js/lib/data-table/datatables-init.js'/>"></script>
     
     <!--  Chart js -->
-    <!--  Chart js -->
-    <script src="<c:url value='/assets/js/lib/chart-js/Chart.bundle.js'/>"></script>
-    <!-- chart api  -->
+  
+  	
+  	
+	
+	
     
-    
-    <script type="text/javascript">
-    var array1 = new Array(); 
-    var array2 = new Array();
-    </script>
-	<c:forEach items="${list}" var="item">
-		array1.push("${item}");
-		array2.push("${item}");
-	</c:forEach>
     <script type="text/javascript">
     $(document).ready(function(){
-    	alert(array1.length());
-    	for(var i=0;i<${fn:length(list)};i++){
-    		alert(array1[i])
-    		alert(array2[i]);
-    	}
-    	
-    	
-    });
-	</script>
-	
-    <script type="text/javascript">
-    ( function ( $ ) {
     	"use strict";
 
     	//Team chart
+    	var arrName = new Array();
+		var arrCount = new Array();
+		
+    	$.ajax({
+		url :"<c:url value='/admin/statistics/User_statistics1.do' />",
+		type: 'post',
+		dataType: "json",
+		success : function(res) {
+		
+		for(var i=0;i<res[0].length;i++){
+			arrName[i]=res[0][i];
+			arrCount[i]=res[1][i];
+			
+			/* alert(typeof(res[0])+"<-타입:"+res[0]);
+			alert(typeof(res[0][0])+"<-타입:"+res[0][0]);
+			alert(typeof(res[1])+"<-타입:"+res[1]);
+			alert(typeof(res[1][0])+"<-타입:"+res[1][0]); */
+		}
+			myChart.update(); // 데이터를 바꾼 다음, 이렇게 업데이트를 해야 적용된다.
+		},
+		error: function(xhr, status, error){
+		alert('실패');
+		}
+		
+		});
     	
+    	
+
     	var ctx = document.getElementById( "team-chart" );
     	ctx.height = 150;
     	var myChart = new Chart( ctx, {
@@ -494,11 +507,11 @@
     	var myChart = new Chart( ctx, {
     		type: 'radar',
     		data: {
-    			labels: [ [ "Eating"], [ "Drinking" ], "Sleeping", [ "Designing" ], "Coding", "Cycling", "Running" ],
+    			labels: arrName,
     			datasets: [
     				{
     					label: "My First dataset",
-    					data: [ 65, 59, 66, 45, 56, 55, 40 ],
+    					data: arrCount,
     					borderColor: "rgba(0, 123, 255, 0.6)",
     					borderWidth: "1",
     					backgroundColor: "rgba(0, 123, 255, 0.4)"
@@ -639,15 +652,14 @@
     		}
     	} );
 
-
-
-
-    } )( jQuery );
-
+    });
+    
 	</script>
     <!-- // Chart js -->
     <!-- // Chart js -->
-    <script src="<c:url value='/assets/js/lib/bootstrap.min.js'/>"></script>
+    <script src="<c:url value='/assets/js/lib/bootstrap.min.js'/>">
+    	
+    </script>
     <script src="<c:url value='/assets/js/scripts.js'/>"></script>
     <!-- scripit init-->
 

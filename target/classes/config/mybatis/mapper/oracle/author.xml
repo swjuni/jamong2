@@ -10,7 +10,18 @@
 		select * from  AUTHORITY where author_desc =#{authorDesc}
 	</select>
 	
+	<update id="updateAutorityAdmin" parameterType="authorVo">
+		update authority set author_name=#{authorName},author_lev=#{authorLev}
+		where author_no=#{authorNo}
+	</update>
 	
+	<insert id="gradeInsert" parameterType="authorVo">
+		insert into authority values(authority_seq.nextval,#{authorName},#{authorDesc},#{authorLev})	
+	</insert>
+	
+	<delete id="gradeDelete" parameterType="string">
+		delete authority where author_name=#{authorName}
+	</delete>
 </mapper>
 
 

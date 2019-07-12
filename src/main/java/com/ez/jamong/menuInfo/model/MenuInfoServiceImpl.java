@@ -49,4 +49,14 @@ public class MenuInfoServiceImpl implements MenuInfoService{
 	public List<Map<String, Object>> selectMenuinfoAllView() {
 		return menuInfoDao.selectMenuinfoAllView();
 	}
+
+	@Override
+	public List<Map<String, Object[]>> selectMenuinfoYearCount() {
+		return menuInfoDao.selectMenuinfoYearCount();
+	}
+	
+	@Override
+	public List<Map<String, Object[]>> selectAdsYearCount() {
+		return menuInfoDao.selectAdsYearCount();
+	}
 }

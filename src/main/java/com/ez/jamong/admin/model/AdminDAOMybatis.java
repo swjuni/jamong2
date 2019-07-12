@@ -27,4 +27,18 @@ public class AdminDAOMybatis implements AdminDAO{
 		return sqlSession.selectList(namespace+"selectAdminAll");
 	}
 
+	@Override
+	public int gradeAdminUpdate(AdminVO vo) {
+		return sqlSession.update(namespace+"gradeAdminUpdate",vo);
+	}
+	@Override
+	public int insertAdmin(AdminVO vo) {
+		return sqlSession.insert(namespace+"insertAdmin",vo);
+	}
+
+	@Override
+	public int deleteAdmin(String id) {
+		return sqlSession.insert(namespace+"deleteAdmin",id);
+	}
+
 }

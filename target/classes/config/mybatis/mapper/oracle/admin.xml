@@ -17,7 +17,23 @@
 	<select id="selectAdminAll" resultType="adminVo">
 		select * from administrator
 	</select>
-
+	
+	<update id="gradeAdminUpdate" parameterType="adminVo" >
+		 update administrator 
+   			SET admin_name = #{adminName},
+       			admin_pwd = #{adminPwd},
+       			author_no = #{authorNo}
+  			where admin_id=#{adminId}
+	</update>
+	
+	<insert id="insertAdmin" parameterType="adminVo" >
+		insert into ADMINISTRATOR values(ADMINISTRATOR_seq.nextval,#{adminId},#{adminPwd},#{adminName},#{authorNo})
+	</insert>
+	
+	<delete id="deleteAdmin" parameterType="string">
+		delete ADMINISTRATOR where admin_id=#{adminId}
+	</delete>
+	
 	
 	
 </mapper>

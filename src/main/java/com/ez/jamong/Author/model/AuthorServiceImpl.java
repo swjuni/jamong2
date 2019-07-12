@@ -16,6 +16,24 @@ public class AuthorServiceImpl implements AuthorService{
 	public List<AuthorVO> selectAutorityAll(String authorDesc) {
 		return admingradeDao.selectAutorityAll(authorDesc);
 	}
+
+
+	@Override
+	public int updateAutorityAdmin(AuthorVO vo) {
+		return admingradeDao.updateAutorityAdmin(vo);
+	}
+
+
+	@Override
+	public int gradeInsert(AuthorVO vo) {
+		return admingradeDao.gradeInsert(vo);
+	}
+
+
+	@Override
+	public int gradeDelete(String name) {
+		return admingradeDao.gradeDelete(name);
+	}
 	
 
 }

@@ -36,5 +36,20 @@ public class AdminServiceImpl implements AdminService{
 	public List<AdminVO> selectAdminAll() {
 		return adminDao.selectAdminAll();
 	}
+
+	@Override
+	public int gradeAdminUpdate(AdminVO vo) {
+		return adminDao.gradeAdminUpdate(vo);
+	}
+	
+	@Override
+	public int insertAdmin(AdminVO vo) {
+		return adminDao.insertAdmin(vo);
+	}
+
+	@Override
+	public int deleteAdmin(String id) {
+		return adminDao.deleteAdmin(id);
+	}
 	
 }

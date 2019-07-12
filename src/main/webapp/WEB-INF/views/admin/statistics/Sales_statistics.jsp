@@ -22,7 +22,7 @@
 	}
 </style>
 <!-- 각자가 분담해서 디자인할 바디 태그 -->
-			<div class="content-wrap">
+	<div class="content-wrap">
       <div class="main">
         <div class="container-fluid">
           <div class="row">
@@ -222,8 +222,55 @@
     <script src="<c:url value='/assets/js/lib/chart-js/Chart.bundle.js'/>"></script>
      <!-- chart api  -->
     <script type="text/javascript">
-    ( function ( $ ) {
-    	"use strict";
+		
+    	$(document).ready(function(){
+        	"use strict";
+
+        	//Team chart
+        	var arrMenuYear = new Array();
+    		var arrMenuCount = new Array();
+    		var arrBannerYear = new Array();
+    		var arrBannerCount = new Array();
+    		
+        	$.ajax({
+    		url :"<c:url value='/admin/statistics/Sales_statistics1.do'/>",
+    		type: 'post',
+    		dataType: "json",
+    		success : function(res) {
+    		/* alert(typeof(res[0])+"<-타입:"+res[0]);
+    		alert(typeof(res[0][0])+"<-타입:"+res[0][0]);
+    		alert(typeof(res[1])+"<-타입:"+res[1]);
+    		alert(typeof(res[1][0])+"<-타입:"+res[1][0]); */
+    		/* for(var key in res[0][0]){
+    			alert(key+":"+res[key]);
+    		};
+    		var s1 = res[0][0].REGDATE+"";
+    		var s2 = res[0][1].REGDATE+"";
+    		var s3 = res[0][2].REGDATE+"";
+    		var s4 = res[0][3].REGDATE+"";
+    		var q1 = res[0][0].COUNT+0;
+    		alert("typeof="+typeof(s1));
+    		alert("typeof="+typeof(q1));
+    		alert(s1);
+    		alert(s2);
+    		alert(s3);
+    		alert(s4);
+    		alert(q1); */
+    		
+    		for(var i=0;i<res[0].length;i++){
+    			arrMenuYear[i]=res[0][i].REGDATE+"";
+    			arrMenuCount[i]=res[0][i].COUNT+0;
+    		}
+    		for(var i=0;i<res[1].length;i++){
+    			arrBannerYear[i]=res[1][i].START_DATE+"";
+    			arrBannerCount[i]=res[1][i].COUNT+0;
+    		}
+    		myChart.update();
+    		},
+    		error: function(xhr, status, error){
+    		alert('실패');
+    		}
+    		});
 
     	//Team chart//jeon 배너 매출 통계
     	var ctx = document.getElementById( "team-chart" );
@@ -231,11 +278,11 @@
     	var myChart = new Chart( ctx, {
     		type: 'line',
     		data: {
-    			labels: [ "라라라", "2011", "2012", "2013", "2014", "2015", "2016" ],
+    			labels: arrBannerYear,
     			type: 'line',
     			defaultFontFamily: 'Montserrat',
     			datasets: [ {
-    				data: [ 10, 17, 3, 5, 2, 10, 17 ],
+    				data: arrBannerCount,
     				label: "Expense",
     				backgroundColor: 'rgba(0,103,255,.15)',
     				borderColor: 'rgba(0,103,255,0.5)',
@@ -603,11 +650,11 @@
     	var myChart = new Chart( ctx, {
     		type: 'bar',
     		data: {
-    			labels: [ "라라라", "Mon", "Tu", "Wed", "Th", "Fri", "Sat" ],
+    			labels: arrMenuYear,
     			datasets: [
     				{
     					label: "My Jeon",
-    					data: [ 50, 55, 75, 77, 56, 55, 77 ],
+    					data: arrMenuCount,
     					borderColor: "rgba(0, 123, 255, 0.9)",
     					borderWidth: "0",
     					backgroundColor: "rgba(0, 123, 255, 0.5)"
@@ -624,13 +671,16 @@
     			}
     		}
     	} );
-
-
-
-
-    } )( jQuery );
-
+    	
+    	
+    	setInterval(function(){
+    		myChart.update();
+    		}, 500);
+    	});
 	</script>
+
+	
+
     <!-- // Chart js -->
     <!-- // Chart js -->
     <script src="<c:url value='/assets/js/lib/bootstrap.min.js'/>"></script>

@@ -18,6 +18,24 @@ public class AuthorDAOMybatis implements AuthorDAO{
 		return list;
 		
 	}
+
+	@Override
+	public int updateAutorityAdmin(AuthorVO vo) {
+		int cnt = sqlSession.update(namespace+"updateAutorityAdmin",vo);
+		return cnt;
+	}
+
+	@Override
+	public int gradeInsert(AuthorVO vo) {
+		int cnt = sqlSession.insert(namespace+"gradeInsert",vo);
+		return cnt;
+	}
+
+	@Override
+	public int gradeDelete(String name) {
+		int cnt = sqlSession.delete(namespace+"gradeDelete",name);
+		return cnt;
+	}
 	
 	
 }

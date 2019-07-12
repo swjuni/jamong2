@@ -4,7 +4,101 @@
 <%@include file="../inc/admin_top.jsp" %>
 
 <!-- 각자가 분담해서 디자인할 바디 태그 -->
-    
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		
+		//수정버튼
+		$('.adminedit').click(function(){//목록 텍스트를 input타입으로 변경
+			/* $(this).siblings().contents().wrap( '<p class="myclass">aa</p>' ); */
+			$(this).parent().siblings().not( '.adminid' ).contents().remove();
+			var $a = $('<input type="text" class="mid">');
+			$(this).parent().siblings().not( '.adminid' ).append($a);
+			$('.admineditok').css('display','unset');
+			$(this).css('display','none');
+		});
+		
+		//수정확인버튼
+		$('.admineditok').click(function(){
+			var $adminid = $(this).parent().siblings('.adminid').html();
+			var $adminpwd = $(this).parent().siblings('.adminpwd').children().val();
+			var $adminName = $(this).parent().siblings('.adminname').children().val();
+			var $authorNo = $(this).parent().siblings('.adminauthor').children().val();
+			alert($adminid+","+$adminpwd+","+$adminName+","+$authorNo);
+			$.ajax({
+	    		url :"<c:url value='/admin/manage/sub_admin_update.do'/>",
+	    		type: 'post',
+	    		data:{
+	    			adminId:$adminid,
+	    			adminPwd:$adminpwd,
+	    			adminName:$adminName,
+	    			authorNo:$authorNo
+	    		},
+	    		
+	    		dataType: "json",
+	    		success : function(res) {
+	    		alert("관리자 수정이 완료되었습니다");
+	    		}
+	    		});
+		});
+		//관리자 등록 버튼
+		$('.admininsertok').click(function(){
+			var $adminid = $(this).parent().siblings().children('.admininsertid').val();
+			var $adminpwd = $(this).parent().siblings().children('.admininsertpwd').val();
+			var $adminName = $(this).parent().siblings().children('.admininsertname').val();
+			var $authorNo = $(this).parent().siblings().children('.admininsertpok').val();
+			alert($adminid+","+$adminpwd+","+$adminName+","+$authorNo);
+			
+			$.ajax({
+	    		url :"<c:url value='/admin/manage/sub_admin_insert.do'/>",
+	    		type: 'post',
+	    		data:{
+	    			adminId:$adminid,
+	    			adminPwd:$adminpwd,
+	    			adminName:$adminName,
+	    			authorNo:$authorNo
+	    		},
+	    		
+	    		dataType: "json",
+	    		success : function(res) {
+	    		alert("관리자 등록이 완료되었습니다");
+	    		}
+	    		});
+		});
+		//관리자 삭제 버튼
+		$('.admindelete').click(function(){
+			var $adminid = $(this).parent().siblings('.adminid').html();
+			alert($adminid);
+			
+			$.ajax({
+	    		url :"<c:url value='/admin/manage/sub_admin_delete.do'/>",
+	    		type: 'post',
+	    		data:{id:$adminid}
+	    		,
+	    		dataType: "text",
+	    		success : function(res) {
+	    		alert("관리자 삭제가 완료되었습니다");
+	    		}
+	    		});
+		});
+		
+		//관리자 추가 버튼
+		$('.adminadd').click(function(){
+			$('.admininserttr').css('visibility','visible');
+		});
+		
+		
+		
+		
+		
+		alert("jquery 실행 완료!");
+	});
+</script>
+<style>
+	.mid{
+		width: 30%;
+	}
+</style>
 <div class="content-wrap">
         <div class="main">
             <div class="container-fluid">
@@ -31,7 +125,7 @@
                 </div>
                 <!-- /# row -->
                 <section id="main-content" >
-                    <div class="row" style="width: 900px;margin-left: 20%">
+                    <div class="row" style="width: 40;">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-title">
@@ -43,11 +137,12 @@
                                         <table id="row-select" class="display table table-borderd table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>edit</th>
                                                     <th>id</th>
                                                     <th>pwd</th>
                                                     <th>name</th>
                                                     <th>position</th>
+                                                    <th><button type="button"
+													class="adminadd btn btn-success m-b-10 m-l-5" name="add">추가</button></th>
                                                 </tr>
                                             </thead>
 
@@ -61,27 +156,36 @@
                                                 <c:if test="${!empty list }">
                                                 <c:forEach var="vo" items="${list }">
                                                 <tr>
-                                                	<td>
-                                                    <button type="button" class="btn btn-danger m-b-10 m-l-5" >삭제</button>
-                                                    <button type="button" class="btn btn-info m-b-10 m-l-5">수정</button>
+                                                
+                                                    <td class="adminid">${vo.adminId }</td>
+                                                    <td class="adminpwd">${vo.adminPwd }</td>
+                                                    <td class="adminname">${vo.adminName }</td>
+                                                    <td class="adminauthor">${vo.authorNo }</td>
+                                                    <td>
+                                                    <button type="button" class="adminedit btn btn-info m-b-10 m-l-5">수정</button>
+                                                    <button type="button" class="admineditok btn btn-info m-b-10 m-l-5" style="display: none">확인</button>
+                                                    <button type="button" class="admindelete btn btn-danger m-b-10 m-l-5" >삭제</button>
                                                     </td>
-                                                    <td>${vo.adminId }</td>
-                                                    <td>${vo.adminPwd }</td>
-                                                    <td>${vo.adminName }</td>
-                                                    <td>${vo.authorNo }</td>
                                                 </tr>
                                                 </c:forEach>
                                                 
                                                 </c:if>
+                                                <tr style="visibility: hidden" class="admininserttr">
+	                                                <td><input type="text" class="admininsertid"></td>
+													<td><input type="text" class="admininsertpwd"></td>
+													<td><input type="text" class="admininsertname"></td>
+													<td><input type="text" class="admininsertpok"></td>
+													<td><button type="button" class="admininsertok btn btn-info m-b-10 m-l-5">등록</button></td>
+                                                </tr>
                                                 
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th style="visibility: hidden;"></th>
                                                     <th>id</th>
                                                     <th>pwd</th>
                                                     <th>name</th>
                                                     <th>position</th>
+                                                    <th style="visibility: hidden;"></th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -95,15 +199,7 @@
                     <!-- /# row -->
                     <div class="button-list">
                                     
-                                    <button type="button" class="btn btn-default m-b-10">Default</button>
-                                    <button type="button" class="btn btn-primary m-b-10 m-l-5">관리자 등록</button>
-                                    <button type="button" class="btn btn-success m-b-10 m-l-5">Success</button>
-                                    <button type="button" class="btn btn-info m-b-10 m-l-5">Info</button>
-                                    <button type="button" class="btn btn-warning m-b-10 m-l-5">Warning</button>
-                                    <button type="button" class="btn btn-danger m-b-10 m-l-5">Danger</button>
-                                    <button type="button" class="btn btn-pink m-b-10 m-l-5">Pink</button>
-                                    <button type="button" class="btn btn-dark m-b-10 m-l-5">Dark</button>
-                                    <button type="button" class="btn btn-link m-b-10 m-l-5">Link</button>
+                                   
                                 </div>
 
                     <div class="row">
