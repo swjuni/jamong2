@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +48,7 @@ public class AnnouncceController {
 	}
 	
 	@RequestMapping(value = "/announcceAdd.do", method = RequestMethod.POST)
-	public String announcceAdd_post(@ModelAttribute AnnouncceVO announcceVo, HttpServletRequest request, Model model) {
+	public String announcceAdd_post(@ModelAttribute AnnouncceVO announcceVo, HttpServletRequest request, Model model, HttpSession session) {
 		logger.info("관리자 보드 공지사항 등록 요청, 파라미터 announcceVo={}", announcceVo);
 		
 		//파일 업로드
@@ -65,7 +66,7 @@ public class AnnouncceController {
 		announcceVo.setFileSize(fileSize);
 		announcceVo.setOriginalFileName(originalFileName);
 		
-		announcceVo.setAdminNo(1);	//나중에 admin session 값에 연결된 adminNo 등록해야함
+		announcceVo.setAdminNo((Integer)session.getAttribute("adminNo"));	//나중에 admin session 값에 연결된 adminNo 등록해야함
 		
 		int cnt = announcceService.announcceAdd(announcceVo);
 		logger.info("공지사항 등록 결과, cnt={}", cnt);
