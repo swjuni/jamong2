@@ -3,6 +3,7 @@ package com.ez.jamong.faq.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,10 +56,10 @@ public class FaqController {
 	}
 	
 	@RequestMapping(value = "/faqAdd.do", method = RequestMethod.POST)
-	public String faqAdd_post(@ModelAttribute FaqVO faqVo, Model model) {
+	public String faqAdd_post(@ModelAttribute FaqVO faqVo, Model model, HttpSession session) {
 		logger.info("관리자 FAQ 등록 요청");
 		
-		faqVo.setAdminNo(1); //나중에 admin session 값에 연결된 adminNo 등록해야함
+		faqVo.setAdminNo((Integer)session.getAttribute("adminNo")); //나중에 admin session 값에 연결된 adminNo 등록해야함
 		
 		int cnt = faqService.faqAdd(faqVo);
 		logger.info("FAQ등록 결과 cnt={}",cnt);
