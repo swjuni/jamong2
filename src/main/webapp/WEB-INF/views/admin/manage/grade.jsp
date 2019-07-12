@@ -71,6 +71,7 @@
 	    		dataType: "json",
 	    		success : function(res) {
 	    		alert("관리자 등급 수정이 완료되었습니다");
+	    		
 	    		}
 	    		});
 		});

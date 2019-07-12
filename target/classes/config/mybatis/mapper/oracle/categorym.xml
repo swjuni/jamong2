@@ -79,4 +79,8 @@
 		group by CATEGORY_NAME
 	</select>
 	
+	<select id="selectCategoryM" parameterType="int" resultType="categorymVo">
+		select * from category_m
+		where CATEGORY_NO_L=#{categoryNoL}
+	</select>
 </mapper>

@@ -45,7 +45,11 @@ public class CategoryMServiceImpl implements CategoryMService{
 	public List<Map<String, Object>> selectCategoryAllView() {
 		return categoryDao.selectCategoryAllView();
 	}
-	
+
+	@Override
+	public List<CategoryMVO> selectCategoryM(int categoryNoL) {
+		return categoryDao.selectCategoryM(categoryNoL);
+	}
 	
 	
 }

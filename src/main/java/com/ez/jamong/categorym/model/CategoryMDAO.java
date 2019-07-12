@@ -11,4 +11,5 @@ public interface CategoryMDAO {
 	public int deleteCategorym(int categoryNoM);
 	public Map<String, Object> selectCategoryView(int categoryNoM);
 	public List<Map<String, Object>> selectCategoryAllView();
+	public List<CategoryMVO> selectCategoryM(int categoryNoL);
 }

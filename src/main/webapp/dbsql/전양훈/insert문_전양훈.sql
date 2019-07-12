@@ -24,14 +24,20 @@ select * from ADMINISTRATOR;
 select * from authority;
 
 --배너 임시 등록
-insert into ADS (ADS_NO,CATEGORY_NO,REQUEST_PERIOD,START_DATE,PRICE,FILE_NAME,ORIGINAL_FILE_NAME,FILE_SIZE,ADMIN_NO) values
-(1,1,3,sysdate,1000,'aa','aa',1000,1);
-insert into ADS (ADS_NO,CATEGORY_NO,REQUEST_PERIOD,START_DATE,PRICE,FILE_NAME,ORIGINAL_FILE_NAME,FILE_SIZE,ADMIN_NO) values
-(2,1,3,sysdate,1000,'aa','aa',1000,1);
-insert into ADS (ADS_NO,CATEGORY_NO,REQUEST_PERIOD,START_DATE,PRICE,FILE_NAME,ORIGINAL_FILE_NAME,FILE_SIZE,ADMIN_NO) values
-(3,1,3,sysdate,1000,'aa','aa',1000,1);
-insert into ADS (ADS_NO,CATEGORY_NO,REQUEST_PERIOD,START_DATE,PRICE,FILE_NAME,ORIGINAL_FILE_NAME,FILE_SIZE,ADMIN_NO) values
-(4,1,3,sysdate,1000,'aa','aa',1000,1);
+insert into ADS (ADS_NO,EXPERT_NO,CATEGORY_NO,REQUEST_PERIOD,START_DATE,PRICE,FILE_NAME,ORIGINAL_FILE_NAME,FILE_SIZE,ADMIN_NO) values
+(1,1,1,3,sysdate,1000,'aa','aa',1000,1);
+insert into ADS (ADS_NO,EXPERT_NO,CATEGORY_NO,REQUEST_PERIOD,START_DATE,PRICE,FILE_NAME,ORIGINAL_FILE_NAME,FILE_SIZE,ADMIN_NO) values
+(2,1,1,3,sysdate,1000,'aa','aa',1000,1);
+insert into ADS (ADS_NO,EXPERT_NO,CATEGORY_NO,REQUEST_PERIOD,START_DATE,PRICE,FILE_NAME,ORIGINAL_FILE_NAME,FILE_SIZE,ADMIN_NO) values
+(3,1,1,3,sysdate,1000,'aa','aa',1000,1);
+insert into ADS (ADS_NO,EXPERT_NO,CATEGORY_NO,REQUEST_PERIOD,START_DATE,PRICE,FILE_NAME,ORIGINAL_FILE_NAME,FILE_SIZE,ADMIN_NO) values
+(4,1,1,3,sysdate,1000,'aa','aa',1000,1);
+select * from ads;
+insert into ADS (ADS_NO,EXPERT_NO,CATEGORY_NO,REQUEST_PERIOD,START_DATE,PRICE,FILE_NAME,ORIGINAL_FILE_NAME,FILE_SIZE,ADMIN_NO) values
+(5,1,1,3,sysdate,1000,'aa','aa',1000,1);
+select * from ads;
+insert into ADS (ADS_NO,EXPERT_NO,CATEGORY_NO,REQUEST_PERIOD,START_DATE,PRICE,FILE_NAME,ORIGINAL_FILE_NAME,FILE_SIZE,ADMIN_NO) values
+(6,1,1,3,sysdate,1000,'aa','aa',1000,1);
 select * from ads;
 commit;
 
@@ -42,10 +48,12 @@ where product_no=2;
 
 commit;
 
+select * from ads;
+
 --배너 년도 변경
 update ads
 set start_date = add_months(start_date, -12) 
-where ads_no=4; 
+where ads_no=6; 
 
 
 update authority set author_name='aa',author_desc='관리자',author_lev=3

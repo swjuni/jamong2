@@ -49,6 +49,11 @@ public class CategoryMDAOMybatis implements CategoryMDAO{
 		return sqlSession.selectList(namespace + "selectCategoryAllView");
 	}
 
+	@Override
+	public List<CategoryMVO> selectCategoryM(int categoryNoL) {
+		return sqlSession.selectList(namespace+"selectCategoryM",categoryNoL);
+	}
+
 	
 	
 }
