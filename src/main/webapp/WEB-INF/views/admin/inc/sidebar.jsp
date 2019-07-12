@@ -46,7 +46,7 @@
                 </li>
                 
                 <li class="label">기타관리</li>
-                <li><a href="<c:url value='/admin/index_admin.do'/>"><i class="ti-heart"></i> 결제 </a></li>
+                <li><a href="<c:url value='/admin/login/login.do'/>"><i class="ti-heart"></i> 로그인 </a></li>
                 <li><a href="<c:url value='/admin/index_admin.do'/>"><i class="ti-layout-grid2-alt"></i> 쿠폰</a></li>
                 
                 <li><a class="sidebar-sub-toggle"><i class="ti-panel"></i> 배너 <span class="sidebar-collapse-icon ti-angle-down"></span></a>
