@@ -80,7 +80,7 @@
 	                                            </div>
 	                                            
 										        <div class="form-group">  
-										 			<textarea id="content" name="content" rows="8" cols="100" class="form-control">${vo.content }</textarea>
+										 			<textarea id="content" name="content" style="width: 90%" class="form-control">${vo.content }</textarea>
 										        </div>
 												<script type="text/javascript">
 													//스마트에디터2 생성 코드

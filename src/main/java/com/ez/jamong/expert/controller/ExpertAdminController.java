@@ -105,7 +105,7 @@ public class ExpertAdminController {
 	public String acceptMulti(@ModelAttribute ReportListVO reportCol,
 			@RequestParam String searchUseYn,@RequestParam String searchKeyword,
 			@RequestParam String searchCondition, @RequestParam(defaultValue = "1") int currentPage,
-			HttpServletRequest request, Model model) {
+			Model model) {
 		logger.info("신고승인, reportCol={}, searchUseYn={}",reportCol,searchUseYn);
 		int adminNo=1;
 		List<ReportVO> list=reportCol.getReportCol();
@@ -137,7 +137,7 @@ public class ExpertAdminController {
 	public String refuseMulti(@ModelAttribute ReportListVO reportCol,
 			@RequestParam String searchUseYn,@RequestParam String searchKeyword,
 			@RequestParam String searchCondition, @RequestParam(defaultValue = "1") int currentPage,
-			HttpServletRequest request, Model model) {
+			Model model) {
 		logger.info("신고거부, reportCol={}",reportCol);
 		int adminNo=1;
 		List<ReportVO> list=reportCol.getReportCol();
@@ -193,7 +193,7 @@ public class ExpertAdminController {
 	}
 	
 	@RequestMapping(value = "/refuseOne.do", method = RequestMethod.GET)
-	public String refueOne(@RequestParam(defaultValue = "0") int reportNo,
+	public String refuseOne(@RequestParam(defaultValue = "0") int reportNo,
 			@RequestParam String searchUseYn,@RequestParam String searchKeyword,
 			@RequestParam String searchCondition, @RequestParam(defaultValue = "1") int currentPage, Model model) {
 		int adminNo=1;

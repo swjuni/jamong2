@@ -58,7 +58,7 @@
                                                 <tr style="background-color: #C8D0FE; text-align: center;">
                                                     <th>No</th>
                                                     <th>카테고리명</th>
-                                                    <th>카테고리 설명(글자 수 제한)</th>
+                                                    <th>카테고리 설명</th>
                                                     <th>이미지파일</th>
                                                     <th>카테고리(대)분류</th>
                                                 </tr>

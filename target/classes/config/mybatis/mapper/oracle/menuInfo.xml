@@ -3,6 +3,24 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="config.mybatis.mapper.oracle.menuInfo">
+	
+	<resultMap type="map" id="menuinfoViewResult">
+		<result property="PRODUCT_NO" column="PRODUCT_NO" />
+		<result property="CATEGORY_TYPE_NO" column="CATEGORY_TYPE_NO" />
+		<result property="PRODUCT_NAME" column="PRODUCT_NAME" />
+		<result property="EVAL_SCORE" column="EVAL_SCORE" />
+		<result property="SUMMARY" column="SUMMARY" jdbcType="CLOB" javaType="string"/>
+		<result property="DETAIL_DESC" column="DETAIL_DESC" jdbcType="CLOB" javaType="string"/>
+		<result property="REGDATE" column="REGDATE" />
+		<result property="ORDER_LEVEL" column="ORDER_LEVEL" />
+		<result property="RECOMMEND" column="RECOMMEND" />
+		<result property="ACTIVATION" column="ACTIVATION" />
+		<result property="EXPERT_NO" column="EXPERT_NO" />
+		<result property="ID" column="ID" />
+		<result property="CATEGORY_NAME_L" column="CATEGORY_NAME_L" />
+		<result property="CATEGORY_NAME" column="CATEGORY_NAME" />
+	</resultMap>
+
 	<select id="selectMenuInfoAll" resultType="menuinfoVo">
 		select * from menu_info
 	</select>
@@ -39,11 +57,11 @@
 	</delete>
 	
 	<!-- mapmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm -->
-	<select id="selectMenuinfoAllView" resultType="map">
+	<select id="selectMenuinfoAllView" resultMap="menuinfoViewResult">
 		select * from menuinfoView
 	</select>
 	
-	<select id="selectMenuinfoView" parameterType="int" resultType="map">
+	<select id="selectMenuinfoView" parameterType="map" resultMap="menuinfoViewResult">
 		select * from menuinfoView
 		where PRODUCT_NO=#{productNo}
 	</select>

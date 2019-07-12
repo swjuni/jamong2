@@ -90,7 +90,7 @@ public class MemberAdminController {
 	public String inactiveMulti(@RequestParam(required = false) String[] chk,
 			@RequestParam String searchUseYn,@RequestParam String searchKeyword,
 			@RequestParam String searchCondition, @RequestParam(defaultValue = "1") int currentPage,
-			HttpServletRequest request, Model model) {
+			Model model) {
 		logger.info("일괄 중지 처리");
 		
 		int cnt=userInfoService.memberInActiveMulti(chk);
@@ -112,7 +112,7 @@ public class MemberAdminController {
 	public String activeMulti(@RequestParam(required = false) String[] chk,
 			@RequestParam String searchUseYn,@RequestParam String searchKeyword,
 			@RequestParam String searchCondition, @RequestParam(defaultValue = "1") int currentPage,
-			HttpServletRequest request, Model model) {
+			Model model) {
 		logger.info("일괄 사용 재개 처리");
 		
 		int cnt=userInfoService.memberActiveMulti(chk);

@@ -71,8 +71,8 @@
 												<div>
 												카테고리(대) 선택 : 
 													<select name="categoryNoL">
-														<c:forEach var="vol" items="${list }">
-															<option value="${vol.categoryNo}" <c:if test="${vo.categoryNoL == vol.categoryNo }">selected</c:if>>${vol.categoryNameL }</option>														
+														<c:forEach var="list" items="${list }">
+															<option value="${list.categoryNo}" <c:if test="${vo.categoryNoL == list.categoryNo }">selected</c:if>>${list.categoryNameL }</option>														
 														</c:forEach>
 													</select>
 													<!-- 선택된 카테고리 값 불러오기  -->

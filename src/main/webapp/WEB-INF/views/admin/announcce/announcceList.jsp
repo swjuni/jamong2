@@ -32,7 +32,7 @@
 		$('#btDelMulti').click(function(){
 			var len = $('#chk input[type=checkbox]:checked').length;
 			if(len<1){
-				alert('먼저 삭제할 상품을 체크하세요');
+				alert('먼저 삭제할 상품을 체크하세요!!');
 				return;
 			}
 			if(confirm("정말로 삭제하시겠습니까?")){

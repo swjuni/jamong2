@@ -57,33 +57,59 @@
                                             <thead>
                                                 <tr style="background-color: #C8D0FE; text-align: center;">
                                                     <th>No</th>
-                                                    <th>배너명(글자 수 제한)</th>
-                                                    <th>첨부파일</th>
-                                                    <th>서비스명(글자 수 제한)</th>
-                                                    <th>전문가명</th>
-                                                    <th>광고기간</th>
-                                                    <th>활성화 상태</th>
+                                                    <th>전문가 닉네임</th>
+                                                    <th>카테고리 분류</th>
+                                                    <th>파일명</th>
+                                                    <th>신청일</th>
+                                                    <th>금액</th>
+                                                    <th>승인여부</th>
+                                                    <th>활성화여부</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><a href="<c:url value='/admin/bannerexpoert/bannerDetail.do'/>" class="text-primary">웹 전문가 광고</a></td>
-                                                    <td>웹 포트폴리오.jpg</td>
-                                                    <td>간단 웹 만들어드려요!</td>
-                                                    <td>코딩도사</td>
-                                                    <td>30일</td>
-                                                    <td>활성화</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td><a href="<c:url value='/admin/bannerexpoert/bannerDetail.do'/>" class="text-primary">유튜브 편집자 광고</a></td>
-                                                    <td>유튜브 스샷.jpg</td>
-                                                    <td>스타 크리에이터 만들기!</td>
-                                                    <td>노동부</td>
-                                                    <td>60일</td>
-                                                    <td>비활성화</td>                                                    
-                                                </tr>
+                                            
+                                            <c:forEach var="map" items="${map }">
+		                                                <tr>
+		                                                    <td>${map['ADS_NO'] }</td>
+		                                                    <td>
+		                                                    	<a href="<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${map["ADS_NO"] }'/>" class="text-primary">
+		                                                    		${map['ID'] }
+		                                                    	</a>
+		                                                    </td>
+		                                                    <td>
+																${map['CATEGORY_NAME_L'] } > ${map['CATEGORY_NAME'] }
+															</td>
+															<td>
+		                                                    	${map['FILE_NAME']}
+		                                                    </td>
+		                                                    <td>
+		                                                    	${map['REQUEST_PERIOD']}
+		                                                    </td>
+		                                                    <td>
+		                                                    	<fmt:formatNumber value="${map['PRICE'] }" pattern="#,###" />원                                         
+		                                                    </td>
+		                                                    <td>
+		                                                    	<c:if test="${map['APPROVE_DELFLAG'] == 'Y' }">
+							                                    	승인
+			                                                    </c:if>
+			                                                    <c:if test="${map['APPROVE_DELFLAG'] == 'N' }">
+							                                    	승인 요청중
+	                                                   		 	</c:if>
+	                                                   		 	<c:if test="${map['APPROVE_DELFLAG'] == 'C' }">
+							                                    	승인 취소
+	                                                   		 	</c:if>	
+		                                                    </td>
+		                                                    <td>
+		                                                    	<c:if test="${map['ACTIVATION'] == 'Y' }">
+							                                    	활성화
+			                                                    </c:if>
+			                                                    <c:if test="${map['ACTIVATION'] == 'N' }">
+							                                    	비활성화
+	                                                   		 	</c:if>	
+		                                                    </td>
+		                                                </tr>
+	                                            	</c:forEach>
+                                            
                                             </tbody>
                                         </table>
                                     </div>

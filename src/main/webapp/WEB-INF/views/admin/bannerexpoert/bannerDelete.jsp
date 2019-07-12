@@ -15,7 +15,7 @@
 					<div class="page-header">
 						<div class="page-title">
 							<h1>
-								카테고리 <span>관리화면</span>
+								배너 <span>관리화면</span>
 							</h1>
 						</div>
 					</div>
@@ -40,23 +40,23 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-title">
-								<h4>카테고리 삭제</h4>
+								<h4>배너 삭제</h4>
 							</div>
 							<div class="card-body">
 								<div class="basic-form">
 									<form name="frmWrite" method="post"
-										action="<c:url value='/admin/bannerexpoert/bannerDelete.do'/>"
+										action="<c:url value='/admin/bannerexpoert/bannerDelete.do?adsNo=${vo.adsNo }&fileName=${vo.fileName }'/>"
 										enctype="multipart/form-data">
 
 										<div>
-											<span class="sp">{카테고리이름}(을)를 삭제하시겠습니까?</span> <br>
+											<span class="sp">${vo.adsNo }번 배너(을)를 삭제하시겠습니까?</span> <br>
 											<br>
 										</div>
 										<div class="center">
 											<input type="submit" value="삭제" class="btn btn-primary"
-												onclick="submitContents(frmWrite)" />&nbsp;&nbsp; <input
-												type="button" value="취소" class="btn btn-primary"
-												onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do'/>'">
+												onclick="submitContents(frmWrite)" />&nbsp;&nbsp; 
+											<input type="button" value="취소" class="btn btn-primary"
+												onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${vo.adsNo }'/>'">
 										</div>
 									</form>
 								</div>
