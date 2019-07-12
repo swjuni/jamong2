@@ -37,17 +37,23 @@
 		type="annotation"/>
 	</context:component-scan>
 	
-	<!-- 
 	<interceptors>
+		<!-- 
 		<interceptor>
 			<mapping path="/member/memberEdit.do"/>
 			<mapping path="/member/memberOut.do"/>
 			<mapping path="/shop/cart/*"/>
-			<mapping path="/shop/order/*"/>
+			<mapping path="/shop/order/*"/> 
 			
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
+		--><!-- 로그인이 필요한 페이지에 추가 -->
+		
+		<interceptor>
+			<mapping path="/admin/**"/>
+			<exclude-mapping path="/admin/login/login.do"/>
+			<beans:ref bean="adminLoginIntercepter"/>
+		</interceptor>
 	</interceptors>
-	 -->
 	
 </beans:beans>
