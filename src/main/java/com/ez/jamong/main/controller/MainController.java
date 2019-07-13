@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,18 +22,21 @@ public class MainController {
 	private Logger logger=LoggerFactory.getLogger(MainController.class);
 	@Autowired CategoryLService categorylService;
 	@Autowired CategoryMService categoryMService;
-	
+
 	@RequestMapping("/index_main.do")
-	public String main_view(Model model) {
+	public String main_view() {
 		logger.info("메인 페이지");
 		
+		return "main/index_main";
+	}
+	
+	@RequestMapping("/showCategoryL.do")
+	@ResponseBody
+	public List<CategoryLVO> showCategoryL(){
 		List<CategoryLVO> list = categorylService.selectCategorylAll();
 		logger.info("카테고리(대) 목록 list.size={}",list.size());
-		CategoryLVO vo=list.get(1);
-		logger.info("vo확인 ={}",vo.getCategoryNameL());
-		model.addAttribute("list", list);		
 		
-		return "main/index_main";
+		return list;
 	}
 	
 	@RequestMapping("/showCategoryM.do")
