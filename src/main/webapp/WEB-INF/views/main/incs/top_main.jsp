@@ -19,7 +19,7 @@
 				success:function(res){
 					if(res.length>0){
 						$.each(res, function(idx, item){
-							alert(item.categoryName);
+							//alert(item.categoryName);
 						});
 					}		
 				},
@@ -83,7 +83,7 @@
 				                <span class="icon-bar"></span>
 				                <span class="icon-bar"></span>
 				            </button>
-							<a class="navbar-brand" href="index.html"><img src="<c:url value='/resources/images/logo.png'/>" alt="Linda"></a>
+							<a class="navbar-brand" href="<c:url value='/index.html'/>"><img src="<c:url value='/resources/images/logo.png'/>" alt="Linda"></a>
 				        </div>
 				        <div id="navbar" class="navbar-collapse collapse">
 				            <ul class="nav navbar-nav">

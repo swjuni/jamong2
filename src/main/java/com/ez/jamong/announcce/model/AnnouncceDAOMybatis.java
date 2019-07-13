@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ez.jamong.common.SearchVO;
+
 @Repository
 public class AnnouncceDAOMybatis implements AnnouncceDAO{
 	@Autowired private SqlSessionTemplate sqlSession;
@@ -39,6 +41,16 @@ public class AnnouncceDAOMybatis implements AnnouncceDAO{
 	@Override
 	public int deleteAnnouncce(int announceNo) {
 		return sqlSession.delete(namespace+"deleteAnnouncce", announceNo);
+	}
+
+	@Override
+	public List<AnnouncceVO> selectSearch(SearchVO searchVo) {
+		return sqlSession.selectList(namespace+"selectSearch", searchVo);
+	}
+
+	@Override
+	public int selectTotalCount(SearchVO searchVo) {
+		return sqlSession.selectOne(namespace+"selectTotalCount", searchVo);
 	}
 
 	

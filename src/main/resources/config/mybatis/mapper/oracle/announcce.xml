@@ -40,4 +40,31 @@
 		delete from announcce where ANNOUNCE_NO=#{announceNo}
 	</delete>
 	
+	<select id="selectSearch" parameterType="searchVo" resultType="announcceVo">
+		select *
+		from
+		(
+		    select A.*, rownum as RNUM
+		    from 
+		    (
+		    	select a.*, 
+		    	(sysdate-cast(regdate as date))*24 as new_Img_Term
+		    	from announcce a
+				<if test="searchKeyword !=null and searchKeyword !=''">
+					where ${searchCondition} like '%' || #{searchKeyword} || '%'
+				</if>
+				order by announce_no desc
+		    ) A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex}
+		 and RNUM<= #{firstRecordIndex} + #{recordCountPerPage}]]>
+		
+	</select>
+	
+	<select id="selectTotalCount" parameterType="searchVo" resultType="int">
+		select count(*) from announcce
+		<if test="searchKeyword !=null and searchKeyword !=''">
+			where ${searchCondition} like '%' || #{searchKeyword} || '%'
+		</if>
+	</select>
 </mapper>

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ez.jamong.common.SearchVO;
+
 @Service
 public class AnnouncceServiceImpl implements AnnouncceService{
 	@Autowired private AnnouncceDAO announcceDao;
@@ -58,6 +60,16 @@ public class AnnouncceServiceImpl implements AnnouncceService{
 		}
 		
 		return cnt;
+	}
+
+	@Override
+	public List<AnnouncceVO> selectSearch(SearchVO searchVo) {
+		return announcceDao.selectSearch(searchVo);
+	}
+
+	@Override
+	public int selectTotalCount(SearchVO searchVo) {
+		return announcceDao.selectTotalCount(searchVo);
 	}
 	
 	
