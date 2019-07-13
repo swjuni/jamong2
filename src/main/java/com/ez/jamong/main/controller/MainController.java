@@ -31,12 +31,11 @@ public class MainController {
 	}
 	
 	@RequestMapping("/showCategoryL.do")
-	@ResponseBody
-	public List<CategoryLVO> showCategoryL(){
+	public String showCategoryL(Model model){
 		List<CategoryLVO> list = categorylService.selectCategorylAll();
 		logger.info("카테고리(대) 목록 list.size={}",list.size());
-		
-		return list;
+		model.addAttribute("list",list);
+		return "main/incs/showCategoryL";
 	}
 	
 	@RequestMapping("/showCategoryM.do")
