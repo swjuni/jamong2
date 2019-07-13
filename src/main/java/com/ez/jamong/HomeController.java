@@ -17,7 +17,7 @@ public class HomeController {
 	@RequestMapping(value = "/index.do", method = RequestMethod.GET)
 	public String home() {
 		logger.info("index화면 요청");
-		return "main/index_main";
+		return "redirect:/main/index_main.do";
 	}
 	
 }
