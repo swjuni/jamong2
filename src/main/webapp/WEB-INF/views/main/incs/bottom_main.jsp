@@ -71,7 +71,5 @@
             </div><!-- end container -->
 		</footer><!-- end second footer -->
 	</div><!-- end wrapper -->
-
-
 </body>
 </html>
