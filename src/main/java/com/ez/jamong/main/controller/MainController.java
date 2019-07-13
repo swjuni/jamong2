@@ -47,4 +47,12 @@ public class MainController {
 		logger.info("카테고리 중 조회 list.size={}",list.size());
 		return list;
 	}
+	
+	@RequestMapping("/categoryList_bottom.do")
+	public String bottomCategoryL(Model model){
+		List<CategoryLVO> list = categorylService.selectCategorylAll();
+		logger.info("카테고리(대) 목록 list.size={}",list.size());
+		model.addAttribute("btCatList", list);
+		return "main/incs/categoryList_bottom";
+	}
 }

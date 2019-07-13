@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!doctype html>
-<!--[if IE 9]> <html class="no-js ie9 fixed-layout" lang="en"> <![endif]-->
-<!--[if gt IE 9]><!--> <html class="no-js " lang="en"> <!--<![endif]-->
-<head>
 		<footer class="footer primary-footer">
             <div class="container">
                 <div class="row">
@@ -22,51 +18,36 @@
                     	</div><!-- end widget -->
                     </div><!-- end col -->
                     <div class="col-md-2 col-sm-2">
+                    </div><!-- end col -->
+                    
+                    <div class="col-md-2 col-sm-2">
                     	<div class="widget clearfix">
-                    		<h4 class="widget-title">Company</h4>
+                    		<h4 class="widget-title">CATEGORY</h4>
                     		<ul>
-                    			<li><a href="#">About us</a></li>
-                    			<li><a href="#">Carrier</a></li>
-                    			<li><a href="#">Trademark</a></li>
-                    			<li><a href="#">Contact</a></li>
+                   				<c:import url="/main/categoryList_bottom.do"/>
                     		</ul>
                     	</div><!-- end widget -->
                     </div><!-- end col -->
 
                     <div class="col-md-2 col-sm-2">
                     	<div class="widget clearfix">
-                    		<h4 class="widget-title">Services</h4>
+                    		<h4 class="widget-title">SERVICES</h4>
                     		<ul>
-                    			<li><a href="#">Design & Dev</a></li>
-                    			<li><a href="#">ASP.NET</a></li>
-                    			<li><a href="#">PHP Development</a></li>
-                    			<li><a href="#">Mobile App</a></li>
-                    			<li><a href="#">Oracle</a></li>
+                    			<li><a href="#">서비스소개</a></li>
+                    			<li><a href="#">구매안내</a></li>
+                    			<li><a href="#">판매안내</a></li>
+                    			<li><a href="#">회사정보</a></li>
                     		</ul>
                     	</div><!-- end widget -->
                     </div><!-- end col -->
 
-                    <div class="col-md-2 col-sm-2">
-                    	<div class="widget clearfix">
-                    		<h4 class="widget-title">Download</h4>
-                    		<ul>
-                    			<li><a href="#">MAC/OSX</a></li>
-                    			<li><a href="#">Android</a></li>
-                    			<li><a href="#">Windows</a></li>
-                    			<li><a href="#">Google Play</a></li>
-                    			<li><a href="#">Amazon</a></li>
-                    		</ul>
-                    	</div><!-- end widget -->
-                    </div><!-- end col -->
 
                     <div class="col-md-2 col-sm-2">
                     	<div class="widget clearfix">
-                    		<h4 class="widget-title">Be Social</h4>
+                    		<h4 class="widget-title">NOTICE</h4>
                     		<ul>
-                    			<li><a href="#">Facebook</a></li>
-                    			<li><a href="#">Twitter</a></li>
-                    			<li><a href="#">Google+</a></li>
-                    			<li><a href="#">Linkedin</a></li>
+                    			<li><a href="#">공지사항</a></li>
+                    			<li><a href="#">FAQ</a></li>
                     		</ul>
                     	</div><!-- end widget -->
                     </div><!-- end col -->

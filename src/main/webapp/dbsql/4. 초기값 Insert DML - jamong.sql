@@ -1,9 +1,9 @@
-insert into AUTHORITY values(authority_seq.nextval, '관리자', '사이트 총 관리자', 1);
-insert into AUTHORITY values(authority_seq.nextval, '부관리자', '사이트 부 관리자', 2);
-insert into AUTHORITY values(authority_seq.nextval, '골드', '골드 전문가회원', 3);
-insert into AUTHORITY values(authority_seq.nextval, '실버', '실버 전문가회원', 4);
-insert into AUTHORITY values(authority_seq.nextval, '우수', '우수 회원', 5);
-insert into AUTHORITY values(authority_seq.nextval, '일반', '일반 회원', 6);
+insert into AUTHORITY values(authority_seq.nextval, '관리자', '관리자', 1);
+insert into AUTHORITY values(authority_seq.nextval, '부관리자', '관리자', 2);
+insert into AUTHORITY values(authority_seq.nextval, '골드', '전문가', 3);
+insert into AUTHORITY values(authority_seq.nextval, '실버', '전문가', 4);
+insert into AUTHORITY values(authority_seq.nextval, '우수', '일반회원', 5);
+insert into AUTHORITY values(authority_seq.nextval, '일반', '일반회원', 6);
 
 insert into administrator values(administrator_seq.nextval,'admin','1','관리자',
 (select author_no from authority where author_lev=1));
