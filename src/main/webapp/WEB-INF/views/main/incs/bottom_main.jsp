@@ -46,7 +46,7 @@
                     	<div class="widget clearfix">
                     		<h4 class="widget-title">NOTICE</h4>
                     		<ul>
-                    			<li><a href="#">공지사항</a></li>
+                    			<li><a href="<c:url value="/main/announcce/announcceServiceList.do"/>">공지사항</a></li>
                     			<li><a href="#">FAQ</a></li>
                     		</ul>
                     	</div><!-- end widget -->

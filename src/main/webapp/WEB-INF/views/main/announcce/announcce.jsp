@@ -1,89 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<jsp:include page="../incs/top_main.jsp" />
-	<div id="wrapper">
-		<header class="header site-header header-transparent">
-			<div class="container">
-				<nav class="navbar navbar-default yamm">
-				    <div class="container-fluid">
-				        <div class="navbar-header">
-				            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				                <span class="sr-only">Toggle navigation</span>
-				                <span class="icon-bar"></span>
-				                <span class="icon-bar"></span>
-				                <span class="icon-bar"></span>
-				            </button>
-							<a class="navbar-brand" href="index.html"><img src="images/lightlogo.png" alt="Linda"></a>
-				        </div>
-				        <div id="navbar" class="navbar-collapse collapse">
-				            <ul class="nav navbar-nav navbar-right">
-				                <li class=""><a href="index.html">Home</a></li>
-				                <li class="dropdown yamm-fw hasmenu">
-				                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Features <span class="fa fa-angle-down"></span></a>
-						            <ul class="dropdown-menu">
-						                <li>
-						                    <div class="yamm-content">
-							                    <div class="row"> 
-							                    	<div class="col-md-4">
-														<ul>
-							                    			<li><a href="service-01.html">SEO Consultants</a></li>
-							                    			<li><a href="service-02.html">SEO Audits</a></li>
-							                    			<li><a href="service-03.html">SEO Packages  Plans</a></li>
-							                    			<li><a href="service-04.html">Web Copywriting</a></li>
-							                    			<li><a href="service-05.html">SEO Copywriting</a></li>
-							                    			<li><a href="service-06.html">Keyword Research</a></li>
-							                    			<li><a href="service-07.html">SEO Strategy</a></li>
-							                    			<li><a href="service-08.html">Website Design</a></li>
-							                    			<li><a href="service-09.html">Link Building Services</a></li>
-							                    		</ul>
-							                    	</div>
-							                    	<div class="col-md-4">
-														<ul>
-							                    			<li><a href="page-services.html">All Services</a></li>
-							                    			<li><a href="page-pricing.html">Pricing  Plans</a></li>
-							                    			<li><a href="page-clients.html">Our Clients</a></li>
-							                    			<li><a href="page-testimonials.html">Testimonials</a></li>
-							                    			<li><a href="page-ebooks.html">Free E-Books</a></li>
-							                    			<li><a href="page-seo-analysis.html">SEO Analysis</a></li>
-							                    			<li><a href="case-studies.html">Case Studies</a></li>
-							                    			<li><a href="case-studies-alt.html">Case Studies Alt</a></li>
-							                    			<li><a href="case-studies-single.html">Case Studies Single</a></li>
-							                    		</ul>
-							                    	</div>
-							                    	<div class="col-md-4">
-														<ul>
-							                    			<li><a href="blog.html">Blog  News</a></li>
-							                    			<li><a href="blog-alt.html">Blog Alternative</a></li>
-							                    			<li><a href="blog-single.html">Single Blog</a></li>
-							                    			<li><a href="page.html">Default Page</a></li>
-							                    			<li><a href="page-fullwidth.html">Fullwidth Page</a></li>
-							                    			<li><a href="page-contact.html">Contact us</a></li>
-							                    			<li><a href="page-contact-alt.html">Contact Alternative</a></li>
-							                    			<li><a href="page-faqs.html">FAQ's Page</a></li>
-							                    			<li><a href="page-not-found.html">404 Not Found</a></li>
-							                    		</ul>
-							                    	</div>
-							                    </div>
-						                    </div>
-						                </li>
-						            </ul>
-				                </li>
-				                <li><a href="page-about.html">What is SEO?</a></li>
-				                <li><a href="case-studies.html">Case Studies</a></li>
-				                <li class="active"><a href="blog.html">Blog</a></li>
-				                <li><a href="page-contact.html">Contact</a></li>
-                                <li class="lastlink hidden-xs hidden-sm"><a href="page-seo-analysis.html"><i class="glyphicon glyphicon-search"></i> free seo analysis</a></li>
-                            </ul>
-				        </div><!--/.nav-collapse -->
-				    </div><!--/.container-fluid -->
-				</nav><!-- end nav -->
-			</div><!-- end container -->
-		</header><!-- end header -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="../incs/top_main.jsp" %>
+<!-- 각 화면별 내용 코딩-->
+<script type="text/javascript">	
+	function pageFunc(curPage){
+		 document.frmSearch.currentPage.value = curPage;
+		 document.frmSearch.submit();
+	}
+</script>
+<style type="text/css">
+	#underTitle:hover {
+		text-decoration: underline !important;
+	}
+</style>
 
-		<section class="section transheader parallax" data-stellar-background-ratio="0.5" style="background-image:url('upload/bg_01.jpg');">
+		<section class="section transheader bgcolor ptop180">
+		<!-- <section class="section transheader parallax" data-stellar-background-ratio="0.5" style="background-image:url('/jamong/resources/upload/bg_01.jpg');"> -->
 			<div class="container">
 				<div class="row">	
 					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center">
-						<h2>Blog News</h2>
+						<h2>공 지 사 항</h2>
 						<p class="lead">We publish latest Google news, SEO tips and tricks for our dear customers.</p>
 					</div><!-- end col -->
 				</div><!-- end row -->
@@ -94,200 +29,99 @@
 			<div class="container">
 				<div class="row">
 					<div class="content col-md-8">
-						<div class="blog-box clearfix row">
-							<div class="media-box col-md-4">
-								<a href="blog-single.html" title=""><img src="upload/blog_01.jpg" alt="" class="img-responsive img-thumbnail"></a>
-							</div><!-- end media-box -->
-							<div class="blog-desc col-md-8">
-								<div class="blog-meta">
-									<ul class="list-inline">
-										<li><a href="#"><i class="fa fa-folder-open-o"></i> SEO Tips</a></li>
-										<li><a href="#"><i class="fa fa-comments-o"></i> 21 Comments</a></li>
-									</ul>
-								</div><!-- end meta -->
-								<h3><a href="blog-single.html" title="">WordPress Â» How to Make Professional SEO Links</a></h3>
-								<p>The plugin will automatically include the most commonly used words in the text as a label. This way you gain backlinks within the site. In addition, one of the best features is that the words in the article are automatically linked to the label page. In this case, the article..</p>
-								<a class="readmore" href="#">Read more</a>
-							</div><!-- end blog-desc -->
-						</div><!-- end blogbox -->
+						<c:if test="${empty list }">
+							<div class="blog-box clearfix row">
+								<div class="blog-desc col-md-12">
+									<h3><a href="#" title="">데이터가 존재하지 않습니다.</a></h3>
+								</div><!-- end blog-desc -->
+							</div><!-- end blogbox -->
+						</c:if>
+						<c:if test="${!empty list }">
+							<c:forEach var="vo" items="${list }">
+								<div class="blog-box clearfix row">
+									<div class="media-box col-md-4">
+										<a href="<c:url value='/main/announcce/countUpdate.do?announceNo=${vo.announceNo }'/>" title=""><img src="/jamong/upload/announcce/${vo.fileName }" alt="" class="img-responsive img-thumbnail"></a>
+									</div><!-- end media-box -->
+									<div class="blog-desc col-md-8">
+										<h3><a href="<c:url value='/main/announcce/countUpdate.do?announceNo=${vo.announceNo }'/>" title="" id="underTitle">${vo.title }</a>
+											<c:if test="${vo.newImgTerm<24 }">
+												<img src="<c:url value='/resources/images/new.gif'/>" alt="new 이미지">
+											</c:if>
+										</h3>
+										<p>${fn:substring(vo.content,0, 60)}...</p>
+											<%-- <p><c:out value='${fn:substring(vo.content.replaceAll("\\\<.*?\\\>"," "),0, 70)}'
+											 escapeXml="false"/>...</p> --%>
+										<a class="readmore" href="<c:url value='/main/announcce/countUpdate.do?announceNo=${vo.announceNo }'/>">Read more</a>
+									</div><!-- end blog-desc -->
+								</div><!-- end blogbox -->
+							</c:forEach>
+						</c:if>
 
-						<div class="blog-box clearfix row">
-							<div class="media-box col-md-4">
-								<a href="blog-single.html" title=""><img src="upload/blog_02.jpg" alt="" class="img-responsive img-thumbnail"></a>
-							</div><!-- end media-box -->
-							<div class="blog-desc col-md-8">
-								<div class="blog-meta">
-									<ul class="list-inline">
-										<li><a href="#"><i class="fa fa-folder-open-o"></i> SEO Tricks</a></li>
-										<li><a href="#"><i class="fa fa-comments-o"></i> 12 Comments</a></li>
-									</ul>
-								</div><!-- end meta -->
-								<h3><a href="blog-single.html" title="">What is rel= Tag and How to Use it for search engines</a></h3>
-								<p>The Rel Canonical tag allows Google bots to determine which link to base when the same content is accessible by search engines with two different link structures. In the case of e-commerce sites, products usually have IDs, so in this case there is no product..</p>
-								<a class="readmore" href="#">Read more</a>
-							</div><!-- end blog-desc -->
-						</div><!-- end blogbox -->
-
-						<div class="blog-box clearfix row">
-							<div class="media-box col-md-4">
-								<a href="blog-single.html" title=""><img src="upload/blog_03.jpg" alt="" class="img-responsive img-thumbnail"></a>
-							</div><!-- end media-box -->
-							<div class="blog-desc col-md-8">
-								<div class="blog-meta">
-									<ul class="list-inline">
-										<li><a href="#"><i class="fa fa-folder-open-o"></i> eCommerce</a></li>
-										<li><a href="#"><i class="fa fa-comments-o"></i> 11 Comments</a></li>
-									</ul>
-								</div><!-- end meta -->
-								<h3><a href="blog-single.html" title="">How to make search engine friendly e-commerce website</a></h3>
-								<p>In today's article, we will discuss the question of how the e-commerce site should have a product paging system that is too much to compare. Most of the companies that provide e-commerce services use ready e-commerce packages. However, they also make mistakes..</p>
-								<a class="readmore" href="#">Read more</a>
-							</div><!-- end blog-desc -->
-						</div><!-- end blogbox -->
-
-						<div class="blog-box clearfix row">
-							<div class="media-box col-md-4">
-								<a href="blog-single.html" title=""><img src="upload/blog_04.jpg" alt="" class="img-responsive img-thumbnail"></a>
-							</div><!-- end media-box -->
-							<div class="blog-desc col-md-8">
-								<div class="blog-meta">
-									<ul class="list-inline">
-										<li><a href="#"><i class="fa fa-folder-open-o"></i> eCommerce</a></li>
-										<li><a href="#"><i class="fa fa-comments-o"></i> 16 Comments</a></li>
-									</ul>
-								</div><!-- end meta -->
-								<h3><a href="blog-single.html" title="">A New Feature in SEO with Voice Search on Google and Yahoo</a></h3>
-								<p>It's a topic that I have encountered very often in recent times. I wanted to share with you my research on the subject. For those away from voice dialing, you can make a voice call by pressing and holding the microphone...</p>
-								<a class="readmore" href="#">Read more</a>
-							</div><!-- end blog-desc -->
-						</div><!-- end blogbox -->
-
-						<div class="blog-box clearfix row">
-							<div class="media-box col-md-4">
-								<a href="blog-single.html" title=""><img src="upload/blog_05.jpg" alt="" class="img-responsive img-thumbnail"></a>
-							</div><!-- end media-box -->
-							<div class="blog-desc col-md-8">
-								<div class="blog-meta">
-									<ul class="list-inline">
-										<li><a href="#"><i class="fa fa-folder-open-o"></i> SEO Tips</a></li>
-										<li><a href="#"><i class="fa fa-comments-o"></i> 33 Comments</a></li>
-									</ul>
-								</div><!-- end meta -->
-								<h3><a href="blog-single.html" title="">Meet Google SEO If you are Beginner</a></h3>
-								<p>SEO has become one of the most important sectors of our time for the last few years. It's very important to leave Google in the first place without advertising. When we think that only 10 sites are included in the first page...</p>
-								<a class="readmore" href="#">Read more</a>
-							</div><!-- end blog-desc -->
-						</div><!-- end blogbox -->
-
-						<div class="blog-box clearfix row">
-							<div class="media-box col-md-4">
-								<a href="blog-single.html" title=""><img src="upload/blog_06.jpg" alt="" class="img-responsive img-thumbnail"></a>
-							</div><!-- end media-box -->
-							<div class="blog-desc col-md-8">
-								<div class="blog-meta">
-									<ul class="list-inline">
-										<li><a href="#"><i class="fa fa-folder-open-o"></i> SEO Tools</a></li>
-										<li><a href="#"><i class="fa fa-comments-o"></i> 18 Comments</a></li>
-									</ul>
-								</div><!-- end meta -->
-								<h3><a href="blog-single.html" title="">How / When Google Boots Visit Your Website: Check here..</a></h3>
-								<p>In line with the new Google algorithms; Lowering exit rates and increasing page residence times have a major impact on SEO. User Experience (UX) efforts also aim to increase on-site sales / conversion rates.</p>
-								<a class="readmore" href="#">Read more</a>
-							</div><!-- end blog-desc -->
-						</div><!-- end blogbox -->
-
-						<div class="pagination-wrapper row">
+						<div class="pagination-wrapper row text-center">
 						 	<ul class="pagination col-md-12">
-							  	<li><a href="#">1</a></li>
-							  	<li class="active"><a href="#">2</a></li>
-							  	<li><a href="#">3</a></li>
-							  	<li><a href="#">4</a></li>
-							  	<li><a href="#">5</a></li>
+								<!-- 이전블럭으로 이동하기 -->
+								<c:if test="${pagingInfo.firstPage>1 }">
+									<li><a href="#" onclick="pageFunc(${pagingInfo.firstPage-1})">&lt;</a></li>
+								</c:if>
+								
+								<!-- 페이지 번호 추가 -->		
+								<!-- [1][2][3][4][5][6][7][8][9][10] -->
+
+								<c:forEach var="i" begin="${pagingInfo.firstPage }" end="${pagingInfo.lastPage }">
+									<c:if test="${i==pagingInfo.currentPage }">
+										<li class="active"><a href="#" style="color:red;" >${i}</a></li>
+									</c:if>
+									<c:if test="${i!=pagingInfo.currentPage }">
+										<li><a href="#" onclick="pageFunc(${i})">${i}</a></li>
+									</c:if>
+								</c:forEach>
+								<!--  페이지 번호 끝 -->
+								
+								<!-- 다음 블럭으로 이동하기 -->
+								<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage}">
+									<li><a href="#" onclick="pageFunc(${pagingInfo.lastPage+1})">&gt;</a></li>
+								</c:if>
 							</ul>
 						</div><!-- ne dpagi -->
 					</div><!-- end content -->
 
                     <div class="sidebar col-md-4 col-sm-4">
                     	<div class="widget clearfix">
-                    		<h4 class="widget-title">Subscribe</h4>
+                    		<h4 class="widget-title">검색</h4>
                     		<div class="newsletter-widget">
-                    			<p>You can opt out of our newsletters at any time. See our privacy policy.</p>
-		                        <form class="form-inline" role="search">
+                    			<p>여기서 대체 무엇을 찾고 싶은건가?</p>
+		                        <form class="form-inline" role="search" name="frmSearch" method="post" action="<c:url value='/main/announcce/announcceServiceList.do'/>">
 		                            <div class="form-1">
-		                              	<input type="text" class="form-control" placeholder="Enter email here..">
+								   		<!-- 현재 페이지 hidden에 넣기 -->
+								   		<input type="hidden" name="currentPage" value="1">
+								   		<input type="hidden" name="searchCondition" value="content">
+		                              	<input type="text" class="form-control" placeholder="검색어 입력" name="searchKeyword" value="${param.searchKeyword}">
 										<button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i></button>
 		                            </div>
 								</form>
+							    
+								<c:if test="${!empty param.searchKeyword}">
+									<p>
+										검색어 : ${param.searchKeyword }, ${pagingInfo.totalRecord}건 검색되었습니다.
+									</p>
+								</c:if>
                     		</div><!-- end newsletter -->
                     	</div><!-- end widget -->
 
                     	<div class="widget clearfix">
                     		<h4 class="widget-title">ADVERTISING</h4>
                     		<div class="category-widget">
-                    			<img src="images/banner.gif" alt="" class="img-responsive img-thumbnail">
+                    			<img src="/jamong/resources/images/banner.gif" alt="" class="img-responsive img-thumbnail">
                     		</div><!-- end category -->
                     	</div><!-- end widget -->
 
-                    	<div class="widget clearfix">
-                    		<h4 class="widget-title">Blog Categories</h4>
-                    		<div class="category-widget">
-                    			<ul>
-                    				<li><a href="#">SEO Tips and Tricks</a></li>
-                    				<li><a href="#">e-Commerce SEO</a></li>
-                    				<li><a href="#">SEO Tools and Modules</a></li>
-                    				<li><a href="#">Google Updates for Algoritms</a></li>
-                    				<li><a href="#">SEO for CMS Systems</a></li>
-                    			</ul>
-                    		</div><!-- end category -->
-                    	</div><!-- end widget -->
                     </div><!-- end col -->
 				</div><!-- end row -->
 			</div><!-- end container -->
 		</section><!-- end section -->
 
-		<section class="section ldp">
-			<div class="container">
-				<div class="row text-center">
-					<div class="col-md-2 col-sm-2 col-xs-6">
-						<div class="client-box">
-							<a href="#"><img src="upload/client_01.png" alt="" class="img-responsive"></a>
-						</div>
-					</div><!-- end col -->
-					<div class="col-md-2 col-sm-2 col-xs-6">
-						<div class="client-box">
-							<a href="#"><img src="upload/client_02.png" alt="" class="img-responsive"></a>
-						</div>
-					</div><!-- end col -->
-					<div class="col-md-2 col-sm-2 col-xs-6">
-						<div class="client-box">
-							<a href="#"><img src="upload/client_03.png" alt="" class="img-responsive"></a>
-						</div>
-					</div><!-- end col -->	
-					<div class="col-md-2 col-sm-2 col-xs-6">
-						<div class="client-box">
-							<a href="#"><img src="upload/client_04.png" alt="" class="img-responsive"></a>
-						</div>
-					</div><!-- end col -->
-					<div class="col-md-2 col-sm-2 col-xs-6">
-						<div class="client-box">
-							<a href="#"><img src="upload/client_05.png" alt="" class="img-responsive"></a>
-						</div>
-					</div><!-- end col -->
-					<div class="col-md-2 col-sm-2 col-xs-6">
-						<div class="client-box">
-							<a href="#"><img src="upload/client_06.png" alt="" class="img-responsive"></a>
-						</div>
-					</div><!-- end col -->	
-				</div><!-- end row -->
-			</div><!-- end container -->
-		</section><!-- end section -->
-	</div>
+<%@include file="../incs/bottom_main.jsp" %>
+<!-- 화면별 고유 하단js 포함할 위치 -->
 
-	<!-- jQuery Files -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/parallax.js"></script>
-	<script src="js/animate.js"></script>
-	<script src="js/custom.js"></script>
-
-<jsp:include page="../incs/bottom_main.jsp" />
+</body>
+</html>
