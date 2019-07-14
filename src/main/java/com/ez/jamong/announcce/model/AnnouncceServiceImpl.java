@@ -71,8 +71,15 @@ public class AnnouncceServiceImpl implements AnnouncceService{
 	public int selectTotalCount(SearchVO searchVo) {
 		return announcceDao.selectTotalCount(searchVo);
 	}
-	
-	
-	
+
+	@Override
+	public AnnouncceVO next(int announceNo) {
+		return announcceDao.next(announceNo);
+	}
+
+	@Override
+	public AnnouncceVO prev(int announceNo) {
+		return announcceDao.prev(announceNo);
+	}
 
 }

@@ -13,4 +13,6 @@ public interface AnnouncceDAO {
 	public int deleteAnnouncce(int announceNo);
 	public List<AnnouncceVO> selectSearch(SearchVO searchVo);
 	public int selectTotalCount(SearchVO searchVo);
+	public AnnouncceVO next(int announceNo);
+	public AnnouncceVO prev(int announceNo);
 }

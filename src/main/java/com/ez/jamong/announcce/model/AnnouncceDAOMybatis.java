@@ -53,5 +53,15 @@ public class AnnouncceDAOMybatis implements AnnouncceDAO{
 		return sqlSession.selectOne(namespace+"selectTotalCount", searchVo);
 	}
 
+	@Override
+	public AnnouncceVO next(int announceNo) {
+		return sqlSession.selectOne(namespace+"next", announceNo);
+	}
+
+	@Override
+	public AnnouncceVO prev(int announceNo) {
+		return sqlSession.selectOne(namespace+"prev", announceNo);
+	}
+
 	
 }

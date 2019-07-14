@@ -17,12 +17,43 @@ public class AnnouncceVO {
 	//24시간 이내의 글인 경우 image표시하기 위해 사용
 	private double newImgTerm;
 	
+	//이전글, 다음글인 경우 표시하기 위해 사용
+	private int nextNo;
+	private int preNo;
+	private String nextTitle;
+	private String preTitle;
+	
+	public int getNextNo() {
+		return nextNo;
+	}
+	public void setNextNo(int nextNo) {
+		this.nextNo = nextNo;
+	}
+	public int getPreNo() {
+		return preNo;
+	}
+	public void setPreNo(int preNo) {
+		this.preNo = preNo;
+	}
+	public String getNextTitle() {
+		return nextTitle;
+	}
+	public void setNextTitle(String nextTitle) {
+		this.nextTitle = nextTitle;
+	}
+	public String getPreTitle() {
+		return preTitle;
+	}
+	public void setPreTitle(String preTitle) {
+		this.preTitle = preTitle;
+	}
 	public double getNewImgTerm() {
 		return newImgTerm;
 	}
 	public void setNewImgTerm(double newImgTerm) {
 		this.newImgTerm = newImgTerm;
 	}
+	
 	public int getAnnounceNo() {
 		return announceNo;
 	}
@@ -87,9 +118,11 @@ public class AnnouncceVO {
 	public String toString() {
 		return "AnnouncceVO [announceNo=" + announceNo + ", title=" + title + ", content=" + content + ", fileName="
 				+ fileName + ", originalFileName=" + originalFileName + ", fileSize=" + fileSize + ", readCount="
-				+ readCount + ", regDate=" + regDate + ", delFalg=" + delFalg + ", adminNo=" + adminNo + "]";
+				+ readCount + ", regDate=" + regDate + ", delFalg=" + delFalg + ", adminNo=" + adminNo + ", newImgTerm="
+				+ newImgTerm + ", nextNo=" + nextNo + ", preNo=" + preNo + ", nextTitle=" + nextTitle + ", preTitle="
+				+ preTitle + "]";
 	}
-	
+
 	
 
 }

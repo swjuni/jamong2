@@ -7,6 +7,11 @@
 		 document.frmSearch.submit();
 	}
 </script>
+<style type="text/css">
+	#underTitle:hover {
+		text-decoration: underline !important;
+	}
+</style>
 
 		<section class="section transheader bgcolor ptop180">
 		<!-- <section class="section transheader parallax" data-stellar-background-ratio="0.5" style="background-image:url('/jamong/resources/upload/bg_01.jpg');"> -->
@@ -35,10 +40,10 @@
 							<c:forEach var="vo" items="${list }">
 								<div class="blog-box clearfix row">
 									<div class="media-box col-md-4">
-										<a href="blog-single.html" title=""><img src="/jamong/upload/announcce/${vo.fileName }" alt="" class="img-responsive img-thumbnail"></a>
+										<a href="<c:url value='/main/announcce/countUpdate.do?announceNo=${vo.announceNo }'/>" title=""><img src="/jamong/upload/announcce/${vo.fileName }" alt="" class="img-responsive img-thumbnail"></a>
 									</div><!-- end media-box -->
 									<div class="blog-desc col-md-8">
-										<h3><a href="blog-single.html" title="">${vo.title }</a>
+										<h3><a href="<c:url value='/main/announcce/countUpdate.do?announceNo=${vo.announceNo }'/>" title="" id="underTitle">${vo.title }</a>
 											<c:if test="${vo.newImgTerm<24 }">
 												<img src="<c:url value='/resources/images/new.gif'/>" alt="new 이미지">
 											</c:if>
@@ -46,7 +51,7 @@
 										<p>${fn:substring(vo.content,0, 60)}...</p>
 											<%-- <p><c:out value='${fn:substring(vo.content.replaceAll("\\\<.*?\\\>"," "),0, 70)}'
 											 escapeXml="false"/>...</p> --%>
-										<a class="readmore" href="#">Read more</a>
+										<a class="readmore" href="<c:url value='/main/announcce/countUpdate.do?announceNo=${vo.announceNo }'/>">Read more</a>
 									</div><!-- end blog-desc -->
 								</div><!-- end blogbox -->
 							</c:forEach>

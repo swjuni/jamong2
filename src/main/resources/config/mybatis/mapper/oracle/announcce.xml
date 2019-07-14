@@ -24,8 +24,16 @@
 	</update>
 	
 	<select id="selectByNo" parameterType="int" resultType="announcceVo">
-		select * from ANNOUNCCE
-		where ANNOUNCE_NO=#{announceNo}
+		select * from
+		(
+		    select A.*,
+		    lead(announce_no,1) over(order by announce_no) as next_no,
+		    lead(title,1,'마지막 글') over(order by announce_no) as next_title,    
+		    lag(announce_no,1) over(order by announce_no) as pre_no,
+		    lag(title,1,'처음 글') over(order by announce_no) as pre_title
+		    from announcce A
+		)
+		where announce_no=#{announceNo}
 	</select>
 	
 	<update id="updateAnnouncce" parameterType="announcceVo">
@@ -58,7 +66,7 @@
 		)
 		<![CDATA[where RNUM>#{firstRecordIndex}
 		 and RNUM<= #{firstRecordIndex} + #{recordCountPerPage}]]>
-		
+
 	</select>
 	
 	<select id="selectTotalCount" parameterType="searchVo" resultType="int">
@@ -66,5 +74,34 @@
 		<if test="searchKeyword !=null and searchKeyword !=''">
 			where ${searchCondition} like '%' || #{searchKeyword} || '%'
 		</if>
+	</select>
+	
+	
+	<select id="next" parameterType="int" resultType="announcceVo">
+	select announce_no, next_no, next_title
+	from
+	(
+	select announce_no,
+	    lead(announce_no,1) over(order by announce_no)as next_no,
+	    lead(title,1,'마지막 글') over(order by announce_no)as next_title
+	from announcce
+	)
+	where announce_no=#{announce_no}
+	group by announce_no, next_no, next_title
+	having next_no is not null
+	</select>
+	
+	<select id="prev" parameterType="int" resultType="announcceVo">
+	select announce_no, pre_no, pre_title
+	from
+	(
+	select announce_no,
+	    lag(announce_no,1) over(order by announce_no)as pre_no,
+	    lag(title,1,'처음 글') over(order by announce_no)as pre_title
+	from announcce
+	)
+	where announce_no=#{announce_no}
+	group by announce_no, pre_no, pre_title
+	having pre_no is not null
 	</select>
 </mapper>
