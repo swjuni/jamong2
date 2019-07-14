@@ -9,5 +9,6 @@ public interface AdminDAO {
 	public int gradeAdminUpdate(AdminVO vo);
 	public int insertAdmin(AdminVO vo);
 	public int deleteAdmin(String id);
+	public int updateAdminPwd(AdminVO vo);
 	
 }

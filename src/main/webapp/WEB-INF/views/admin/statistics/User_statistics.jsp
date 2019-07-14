@@ -504,7 +504,7 @@
     	var ctx = document.getElementById( "radarChart" );
     	
     	ctx.height = 160;
-    	var myChart = new Chart( ctx, {
+    	var myChart1 = new Chart( ctx, {
     		type: 'radar',
     		data: {
     			labels: arrName,
@@ -534,7 +534,7 @@
     	//pie chart//jeon 회원/전문가 비율
     	var ctx = document.getElementById( "pieChart" );
     	ctx.height = 300;
-    	var myChart = new Chart( ctx, {
+    	var myChart2 = new Chart( ctx, {
     		type: 'pie',
     		data: {
     			datasets: [ {
@@ -651,7 +651,10 @@
     			}
     		}
     	} );
-
+   	setInterval(function(){
+   		myChart1.update();
+   		myChart2.update();
+   		},500 );
     });
     
 	</script>

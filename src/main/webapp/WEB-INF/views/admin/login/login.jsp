@@ -34,7 +34,8 @@
 							action="<c:url value='/admin/login/login.do'/>">
                                 <div class="form-group">
                                     <label>아이디</label>
-                                    <input type="text" class="form-control" placeholder="ID" name="userid" id="userid">
+                                    <input type="text" class="form-control" placeholder="ID" name="userid" id="userid"
+                                    value=${cookie.ck_admin_userid.value }>
                                 </div>
                                 <div class="form-group">
                                     <label>비밀번호</label>
@@ -42,10 +43,12 @@
                                 </div>
                                 <div class="checkbox">
                                     <label>
-										<input type="checkbox"> 관리자 아이디 기억하기
+										<input type="checkbox" id="saveId" name="saveId" <c:if test="${!empty cookie.ck_admin_userid }">
+						checked="checked"
+					</c:if>> 관리자 아이디 기억하기
 									</label>
                                     <label class="pull-right">
-										<a href="#">비밀번호를 잊어버렸나요???</a>
+										<!-- <a href="#">비밀번호를 잊어버렸나요???</a> -->
 									</label>
 
                                 </div>

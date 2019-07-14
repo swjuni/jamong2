@@ -29,20 +29,19 @@
                         </div>
                         <div class="login-form">
                             <h4>관리자 비밀번호 변경</h4>
-                            <form>
+                            <form name="changeAdminPwd" action="<c:url value='/admin/login/changePwd.do'/>"
+                            method="post">
                                 
                                 <div class="form-group">
                                     <label>현재 비밀번호</label>
-                                    <input type="text" class="form-control" placeholder="현재 비밀번호">
+                                    <input type="text" class="form-control" placeholder="현재 비밀번호" name="nowPwd">
                                 </div>
                                 <div class="form-group">
                                     <label>변경할 비밀번호</label>
-                                    <input type="text" class="form-control" placeholder="변경할 비밀번호">
+                                    <input type="text" class="form-control" placeholder="변경할 비밀번호" name="afterPWd">
                                 </div>
                                 
                                 <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">비밀번호 변경하기</button>
-                                
-                                
                             </form>
                         </div>
                     </div>

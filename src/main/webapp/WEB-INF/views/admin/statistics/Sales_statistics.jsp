@@ -21,6 +21,7 @@
 		margin-bottom: 15px;
 	}
 </style>
+
 <!-- 각자가 분담해서 디자인할 바디 태그 -->
 	<div class="content-wrap">
       <div class="main">
@@ -275,7 +276,7 @@
     	//Team chart//jeon 배너 매출 통계
     	var ctx = document.getElementById( "team-chart" );
     	ctx.height = 150;
-    	var myChart = new Chart( ctx, {
+    	var myChart2 = new Chart( ctx, {
     		type: 'line',
     		data: {
     			labels: arrBannerYear,
@@ -647,7 +648,7 @@
     	// single bar chart//jeon 상품 매출 통계
     	var ctx = document.getElementById( "singelBarChart" );
     	ctx.height = 150;
-    	var myChart = new Chart( ctx, {
+    	var myChart1 = new Chart( ctx, {
     		type: 'bar',
     		data: {
     			labels: arrMenuYear,
@@ -674,8 +675,9 @@
     	
     	
     	setInterval(function(){
-    		myChart.update();
-    		}, 500);
+    		myChart1.update();
+    		myChart2.update();
+    		},500 );
     	});
 	</script>
 

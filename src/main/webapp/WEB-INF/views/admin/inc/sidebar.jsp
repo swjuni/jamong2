@@ -7,8 +7,8 @@
                 <li class="label">Main</li>
                 <li><a class="sidebar-sub-toggle"><i class="ti-home"></i> 마이페이지 <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
-                        <li><a href="<c:url value='/admin/index_admin.do'/>">비밀번호 변경</a></li>
-                        <li><a href="<c:url value='/admin/index_admin.do'/>">로그아웃</a></li>
+                        <li><a href="<c:url value='/admin/login/changePwd.do'/>">비밀번호 변경</a></li>
+                        <li><a href="<c:url value='/admin/login/logout.do'/>">로그아웃</a></li>
                     </ul>
                 </li>
                 <li class="label">회원 관리</li>
@@ -46,7 +46,7 @@
                 </li>
                 
                 <li class="label">기타관리</li>
-                <li><a href="<c:url value='/admin/login/login.do'/>"><i class="ti-heart"></i> 로그인 </a></li>
+      
                 <li><a href="<c:url value='/admin/index_admin.do'/>"><i class="ti-layout-grid2-alt"></i> 쿠폰</a></li>
                 
                 <li><a class="sidebar-sub-toggle"><i class="ti-panel"></i> 배너 <span class="sidebar-collapse-icon ti-angle-down"></span></a>

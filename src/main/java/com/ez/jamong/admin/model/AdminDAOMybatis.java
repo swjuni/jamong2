@@ -41,4 +41,9 @@ public class AdminDAOMybatis implements AdminDAO{
 		return sqlSession.insert(namespace+"deleteAdmin",id);
 	}
 
+	@Override
+	public int updateAdminPwd(AdminVO vo) {
+		return sqlSession.update(namespace+"updateAdminPwd",vo);
+	}
+
 }

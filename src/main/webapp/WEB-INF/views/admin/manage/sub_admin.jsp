@@ -87,18 +87,9 @@
 			$('.admininserttr').css('visibility','visible');
 		});
 		
-		
-		
-		
-		
 		alert("jquery 실행 완료!");
 	});
 </script>
-<style>
-	.mid{
-		width: 30%;
-	}
-</style>
 <div class="content-wrap">
         <div class="main">
             <div class="container-fluid">
@@ -125,7 +116,7 @@
                 </div>
                 <!-- /# row -->
                 <section id="main-content" >
-                    <div class="row" style="width: 40;">
+                    <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-title">
@@ -214,7 +205,6 @@
         </div>
     </div>
 
-
 <!-- 관리자 홈 공통 bottom include -->
 <%@include file="../inc/bottom_js.jsp" %>
 
@@ -224,7 +214,6 @@
     <script src="<c:url value='/assets/js/lib/jquery.min.js'/>"></script>
     <script src="<c:url value='/assets/js/lib/jquery.nanoscroller.min.js'/>"></script>
     <!-- nano scroller -->
-    <script src="<c:url value='/assets/js/lib/menubar/sidebar.js'/>"></script>
     <script src="<c:url value='/assets/js/lib/preloader/pace.min.js'/>"></script>
     <!-- sidebar -->
     

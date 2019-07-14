@@ -51,5 +51,22 @@ public class AdminServiceImpl implements AdminService{
 	public int deleteAdmin(String id) {
 		return adminDao.deleteAdmin(id);
 	}
+
+	@Override
+	public int changeAdminPwd(String userid, AdminVO aftervo) {
+		int cnt=0;
+		AdminVO now = adminDao.selectAdmin(userid);
+		if(!now.getAdminPwd().equals(aftervo.getAdminPwd())) {
+			cnt=AdminService.MISS_PWD;
+		}
+		if(now.getAdminPwd().isEmpty() || now.getAdminPwd()==null) {
+			cnt=AdminService.EMPTY_PWD;
+			return cnt;
+		}else {
+			cnt=adminDao.updateAdminPwd(aftervo);
+			System.out.println("비밀번호 변경 가능");
+		}
+		return cnt;
+	}
 	
 }

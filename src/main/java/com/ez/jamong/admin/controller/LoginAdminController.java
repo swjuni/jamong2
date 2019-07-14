@@ -82,8 +82,10 @@ public class LoginAdminController {
 	public String adminLogout(HttpSession session) {
 		logger.info("로그아웃 처리");
 		
-		session.removeAttribute("adminUserid");
-		session.removeAttribute("adminUserName");
+		session.removeAttribute("adminId");
+		session.removeAttribute("adminName");
+		session.removeAttribute("adminAuthor");
+		session.removeAttribute("adminNo");
 		
 		return "redirect:/admin/login/login.do";
 	}
