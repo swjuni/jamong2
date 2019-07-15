@@ -55,4 +55,19 @@ public class BannerExServiceImpl implements BannerExService{
 		return bannerExDao.deleteBanner(adsNo);
 	}
 
+	@Override
+	public int insertBanner(BannerExVO vo) {
+		return bannerExDao.insertBanner(vo);
+	}
+
+	@Override
+	public int updateAdminNo(BannerExVO vo) {
+		return bannerExDao.updateAdminNo(vo);
+	}
+
+	@Override
+	public int updateBanner(BannerExVO vo) {
+		return bannerExDao.updateBanner(vo);
+	}
+
 }

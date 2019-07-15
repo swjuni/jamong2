@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,13 +19,65 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ez.jamong.bannerEx.model.BannerExService;
 import com.ez.jamong.bannerEx.model.BannerExVO;
+import com.ez.jamong.categoryl.model.CategoryLService;
+import com.ez.jamong.categoryl.model.CategoryLVO;
+import com.ez.jamong.categorym.model.CategoryMVO;
 import com.ez.jamong.common.FileUploadUtility;
+
 
 @Controller
 public class BannerController {
 	private Logger logger = LoggerFactory.getLogger(BannerController.class);
+	@Autowired private CategoryLService categorylService;
 	@Autowired private BannerExService bannerExService;
 	@Autowired private FileUploadUtility fileUtility;
+	
+	@RequestMapping(value = "/admin/bannerexpoert/bannerAdd.do", method = RequestMethod.GET)
+	public String bannerAdd_get(Model model) {
+		logger.info("배너 등록 화면 요청");
+		
+		List<CategoryLVO> list = categorylService.selectCategorylAll();
+		model.addAttribute("list", list);
+		
+		return "admin/bannerexpoert/bannerAdd";
+	}
+	
+	@RequestMapping(value = "/admin/bannerexpoert/bannerAdd.do", method = RequestMethod.POST)
+	public String bannerAdd_post(@ModelAttribute BannerExVO bannerVo, HttpServletRequest request, Model model) {
+		logger.info("배너 등록 요청, 파라미터 bannerVo={}", bannerVo);
+		String fileName="", originalFileName="";
+		long fileSize=0;
+		List<Map<String, Object>> fileList =fileUtility.fileUpload(request, FileUploadUtility.BANNER_UPLOAD);
+		for(int i=0; i<fileList.size();i++) {
+			Map<String, Object> map = fileList.get(i);
+
+			fileName=(String)map.get("fileName");
+			originalFileName = (String)map.get("originalFileName");
+			fileSize=(Long)map.get("fileSize");
+		}
+		bannerVo.setFileName(fileName);
+		bannerVo.setFileSize(fileSize);
+		bannerVo.setOriginalFileName(originalFileName);
+		
+		bannerVo.setPrice(10000 * bannerVo.getRequestPeriod());
+		
+		int cnt = bannerExService.insertBanner(bannerVo);
+		logger.info("배너 등록 결과, cnt={}", cnt);
+		
+		String msg="", url="";
+		if(cnt>0) {
+			msg="배너 등록이 완료되었습니다.";
+			url="/admin/bannerexpoert/bannerList.do";
+		}else {
+			msg="배너 등록 실패";
+			url="/admin/bannerexpoert/bannerAdd.do";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+		
+	}
 	
 	@RequestMapping("/admin/bannerexpoert/bannerList.do")
 	public String bannereList_get(Model model) {
@@ -39,7 +92,7 @@ public class BannerController {
 	}
 	
 	@RequestMapping(value = "/admin/bannerexpoert/bannerDetail.do", method = RequestMethod.GET)
-	public String bannereDetail_get(@RequestParam(defaultValue = "0") int adsNo, @RequestParam(required = false) String activation,  @RequestParam(required = false) String approveDelflag, HttpServletRequest request, Model model) {
+	public String bannereDetail_get(HttpSession session,@RequestParam(defaultValue = "0") int adsNo, @RequestParam(required = false) String activation,  @RequestParam(required = false) String approveDelflag, HttpServletRequest request, Model model) {
 		logger.info("배너 상세보기 화면 요청, 파라미터 no={}, activation={}", adsNo, activation);
 		logger.info("approveDelflag={}",approveDelflag);
 
@@ -60,13 +113,18 @@ public class BannerController {
 				return "common/message";
 			}else if(activation.equals("Y")) {
 				activation = "N";
+				bannerExService.endDate(bannerExVo);
 			}else if(activation.equals("N")) {
 				activation = "Y";
+				bannerExService.updateDate(bannerExVo);
 			}	
 		
 			bannerExVo.setActivation(activation);
 			logger.info("활성화/비활성화 버튼 클릭 , 파라미터 adsNo={}, activation={}", adsNo, activation);
 		}
+		
+		int adminNo=(Integer)session.getAttribute("adminNo");
+		logger.info("ad={}",adminNo);
 		
 		if(approveDelflag != null && !approveDelflag.isEmpty()) {
 			
@@ -78,16 +136,20 @@ public class BannerController {
 				approveDelflag = "C";
 				if(activation.equals("Y")) {
 					activation = "N";
+					bannerExService.endDate(bannerExVo);
 				}
 				bannerExVo.setActivation(activation);
 				
-				bannerExService.endDate(bannerExVo);
 			}else if(approveDelflag.equals("C")) {
 				approveDelflag = "Y";
-				bannerExService.updateDate(bannerExVo);
+				
+				bannerExVo.setAdminNo(adminNo);
+				bannerExService.updateAdminNo(bannerExVo);
 			}else if(approveDelflag.equals("N")) {
 				approveDelflag = "Y";
-				bannerExService.updateDate(bannerExVo);
+
+				bannerExVo.setAdminNo(adminNo);
+				bannerExService.updateAdminNo(bannerExVo);
 			}
 		
 			bannerExVo.setApproveDelflag(approveDelflag);
@@ -165,8 +227,103 @@ public class BannerController {
 		return "common/message";
 	}
 	
+	@RequestMapping(value = "/admin/bannerexpoert/bannerEdit.do", method = RequestMethod.GET)
+	public String bannereEdit_get(@RequestParam(defaultValue = "0") int adsNo, HttpServletRequest request, Model model) {
+		logger.info("배너 수정화면 요청");
+		
+		if(adsNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/admin/bannerexpoert/bannerList.do");
+			
+			return "common/message";
+		}
+		
+		List<CategoryLVO> list = categorylService.selectCategorylAll();
+		model.addAttribute("list", list);
+		
+		BannerExVO bannereVo = bannerExService.selectAdsByNo(adsNo);
+		logger.info("배너 상세보기 결과 vo={}", bannereVo);
+		
+		String fileInfo = fileUtility.getFileInfo(request, bannereVo, FileUploadUtility.BANNER_UPLOAD);
+		model.addAttribute("vo", bannereVo);
+		model.addAttribute("fileInfo", fileInfo);
+		model.addAttribute("list", list);
+		
+		return "admin/bannerexpoert/bannerEdit";
+	}
+	
+	@RequestMapping(value = "/admin/bannerexpoert/bannerEdit.do", method = RequestMethod.POST)
+	public String categorymEdit_post(@ModelAttribute BannerExVO bannerVo, @RequestParam String oldFileName, HttpServletRequest request, Model model) {
+		logger.info("배너 수정 요청, 파라미터  vo={}, oldFileName={}", bannerVo, oldFileName);
+		
+		String fileName="", originalFileName="";
+		long fileSize=0;
+		List<Map<String, Object>> fileList =fileUtility.fileUpload(request, FileUploadUtility.BANNER_UPLOAD);
+		for(int i=0; i<fileList.size();i++) {
+			Map<String, Object> map = fileList.get(i);
+
+			fileName=(String)map.get("fileName");
+			originalFileName = (String)map.get("originalFileName");
+			fileSize=(Long)map.get("fileSize");
+		}
+		bannerVo.setFileName(fileName);
+		bannerVo.setFileSize(fileSize);
+		bannerVo.setOriginalFileName(originalFileName);
+		bannerVo.setPrice(10000 * bannerVo.getRequestPeriod());
+		
+		int cnt = bannerExService.updateBanner(bannerVo);
+		logger.info("업데이트 결과 cnt={}, 파라미터 vo={}", cnt, bannerVo);
+		
+		String msg="", url="/admin/bannerexpoert/bannerEdit.do?adsNo=" + bannerVo.getAdsNo();
+		if(cnt>0) {
+			msg="배너가 수정되었습니다.";
+			url="/admin/bannerexpoert/bannerDetail.do?adsNo=" + bannerVo.getAdsNo();
+		
+			if(fileName!=null && !fileName.isEmpty()) {
+				if(oldFileName!=null && !oldFileName.isEmpty()){
+					String path = fileUtility.getUploadPath(request, FileUploadUtility.BANNER_UPLOAD);
+					File oldFile= new File(path, oldFileName);
+
+					if(oldFile.exists()){
+						boolean bool = oldFile.delete();
+						logger.info("기존 파일 삭제 여부={}", bool);
+					}
+				}
+			}
+			
+		}else {
+			msg="배너 수정 실패";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 	
 	

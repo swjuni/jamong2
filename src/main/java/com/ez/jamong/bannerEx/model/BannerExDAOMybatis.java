@@ -57,4 +57,19 @@ public class BannerExDAOMybatis implements BannerExDAO{
 		return sqlSession.delete(namespace + "deleteBanner", adsNo);
 	}
 
+	@Override
+	public int insertBanner(BannerExVO vo) {
+		return sqlSession.insert(namespace + "insertBanner", vo);
+	}
+
+	@Override
+	public int updateAdminNo(BannerExVO vo) {
+		return sqlSession.update(namespace + "updateAdminNo", vo);
+	}
+
+	@Override
+	public int updateBanner(BannerExVO vo) {
+		return sqlSession.update(namespace + "updateBanner", vo);
+	}
+
 }
