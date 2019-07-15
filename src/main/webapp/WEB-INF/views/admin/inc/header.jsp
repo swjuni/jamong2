@@ -23,35 +23,35 @@
                         </c:if>
                             <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-content-heading">
-                                    <span class="text-left">Upgrade Now</span>
-                                    <p class="trial-day">30 Days Trail</p>
+                                    <span class="text-left">흐으음...</span>
+                                    <p class="trial-day">왜 안되지</p>
                                 </div>
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li>
-                                            <a href="#">
+                                            <a href="<c:url value='/admin/index_admin.do'/>">
                                                 <i class="ti-user"></i>
-                                                <span></span>
+                                                <span>뭐지</span>
                                             </a>
                                         </li>
 
                                         <li>
                                             <a href="#">
                                                 <i class="ti-email"></i>
-                                                <span>Inbox</span>
+                                                <span>이메일</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
                                                 <i class="ti-settings"></i>
-                                                <span>Setting</span>
+                                                <span>설정</span>
                                             </a>
                                         </li>
 
                                         <li>
                                             <a href="#">
                                                 <i class="ti-power-off"></i>
-                                                <span>Logout</span>
+                                                <span>로그아웃</span>
                                             </a>
                                         </li>
                                     </ul>

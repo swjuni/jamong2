@@ -2,7 +2,21 @@
 
 <!-- 관리자 홈 top include -->
 <%@include file="inc/admin_top.jsp" %>
-
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$.ajax({
+	    		url :"<c:url value='/admin/index_adminData.do'/>",
+	    		type: 'post',
+	    		dataType: "json",
+	    		success : function(res) {
+	    			$('#totalsale').text(res[0]+"원");
+	    			$('#newUser').text(res[1]+"명");
+	    			$('#totalMenu').text(res[2]+"개");
+	    		}
+	    		});	
+		});
+	</script>
 	<!-- 각자가 분담해서 디자인할 바디 태그 -->
 	<div class="content-wrap">
 	    <div class="main">
@@ -37,7 +51,7 @@
 	                                <div class="stat-icon dib"><i class="ti-money color-success border-success"></i></div>
 	                                <div class="stat-content dib">
 	                                    <div class="stat-text">총 매출액</div>
-	                                    <div class="stat-digit">1,012</div>
+	                                    <div class="stat-digit" id="totalsale"></div>
 	                                </div>
 	                            </div>
 	                        </div>
@@ -48,7 +62,7 @@
 	                                <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i></div>
 	                                <div class="stat-content dib">
 	                                    <div class="stat-text">신규 회원(1달 이내)</div>
-	                                    <div class="stat-digit">961</div>
+	                                    <div class="stat-digit" id="newUser"></div>
 	                                </div>
 	                            </div>
 	                        </div>
@@ -59,7 +73,7 @@
 	                                <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i></div>
 	                                <div class="stat-content dib">
 	                                    <div class="stat-text">상품 개수</div>
-	                                    <div class="stat-digit">770</div>
+	                                    <div class="stat-digit" id="totalMenu"></div>
 	                                </div>
 	                            </div>
 	                        </div>

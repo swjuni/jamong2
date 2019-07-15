@@ -71,7 +71,7 @@
 	    		dataType: "json",
 	    		success : function(res) {
 	    		alert("관리자 등급 수정이 완료되었습니다");
-	    		
+	    		location.href="<c:url value='/admin/manage/grade.do'/>";
 	    		}
 	    		});
 		});
@@ -95,6 +95,7 @@
 	    		dataType: "json",
 	    		success : function(res) {
 	    		alert("전문가 등급 수정이 완료되었습니다");
+	    		location.href="<c:url value='/admin/manage/grade.do'/>";
 	    		}
 	    		});
 		});
@@ -118,12 +119,13 @@
 	    		dataType: "json",
 	    		success : function(res) {
 	    		alert("일반회원 등급 수정이 완료되었습니다");
+	    		location.href="<c:url value='/admin/manage/grade.do'/>";
 	    		}
 	    		});
 		});
 		
 		//관리자 등급 등록 버튼
-		$('.insertok').click(function(){
+		$('.insertok1').click(function(){
 			var $authorName = $(this).parent().siblings().children('.gradename1').val();
 			var $authorDesc = $(this).parent().siblings().children('.gradedesc1').val();
 			var $authorLev = $(this).parent().siblings().children('.gradelev1').val();
@@ -141,12 +143,13 @@
 	    		dataType: "json",
 	    		success : function(res) {
 	    		alert("등급 등록이 완료되었습니다");
+	    		location.href="<c:url value='/admin/manage/grade.do'/>";
 	    		}
 	    		});
 		});
 		
 		//전문가 등급 등록 버튼
-		$('.insertok').click(function(){
+		$('.insertok2').click(function(){
 			var $authorName = $(this).parent().siblings().children('.gradename2').val();
 			var $authorDesc = $(this).parent().siblings().children('.gradedesc2').val();
 			var $authorLev = $(this).parent().siblings().children('.gradelev2').val();
@@ -164,12 +167,13 @@
 	    		dataType: "json",
 	    		success : function(res) {
 	    		alert("등급 등록이 완료되었습니다");
+	    		location.href="<c:url value='/admin/manage/grade.do'/>";
 	    		}
 	    		});
 		});
 		
 		//일반회원 등급 등록 버튼
-		$('.insertok').click(function(){
+		$('.insertok3').click(function(){
 			var $authorName = $(this).parent().siblings().children('.gradename3').val();
 			var $authorDesc = $(this).parent().siblings().children('.gradedesc3').val();
 			var $authorLev = $(this).parent().siblings().children('.gradelev3').val();
@@ -187,6 +191,7 @@
 	    		dataType: "json",
 	    		success : function(res) {
 	    		alert("등급 등록이 완료되었습니다");
+	    		location.href="<c:url value='/admin/manage/grade.do'/>";
 	    		}
 	    		});
 		});
@@ -204,6 +209,7 @@
 	    		dataType: "text",
 	    		success : function(res) {
 	    		alert("관리자 등급 삭제가 완료되었습니다");
+	    		location.href="<c:url value='/admin/manage/grade.do'/>";
 	    		}
 	    		});
 		});
@@ -220,6 +226,7 @@
 	    		dataType: "text",
 	    		success : function(res) {
 	    		alert("전문가 등급 삭제가 완료되었습니다");
+	    		location.href="<c:url value='/admin/manage/grade.do'/>";
 	    		}
 	    		});
 		});
@@ -236,6 +243,7 @@
 	    		dataType: "text",
 	    		success : function(res) {
 	    		alert("일반회원 등급 삭제가 완료되었습니다");
+	    		location.href="<c:url value='/admin/manage/grade.do'/>";
 	    		}
 	    		});
 		});
@@ -288,7 +296,7 @@
 							<td><input type="text" class="gradename1" placeholder="권한명"></td>
 							<td><input type="text" class="gradedesc1" value="관리자" disabled="disabled"></td>
 							<td><input type="text" class="gradelev1" placeholder="권한 레벨"></td>
-							<td><button type="button" class="insertok btn btn-info m-b-10 m-l-5">등록</button></td>
+							<td><button type="button" class="insertok1 btn btn-info m-b-10 m-l-5">등록</button></td>
 						</tr>
 
 					</tbody>
@@ -340,7 +348,7 @@
 							<td><input type="text" class="gradename2" placeholder="권한명"></td>
 							<td><input type="text" class="gradedesc2" value="전문가" disabled="disabled"></td>
 							<td><input type="text" class="gradelev2" placeholder="권한 레벨"></td>
-							<td><button type="button" class="insertok btn btn-info m-b-10 m-l-5">등록</button></td>
+							<td><button type="button" class="insertok2 btn btn-info m-b-10 m-l-5">등록</button></td>
 						</tr>
 
 					</tbody>
@@ -396,7 +404,7 @@
 							<td><input type="text" class="gradename3" placeholder="권한명"></td>
 							<td><input type="text" class="gradedesc3" value="일반회원" disabled="disabled"></td>
 							<td><input type="text" class="gradelev3" placeholder="권한 레벨"></td>
-							<td><button type="button" class="insertok btn btn-info m-b-10 m-l-5">등록</button></td>
+							<td><button type="button" class="insertok3 btn btn-info m-b-10 m-l-5">등록</button></td>
 						</tr>
 						
 

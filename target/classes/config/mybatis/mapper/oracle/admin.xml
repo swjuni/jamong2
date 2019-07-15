@@ -38,6 +38,18 @@
 		update administrator set admin_pwd=#{adminPwd} where admin_id=#{adminId}
 	</update>
 	
+	<select id="selectSumPay" resultType="int" >
+		select NVL(sum(price),0) from pay
+	</select>
+	
+	<select id="selectNewUser" resultType="int">
+		select count(*) from user_info where regdate>sysdate-30
+	</select>
+	
+	<select id="selectCountMenu" resultType="int">
+		select count(*) from menu_info
+	</select>
+	
 	
 </mapper>
 

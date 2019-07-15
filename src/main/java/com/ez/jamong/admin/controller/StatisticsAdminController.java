@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ez.jamong.admin.model.AdminService;
 import com.ez.jamong.admin_statistics.model.StatisticsService;
 import com.ez.jamong.admin_statistics.model.StatisticsVO;
 
@@ -22,6 +24,9 @@ public class StatisticsAdminController {
 	
 	@Autowired
 	private StatisticsService statisticsService;
+	
+	@Autowired
+	private AdminService adminService;
 	
 	@RequestMapping("/admin/statistics/User_statistics.do")
 	public String loginAdmin(Model model, HttpSession session) {
@@ -57,6 +62,16 @@ public class StatisticsAdminController {
 		obj[1]=arrCount;
 		
 		return obj;
+	}
+	
+	//관리자 메인페이지 매출액, 신규회원, 상품개수 데이터
+	@RequestMapping("/admin/index_adminData.do")
+	@ResponseBody
+	public int[] MainPageData() {
+		logger.info("메인페이지 데이터 매출,신규회원,상품개수");
+		int[] list = adminService.mainPageData();
+		
+		return list;
 	}
 }
 

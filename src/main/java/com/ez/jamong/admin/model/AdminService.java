@@ -24,4 +24,5 @@ public interface AdminService{
 	public int insertAdmin(AdminVO vo);
 	public int deleteAdmin(String id);
 	public int changeAdminPwd(String userid, AdminVO aftervo);
+	public int[] mainPageData();
 }

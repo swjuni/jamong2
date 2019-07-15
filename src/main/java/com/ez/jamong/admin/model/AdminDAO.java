@@ -11,4 +11,8 @@ public interface AdminDAO {
 	public int deleteAdmin(String id);
 	public int updateAdminPwd(AdminVO vo);
 	
+	//메인화면 총매출,신규회원,상품개수
+	public int selectSumPay();
+	public int selectNewUser();
+	public int selectCountMenu();
 }

@@ -38,6 +38,7 @@
 	    		dataType: "json",
 	    		success : function(res) {
 	    		alert("관리자 수정이 완료되었습니다");
+	    		location.href="<c:url value='/admin/manage/sub_admin.do'/>";
 	    		}
 	    		});
 		});
@@ -62,6 +63,7 @@
 	    		dataType: "json",
 	    		success : function(res) {
 	    		alert("관리자 등록이 완료되었습니다");
+	    		location.href="<c:url value='/admin/manage/sub_admin.do'/>";
 	    		}
 	    		});
 		});
@@ -78,6 +80,7 @@
 	    		dataType: "text",
 	    		success : function(res) {
 	    		alert("관리자 삭제가 완료되었습니다");
+	    		location.href="<c:url value='/admin/manage/sub_admin.do'/>";
 	    		}
 	    		});
 		});
@@ -87,7 +90,6 @@
 			$('.admininserttr').css('visibility','visible');
 		});
 		
-		alert("jquery 실행 완료!");
 	});
 </script>
 <div class="content-wrap">
