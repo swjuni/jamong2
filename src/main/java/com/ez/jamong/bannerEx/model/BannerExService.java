@@ -10,7 +10,10 @@ public interface BannerExService {
 	public BannerExVO selectAdsByNo(int adsNo);
 	public int updateActivation(BannerExVO bannerExVo);
 	public int updateApprove(BannerExVO vo);
+	public int updateAdminNo(BannerExVO vo);
 	public int updateDate(BannerExVO vo);
+	public int updateBanner(BannerExVO vo);
 	public int endDate(BannerExVO vo);
 	public int deleteBanner(int adsNo);
+	public int insertBanner(BannerExVO vo);
 }

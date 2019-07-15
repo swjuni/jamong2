@@ -12,7 +12,7 @@ public class BannerExVO {
 	private int price; 
 	private String fileName; 
 	private String originalFileName; 
-	private int fileSize; 
+	private long fileSize; 
 	private String approveDelflag; 
 	private String activation; 
 	private int adminNo;
@@ -72,10 +72,10 @@ public class BannerExVO {
 	public void setOriginalFileName(String originalFileName) {
 		this.originalFileName = originalFileName;
 	}
-	public int getFileSize() {
+	public long getFileSize() {
 		return fileSize;
 	}
-	public void setFileSize(int fileSize) {
+	public void setFileSize(long fileSize) {
 		this.fileSize = fileSize;
 	}
 	public String getApproveDelflag() {

@@ -4,6 +4,14 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.banner">
 
+	<insert id="insertBanner" parameterType="bannerExVo">
+		<selectKey resultType="int" keyProperty="adsNo" order="BEFORE">
+			select ads_seq.nextval from dual
+		</selectKey>
+		insert into ads(ADS_NO,EXPERT_NO,CATEGORY_NO,REQUEST_PERIOD,PRICE,FILE_NAME,ORIGINAL_FILE_NAME,FILE_SIZE)
+		values (#{adsNo}, #{expertNo}, #{categoryNo}, #{requestPeriod}, #{price}, #{fileName}, #{originalFileName}, #{fileSize})
+	</insert>
+
 	<select id="selectAdsAll" resultType="bannerExVo">
 		select * from ads
 	</select>
@@ -37,11 +45,25 @@
 		where ADS_NO=#{adsNo}
 	</update>
 	
+	<update id="updateAdminNo" parameterType="bannerExVo">
+		update ads
+		set ADMIN_NO=#{adminNo}
+		where ADS_NO=#{adsNo}
+	</update>
+	
+	<update id="updateBanner" parameterType="bannerExVo">
+		update ads
+		set CATEGORY_NO=#{categoryNo}, EXPERT_NO=#{expertNo}, REQUEST_PERIOD=#{requestPeriod}, PRICE=#{price}
+			<if test="fileName!=null and fileName!=''">
+				, FILE_NAME=#{fileName}, FILE_SIZE=#{fileSize}, ORIGINAL_FILE_NAME=#{originalFileName}
+			</if>
+		where ADS_NO=#{adsNo}
+	</update>
+	
 	<delete id="deleteBanner" parameterType="int">
 		delete from ads
 		where ADS_NO=#{ADS_NO}
 	</delete>
-	
 	
 	<!-- mappppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp -->
 	<select id="selectAdsAllView" resultType="map">
