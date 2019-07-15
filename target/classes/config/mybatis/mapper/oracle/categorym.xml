@@ -45,6 +45,12 @@
 		delete from category_m
 		where CATEGORY_NO_M=#{categoryNoM}
 	</delete>
+	
+		
+	<select id="selectCategoryM" parameterType="int" resultType="categorymVo">
+		select * from category_m
+		where CATEGORY_NO_L=#{categoryNoL}
+	</select>
 
 	<!-- mapmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm -->
 	<!-- 카테고리(중) + 카테고리(대) 이름 -->
@@ -79,8 +85,4 @@
 		group by CATEGORY_NAME
 	</select>
 	
-	<select id="selectCategoryM" parameterType="int" resultType="categorymVo">
-		select * from category_m
-		where CATEGORY_NO_L=#{categoryNoL}
-	</select>
 </mapper>

@@ -68,11 +68,11 @@
 	                    							<tr>
 	                    								<th>서비스 기간</th>
 	                    								<td>
-	                    								<c:if test="${map['START_DATE'] != null && map['APPROVE_DELFLAG'] != 'C'}">
+	                    								<c:if test="${map['START_DATE'] != null && map['APPROVE_DELFLAG'] != 'C' && map['ACTIVATION'] == 'Y'}">
 	                    								${map['START_DATE'] } ~ ${map ['END_DATE'] }
 	                    								</c:if>
-	                    								<c:if test="${map['START_DATE'] == null || map['APPROVE_DELFLAG'] == 'C'}">
-	                    									승인되지 않았습니다.
+	                    								<c:if test="${map['START_DATE'] == null || map['ACTIVATION'] == 'N' || map['APPROVE_DELFLAG'] == 'C'}">
+	                    									활성화 되지 않았습니다.
 	                    								</c:if>
 	                    								</td>
 	                    								<td></td>
@@ -140,6 +140,8 @@
 							            </c:if>
 							            <input type = "Button" value="삭제" class="btn btn-primary"
 				            			onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDelete.do?adsNo=${map["ADS_NO"] }&fileName=${map["FILE_NAME"] }'/>'">&nbsp;&nbsp;
+							            <input type = "button" value="수정" class="btn btn-primary"
+							            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerEdit.do?adsNo=${map["ADS_NO"] }'/>'">&nbsp;&nbsp;
 							            <input type = "Button" value="글목록" class="btn btn-primary"
 							            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerList.do'/>'">
 							        </div>
