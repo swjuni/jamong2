@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@include file="incs/top_main.jsp" %>
+<%@include file="incs/topSearch.jsp" %>
 <!-- 각 화면별 내용 코딩-->
 
 

@@ -39,3 +39,4 @@
 	<script src="<c:url value='/resources/js/animate.js'/>"></script>
 	<script src="<c:url value='/resources/js/owl.carousel.js'/>"></script>
 	<script src="<c:url value='/resources/js/custom.js'/>"></script>
+	
