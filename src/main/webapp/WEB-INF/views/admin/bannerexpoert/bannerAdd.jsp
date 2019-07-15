@@ -34,6 +34,9 @@
 							+ this.categoryName + "</option>";
 							$('#categoryNo').append(str);
 						});
+					}else{
+						str="<option value=''>카테고리(대)를 선택하세요.</option>";
+						$('#categoryNo').append(str);
 					}
 				},
 				error:function(xhr, status, error){
@@ -86,6 +89,7 @@
 												<div>
 												카테고리 선택 : 
 													<select name="categoryNoL" id="categoryNoL">
+															<option value="">선택</option>
 														<c:forEach var="vo" items="${list }">
 															<option value="${vo.categoryNo }">${vo.categoryNameL }</option>
 														</c:forEach>
