@@ -77,7 +77,7 @@
 												</div>
                                                     	                                            
 										        <div class="form-group">  
-										 			<textarea id="faqContent" name="faqContent" class="form-control" style="width: 90%"></textarea>
+										 			<textarea id="faqContent" name="faqContent" class="form-control" style="width: 100%"></textarea>
 										        </div>
 												<script type="text/javascript">
 													//스마트에디터2 생성 코드

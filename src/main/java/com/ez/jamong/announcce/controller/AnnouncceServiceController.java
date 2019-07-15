@@ -24,7 +24,7 @@ import com.ez.jamong.common.SearchVO;
 @Controller
 @RequestMapping("/main/announcce")
 public class AnnouncceServiceController{
-	private Logger logger = LoggerFactory.getLogger(AnnouncceController.class);
+	private Logger logger = LoggerFactory.getLogger(AnnouncceServiceController.class);
 	@Autowired private AnnouncceService announcceService;
 	//@Autowired private FileUploadUtility fileUtility;
 	
