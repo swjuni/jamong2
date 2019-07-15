@@ -54,5 +54,10 @@ public class UserInfoServiceImpl implements UserInfoService{
 		}
 		return cnt;
 	}
+
+	@Override
+	public int registUser(UserInfoVO vo) {
+		return userInfoDao.registUser(vo);
+	}
 	
 }

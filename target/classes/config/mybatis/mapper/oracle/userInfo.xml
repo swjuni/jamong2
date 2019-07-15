@@ -54,6 +54,7 @@
 			</if>
 		</where>	
 	</select>
+	
 	<update id="memberInactiveByUserNo" parameterType="int">
 		update user_info
 		set activation='N'
@@ -65,4 +66,12 @@
 		set activation='Y'
 		where user_no=#{userNo}
 	</update>
+	
+	<insert id="registUser" parameterType="userInfoVo">
+		insert into user_info values
+		(user_info_seq.nextval,#{userId},#{userPwd},#{userName},
+		#{hp},#{zipcode},#{address},#{addressDetail},sysdate,null,'Y',
+		(select author_no from authority where author_lev=6))
+	</insert>
+	
 </mapper>

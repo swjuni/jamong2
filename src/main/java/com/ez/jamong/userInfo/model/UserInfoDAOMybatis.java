@@ -32,5 +32,10 @@ public class UserInfoDAOMybatis implements UserInfoDAO{
 	public int memberActiveByUserNo(int userNo) {
 		return session.update(namespace+"memberActiveByUserNo",userNo);
 	}
+
+	@Override
+	public int registUser(UserInfoVO vo) {
+		return session.insert(namespace+"registUser",vo);
+	}
 	
 }

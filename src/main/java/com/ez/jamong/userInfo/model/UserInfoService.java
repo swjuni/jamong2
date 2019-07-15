@@ -12,4 +12,5 @@ public interface UserInfoService {
 	public int memberActiveByUserNo(int userNo);
 	public int memberInActiveMulti(String[] chk);
 	public int memberActiveMulti(String[] chk);
+	public int registUser(UserInfoVO vo);
 }
