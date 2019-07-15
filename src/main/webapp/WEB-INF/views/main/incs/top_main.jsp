@@ -10,26 +10,66 @@
 
 <script type="text/javascript">
 	$(function(){
-		$(".categoryNo").mouseover(function(){
+		$(".categoryNo").mouseenter(function(){
+			var $t=$(this);
 			$.ajax({
-				url:"<c:url value='/main/showCategoryM.do'/>",
-				type:"get",
-				data:"no="+$(this).val(),
-				dataType:"json",
-				success:function(res){
-					if(res.length>0){
-						$.each(res, function(idx, item){
-							//alert(item.categoryName);
-						});
-					}		
+					url:"<c:url value='/main/showCategoryM.do'/>",
+					type:"get",
+					data:"no="+$(this).val(),
+					dataType:"json",
+					success:function(res){
+						if(res.length>0){
+							var str="<div class='subCategory' name='subCategory'><ul>";
+								 $.each(res, function(idx, item){
+									str+="<li><a>"+item.categoryName+"</a></li>";
+								});
+							str+="</ul></div>";
+							$t.find("a").append(str);
+						}
 				},
 				error:function(xhr, status, error){
 					alert(status+":"+error);
 				}
-			});
-		});
-	})
+			});//ajax
+		});//categoryNo.mouseover
+		
+		$(".categoryNo").mouseleave(function(){
+			$(this).find("hr").remove();
+			$("div[name=subCategory]").remove();
+		})
+		
+	})//document.ready
 </script>
+<style type="text/css">
+	.categoryNo{
+		padding-left: 20px;
+	}
+	li .subCategory{
+		position: absolute;
+		width: 170px;
+		left:-10px;
+		background: white;
+		padding-bottom:15px;
+		z-index: 1;
+	}
+	
+	.subCategory li{
+		list-style: none;
+		margin-top: 15px;
+		margin-left:-25px;
+	}
+	
+	.subCategory li a{
+		color: #595959;
+	}
+	
+	.subCategory li:nth-child(1){
+		border-top:3px solid #30acbf;
+		width: 100%;
+		padding-top:15px;
+	}
+
+</style>
 </head>
 <body>
 	
@@ -52,19 +92,8 @@
                     <div class="col-md-6 col-sm-6">
                         <nav class="topbar-menu">
                             <ul class="list-inline text-right navbar-right">
-                                <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><img src="<c:url value='/resources/images/us.png'/>" alt=""> English
-                                    <span class="fa fa-angle-down"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#"><img src="<c:url value='/resources/images/tr.png'/>" alt=""> Turkish</a></li>
-                                        <li><a href="#"><img src="<c:url value='/resources/images/si.png'/>" alt=""> Spanish</a></li>
-                                        <li><a href="#"><img src="<c:url value='/resources/images/it.png'/>" alt=""> Italian</a></li>
-                                        <li><a href="#"><img src="<c:url value='/resources/images/ae.png'/>" alt=""> Arabic</a></li>
-                                        <li><a href="#"><img src="<c:url value='/resources/images/de.png'/>" alt=""> German</a></li>
-                                    </ul>
-                                </li>
-                                <li class="hidden-xs"><i class="fa fa-clock-o"></i> 08:00 - 17:00</li>
-                                <li><i class="fa fa-phone"></i> +90 987 665 55 44</li>
+                                <li><a>로그인</a></li>
+                                <li><a>회원가입</a></li>
                             </ul><!-- end list -->
                         </nav><!-- end menu -->
                     </div><!-- end col -->
@@ -85,11 +114,11 @@
 				            </button>
 							<a class="navbar-brand" href="<c:url value='/index.html'/>"><img src="<c:url value='/resources/images/logo.png'/>" alt="Linda"></a>
 				        </div>
-				        <div id="navbar" class="navbar-collapse collapse">
-				            <ul class="nav navbar-nav">
-				            <c:import url="/main/showCategoryL.do"/>
-                            </ul>
-				        </div><!--/.nav-collapse -->
+					        <div id="navbar" class="navbar-collapse collapse">
+					            <ul class="nav navbar-nav">
+					            <c:import url="/main/showCategoryL.do"/>
+	                            </ul>
+					        </div><!--/.nav-collapse -->
 				    </div><!--/.container-fluid -->
 				</nav><!-- end nav -->
 			</div><!-- end container -->
