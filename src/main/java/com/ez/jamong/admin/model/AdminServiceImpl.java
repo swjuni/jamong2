@@ -68,5 +68,24 @@ public class AdminServiceImpl implements AdminService{
 		}
 		return cnt;
 	}
+
+	@Override
+	public int[] mainPageData() {
+		int a = 0;
+		int b = 0;
+		int c = 0;
+		a=adminDao.selectSumPay();
+		b=adminDao.selectNewUser();
+		c=adminDao.selectCountMenu();
+		
+		int[] list = new int[3];
+	
+		
+		list[0]=a;
+		list[1]=b;
+		list[2]=c;
+		
+		return list;
+	}
 	
 }

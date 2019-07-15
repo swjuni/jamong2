@@ -91,8 +91,8 @@
                     <div class="col-md-6 col-sm-6">
                         <nav class="topbar-menu">
                             <ul class="list-inline text-right navbar-right">
-                                <li><a>로그인</a></li>
-                                <li><a>회원가입</a></li>
+                                <li><a href="<c:url value="/main/userlogin/login.do"/>">로그인</a></li>
+                                <li><a href="<c:url value="/main/userlogin/userRegist.do"/>">회원가입</a></li>
                             </ul><!-- end list -->
                         </nav><!-- end menu -->
                     </div><!-- end col -->

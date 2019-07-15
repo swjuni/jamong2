@@ -33,10 +33,7 @@
                     	<div class="widget clearfix">
                     		<h4 class="widget-title">SERVICES</h4>
                     		<ul>
-                    			<li><a href="#">서비스소개</a></li>
-                    			<li><a href="#">구매안내</a></li>
-                    			<li><a href="#">판매안내</a></li>
-                    			<li><a href="#">회사정보</a></li>
+                    			<c:import url="/main/guide/guideList_bottom.do"/>
                     		</ul>
                     	</div><!-- end widget -->
                     </div><!-- end col -->
@@ -47,7 +44,7 @@
                     		<h4 class="widget-title">NOTICE</h4>
                     		<ul>
                     			<li><a href="<c:url value="/main/announcce/announcceServiceList.do"/>">공지사항</a></li>
-                    			<li><a href="#">FAQ</a></li>
+                    			<li><a href="<c:url value="/main/faq/faqServiceList.do"/>">FAQ</a></li>
                     		</ul>
                     	</div><!-- end widget -->
                     </div><!-- end col -->

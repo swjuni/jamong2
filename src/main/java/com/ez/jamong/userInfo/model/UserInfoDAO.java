@@ -10,4 +10,5 @@ public interface UserInfoDAO {
 	public int selectTotalCount(SearchVO searchVo);
 	public int memberInactiveByUserNo(int userNo);
 	public int memberActiveByUserNo(int userNo);
+	public int registUser(UserInfoVO vo);
 }

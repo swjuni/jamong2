@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ez.jamong.categoryl.model.CategoryLService;
 import com.ez.jamong.categoryl.model.CategoryLVO;
@@ -239,4 +240,19 @@ public class CategoryMController {
 		
 		return "common/message";
 	}
+	
+	
+	
+	@RequestMapping("/admin/bannerexpoert/ajaxCategoryM.do")
+	@ResponseBody
+	public List<CategoryMVO> select(@RequestParam(defaultValue = "0") int categoryNoL){
+		logger.info("ajax-select.do 요청");
+		
+		List<CategoryMVO> list = categorymService.selectCategoryM(categoryNoL);
+		
+		return list;
+	}
+	
+	
+	
 }

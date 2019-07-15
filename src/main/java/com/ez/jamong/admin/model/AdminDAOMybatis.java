@@ -46,4 +46,19 @@ public class AdminDAOMybatis implements AdminDAO{
 		return sqlSession.update(namespace+"updateAdminPwd",vo);
 	}
 
+	@Override
+	public int selectSumPay() {
+		return sqlSession.selectOne(namespace+"selectSumPay");
+	}
+
+	@Override
+	public int selectNewUser() {
+		return sqlSession.selectOne(namespace+"selectNewUser");
+	}
+
+	@Override
+	public int selectCountMenu() {
+		return sqlSession.selectOne(namespace+"selectCountMenu");
+	}
+
 }
