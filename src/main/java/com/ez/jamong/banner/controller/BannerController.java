@@ -227,24 +227,6 @@ public class BannerController {
 		return "common/message";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping(value = "/admin/bannerexpoert/bannerEdit.do", method = RequestMethod.GET)
 	public String bannereEdit_get(@RequestParam(defaultValue = "0") int adsNo, HttpServletRequest request, Model model) {
 		logger.info("배너 수정화면 요청");
