@@ -1,3 +1,6 @@
+alter table ads
+modify ADMIN_NO NUMBER NULL;
+
 create or replace view absView as
 select  a.*, e.id , c.category_name_l, c.category_name
 from ads a join expert e
