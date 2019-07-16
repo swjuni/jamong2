@@ -43,4 +43,9 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+	<error-page>
+		<error-code>404</error-code>
+		<location>/main/404error.do</location>
+	</error-page>
 </web-app>
