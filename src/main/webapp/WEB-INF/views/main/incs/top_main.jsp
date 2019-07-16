@@ -21,7 +21,7 @@
 						if(res.length>0){
 							var str="<div class='subCategory' name='subCategory'><ul>";
 								 $.each(res, function(idx, item){
-									str+="<li><a>"+item.categoryName+"</a></li>";
+									str+="<li class='categoryM'><a>"+item.categoryName+"</a></li>";
 								});
 							str+="</ul></div>";
 							$t.find("a").append(str);
@@ -34,10 +34,9 @@
 		});//categoryNo.mouseover
 		
 		$(".categoryNo").mouseleave(function(){
-			$(this).find("hr").remove();
 			$("div[name=subCategory]").remove();
 		})
-		
+	
 	})//document.ready
 </script>
 <style type="text/css">

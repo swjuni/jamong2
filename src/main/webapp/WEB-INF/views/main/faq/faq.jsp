@@ -15,7 +15,7 @@
 	}
 </style>
 <!-- 화면 디자인 -->
-		<section class="section normalhead bgcolor ptop180">
+		<section class="section transheader bgcolor ptop180">
 			<div class="container">
 				<div class="row">	
 					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center">
@@ -84,7 +84,7 @@
 									    <div class="panel-heading">
 									        <h4 class="panel-title">
 									            <a data-toggle="collapse" data-parent="#accordion" href="#collapseNon">
-									            	해당 카테고리의 내용이 없습니다.
+									            	해당 FAQ의 내용이 없습니다.
 									            <i class="fa fa-angle-down"></i></a>
 									        </h4>
 									    </div>
