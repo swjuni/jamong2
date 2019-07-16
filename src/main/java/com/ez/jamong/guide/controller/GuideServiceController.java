@@ -49,4 +49,10 @@ public class GuideServiceController {
 		return "main/incs/guideList_bottom";
 	}
 	
+	@RequestMapping("/contact.do")
+	public String contact() {
+		logger.info("bottom contact 요청");
+		return "main/announcce/contact";
+	}
+	
 }

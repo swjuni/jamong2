@@ -19,7 +19,7 @@
 				<div class="row">	
 					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center">
 						<h2>공 지 사 항</h2>
-						<p class="lead">We publish latest Google news, SEO tips and tricks for our dear customers.</p>
+						<p class="lead">We publish latest Jamong news, tips and tricks for our dear customers.</p>
 					</div><!-- end col -->
 				</div><!-- end row -->
 			</div><!-- end container -->
@@ -87,16 +87,16 @@
 
                     <div class="sidebar col-md-4 col-sm-4">
                     	<div class="widget clearfix">
-                    		<h4 class="widget-title">검색</h4>
+                    		<h4 class="widget-title">공지사항 검색</h4>
                     		<div class="newsletter-widget">
-                    			<p>여기서 대체 무엇을 찾고 싶은건가?</p>
+                    			<p>내용에서 검색할 단어를 입력하세요</p>
 		                        <form class="form-inline" role="search" name="frmSearch" method="post" action="<c:url value='/main/announcce/announcceServiceList.do'/>">
 		                            <div class="form-1">
 								   		<!-- 현재 페이지 hidden에 넣기 -->
 								   		<input type="hidden" name="currentPage" value="1">
 								   		<input type="hidden" name="searchCondition" value="content">
 		                              	<input type="text" class="form-control" placeholder="검색어 입력" name="searchKeyword" value="${param.searchKeyword}">
-										<button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i></button>
+										<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
 		                            </div>
 								</form>
 							    
