@@ -14,7 +14,7 @@
 			$.ajax({
 				url:"<c:url value='/main/showCategoryM.do'/>",
 				type:"get",
-				data:"no="+1,
+				data:"no="+$(".categoryNo:eq(0)").val(),
 				dataType:"json",
 				success:function(res){
 					if(res.length>0){
@@ -45,6 +45,14 @@
 	
 	.calculateform{
 		margin-top: -7px;
+	}
+	
+	.center-pricing{
+		margin-top: 45px;
+	}
+	
+	section.section.transheader.bgcolor {
+    	margin-bottom: -62px;
 	}
 </style>
 </head>
@@ -88,9 +96,9 @@
 		        </div>
 		</form>
 		<div class="center-pricing">
-			<ul class="nav nav-tabs" role="tablist">
-			    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">로그인</a></li>
-			    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">회원가입</a></li>
+			<ul class="nav nav-tabs">
+			    <li><a href="#" style="cursor: pointer;">로그인</a></li>
+			    <li><a href="#" style="cursor: pointer;">회원가입</a></li>
 			</ul>
 		</div>
 	</section>
