@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,10 +25,20 @@ public class MainController {
 	@Autowired CategoryMService categoryMService;
 
 	@RequestMapping("/index_main.do")
-	public String main_view() {
+	public String main_view(Model model) {
 		logger.info("메인 페이지");
-		
+		List<CategoryLVO> list=categorylService.selectCategorylAll();
+		model.addAttribute("list",list);
 		return "main/index_main";
+	}
+	
+	@RequestMapping(value = "showCategoryMimg.do", method = RequestMethod.GET)
+	public String showCategoryMimg(@RequestParam(defaultValue = "0") int no, Model model) {
+		logger.info("카테고리(중) 목록 파라미터 categoryLNo={}", no);
+		List<CategoryMVO> list=categoryMService.selectCategoryM(no);
+		logger.info("카테고리(중) 목록 리스트 list.size={}",list.size());
+		model.addAttribute("list",list);
+		return "main/incs/categoryMList";
 	}
 	
 	@RequestMapping("/showCategoryL.do")
