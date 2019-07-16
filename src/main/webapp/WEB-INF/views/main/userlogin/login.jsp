@@ -28,33 +28,51 @@
     <link href="<c:url value="/assets/css/lib/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/assets/css/lib/helper.css"/>" rel="stylesheet">
     <link href="<c:url value="/assets/css/style.css"/>" rel="stylesheet">
+    <link href="<c:url value="/assets/js/lib/jeoncss/loginWaveBack.css"/>" rel="stylesheet">
     <script type="text/javascript" src="<c:url value="/resources/js/jquery.min.js"/>"></script>
 </head>
+<style>
+#gradient
+{
+  width: 100%;
+  height: 800px;
+  padding: 0px;
+  margin: 0px;
+}
+</style>
+<body class='box'><!--  id="gradient" -->
 
-<body class="bg-primary">
-
-    <div class="unix-login">
+    <div class="unix-login" style="width: 300000em;">
         <div class="container-fluid">
+        
             <div class="row justify-content-center">
-                <div class="col-lg-6">
+            
+                <div class="col-lg-6" style="display:contents;">
                     <div class="login-content">
+                    
                         <div class="login-logo">
-                            <a href="<c:url value="/main/index_main.do"/>"><span>Jamong 메인 페이지</span></a>
+                        
+                            <a href="<c:url value="/main/index_main.do"/>"><span style="color: #dc3545;font-weight: bold;">Jamong 메인 페이지</span></a>
                         </div>
                         <div class="login-form">
                             <h4>Jamong 회원 로그인</h4>
-                            <form>
+                            <form action="<c:url value='/main/userlogin/login.do'/>" method="post">
+                            	<div class='wave -one'></div>
+  								<div class='wave -two'></div>
+  								<div class='wave -three'></div>
                                 <div class="form-group">
                                     <label>아이디</label>
-                                    <input type="email" class="form-control" placeholder="이메일 (ex@jamong.com)">
+                                    <input type="email" class="form-control" placeholder="이메일 (ex@jamong.com)" id="userId" name="userId">
                                 </div>
                                 <div class="form-group">
                                     <label>비밀번호</label>
-                                    <input type="password" class="form-control" placeholder="비밀번호">
+                                    <input type="password" class="form-control" placeholder="비밀번호" id="pwd" name="pwd">
                                 </div>
                                 <div class="checkbox">
                                     <label>
-										<input type="checkbox"> 아이디를 기억하시겠습니까?
+										<input type="checkbox" id="saveId" name="saveId" <c:if test="${!empty cookie.ck_userid }">
+						checked="checked"
+					</c:if>> 아이디를 기억
 									</label>
                                     <label class="pull-right">
 										<a href="#">비밀번호를 잊어버렸나요???</a>
@@ -70,6 +88,7 @@
                                     <p>회원가입 하셨나요? <a href="<c:url value="/main/userlogin/userRegist.do"/>"> 회원가입 GOGO!</a></p>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -77,5 +96,8 @@
         </div>
     </div>
 
+
+
 </body>
+<script src="<c:url value='/assets/js/lib/jeoncss/loginback.js'/>"></script>
 </html>

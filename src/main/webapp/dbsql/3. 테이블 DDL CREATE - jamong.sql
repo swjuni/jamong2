@@ -14,6 +14,8 @@ CREATE TABLE USER_INFO (
 	AUTHOR_NO      NUMBER        DEFAULT 6 NOT NULL -- 권한번호
 );
 
+alter table user_info modify(zipcode varchar2(30));
+
 -- 회원정보 기본키
 CREATE UNIQUE INDEX UserInfo
 	ON USER_INFO ( -- 회원정보
@@ -57,6 +59,8 @@ CREATE TABLE MENU_INFO (
 	EXPERT_NO        NUMBER        NOT NULL  -- 전문가정보번호
 );
 
+		
+select * from user_info;
 -- 상품 기본키
 CREATE UNIQUE INDEX PK_MENU_INFO
 	ON MENU_INFO ( -- 상품

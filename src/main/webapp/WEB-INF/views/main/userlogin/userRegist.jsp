@@ -33,80 +33,203 @@
     <script type="text/javascript">
  		$(document).ready(function(){
  		});
-    	function zipcode(){
+    	function zipcode123(){
         new daum.Postcode({
             oncomplete: function(data) {
             	var zip=document.getElementById('zipcode');
-            	var addr=document.getElementById('uAddr1');
+            	var addr=document.getElementById('address');
                	zip.value=data.zonecode;
                	addr.value=data.roadAddress;
-               	zip.disabled = true ;
-               	addr.disabled = true ;
+               	zip.readOnly = true;
+               	addr.readOnly = true;
                	
             }
         }).open();
     	}
+    	
+    	function inputPhoneNumber(obj) {/* 전화번호 하이픈(-) 자동삽입 */
+    	    var number = obj.value.replace(/[^0-9]/g, "");
+    	    var phone = "";
+
+    	    if(number.length < 4) {
+    	        return number;
+    	    } else if(number.length < 7) {
+    	        phone += number.substr(0, 3);
+    	        phone += "-";
+    	        phone += number.substr(3);
+    	    } else if(number.length < 11) {
+    	        phone += number.substr(0, 3);
+    	        phone += "-";
+    	        phone += number.substr(3, 3);
+    	        phone += "-";
+    	        phone += number.substr(6);
+    	    } else {
+    	        phone += number.substr(0, 3);
+    	        phone += "-";
+    	        phone += number.substr(3, 4);
+    	        phone += "-";
+    	        phone += number.substr(7);
+    	    }
+    	    obj.value = phone;
+    	}
+    	
+    	var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    	$(function(){
+    		$('#name').focusout(function(){//값 없을시 필수입력이라는 표시 출력
+    			if($(this).val().length==0){
+    				$(this).css("border","2px solid red");
+    				$(this).attr( 'placeholder', '성명(필수 입력값입니다)' );
+    			}else{
+    				$(this).css("border","2px solid skyblue");
+    			}
+    		});
+    		$('#id').focusout(function(){
+    			if($(this).val().length==0){
+    				$(this).css("border","2px solid red");
+    				$(this).attr( 'placeholder', '아이디(필수 입력값입니다)' );
+    			}else{
+    			$(this).css("border","2px solid skyblue");
+    		}
+    		});
+    		$('#pwd').focusout(function(){
+    			if($(this).val().length==0){
+    				$(this).css("border","2px solid red");
+    				$(this).attr( 'placeholder', '필수 입력값입니다' );
+    			}else{
+    				$(this).css("border","2px solid skyblue");
+    			}
+    		});
+    		
+    		$('#pwdchk').focusout(function(){
+    			if(!($('#pwd').val()==$('#pwdchk').val())){
+    				$(this).css("border","2px solid red");
+    			}else{
+    				$(this).css("border","2px solid skyblue");
+    			}
+    		});
+    		
+    	//가입 누를때 입력 안된사항들 체크
+    	$('#sign').click(function(){
+			if($('#name').val().length==0){
+				alert('성명을 입력해주세요');
+				event.preventDefault();
+				$('#name').focus();
+			}
+			else if($('#id').val().length==0){
+				alert('아이디를 입력해주세요');
+				event.preventDefault();
+				$('#id').focus();
+			}else if(!emailRule.test($('#id').val())){
+				alert('아이디는 이메일 형식을 따라 입력해주세요');
+				event.preventDefault();
+				$('#id').focus();
+			}
+			else if($('#pwd').val().length==0){
+				alert('비밀번호를 입력해주세요');
+				event.preventDefault();
+				$('#pwd').focus();
+			}
+			else if(!($('#pwd').val()==$('#pwdchk').val())){
+				alert('비밀번호가 같은지 확인하세요');
+				event.preventDefault();
+				$('#pwdchk').focus();
+			}else if($('#chkId').val()!='Y'){
+				alert('중복된 아이디입니다');
+				event.preventDefault();
+				$('#id').focus();
+			}else if(!$('#agree').is(':checked')){
+				alert('가입진행에 동의해주세요');
+				event.preventDefault();
+				$('#agree').focus();
+			}
+				
+		});
+    	
+    	$('#id').keyup(function(){
+    		var $checkid = $(this).val();
+    		
+    		$.ajax({
+	    		url :"<c:url value='/main/userlogin//userCheckId.do'/>",
+	    		type: 'post',
+	    		data:{
+	    			id:$checkid
+	    		},
+	    		dataType: "json",
+	    		success : function(res) {
+	    		if(res>0){
+	    			$('#chkId').val('N');
+	    			$('#overlap').css('visibility','visible');
+	    		}else{
+	    			$('#chkId').val('Y');
+	    			$('#overlap').css('visibility','hidden');
+	    		}
+	    		}
+	    		});
+    	});
+    });
     </script>
 </head>
 
-<body class="bg-primary">
+<body id="gradient">
 
     <div class="unix-login">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <div class="login-content">
+                    <div class="login-content" style="width:70%;margin: auto;">
                         <div class="login-logo">
                             <a href="<c:url value="/main/index_main.do"/>"><span>Jamong 메인 페이지</span></a>
                         </div>
-                        <div class="login-form">
+                        <div class="login-form" style="padding: 10%">
                             <h4>Jamong 회원가입</h4>
-                            <form>
+                            <form action="<c:url value='/main/userlogin/userRegist.do'/>" method="post">
                                 <div class="form-group">
                                     <label>아이디(이메일)</label>
-                                    <input type="email" class="form-control" placeholder="Email(ex@jamong.com)">
+                                    <input type="email" class="form-control" placeholder="Email(ex@jamong.com)" id="id" name="userId">
+                                    <p style="color:red;visibility:hidden; " id="overlap">중복된 아이디(이메일)입니다</p>
                                 </div>
                                 <div class="form-group">
                                     <label>비밀번호</label>
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input type="password" class="form-control" placeholder="Password" id="pwd" name="userPwd">
                                 </div>
                                 <div class="form-group">
                                     <label>비밀번호 확인</label>
-                                    <input type="password" class="form-control" placeholder="Password">
+                                    <input type="password" class="form-control" placeholder="Password" id="pwdchk">
                                 </div>
                                 <div class="form-group">
                                     <label>이름</label>
-                                    <input type="text" class="form-control" placeholder="Name">
+                                    <input type="text" class="form-control" placeholder="Name" id="name" name="userName">
                                 </div>
                                 <div class="form-group">
-                                    <label>전화번호</label>
-                                    <input type="tel" class="form-control" placeholder="Email">
+                                    <label>휴대폰번호</label>
+                                    <input type="tel" class="form-control" placeholder="HP" onkeyup="inputPhoneNumber(this)" maxlength="13" name="hp">
                                 </div>
                                 <div class="form-group">
                                     <label style="display:block">우편번호</label>
-                                    <input type="text" class="form-control" placeholder="Zipcode" style="width:40%;display:inline;">
-                                    <button type="button" class="btn btn-primary btn-flat m-b-30 m-t-30" onclick="zipcode()" style="width:40%;display:inline;">우편번호</button>
+                                    <input type="text" class="form-control" placeholder="Zipcode" style="width:40%;display:inline;" id="zipcode" name="zipcode">
+                                    <button type="button" class="btn btn-primary btn-flat m-b-30 m-t-30" onclick="zipcode123()" style="width:40%;display:inline;">우편번호</button>
                                 </div>
                                 <div class="form-group">
                                     <label>주소</label>
-                                    <input type="text" class="form-control" placeholder="Address">
+                                    <input type="text" class="form-control" placeholder="Address" id="address" name="address">
                                 </div>
                                 <div class="form-group">
                                     <label>상세 주소</label>
-                                    <input type="text" class="form-control" placeholder="AddressDetail">
+                                    <input type="text" class="form-control" placeholder="AddressDetail" id="addressDetail" name="addressDetail">
                                 </div>
                                 
                                 <div class="checkbox">
                                     <label>
-										<input type="checkbox"> 약관에 동의합니다
+										<input type="checkbox" id="agree"> 가입에 동의합니다
 									</label>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">회원가입</button>
+                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" id="sign">회원가입</button>
                            
                                 <div class="register-link m-t-15 text-center">
                                     <p>회원가입 하셨다구요 ? <a href="<c:url value="/main/userlogin/login.do"/>"> 로그인하러 가기</a></p>
                                    
                                 </div>
+                                <input type ="hidden" name="chkId" id="chkId" value="N">
                             </form>
                         </div>
                     </div>
@@ -116,5 +239,6 @@
     </div>
 
 </body>
+<script src="<c:url value='/assets/js/lib/jeoncss/loginback.js'/>"></script>
 
 </html>
