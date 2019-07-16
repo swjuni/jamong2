@@ -67,11 +67,25 @@
 		where user_no=#{userNo}
 	</update>
 	
-	<insert id="registUser" parameterType="userInfoVo">
+	<insert id="registUser" parameterType="userinfoVo">
 		insert into user_info values
 		(user_info_seq.nextval,#{userId},#{userPwd},#{userName},
 		#{hp},#{zipcode},#{address},#{addressDetail},sysdate,null,'Y',
 		(select author_no from authority where author_lev=6))
 	</insert>
+	
+	<select id="existUser" resultType="int" parameterType="string">
+		select count(*) from user_info where user_id=#{userId}
+	</select>
+	
+	<select id="selectForUserLogin" parameterType="string" resultType="string">
+		select user_pwd from user_info
+		where user_id=#{userId}
+	</select>
+	
+	<select id="selectUser" parameterType="string" resultType="userinfoVo">
+		select * from user_info
+		where user_id=#{userId}
+	</select>
 	
 </mapper>

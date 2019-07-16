@@ -11,4 +11,7 @@ public interface UserInfoDAO {
 	public int memberInactiveByUserNo(int userNo);
 	public int memberActiveByUserNo(int userNo);
 	public int registUser(UserInfoVO vo);
+	public int existUser(String userid);
+	public String selectForUserLogin(String userid);
+	public UserInfoVO selectUser(String userid);
 }

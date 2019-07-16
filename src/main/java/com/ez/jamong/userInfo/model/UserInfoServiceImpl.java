@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ez.jamong.admin.model.AdminService;
 import com.ez.jamong.common.SearchVO;
 
 @Service
@@ -58,6 +59,32 @@ public class UserInfoServiceImpl implements UserInfoService{
 	@Override
 	public int registUser(UserInfoVO vo) {
 		return userInfoDao.registUser(vo);
+	}
+
+	@Override
+	public int existUser(String userid) {
+		return userInfoDao.existUser(userid);
+	}
+
+	@Override
+	public int userLoginCheck(String userid, String pwd) {
+		String up = userInfoDao.selectForUserLogin(userid);
+		int result=0;
+		if(up==null || up.isEmpty()) {
+			result=UserInfoService.ID_NONE;
+		}else{
+			if(up.equals(pwd)) {
+				result=UserInfoService.LOGIN_OK;
+			}else {
+				result=UserInfoService.PWD_DISAGREE;
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public UserInfoVO selectUser(String userid) {
+		return userInfoDao.selectUser(userid);
 	}
 	
 }

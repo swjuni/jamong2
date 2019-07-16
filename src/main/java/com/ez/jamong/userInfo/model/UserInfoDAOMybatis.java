@@ -37,5 +37,20 @@ public class UserInfoDAOMybatis implements UserInfoDAO{
 	public int registUser(UserInfoVO vo) {
 		return session.insert(namespace+"registUser",vo);
 	}
+
+	@Override
+	public int existUser(String userid) {
+		return session.selectOne(namespace+"existUser",userid);
+	}
+
+	@Override
+	public String selectForUserLogin(String userid) {
+		return session.selectOne(namespace+"selectForUserLogin",userid);
+	}
+
+	@Override
+	public UserInfoVO selectUser(String userid) {
+		return session.selectOne(namespace+"selectUser",userid);
+	}
 	
 }

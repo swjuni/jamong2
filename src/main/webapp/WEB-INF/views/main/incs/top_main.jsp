@@ -91,8 +91,14 @@
                     <div class="col-md-6 col-sm-6">
                         <nav class="topbar-menu">
                             <ul class="list-inline text-right navbar-right">
+                            <c:if test="${empty userName }">
                                 <li><a href="<c:url value="/main/userlogin/login.do"/>">로그인</a></li>
                                 <li><a href="<c:url value="/main/userlogin/userRegist.do"/>">회원가입</a></li>
+                            </c:if>
+                            <c:if test="${!empty userName }">
+                                <li>회원 : ${userName }님</li>
+                                <li><a href="<c:url value="/main/userlogin/logout.do"/>">로그아웃</a></li>
+                            </c:if>
                             </ul><!-- end list -->
                         </nav><!-- end menu -->
                     </div><!-- end col -->
