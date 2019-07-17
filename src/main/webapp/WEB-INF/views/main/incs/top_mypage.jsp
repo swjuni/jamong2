@@ -33,20 +33,17 @@
 				        </div>
 				        <div id="navbar" class="navbar-collapse collapse">
 				            <ul class="nav navbar-nav navbar-right">
-				                <li><a href="#">메시지</a></li>
+				                <li><a href="#">알림</a></li>
 				                <li class="dropdown yamm-fw hasmenu active">
 				                    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				                    	마이자몽</a>
-									<ul class="dropdown-menu" style="margin-top: -5px;">
-		                    			<li><a href="service-01.html">나의정보</a></li>
-		                    			<li><a href="service-02.html">인증정보</a></li>
-		                    			<li><a href="service-02.html">로그아웃</a></li>
+				                    	로그인아이디</a>
+									<ul class="dropdown-menu" style="margin-top: -5px; min-width:120px;">
+		                    			<li><a href="#">마이페이지</a></li>
+		                    			<li><a href="#">나의정보</a></li>
+		                    			<li><a href="#">로그아웃</a></li>
 		                    		</ul>
 				                </li>
-				                
-				                
                             </ul>
-							
 				        </div><!--/.nav-collapse -->
 				    </div><!--/.container-fluid -->
 				</nav><!-- end nav -->
