@@ -62,7 +62,8 @@
   								<div class='wave -three'></div>
                                 <div class="form-group">
                                     <label>아이디</label>
-                                    <input type="email" class="form-control" placeholder="이메일 (ex@jamong.com)" id="userId" name="userId">
+                                    <input type="email" class="form-control" placeholder="이메일 (ex@jamong.com)" id="userId" name="userId"
+                                    value=${cookie.ck_userid.value }>
                                 </div>
                                 <div class="form-group">
                                     <label>비밀번호</label>

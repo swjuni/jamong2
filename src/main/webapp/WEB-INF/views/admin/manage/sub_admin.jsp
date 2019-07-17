@@ -92,7 +92,7 @@
 		
 	});
 </script>
-<div class="content-wrap">
+<div class="content-wrap" style="margin: auto;width: 60%;">
         <div class="main">
             <div class="container-fluid">
                 <div class="row">

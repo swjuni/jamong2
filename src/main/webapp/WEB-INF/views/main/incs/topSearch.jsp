@@ -75,7 +75,9 @@
 					            <ul class="nav navbar-nav">
 					            <c:import url="/main/showCategoryL.do"/>
 	                            </ul>
+	                            
 					        </div><!--/.nav-collapse -->
+					        <span style="font-weight: bold;font-size: xx-large;margin:2em;">${userName }님</span>
 				    </div><!--/.container-fluid -->
 				</nav><!-- end nav -->
 			</div><!-- end container -->
@@ -96,9 +98,9 @@
 		        </div>
 		</form>
 		<div class="center-pricing">
-			<ul class="nav nav-tabs">
-			    <li><a href="#" style="cursor: pointer;">로그인</a></li>
-			    <li><a href="#" style="cursor: pointer;">회원가입</a></li>
+			<ul class="nav nav-tabs"  <c:if test="${!empty userId }">style="display: flex"</c:if>>
+			    <li><a href="<c:url value="/main/userlogin/login.do"/>" style="cursor: pointer;">로그인</a></li>
+			    <li><a href="<c:url value="/main/userlogin/userRegist.do"/>" style="cursor: pointer;">회원가입</a></li>
 			</ul>
 		</div>
 	</section>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,6 +26,9 @@ import com.ez.jamong.userInfo.model.UserInfoVO;
 @RequestMapping("/main/userlogin")
 public class UserInfoController {
 	private Logger logger = LoggerFactory.getLogger(UserInfoController.class);
+	
+	//암호화 인코더
+	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	@Autowired
 	UserInfoService userInfoService;
@@ -44,6 +48,7 @@ public class UserInfoController {
 	@RequestMapping(value="/userRegist.do",method = RequestMethod.POST)
 	public String registUser_POST(@ModelAttribute UserInfoVO vo,Model model) {
 		logger.info("회원가입 정보 vo={}",vo);
+		vo.setUserPwd(encoder.encode(vo.getUserPwd()));
 		int cnt = userInfoService.registUser(vo);
 		
 		logger.info("회원가입 결과 cnt={}",cnt);
@@ -92,9 +97,8 @@ public class UserInfoController {
 		
 		int result=userInfoService.userLoginCheck(userId, pwd);
 		String msg="",url="/main/userlogin/login.do";
-		if(result==userInfoService.LOGIN_OK) {
+		if(result==UserInfoService.LOGIN_OK) {
 			UserInfoVO userVo = userInfoService.selectUser(userId);
-			
 			//세션
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", userId);
@@ -114,7 +118,7 @@ public class UserInfoController {
 			}
 			
 			msg = "회원 : "+userVo.getUserName()+"님 환영합니다";
-			url="/main/index_main.do";
+			url="/main/userlogin/loginsert.do";
 		}else if(result==UserInfoService.PWD_DISAGREE) {
 			msg="비밀번호 불일치";
 		}else if(result==UserInfoService.ID_NONE) {
