@@ -5,7 +5,7 @@
 	/* 현재 페이지가 정상적으로 응답되는 페이지임을 지정하는 코드,
 	이 코드가 생략되면 웹 브라우저는 자체적으로 제공하는 화면을 표시함 */
 %>
-<%@include file="../incs/top_main.jsp" %>
+<%@include file="WEB-INF/views/main/incs/top_main.jsp" %>
 
 		<section class="section">
 			<div class="container">
@@ -34,7 +34,7 @@
 		</section><!-- end section -->
 
 	
-<%@include file="../incs/bottom_main.jsp" %>
+<%@include file="WEB-INF/views/main/incs/bottom_main.jsp" %>
 <!-- 화면별 고유 하단js 포함할 위치 -->
 
 </body>
