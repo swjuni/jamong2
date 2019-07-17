@@ -1,5 +1,7 @@
 package com.ez.jamong.main.controller;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -43,6 +45,7 @@ public class MainController {
 	
 	@RequestMapping("/showCategoryL.do")
 	public String showCategoryL(Model model){
+		logger.info("카테고리 (대)요청");
 		List<CategoryLVO> list = categorylService.selectCategorylAll();
 		logger.info("카테고리(대) 목록 list.size={}",list.size());
 		model.addAttribute("list",list);
@@ -52,9 +55,7 @@ public class MainController {
 	@RequestMapping("/showCategoryM.do")
 	@ResponseBody
 	public List<CategoryMVO> showCategoryM(@RequestParam int no) {
-		logger.info("카테고리 중 뿌려주기 파라미터 no={}",no);
 		List<CategoryMVO> list=categoryMService.selectCategoryM(no);
-		logger.info("카테고리 중 조회 list.size={}",list.size());
 		return list;
 	}
 	

@@ -3,16 +3,20 @@
 <script type="text/javascript">
 	$(function(){
 		$("input[name=left]").click(function(){
-			$(".cateM:eq(0)").animate({"margin-left": '-=227'},1000,function(){
-				$(".cateM:eq(0)").remove();
+			$(this).parent().parent().siblings(".roll:last").animate({"margin-left": '-=227'},1000,function(){
+				$(this).append("<div class='case-box cateM'>"+$(this).children('div:first').html()+"</div>");
+				$(this).children('div:first').remove();
+				$(this).attr("style","margin-left: 60px;");
 			});
 		});
 		
 		$("input[name=right]").click(function(){
-			$(".cateM:eq(5)").remove();
-			$(".cateM:eq(0)").animate({"margin-left": '+=227'},1000, function(){
-				$(".cateM:eq(4)").remove();
+			$(this).parent().parent().siblings(".roll:first").animate({"margin-left": '+=227'},1000,function(){
+				$(this).prepend("<div class='case-box cateM'>"+$(this).children('div:last').html()+"</div>");
+				$(this).children('div:last').remove();
+				$(this).attr("style","margin-left: 60px;");
 			});
+			
 		});
 	})
 </script>
@@ -66,13 +70,27 @@
 	}
 	
 	.firs ,.sec{
+		width: 292px;
 		background-color: white;
 		z-index: 2;
+		position:absolute;
+		padding: 0;
+		height:130px;
+		float: left;
 	}
 	
-	.case-box.sec {
-    	margin-left: 1379px;
+	.firs{
+		margin-left: 0px;
+	}
+	.sec {
+		margin-left: 1440px;
     	margin-top: -130px;
+	}
+	
+	.roll>div:last-child{
+		float: right;
+	    margin-top: -130px;
+	    margin-right: -134px;
 	}
 </style>
 <section class="section">
@@ -85,17 +103,16 @@
 			<input name="right" type="button" class="btn btn-transparent" value="&gt;">
 		</small>
 		</div>
-		<div class="container">
-			<div class="case-box firs"></div>
+		<div class="firs"></div>
+		<div class="container roll">
 			<c:import url="/main/showCategoryMimg.do?no=${vo.categoryNo }"/>
-			<div class="case-box sec"></div>
 		</div>
+		<div class="sec"></div>
 	</div>
 	</c:forEach>
-		<!-- 
-	select * from category_m
-	where category_no_l=1 and category_no_m<15 and rownum=1
-	order by category_no_m desc -->
+</section>
+<section class="section">
+
 </section>
 <%@include file="incs/bottom_main.jsp" %>
 <!-- 화면별 고유 하단js 포함할 위치 -->
