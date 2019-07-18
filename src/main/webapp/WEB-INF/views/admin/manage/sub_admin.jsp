@@ -92,7 +92,24 @@
 		
 	});
 </script>
-<div class="content-wrap">
+<style>
+	label{
+		width:max-content;
+	}
+	
+	#row-select_info{
+		width:max-content;
+	}
+	
+	.col-sm-7{
+		margin-left: 150%;
+    	display: flex;
+    	align-items: center;
+	}
+	
+		
+</style>
+<div class="content-wrap" style="margin: auto;width: 62%;">
         <div class="main">
             <div class="container-fluid">
                 <div class="row">
@@ -151,7 +168,7 @@
                                                 <tr>
                                                 
                                                     <td class="adminid">${vo.adminId }</td>
-                                                    <td class="adminpwd">${vo.adminPwd }</td>
+                                                    <td class="adminpwd">●●●●●●</td>
                                                     <td class="adminname">${vo.adminName }</td>
                                                     <td class="adminauthor">${vo.authorNo }</td>
                                                     <td>

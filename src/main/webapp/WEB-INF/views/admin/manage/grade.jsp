@@ -252,7 +252,7 @@
 
 <!-- 각자가 분담해서 디자인할 바디 태그 -->
 
-<div class="col-lg-6" style="margin-left: 20%;width: 60%">
+<div class="col-lg-6" style="margin: auto;">
 	<div class="card" >
 		<div class="card-title">
 			<h4>등급 관리(관리자)</h4>

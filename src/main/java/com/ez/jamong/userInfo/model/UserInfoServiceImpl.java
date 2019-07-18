@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +14,9 @@ import com.ez.jamong.common.SearchVO;
 @Service
 public class UserInfoServiceImpl implements UserInfoService{
 	@Autowired private UserInfoDAO userInfoDao;
-
+	
+	//암호화 api
+	private BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
 	@Override
 	public List<Map<String, Object>> selectUserInfoSearch(SearchVO searchVo) {
 		return userInfoDao.selectUserInfoSearch(searchVo);
@@ -73,7 +76,7 @@ public class UserInfoServiceImpl implements UserInfoService{
 		if(up==null || up.isEmpty()) {
 			result=UserInfoService.ID_NONE;
 		}else{
-			if(up.equals(pwd)) {
+			if(encoder.matches(pwd, up)) {
 				result=UserInfoService.LOGIN_OK;
 			}else {
 				result=UserInfoService.PWD_DISAGREE;

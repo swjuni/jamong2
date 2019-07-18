@@ -36,8 +36,16 @@
 		$(".categoryNo").mouseleave(function(){
 			$("div[name=subCategory]").remove();
 		})
+		
+		$(".hover").mouseleave(/* 로고에 이펙트를 logoChange.css */
+			    function () {
+			      $(this).removeClass("hover");
+			    }
+		);
 	
 	})//document.ready
+	
+	 
 </script>
 <style type="text/css">
 	.categoryNo{
@@ -79,11 +87,6 @@
                     <div class="col-md-6 col-sm-6 hidden-xs">
                         <nav class="topbar-menu">
                             <ul class="list-inline">
-                            	<li>Follow us: </li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                             </ul><!-- end list -->
                         </nav><!-- end menu -->
                     </div><!-- end col -->
@@ -98,6 +101,7 @@
                             <c:if test="${!empty userName }">
                                 <li>회원 : ${userName }님</li>
                                 <li><a href="<c:url value="/main/userlogin/logout.do"/>">로그아웃</a></li>
+                                <li><a href="<c:url value="/mypage/mypage.do"/>">마이페이지</a></li>
                             </c:if>
                             </ul><!-- end list -->
                         </nav><!-- end menu -->

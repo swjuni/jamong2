@@ -6,6 +6,11 @@
 </script>
 <style type="text/css">
 
+      #map, #pano {
+        float: left;
+        height: 100%;
+        width: 50%;
+      }
 </style>
 <!-- 화면 디자인 -->
 
@@ -56,6 +61,7 @@
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 mb30">
 						<div id="map" style="height: 500px;"></div>
+						<div id="pano" style="height: 500px;"></div>
 					</div><!-- end col -->
 				</div><!-- end row -->
 			</div><!-- end container -->
@@ -64,7 +70,28 @@
 
 <%@include file="../incs/bottom_main.jsp" %>
 <!-- 화면별 고유 하단js 포함할 위치 -->
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAkADq7R0xf6ami9YirAM1N-yl7hdnYBhM "></script>
+<script>
+
+      function initialize() {
+        var fenway = {lat: 37.5024182, lng: 127.0246212};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: fenway,
+          zoom: 14
+        });
+        var panorama = new google.maps.StreetViewPanorama(
+            document.getElementById('pano'), {
+              position: fenway,
+              pov: {
+                heading: 34,
+                pitch: 10
+              }
+            });
+        map.setStreetView(panorama);
+      }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjRBiwpB7Mu8eNfvouFvZkg6vkofWas1U&callback=initialize">
+    </script>
 <!-- MAP & CONTACT -->
 <script src="<c:url value='/resources/js/map.js'/>"></script> 
 </body>

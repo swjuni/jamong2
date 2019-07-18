@@ -55,7 +55,9 @@
 	section.section.transheader.bgcolor {
     	margin-bottom: -62px;
 	}
+	
 </style>
+<link href="<c:url value="/assets/js/lib/jeoncss/logoChange.css"/>" rel="stylesheet">
 </head>
 <body>
 	<div id="wrapper">
@@ -70,12 +72,26 @@
 				                <span class="icon-bar"></span>
 				                <span class="icon-bar"></span>
 				            </button>
-							<a class="navbar-brand" href="<c:url value='/index.html'/>"><img src="<c:url value='/resources/images/logo.png'/>" alt="Linda"></a>
+				            <c:if test="${empty userName }">
+								<a class="navbar-brand" href="<c:url value='/index.html'/>"><img src="<c:url value='/resources/images/logo.png'/>" alt="Linda"></a>
+							</c:if>
+							<c:if test="${!empty userName }">
+								<figure class="snip1283" style="width:180px;height: 50px;background-color: #ffffff00;margin:auto;display: inline;text-align: center;">
+								  <img src="<c:url value='/resources/images/logo.png'/>" alt="Linda" style="background-color: rgba( 255, 255, 255, 0 );width: auto;">
+								  <figcaption>
+								    <h5 style="cursor: context-menu;">${userName } 님</h5>
+								    <a href="<c:url value="/mypage/mypage.do"/>" class="read-more" style="width: inherit;">MyPage</a>
+								    <a href="<c:url value="/main/userlogin/logout.do"/>" class="read-more" style="width: inherit;">Logout</a>
+								  </figcaption>
+								</figure>
+							</c:if>
+							
 				        </div>
 					        <div id="navbar" class="navbar-collapse collapse">
 					            <ul class="nav navbar-nav">
 					            <c:import url="/main/showCategoryL.do"/>
 	                            </ul>
+	                            
 					        </div><!--/.nav-collapse -->
 				    </div><!--/.container-fluid -->
 				</nav><!-- end nav -->
@@ -97,9 +113,11 @@
 		        </div>
 		</form>
 		<div class="center-pricing">
-			<ul class="nav nav-tabs">
-			    <li><a href="#" style="cursor: pointer;">로그인</a></li>
-			    <li><a href="#" style="cursor: pointer;">회원가입</a></li>
+			<ul class="nav nav-tabs"  <c:if test="${!empty userId }">style="display: flex"</c:if>>
+			<c:if test="${empty userName }">
+			    <li><a href="<c:url value="/main/userlogin/login.do"/>" style="cursor: pointer;">로그인</a></li>
+			    <li><a href="<c:url value="/main/userlogin/userRegist.do"/>" style="cursor: pointer;">회원가입</a></li>
+			</c:if>
 			</ul>
 		</div>
 	</section>

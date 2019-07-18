@@ -16,4 +16,10 @@ public class MypageController {
 		return "main/mypage/mypage_main";
 	}
 	
+	@RequestMapping("/userInfo.do")
+	public String userInfo() {
+		logger.info("userInfo(나의정보) 요청");
+		return "main/mypage/user_info";
+	}
+	
 }

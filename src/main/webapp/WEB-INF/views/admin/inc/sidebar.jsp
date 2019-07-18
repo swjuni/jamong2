@@ -2,12 +2,13 @@
 <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
     <div class="nano">
         <div class="nano-content">
-            <div class="logo"><a href="<c:url value='/admin/index_admin.do'/>"><!-- <img src="assets/images/logo.png" alt="" /> --><span>Jamon</span></a></div>
+            <div class="logo"><a href="<c:url value='/admin/index_admin.do'/>"><!-- <img src="assets/images/logo.png" alt="" /> --><span>Jamong</span></a></div>
             <ul>
                 <li class="label">Main</li>
-                <li><a class="sidebar-sub-toggle"><i class="ti-home"></i> 메인페이지 <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                <li><a class="sidebar-sub-toggle"><i class="ti-home"></i> 마이페이지 <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
                         <li><a href="<c:url value='/admin/index_admin.do'/>">메인페이지로 이동</a></li>
+                        <li><a href="<c:url value='/admin/login/logout.do'/>">로그아웃</a></li>
                     </ul>
                 </li>
                 <li class="label">회원 관리</li>
