@@ -4,5 +4,12 @@
 
 <mapper namespace="config.mybatis.mapper.oracle.ads">
 	
+	<resultMap type="hashmap" id="adsView">
+		<result property="INTRODUCTION" column="INTRODUCTION" jdbcType="CLOB" javaType="java.lang.String" />
+	</resultMap>
+	
+	<select id="selectShowAds" resultMap="adsView">
+		select * from show_ads
+	</select>
 	
 </mapper>

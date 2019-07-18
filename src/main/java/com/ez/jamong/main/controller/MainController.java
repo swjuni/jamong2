@@ -1,8 +1,7 @@
 package com.ez.jamong.main.controller;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ez.jamong.ads.model.AdsService;
 import com.ez.jamong.categoryl.model.CategoryLService;
 import com.ez.jamong.categoryl.model.CategoryLVO;
 import com.ez.jamong.categorym.model.CategoryMService;
@@ -25,12 +25,20 @@ public class MainController {
 	private Logger logger=LoggerFactory.getLogger(MainController.class);
 	@Autowired CategoryLService categorylService;
 	@Autowired CategoryMService categoryMService;
-
+	@Autowired AdsService adsService;
+	
 	@RequestMapping("/index_main.do")
 	public String main_view(Model model) {
 		logger.info("메인 페이지");
+		//카테고리 영역
 		List<CategoryLVO> list=categorylService.selectCategorylAll();
+		
+		//전문가 광고 영역
+		List<Map<String, Object>> adsList=adsService.selectShowAds();
+		logger.info("전문가 광고 영역 adsList={}",adsList.size());
+		
 		model.addAttribute("list",list);
+		model.addAttribute("adsList",adsList);
 		return "main/index_main";
 	}
 	

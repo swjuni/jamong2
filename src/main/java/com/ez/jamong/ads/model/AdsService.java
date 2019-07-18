@@ -1,5 +1,8 @@
 package com.ez.jamong.ads.model;
 
-public interface AdsService {
+import java.util.List;
+import java.util.Map;
 
+public interface AdsService {
+	public List<Map<String, Object>> selectShowAds();
 }

@@ -1,5 +1,20 @@
 package com.ez.jamong.ads.model;
 
-public class AdsDAOMybatis {
+import java.util.List;
+import java.util.Map;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class AdsDAOMybatis implements AdsDAO{
+	@Autowired private SqlSessionTemplate session;
+	private String namespace="config.mybatis.mapper.oracle.ads.";
+	
+	@Override
+	public List<Map<String, Object>> selectShowAds() {
+		return session.selectList(namespace+"selectShowAds");
+	}
+	
 }

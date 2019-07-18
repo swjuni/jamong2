@@ -28,6 +28,7 @@
 				}
 			});//ajax
 		};
+		
 		setTimeout(func,0);
 		var interval=setInterval(func,1800);
 		
