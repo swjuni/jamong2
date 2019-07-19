@@ -70,6 +70,19 @@ public class StatisticsAdminController {
 	public int[] MainPageData() {
 		logger.info("메인페이지 데이터 매출,신규회원,상품개수");
 		int[] list = adminService.mainPageData();
+		logger.info("list.size={}",list.length);
+		
+		return list;
+	}
+	
+	
+	//지역별 회원수 ajax로 구현
+	@RequestMapping("/admin/locationUser.do")
+	@ResponseBody
+	public int[] locationUserList() {
+		logger.info("메인페이지 데이터, 지역별 회원수");
+		int[] list = adminService.locationUserList();
+		logger.info("list.size={}",list.length);
 		
 		return list;
 	}
