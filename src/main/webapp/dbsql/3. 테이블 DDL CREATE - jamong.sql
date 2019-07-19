@@ -415,7 +415,7 @@ CREATE TABLE ADS (
 	FILE_SIZE          NUMBER        NOT NULL, -- 파일사이즈
 	APPROVE_DELFLAG    VARCHAR2(10)  DEFAULT 'N', -- 승인여부
 	ACTIVATION         VARCHAR2(10)  DEFAULT 'N', -- 활성화
-	ADMIN_NO           NUMBER        NOT NULL  -- 관리자번호
+	ADMIN_NO           NUMBER        NULL  -- 관리자번호
 );
 
 -- 배너 기본키
