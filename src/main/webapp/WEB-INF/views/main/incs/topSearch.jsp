@@ -80,7 +80,7 @@
 								  <img src="<c:url value='/resources/images/logo.png'/>" alt="Linda" style="background-color: rgba( 255, 255, 255, 0 );width: auto;">
 								  <figcaption>
 								    <h5 style="cursor: context-menu;">${userName } 님</h5>
-								    <a href="<c:url value="/mypage/mypage.do"/>" class="read-more" style="width: inherit;">MyPage</a>
+								    <a href="<c:url value="/mypage/mypage.do?userNo=${sessionScope.userNo }"/>" class="read-more" style="width: inherit;">MyPage</a>
 								    <a href="<c:url value="/main/userlogin/logout.do"/>" class="read-more" style="width: inherit;">Logout</a>
 								  </figcaption>
 								</figure>
