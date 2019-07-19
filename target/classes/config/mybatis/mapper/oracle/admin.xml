@@ -50,6 +50,10 @@
 		select count(*) from menu_info
 	</select>
 	
+	<select id="locationUser" parameterType="string" resultType="int">
+		select count(*) from user_info where address like '%' || #{location} || '%'
+	</select>
+	
 	
 </mapper>
 

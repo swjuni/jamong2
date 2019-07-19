@@ -35,6 +35,12 @@ var sca = '01';
 		h2{
 			color:white;
 		}
+		table{
+			display: inline;
+		}
+		tr{
+			font-weight: bold;
+		}
 	</style>
 	
 	<script type="text/javascript">
@@ -49,11 +55,37 @@ var sca = '01';
 	    			$('#totalMenu').text(res[2]+"개");
 	    		}
 	    		});	
+			
+			$.ajax({
+	    		url :"<c:url value='/admin/locationUser.do'/>",
+	    		type: 'post',
+	    		dataType: "json",
+	    		success : function(res) {
+	    			$('#l0').text(res[0]);
+	    			$('#l1').text(res[1]);
+	    			$('#l2').text(res[2]);
+	    			$('#l3').text(res[3]);
+	    			$('#l4').text(res[4]);
+	    			$('#l5').text(res[5]);
+	    			$('#l6').text(res[6]);
+	    			$('#l7').text(res[7]);
+	    			$('#l8').text(res[8]);
+	    			$('#l9').text(res[9]);
+	    			$('#l10').text(res[10]);
+	    			$('#l11').text(res[11]);
+	    			$('#l12').text(res[12]);
+	    			$('#l13').text(res[13]);
+	    			$('#l14').text(res[14]);
+	    			$('#l15').text(res[15]);
+	    		}
+	    		});	
+			
 		});
 	</script>
+
 	<!-- 각자가 분담해서 디자인할 바디 태그 -->
 	<div class="content-wrap">
-	    <div class="main" style="margin: inherit;">
+	    <div class="main" style="margin: auto;">
 	        <div class="container-fluid">
 	            <div class="row">
 	                <div class="col-lg-8 p-r-0 title-margin-right">
@@ -114,9 +146,10 @@ var sca = '01';
 	                    </div>
 	                    
 	                </div>
-	                <div class="row">
-						<div style="width:100%;height:400px;">
+	                <div class="row" style="height:500px">
+						<div style="width:70%;height:400px;margin:auto">
 						<div id="canvas">
+							
 							<div id="south"></div>
 							<div id="seoul"><h2>서울특별시</h2></div>
 							<div id="gygg"><h2>경기도</h2></div>
@@ -136,8 +169,129 @@ var sca = '01';
 							<div id="ulsan"><h2>울산광역시</h2></div>
 							<div id="jeju"><h2>제주특별자치도</h2></div>
 						</div>
+                            <div class="card" style="width:max-content">
+                                <div class="card-title">
+                                    <h4>지역별 회원수</h4>
+                                    
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>지역</th>
+                                                    <th>회원수</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">서울</th>
+                                                    <td class="color-primary" id="l0"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">경기</th>
+                                                    <td class="color-success" id="l1"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">인천</th>
+                                                    <td class="color-danger" id="l2"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">강원</th>
+                                                    <td class="color-warning" id="l3"></td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>지역</th>
+                                                    <th>회원수</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                                <tr>
+                                                    <th scope="row">충북</th>
+                                                    <td class="color-primary" id="l4"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">충남</th>
+                                                    <td class="color-success" id="l5"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">대전</th>
+                                                    <td class="color-danger" id="l6"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">광주</th>
+                                                    <td class="color-warning" id="l7"></td>
+                                                </tr>
+                                                
+                                                
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>지역</th>
+                                                    <th>회원수</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">전북</th>
+                                                    <td class="color-primary" id="l8"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">전남</th>
+                                                    <td class="color-success" id="l9"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">경북</th>
+                                                    <td class="color-danger" id="l10"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">경남</th>
+                                                    <td class="color-warning" id="l11"></td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>지역</th>
+                                                    <th>회원수</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">대구</th>
+                                                    <td class="color-primary" id="l12"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">부산</th>
+                                                    <td class="color-success"id="l13"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">울산</th>
+                                                    <td class="color-danger" id="l14"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">제주</th>
+                                                    <td class="color-warning" id="l15"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
 						</div>
 	                </div>
+	                
+	                
 	            
 	            
 	                <div class="row">
@@ -159,5 +313,6 @@ var sca = '01';
 	<!-- 화면별 고유 scripit init -->
 	<script src="<c:url value='/assets/js/lib/jeoncss/raphael_min.js'/>"></script>
 	<script src="<c:url value='/assets/js/lib/jeoncss/raphael_path_s.korea.js'/>"></script>
+
 
 <%@include file="inc/admin_bottom.jsp" %>

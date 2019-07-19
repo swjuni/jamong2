@@ -7,7 +7,7 @@
 						<div class="seo-score">
 							<div class="website-screen" style="text-align: center;">
 								<img src="<c:url value='/resources/images/userinfo.png'/>" alt="" class="img-thumbnail" style="width: 200px; border-radius: 50%; ">
-								<h4 style="margin: 20px 0;">이름</h4>
+								<h4 style="margin: 20px 0;">${userName}</h4>
 								<a href="<c:url value='/registExpert/registExpert.do?userNo=${sessionScope.userNo }'/>" class="btn btn-primary">전문가로 전환</a>
 							</div><!-- end website-screen -->
 
