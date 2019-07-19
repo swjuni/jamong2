@@ -5,7 +5,6 @@
 
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->
 
-					<div class="col-md-9">
 						<div class="seo-details">
 							<div class="col-md-3 col-sm-6">
 								<div class="service-box">
@@ -79,7 +78,6 @@
 						</div>
 						
 						<!-- end details -->
-					</div><!-- end col -->
 
 
 
@@ -87,6 +85,7 @@
 
 <!--아래는 mypage 공통 사용 코드  -->
 			
+					</div><!-- end col -->
 				</div><!-- end row -->
 			</div><!-- end container -->
 		</section><!-- end section -->
