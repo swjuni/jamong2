@@ -15,4 +15,7 @@ public interface AdminDAO {
 	public int selectSumPay();
 	public int selectNewUser();
 	public int selectCountMenu();
+	
+	//지역별 회원
+	public int locationUser(String location);
 }

@@ -61,4 +61,9 @@ public class AdminDAOMybatis implements AdminDAO{
 		return sqlSession.selectOne(namespace+"selectCountMenu");
 	}
 
+	@Override
+	public int locationUser(String location) {
+		return sqlSession.selectOne(namespace+"locationUser",location);
+	}
+
 }

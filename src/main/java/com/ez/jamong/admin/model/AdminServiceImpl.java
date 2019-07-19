@@ -87,5 +87,17 @@ public class AdminServiceImpl implements AdminService{
 		
 		return list;
 	}
+
+	@Override
+	public int[] locationUserList() {
+		String[] location= {"서울","경기","인천","강원","충북","충남",
+				"대전","광주","전북","전남","경북","경남","대구","부산","울산","제주"};
+		int[] list=new int[location.length];
+		for(int i=0;i<location.length;i++) {
+			list[i]=adminDao.locationUser(location[i]);
+		}
+		return list;
+	}
+	
 	
 }
