@@ -134,7 +134,7 @@
 			<c:if test="${!empty adsList }">
 			<div class="col-md-5" style="height: 500px; width: 560px;; margin-top: -100px;">
 				<c:forEach var="map" items="${adsList }">
-					<div style="height:150px; padding: 26px 32px; margin: 25px 0px; background: #f7b66d24;">
+					<div class="service-box" style="height:150px; padding: 26px 32px; margin: 25px 0px;">
 						<img alt="" src="<c:url value='/upload/ads/${map["FILE_NAME"] }'/>" style="width: 100px; height: 100px;float: left; margin-right: 32px; "class="round">
 						<small class="section-title" style="margin-bottom:0px;"><strong>${map['ID'] }</strong></small>
 						<p><small>${map['INTRODUCTION'] }</small></p>
