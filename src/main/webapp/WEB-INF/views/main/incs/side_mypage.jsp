@@ -35,7 +35,7 @@
 												<ul style="list-style: none; padding-top: 10px; padding-left: 30px;">
 					                    			<li><a href="#">구매관리</a></li>
 					                    			<li><a href="#">결제내역</a></li>
-					                    			<li><a href="#">즐겨찾기</a></li>
+					                    			<li><a href="<c:url value='/mypage/bookmark.do'/>">즐겨찾기</a></li>
 					                    			<li><a href="#">최근 본 서비스</a></li>
 					                    			<li><a href="#">메시지</a></li>
 					                    			<li><a href="#">자료실</a></li>

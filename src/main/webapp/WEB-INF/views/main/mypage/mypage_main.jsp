@@ -26,10 +26,11 @@
 					
 							<div class="col-md-3 col-sm-6">
 								<div class="service-box">
+									<a href="<c:url value='/mypage/bookmark.do'/>">
 									<i class="flaticon-responsive"></i>
 									<h4>즐겨찾기</h4>
-									<p>Monitor what people are saying about your brand, and engage
-										in the conversation.</p>
+									<p>Monitor what people are saying about your brand</p>
+									</a>
 								</div>
 								<!-- end service-box -->
 								<div class="service-box nmb">
