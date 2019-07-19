@@ -26,7 +26,7 @@
 	.agreement{
 		width: 685px;
 	    height: 390px;
-	    margin-left: -215px;
+	    margin-left: -205px;
 	    margin-top: 95px;
 	}
 	
@@ -35,8 +35,12 @@
 	}
 	
 	.contact-details li{
-   	 margin-bottom: 42px;
-   	 border-bottom: none;
+   		margin-bottom: 42px;
+   	 	border-bottom: none;
+	}
+	
+	button{
+		margin-left: 70px;
 	}
 </style>
 <%@include file="../incs/side_mypage.jsp"%>
@@ -72,10 +76,10 @@
 							<input type="text" class="form-control" id="subject" name="subject"	placeholder="Subject" required="">
 						</div>
 						<div class="form-group agreement" >
-							  <iframe name='hipinfo' frameborder='0' src='<%=request.getContextPath() %>/resources/agreement.html' scrolling="auto" border="no" maginwidth="0" marginheight="0" frameborder="0" style="height: 100%; width: 100%">
-							<textarea class="form-control" id="message" placeholder="Message" maxlength="140" rows="7"></textarea>
+							  <iframe name='hipinfo' frameborder='0' src='<%=request.getContextPath() %>/resources/agreement.html' scrolling="auto" border="no" maginwidth="0" marginheight="0" frameborder="0" style="height: 100%; width: 100%; background: #f0f1f2;">
+							  </iframe>
 						</div>
-						<button type="button" id="submit" name="submit"	class="btn btn-primary">Submit Form</button>
+						<button type="submit" id="submit" name="submit"	class="btn btn-primary">정보 저장</button>
 					</form>
 					<!--아래는 mypage 공통 사용 코드  -->
 			</div>
