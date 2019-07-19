@@ -2,37 +2,68 @@
 <%@include file="incs/topSearch.jsp" %>
 <script type="text/javascript">
 	$(function(){
-		$("input[name=left]").click(function(){
-			$(this).parent().parent().siblings(".roll:last").animate({"margin-left": '-=227'},1000,function(){
-				$(this).append("<div class='case-box cateM'>"+$(this).children('div:first').html()+"</div>");
-				$(this).children('div:first').remove();
-				$(this).attr("style","margin-left: 130px;");
-			});
+		var $flag = 0;
+		$("input[name=left0]").click(function(){
+			if ($flag == 0) {
+				$flag=1;	//연속 클릭 이벤트 중복 방지 플레그
+				$("#rollTar0 .inside div").last().parent().prependTo("#rollTar0 .inside");
+				$("#rollTar0 .inside div").first().attr("style","margin-left: -200px;");
+				$("#rollTar0 .inside div").first().animate({"margin-left": '+=200'},"slow", function(){
+					$("#rollTar0 .inside div").attr("style","margin-left: 4px;");
+					$flag=0;
+				});
+			}
 		});
 		
-		$("input[name=right]").click(function(){
-			$(this).parent().parent().siblings(".roll:first").animate({"margin-left": '+=227'},1000,function(){
-				$(this).prepend("<div class='case-box cateM'>"+$(this).children('div:last').html()+"</div>");
-				$(this).children('div:last').remove();
-				$(this).attr("style","margin-left: 130px;");
-			});
-			
+		$("input[name=right0]").click(function(){
+			if ($flag == 0) {
+				$flag=1;	//연속 클릭 이벤트 중복 방지 플레그
+				$("#rollTar0 .inside div").first().animate({"margin-left": '-=200'},"slow", function(){
+					$("#rollTar0 .inside div").first().appendTo("#rollTar0 .inside");
+					$("#rollTar0 .inside div").attr("style","margin-left: 4px;");
+					$flag=0;
+				});
+			}
 		});
+		
+		$("input[name=left1]").click(function(){
+			if ($flag == 0) {
+				$flag=1;	//연속 클릭 이벤트 중복 방지 플레그
+				$("#rollTar1 .inside div").last().parent().prependTo("#rollTar1 .inside");
+				$("#rollTar1 .inside div").first().attr("style","margin-left: -200px;");
+				$("#rollTar1 .inside div").first().animate({"margin-left": '+=200'},"slow", function(){
+					$("#rollTar1 .inside div").attr("style","margin-left: 4px;");
+					$flag=0;
+				});
+			}
+		});
+		  
+		$("input[name=right1]").click(function(){
+			if ($flag == 0) {
+				$flag=1;	//연속 클릭 이벤트 중복 방지 플레그
+				$("#rollTar1 .inside div").first().animate({"margin-left": '-=200'},"slow", function(){
+					$("#rollTar1 .inside div").first().appendTo("#rollTar1 .inside");
+					$("#rollTar1 .inside div").attr("style","margin-left: 4px;");
+					$flag=0;
+				});
+			}
+		});	
+
 	})
-</script>
+</script> 
 <style type="text/css">
-	.case-box{
+	.case-box{ 
 		padding: 0;
-		width: 200px;
+		width: 179px;
 		height:130px;
 		float: left;
-		margin-left: 17px;
-   		margin-right: 10px;
+		margin-left: 4px;
+   		margin-right: 4px;
 	}
 	
 	.section-title {
     	margin-bottom: 20px;
-	}
+	} 
 	
 	.categorySection {
  	   margin-bottom: 84px;
@@ -42,7 +73,6 @@
     	z-index: 1;
     	position: absolute;
     	color: white;
-    	padding-left:15px;
     	background: linear-gradient( to top, #00000085, #fffafa00);
     	width: 100%;
     	height: 34px;
@@ -65,62 +95,69 @@
 	}
 
 	.categorySection .container {
-    	width: 1700px;
-    	margin-left: 130px;
+    	height: 130px;
+    	overflow: hidden;
 	}
-	
-	.firs ,.sec{
-		width: 376px;
-		background-color: white;
-		z-index: 2;
-		position:absolute;
-		padding: 0;
-		height:130px;
-		float: left;
-	}
-	
-	.firs{
-		margin-left: 0px;
-	}
-	.sec {
-		margin-left: 1516px;
-    	margin-top: -130px;
-    	width: 405px;
-	}
-	
-	.roll>div:last-child{
-		float: right;
-	    margin-top: -130px;
-	    margin-right: -134px;
-	}
-	
 	.section1{
 		padding-bottom: 45px;
 	}
-	
 	.round{
 		border-radius: 70px;
 		-moz-border-radius: 70px;
 		-khtml-border-radius: 70px;
 		-webkit-border-radius: 70px;
 	}
+
+	.firs{
+		width: 179px;
+		height:130px;
+		z-index: 2;
+		position:absolute;
+		float: left;
+		background-color: transparent;
+	}
+	.sec{
+		width: 179px;
+		height:130px;
+		z-index: 2;
+		position:relative;
+		float: right;
+		background-color: transparent;
+	}
+	.inside {
+		overflow: hidden;
+	    height: 130px;
+	    width: inherit;
+	    position: absolute;
+	    overflow-x: auto;
+	}
+	.roll{ 
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+
 </style>
+
 <section class="section section1">
+	<c:set var="i" value="0"/>
 	<c:forEach begin="0" var="vo" end="1" items="${list }">
 	<div class="categorySection">
 		<div class="section-title text-center">
 		<small>
-			<input name="left" type="button" class="btn btn-transparent" value="&lt;">
+			<input name="left${i }" type="button" class="btn btn-transparent" value="&lt;">
 				&nbsp;&nbsp;&nbsp;${vo.categoryNameL } 카테고리 둘러보기&nbsp;&nbsp;&nbsp;
-			<input name="right" type="button" class="btn btn-transparent" value="&gt;">
+			<input name="right${i }" type="button" class="btn btn-transparent" value="&gt;">
 		</small>
 		</div>
-		<div class="firs"></div>
-		<div class="container roll">
-			<c:import url="/main/showCategoryMimg.do?no=${vo.categoryNo }"/>
+		<div class="container roll" id="rollTar${i }">
+			<div class="firs"></div>
+			<div class="sec"></div>
+			<div class="inside">
+				<c:import url="/main/showCategoryMimg.do?no=${vo.categoryNo }"/>
+			</div>
 		</div>
-		<div class="sec"></div>
 	</div>
+	<c:set var="i" value="${i+1 }"/>
 	</c:forEach>
 </section>
 <section class="section">
