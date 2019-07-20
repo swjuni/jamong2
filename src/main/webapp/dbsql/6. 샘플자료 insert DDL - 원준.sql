@@ -20,7 +20,7 @@ values(expert_seq.nextval, '자바짱', '','','','하루종일','자바잘해요','결과 좋아
 --상품
 insert into menu_info(PRODUCT_NO,  CATEGORY_TYPE_NO,  PRODUCT_NAME,  EVAL_SCORE,
   SUMMARY,  DETAIL_DESC,  ORDER_LEVEL, EXPERT_NO)
-values(menu_info_seq.nextval, (select category_no_m from category_m where category_name='디자인'),
+values(menu_info_seq.nextval, (select category_no_m from category_m where category_name='데이터베이스'),
 '모델2작성',0,'잘나가는 상품','상세한 상품 설명', 1,(select expert_no from expert where id='자바짱'));
 
 --서비스평가

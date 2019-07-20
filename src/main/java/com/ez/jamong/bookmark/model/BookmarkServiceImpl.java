@@ -21,8 +21,21 @@ public class BookmarkServiceImpl implements BookmarkService{
 	}
 
 	@Override
-	public int bookmarkDelete(int bookmarkNo) {
-		return bookmarkDao.bookmarkDelete(bookmarkNo);
+	public int bookmarkDelete(List<BookmarkVO> list) {
+		int cnt = 0;
+		
+		try {
+			for(BookmarkVO vo : list) {
+				if(vo.getBookmarkNo()!=0) {	//체크된 것만 삭제
+					cnt = bookmarkDao.bookmarkDelete(vo.getBookmarkNo());
+				}
+			}
+		}catch(RuntimeException e) {
+			e.printStackTrace();
+			cnt=-1;
+		}
+		
+		return cnt;
 	}
 
 }
