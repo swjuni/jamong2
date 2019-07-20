@@ -6,5 +6,5 @@ import java.util.Map;
 public interface BookmarkService {
 	public List<Map<String, Object>> bookmarkList(int userNo);
 	public int bookmarkAdd(BookmarkVO bookmarkVo);
-	public int bookmarkDelete(int bookmarkNo);
+	public int bookmarkDelete(List<BookmarkVO> list);
 }
