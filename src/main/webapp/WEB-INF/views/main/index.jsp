@@ -2,53 +2,77 @@
 <%@include file="incs/topSearch.jsp" %>
 <script type="text/javascript">
 	$(function(){
-		$("input[name=left]").click(function(){
-			if($(this).parent().parent().siblings(".div").children(".roll:last").is(":animated")){
-				return;
-			}else{
-				$(this).parent().parent().siblings(".div").children(".roll:last").animate({"margin-left": '-=209'},700,function(){
-					$(this).append("<div class='case-box cateM'>"+$(this).children('div:first').html()+"</div>");
-					$(this).children('div:first').remove();
-					$(this).attr("style","text-align: center;");
+		var $flag = 0;
+		$("input[name=left0]").click(function(){
+			if ($flag == 0) {
+				$flag=1;	//연속 클릭 이벤트 중복 방지 플레그
+				$("#rollTar0 .inside div").last().parent().prependTo("#rollTar0 .inside");
+				$("#rollTar0 .inside div").first().attr("style","margin-left: -200px;");
+				$("#rollTar0 .inside div").first().animate({"margin-left": '+=200'},"slow", function(){
+					$("#rollTar0 .inside div").attr("style","margin-left: 4px;");
+					$flag=0;
 				});
 			}
 		});
 		
-		$("input[name=right]").click(function(){
-			if($(this).parent().parent().siblings(".div").children(".roll:last").is(":animated")){
-				return;
-			}else{
-				$(this).parent().parent().siblings(".div").children(".roll:first").animate({"margin-left": '+=209'},700,function(){
-					$(this).prepend("<div class='case-box cateM'>"+$(this).children('div:last').html()+"</div>");
-					$(this).children('div:last').remove();
-					$(this).attr("style","text-align: center;");
+		$("input[name=right0]").click(function(){
+			if ($flag == 0) {
+				$flag=1;	//연속 클릭 이벤트 중복 방지 플레그
+				$("#rollTar0 .inside div").first().animate({"margin-left": '-=200'},"slow", function(){
+					$("#rollTar0 .inside div").first().appendTo("#rollTar0 .inside");
+					$("#rollTar0 .inside div").attr("style","margin-left: 4px;");
+					$flag=0;
 				});
 			}
 		});
+		
+		$("input[name=left1]").click(function(){
+			if ($flag == 0) {
+				$flag=1;	//연속 클릭 이벤트 중복 방지 플레그
+				$("#rollTar1 .inside div").last().parent().prependTo("#rollTar1 .inside");
+				$("#rollTar1 .inside div").first().attr("style","margin-left: -200px;");
+				$("#rollTar1 .inside div").first().animate({"margin-left": '+=200'},"slow", function(){
+					$("#rollTar1 .inside div").attr("style","margin-left: 4px;");
+					$flag=0;
+				});
+			}
+		});
+		  
+		$("input[name=right1]").click(function(){
+			if ($flag == 0) {
+				$flag=1;	//연속 클릭 이벤트 중복 방지 플레그
+				$("#rollTar1 .inside div").first().animate({"margin-left": '-=200'},"slow", function(){
+					$("#rollTar1 .inside div").first().appendTo("#rollTar1 .inside");
+					$("#rollTar1 .inside div").attr("style","margin-left: 4px;");
+					$flag=0;
+				});
+			}
+		});	
+
 	})
-</script>
+</script> 
 <style type="text/css">
-	.case-box{
+	.case-box{ 
 		padding: 0;
-		width: 196.08px;
-		height:100%;
+		width: 179px;
+		height:130px;
 		float: left;
-   		margin-right: 1.2%;
+		margin-left: 4px;
+   		margin-right: 4px;
 	}
 	
 	.section-title {
     	margin-bottom: 20px;
-	}
+	} 
 	
 	.categorySection {
-		margin-bottom: 84px;
+ 	   margin-bottom: 84px;
 	}
 	
 	.container .case-box p {
     	z-index: 1;
     	position: absolute;
     	color: white;
-    	padding-left:15px;
     	background: linear-gradient( to top, #00000085, #fffafa00);
     	width: 100%;
     	height: 34px;
@@ -71,35 +95,12 @@
 	}
 
 	.categorySection .container {
-    	width: 1073px;
-    	text-align: center;
     	height: 130px;
-    	float: left;
-    	margin-left: 14%;
+    	overflow: hidden;
 	}
-	
-	.firs ,.sec{
-		background-color: white;
-		z-index: 2;
-		position:absolute;
-		padding: 0;
-		height:131px;
-		width: 15%;
-	}
-	
-	.firs{
-		margin-left: 0px;
-		float:left;
-	}
-	.sec {
-		margin-left: 83.5%;
-		width: 20%;
-	}
-	
 	.section1{
 		padding-bottom: 45px;
 	}
-	
 	.round{
 		border-radius: 70px;
 		-moz-border-radius: 70px;
@@ -107,45 +108,56 @@
 		-webkit-border-radius: 70px;
 	}
 
-	.cateM:nth-of-type(6){
-		margin-top: -130px;
-		margin-left: 100%;
+	.firs{
+		width: 179px;
+		height:130px;
+		z-index: 2;
+		position:absolute;
+		float: left;
+		background-color: transparent;
 	}
-	
-	.cateM:nth-of-type(7){
-		margin-top: -130px;
-		margin-left:120%;
-    }
-	.cateM:nth-of-type(8){
-		position: absolute;
-    	height: 130px;
-		margin-left: -207.9px;
-    }
-    
-    .div{
-    	height: 130px;
-    	width: 100%;
-    	position: relative;
-    }
+	.sec{
+		width: 179px;
+		height:130px;
+		z-index: 2;
+		position:relative;
+		float: right;
+		background-color: transparent;
+	}
+	.inside {
+		overflow: hidden;
+	    height: 130px;
+	    width: inherit;
+	    position: absolute;
+	    overflow-x: auto;
+	}
+	.roll{ 
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+
 </style>
+
 <section class="section section1">
+	<c:set var="i" value="0"/>
 	<c:forEach begin="0" var="vo" end="1" items="${list }">
 	<div class="categorySection">
 		<div class="section-title text-center">
 		<small>
-			<input name="left" type="button" class="btn btn-transparent" value="&lt;">
+			<input name="left${i }" type="button" class="btn btn-transparent" value="&lt;">
 				&nbsp;&nbsp;&nbsp;${vo.categoryNameL } 카테고리 둘러보기&nbsp;&nbsp;&nbsp;
-			<input name="right" type="button" class="btn btn-transparent" value="&gt;">
+			<input name="right${i }" type="button" class="btn btn-transparent" value="&gt;">
 		</small>
 		</div>
-		<div class="div">
+		<div class="container roll" id="rollTar${i }">
 			<div class="firs"></div>
-			<div class="container roll">
+			<div class="sec"></div>
+			<div class="inside">
 				<c:import url="/main/showCategoryMimg.do?no=${vo.categoryNo }"/>
 			</div>
-			<div class="sec"></div>
 		</div>
 	</div>
+	<c:set var="i" value="${i+1 }"/>
 	</c:forEach>
 </section>
 <section class="section">
