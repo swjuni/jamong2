@@ -3,30 +3,37 @@
 <script type="text/javascript">
 	$(function(){
 		$("input[name=left]").click(function(){
-			$(this).parent().parent().siblings(".roll:last").animate({"margin-left": '-=227'},1000,function(){
-				$(this).append("<div class='case-box cateM'>"+$(this).children('div:first').html()+"</div>");
-				$(this).children('div:first').remove();
-				$(this).attr("style","text-align: center;");
-			});
+			if($(this).parent().parent().siblings(".div").children(".roll:last").is(":animated")){
+				return;
+			}else{
+				$(this).parent().parent().siblings(".div").children(".roll:last").animate({"margin-left": '-=209'},700,function(){
+					$(this).append("<div class='case-box cateM'>"+$(this).children('div:first').html()+"</div>");
+					$(this).children('div:first').remove();
+					$(this).attr("style","text-align: center;");
+				});
+			}
 		});
 		
 		$("input[name=right]").click(function(){
-			$(this).parent().parent().siblings(".roll:first").animate({"margin-left": '+=227'},1000,function(){
-				$(this).prepend("<div class='case-box cateM'>"+$(this).children('div:last').html()+"</div>");
-				$(this).children('div:last').remove();
-				$(this).attr("style","text-align: center;");
-			});
-			
+			if($(this).parent().parent().siblings(".div").children(".roll:last").is(":animated")){
+				return;
+			}else{
+				$(this).parent().parent().siblings(".div").children(".roll:first").animate({"margin-left": '+=209'},700,function(){
+					$(this).prepend("<div class='case-box cateM'>"+$(this).children('div:last').html()+"</div>");
+					$(this).children('div:last').remove();
+					$(this).attr("style","text-align: center;");
+				});
+			}
 		});
 	})
 </script>
 <style type="text/css">
 	.case-box{
 		padding: 0;
-		width: 200px;
-		height:130px;
+		width: 196.08px;
+		height:100%;
 		float: left;
-   		margin-right: 26px;
+   		margin-right: 1.2%;
 	}
 	
 	.section-title {
@@ -64,28 +71,29 @@
 	}
 
 	.categorySection .container {
-    	width: 62%;
+    	width: 1073px;
     	text-align: center;
     	height: 130px;
+    	float: left;
+    	margin-left: 14%;
 	}
 	
 	.firs ,.sec{
-		width: 19.8%;
 		background-color: white;
 		z-index: 2;
 		position:absolute;
 		padding: 0;
-		height:130px;
-		float: left;
+		height:131px;
+		width: 15%;
 	}
 	
 	.firs{
 		margin-left: 0px;
+		float:left;
 	}
 	.sec {
-		margin-left: 77.8%;
-    	margin-top: -130px;
-    	width: 23%;
+		margin-left: 83.5%;
+		width: 20%;
 	}
 	
 	.section1{
@@ -100,19 +108,25 @@
 	}
 
 	.cateM:nth-of-type(6){
-		margin-left: 1129px;
-    	margin-top: -130px;
+		margin-top: -130px;
+		margin-left: 100%;
 	}
 	
 	.cateM:nth-of-type(7){
 		margin-top: -130px;
-		margin-left: 1500px;
+		margin-left:120%;
     }
 	.cateM:nth-of-type(8){
-		margin-top: -130px;
-    	margin-left: -226px;
+		position: absolute;
+    	height: 130px;
+		margin-left: -207.9px;
     }
     
+    .div{
+    	height: 130px;
+    	width: 100%;
+    	position: relative;
+    }
 </style>
 <section class="section section1">
 	<c:forEach begin="0" var="vo" end="1" items="${list }">
@@ -124,11 +138,13 @@
 			<input name="right" type="button" class="btn btn-transparent" value="&gt;">
 		</small>
 		</div>
-		<div class="firs"></div>
-		<div class="container roll">
-			<c:import url="/main/showCategoryMimg.do?no=${vo.categoryNo }"/>
+		<div class="div">
+			<div class="firs"></div>
+			<div class="container roll">
+				<c:import url="/main/showCategoryMimg.do?no=${vo.categoryNo }"/>
+			</div>
+			<div class="sec"></div>
 		</div>
-		<div class="sec"></div>
 	</div>
 	</c:forEach>
 </section>
