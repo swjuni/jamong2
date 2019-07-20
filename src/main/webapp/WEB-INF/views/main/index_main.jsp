@@ -2,77 +2,46 @@
 <%@include file="incs/topSearch.jsp" %>
 <script type="text/javascript">
 	$(function(){
-		var $flag = 0;
-		$("input[name=left0]").click(function(){
-			if ($flag == 0) {
-				$flag=1;	//연속 클릭 이벤트 중복 방지 플레그
-				$("#rollTar0 .inside div").last().parent().prependTo("#rollTar0 .inside");
-				$("#rollTar0 .inside div").first().attr("style","margin-left: -200px;");
-				$("#rollTar0 .inside div").first().animate({"margin-left": '+=200'},"slow", function(){
-					$("#rollTar0 .inside div").attr("style","margin-left: 4px;");
-					$flag=0;
-				});
-			}
+		$("input[name=left]").click(function(){
+			$(this).parent().parent().siblings(".roll:last").animate({"margin-left": '-=227'},1000,function(){
+				$(this).append("<div class='case-box cateM'>"+$(this).children('div:first').html()+"</div>");
+				$(this).children('div:first').remove();
+				$(this).attr("style","text-align: center;");
+			});
 		});
 		
-		$("input[name=right0]").click(function(){
-			if ($flag == 0) {
-				$flag=1;	//연속 클릭 이벤트 중복 방지 플레그
-				$("#rollTar0 .inside div").first().animate({"margin-left": '-=200'},"slow", function(){
-					$("#rollTar0 .inside div").first().appendTo("#rollTar0 .inside");
-					$("#rollTar0 .inside div").attr("style","margin-left: 4px;");
-					$flag=0;
-				});
-			}
+		$("input[name=right]").click(function(){
+			$(this).parent().parent().siblings(".roll:first").animate({"margin-left": '+=227'},1000,function(){
+				$(this).prepend("<div class='case-box cateM'>"+$(this).children('div:last').html()+"</div>");
+				$(this).children('div:last').remove();
+				$(this).attr("style","text-align: center;");
+			});
+			
 		});
-		
-		$("input[name=left1]").click(function(){
-			if ($flag == 0) {
-				$flag=1;	//연속 클릭 이벤트 중복 방지 플레그
-				$("#rollTar1 .inside div").last().parent().prependTo("#rollTar1 .inside");
-				$("#rollTar1 .inside div").first().attr("style","margin-left: -200px;");
-				$("#rollTar1 .inside div").first().animate({"margin-left": '+=200'},"slow", function(){
-					$("#rollTar1 .inside div").attr("style","margin-left: 4px;");
-					$flag=0;
-				});
-			}
-		});
-		  
-		$("input[name=right1]").click(function(){
-			if ($flag == 0) {
-				$flag=1;	//연속 클릭 이벤트 중복 방지 플레그
-				$("#rollTar1 .inside div").first().animate({"margin-left": '-=200'},"slow", function(){
-					$("#rollTar1 .inside div").first().appendTo("#rollTar1 .inside");
-					$("#rollTar1 .inside div").attr("style","margin-left: 4px;");
-					$flag=0;
-				});
-			}
-		});	
-
 	})
-</script> 
+</script>
 <style type="text/css">
-	.case-box{ 
+	.case-box{
 		padding: 0;
-		width: 179px;
+		width: 200px;
 		height:130px;
 		float: left;
-		margin-left: 4px;
-   		margin-right: 4px;
+   		margin-right: 26px;
 	}
 	
 	.section-title {
     	margin-bottom: 20px;
-	} 
+	}
 	
 	.categorySection {
- 	   margin-bottom: 84px;
+		margin-bottom: 84px;
 	}
 	
 	.container .case-box p {
     	z-index: 1;
     	position: absolute;
     	color: white;
+    	padding-left:15px;
     	background: linear-gradient( to top, #00000085, #fffafa00);
     	width: 100%;
     	height: 34px;
@@ -95,12 +64,34 @@
 	}
 
 	.categorySection .container {
+    	width: 62%;
+    	text-align: center;
     	height: 130px;
-    	overflow: hidden;
 	}
+	
+	.firs ,.sec{
+		width: 19.8%;
+		background-color: white;
+		z-index: 2;
+		position:absolute;
+		padding: 0;
+		height:130px;
+		float: left;
+	}
+	
+	.firs{
+		margin-left: 0px;
+	}
+	.sec {
+		margin-left: 77.8%;
+    	margin-top: -130px;
+    	width: 23%;
+	}
+	
 	.section1{
 		padding-bottom: 45px;
 	}
+	
 	.round{
 		border-radius: 70px;
 		-moz-border-radius: 70px;
@@ -108,56 +99,37 @@
 		-webkit-border-radius: 70px;
 	}
 
-	.firs{
-		width: 179px;
-		height:130px;
-		z-index: 2;
-		position:absolute;
-		float: left;
-		background-color: transparent;
+	.cateM:nth-of-type(6){
+		margin-left: 1129px;
+    	margin-top: -130px;
 	}
-	.sec{
-		width: 179px;
-		height:130px;
-		z-index: 2;
-		position:relative;
-		float: right;
-		background-color: transparent;
-	}
-	.inside {
-		overflow: hidden;
-	    height: 130px;
-	    width: inherit;
-	    position: absolute;
-	    overflow-x: auto;
-	}
-	.roll{ 
-		padding-left: 0 !important;
-		padding-right: 0 !important;
-	}
-
+	
+	.cateM:nth-of-type(7){
+		margin-top: -130px;
+		margin-left: 1500px;
+    }
+	.cateM:nth-of-type(8){
+		margin-top: -130px;
+    	margin-left: -226px;
+    }
+    
 </style>
-
 <section class="section section1">
-	<c:set var="i" value="0"/>
 	<c:forEach begin="0" var="vo" end="1" items="${list }">
 	<div class="categorySection">
 		<div class="section-title text-center">
 		<small>
-			<input name="left${i }" type="button" class="btn btn-transparent" value="&lt;">
+			<input name="left" type="button" class="btn btn-transparent" value="&lt;">
 				&nbsp;&nbsp;&nbsp;${vo.categoryNameL } 카테고리 둘러보기&nbsp;&nbsp;&nbsp;
-			<input name="right${i }" type="button" class="btn btn-transparent" value="&gt;">
+			<input name="right" type="button" class="btn btn-transparent" value="&gt;">
 		</small>
 		</div>
-		<div class="container roll" id="rollTar${i }">
-			<div class="firs"></div>
-			<div class="sec"></div>
-			<div class="inside">
-				<c:import url="/main/showCategoryMimg.do?no=${vo.categoryNo }"/>
-			</div>
+		<div class="firs"></div>
+		<div class="container roll">
+			<c:import url="/main/showCategoryMimg.do?no=${vo.categoryNo }"/>
 		</div>
+		<div class="sec"></div>
 	</div>
-	<c:set var="i" value="${i+1 }"/>
 	</c:forEach>
 </section>
 <section class="section">
