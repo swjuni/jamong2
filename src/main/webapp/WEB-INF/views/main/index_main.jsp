@@ -30,7 +30,7 @@
 <style type="text/css">
 	.case-box{
 		padding: 0;
-		width: 18.8%;
+		width: 196.08px;
 		height:100%;
 		float: left;
    		margin-right: 1.2%;
@@ -112,19 +112,19 @@
 	.cateM:nth-of-type(6){
 		margin-top: -130px;
 		margin-left: 100%;
-		width: 18.8%;
+		width: 196.08px;
 	}
 	
 	.cateM:nth-of-type(7){
 		margin-top: -130px;
 		margin-left:120%;
-		width: 18.8%;
+		width: 196.08px;
     }
 	.cateM:nth-of-type(8){
 		position: absolute;
     	height: 130px;
-		margin-left: -213.6px;
-		width: 18.8%;
+		margin-left: -208.6px;
+		width: 196.08px;
     }
     
     .div{
