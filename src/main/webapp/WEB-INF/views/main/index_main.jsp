@@ -6,7 +6,7 @@
 			if($(this).parent().parent().siblings(".div").children(".roll:last").is(":animated")){
 				return;
 			}else{
-				$(this).parent().parent().siblings(".div").children(".roll:last").animate({"margin-left": '-=209'},700,function(){
+				$(this).parent().parent().siblings(".div").children(".roll:last").animate({"margin-left": '-=209'},500,function(){
 					$(this).append("<div class='case-box cateM'>"+$(this).children('div:first').html()+"</div>");
 					$(this).children('div:first').remove();
 					$(this).attr("style","text-align: center;");
@@ -18,7 +18,7 @@
 			if($(this).parent().parent().siblings(".div").children(".roll:last").is(":animated")){
 				return;
 			}else{
-				$(this).parent().parent().siblings(".div").children(".roll:first").animate({"margin-left": '+=209'},700,function(){
+				$(this).parent().parent().siblings(".div").children(".roll:first").animate({"margin-left": '+=209'},500,function(){
 					$(this).prepend("<div class='case-box cateM'>"+$(this).children('div:last').html()+"</div>");
 					$(this).children('div:last').remove();
 					$(this).attr("style","text-align: center;");
@@ -30,7 +30,7 @@
 <style type="text/css">
 	.case-box{
 		padding: 0;
-		width: 196.08px;
+		width: 18.8%;
 		height:100%;
 		float: left;
    		margin-right: 1.2%;
@@ -71,6 +71,8 @@
 	}
 
 	.categorySection .container {
+		position: relative;
+		padding: 0px;
     	width: 1073px;
     	text-align: center;
     	height: 130px;
@@ -84,7 +86,7 @@
 		position:absolute;
 		padding: 0;
 		height:131px;
-		width: 15%;
+		width: 14%;
 	}
 	
 	.firs{
@@ -92,7 +94,7 @@
 		float:left;
 	}
 	.sec {
-		margin-left: 83.5%;
+		margin-left: 83.8%;
 		width: 20%;
 	}
 	
@@ -110,16 +112,19 @@
 	.cateM:nth-of-type(6){
 		margin-top: -130px;
 		margin-left: 100%;
+		width: 18.8%;
 	}
 	
 	.cateM:nth-of-type(7){
 		margin-top: -130px;
 		margin-left:120%;
+		width: 18.8%;
     }
 	.cateM:nth-of-type(8){
 		position: absolute;
     	height: 130px;
-		margin-left: -207.9px;
+		margin-left: -213.6px;
+		width: 18.8%;
     }
     
     .div{
