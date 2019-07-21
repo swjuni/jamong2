@@ -50,5 +50,9 @@
 			</div><!-- end container -->
 		</header><!-- end header -->
 		
+		<!-- 최근 본 페이지  링크 필요한 곳에 붙여 포함시키면 구동됨-->
+		<c:import url="/todayList.do"/>
+		
+		
 		<section class="section normalhead bgcolor">
 		</section><!-- end section -->

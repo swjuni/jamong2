@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.image">
+	<select id="selectByProductNoFirstImage" parameterType="int" resultType="imageVo">
+		select *
+		from
+		(
+		    select i.*, rownum as RNUM
+		    from menu_info m join image i
+		    on m.PRODUCT_NO = i.PRODUCT_NO
+		    where m.PRODUCT_NO=#{productNo}
+		    order by img_no
+		)A
+		where rnum=1
+	</select>
+</mapper>
