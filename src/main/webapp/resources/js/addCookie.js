@@ -8,7 +8,7 @@ function setCookie(cookie_name, value, days) {
 	//이경우 컨트롤러에서 불러오는 값이 escape로 변환된 값이라서 unescape 상태로 컨트롤러가 받지 못하기 때문에 별도의 처리가 필요한데
 	// -> 리턴값 변수 = URLDecoder.decode(unescape처리할 변수);
 	//var cookie_value = value + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
-	var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
+	var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString()+'; path=/');
 	document.cookie = cookie_name + '=' + cookie_value;
 }
 

@@ -245,7 +245,7 @@
 				</div>
 
 				<div class="hexagon2">
-					<a href="#">
+					<a href="<c:url value='/mypage/bookmark.do'/>">
 					<span class="intext-text2">
 					<img src="/jamong/resources/images/l_2.png" style="opacity: 0.5"
 							onmouseover="this.style.opacity='0.9'"
@@ -282,7 +282,7 @@
 					var t = document.getElementById("todayDiv");
 					if(${fn:length(ckMenuList)}>3){
 						t.style.top="282px";
-					}
+					};
 				</script>
 				<!-- 최근본 상품 반복문 -->
 					<c:forEach var="i" begin="0" end="${(fn:length(ckMenuList))-1 }">
