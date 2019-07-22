@@ -55,4 +55,23 @@
 			</if>
 		</where>	
 	</select>
+	
+	<insert id="InsertExpert" parameterType="expertVo">
+	<selectKey keyProperty="expertNo" resultType="int" order="BEFORE">
+		select expert_seq.nextval from dual
+	</selectKey>
+		insert into expert(expert_no, id,bank_name, account_no, user_no)
+		values(expert_seq.nextval,#{id},#{bankName},#{accountNo},#{userNo})
+	</insert>
+	
+	<select id="checkByUserNo" parameterType="int" resultType="int">
+		select count(*) from expert
+		where user_no=#{userNo}
+	</select>
+	
+	<update id="updateExpertBasicInfo" parameterType="expertVo">
+		update expert
+		set bank_name=#{bankName},account_no=#{accountNo}
+		where user_no=#{userNo}
+	</update>
 </mapper>

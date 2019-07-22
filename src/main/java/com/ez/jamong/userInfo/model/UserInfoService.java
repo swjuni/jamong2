@@ -25,4 +25,7 @@ public interface UserInfoService {
 	public int existUser(String userid);
 	public int userLoginCheck(String userid, String pwd);
 	public UserInfoVO selectUser(String userid);
+	public UserInfoVO selectByuserNo(int userNo);
 }
+
+

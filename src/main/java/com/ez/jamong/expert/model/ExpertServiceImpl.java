@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ez.jamong.common.SearchVO;
 
@@ -19,6 +20,19 @@ public class ExpertServiceImpl implements ExpertService{
 	
 	public int selectTotalCount(SearchVO searchVo) {
 		return expertDao.selectTotalCount(searchVo);
+	}
+
+	@Override
+	@Transactional
+	public int InsertExpert(ExpertVO expertVo) {
+		int cnt=expertDao.checkByUserNo(expertVo.getUserNo());
+		System.out.println(expertVo.getBankName());
+		if(cnt<=0) {
+			cnt=expertDao.InsertExpert(expertVo);
+		}else {
+			cnt=expertDao.updateExpertBasicInfo(expertVo);
+		}
+		return cnt;
 	}
 	
 }

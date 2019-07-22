@@ -23,6 +23,20 @@ public class ExpertDAOMybatis implements ExpertDAO{
 	public int selectTotalCount(SearchVO searchVo) {
 		return session.selectOne(namespace+"selectTotalCount", searchVo);
 	}
-	
+
+	@Override
+	public int InsertExpert(ExpertVO expertVo) {
+		return session.insert(namespace+"InsertExpert",expertVo);
+	}
+
+	@Override
+	public int checkByUserNo(int userNo) {
+		return session.selectOne(namespace+"checkByUserNo",userNo);
+	}
+
+	@Override
+	public int updateExpertBasicInfo(ExpertVO expertVo) {
+		return session.update(namespace+"updateExpertBasicInfo",expertVo);
+	}
 	
 }

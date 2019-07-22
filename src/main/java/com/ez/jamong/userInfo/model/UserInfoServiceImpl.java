@@ -89,5 +89,10 @@ public class UserInfoServiceImpl implements UserInfoService{
 	public UserInfoVO selectUser(String userid) {
 		return userInfoDao.selectUser(userid);
 	}
+
+	@Override
+	public UserInfoVO selectByuserNo(int userNo) {
+		return userInfoDao.selectByuserNo(userNo);
+	}
 	
 }

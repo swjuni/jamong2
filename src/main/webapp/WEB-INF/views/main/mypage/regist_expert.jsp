@@ -1,6 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../incs/top_mypage.jsp"%>
+<script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#agree").click(function(){
+			if($("#agree").is(":checked")){
+				$("#agreeText").val("Y");
+			}else{
+				$("#agreeText").val("N");
+			}
+		})
+		$("form[name=frm]").submit(function(){
+			if($("#agreeText").val()!="Y"){
+				alert("이용약관에 동의하셔야 저장가능합니다.");
+				return false;
+			}
+		}); 
+	})
+</script>
 <style type="text/css">
 	.col-md-3{
 		width: 290px;
@@ -50,7 +68,6 @@
 						<ul>
 							<li><i class="fa fa-phone"></i> <span>이름</span></li>
 							<li><i class="fa fa-phone"></i> <span>휴대폰 인증하기</span></li>
-							<li><i class="fa fa-fax"></i> <span>주민등록번호</span></li>
 							<li><i class="fa fa-envelope"></i> <span>수익금 출금 은행</span></li>
 							<li><i class="fa fa-twitter"></i> <span>계좌번호</span></li>
 							<li><h4 style="color:#f46c63;">&nbsp;&nbsp;약관 동의 및 서명</h4></li>
@@ -59,26 +76,29 @@
 					<!-- end contact details -->
 				</div>
 				<div class="col-md-5">
-					<form role="form" class="contactform">
+					<form name="frm" role="form" class="contactform" action="<c:url value='/registExpert/regist.do'/>">
+					<input type="hidden" name="userNo" value="${param.userNo }">
+					<input type="hidden" name="id" value="${userInfo.userId }">
 						<div class="form-group">
-							<input type="text" class="form-control" id="name" name="name" placeholder="Name" required="">
+							<input type="text" class="form-control" id="userName" name="userName" value="${userInfo.userName }" disabled="disabled">
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" id="email" name="email"	placeholder="Email" required="">
+							<input type="text" class="form-control" id="hp" name="hp" value="${userInfo.hp }" disabled="disabled" style="width: 80%; float: left;">
+							<span id="confirm" class="btn btn-primary" style="width: 20%; padding: 12px 0px; border-radius: 3px;">인증하기</span>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" id="phone" name="phone"	placeholder="Phone" required="">
+							<input type="text" class="form-control" id="subject" name="bankName" required="required">
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" id="subject" name="subject"	placeholder="Subject" required="">
-						</div>
-						<div class="form-group">
-							<input type="text" class="form-control" id="subject" name="subject"	placeholder="Subject" required="">
+							<input type="text" class="form-control" id="subject" name="accountNo" required="required">
 						</div>
 						<div class="form-group agreement" >
 							  <iframe name='hipinfo' frameborder='0' src='<%=request.getContextPath() %>/resources/agreement.html' scrolling="auto" border="no" maginwidth="0" marginheight="0" frameborder="0" style="height: 100%; width: 100%; background: #f0f1f2;">
 							  </iframe>
+							<small><strong>* 본인은 위 약관의 내용을 모두 확인하였으며, 동의합니다.&nbsp;</strong></small> <label  style="float: right;"><small>동의합니다&nbsp;</small><input type="checkbox" name="agree" id="agree"></label>
+							<input type="hidden" name="agreeText" id="agreeText">
 						</div>
+						<br> 
 						<button type="submit" id="submit" name="submit"	class="btn btn-primary">정보 저장</button>
 					</form>
 					<!--아래는 mypage 공통 사용 코드  -->

@@ -8,4 +8,5 @@ import com.ez.jamong.common.SearchVO;
 public interface ExpertService {
 	public List<Map<String, Object>> selectExpertSearch(SearchVO searchVo);
 	public int selectTotalCount(SearchVO searchVo);
+	public int InsertExpert(ExpertVO expertVo);
 }

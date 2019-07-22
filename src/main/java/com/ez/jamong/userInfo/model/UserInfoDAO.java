@@ -14,4 +14,5 @@ public interface UserInfoDAO {
 	public int existUser(String userid);
 	public String selectForUserLogin(String userid);
 	public UserInfoVO selectUser(String userid);
+	public UserInfoVO selectByuserNo(int userNo);
 }
