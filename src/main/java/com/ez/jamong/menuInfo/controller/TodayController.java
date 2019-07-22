@@ -28,6 +28,8 @@ public class TodayController {
 	private Logger logger = LoggerFactory.getLogger(TodayController.class);
 	@Autowired private MenuInfoService menuInfoService;
 	@Autowired private ImageService imageService;
+	
+	//나중에 삭제할 멤버변수
 	@Autowired CategoryLService categorylService;
 	@Autowired CategoryMService categoryMService;
 	
@@ -89,6 +91,8 @@ public class TodayController {
 		return "main/incs/today_view";
 	}
 	
+	
+	//나중에 삭제할 임시 화면
 	@RequestMapping("/indexTest.do")
 	public String main_view(Model model) {
 		logger.info("메인 페이지");

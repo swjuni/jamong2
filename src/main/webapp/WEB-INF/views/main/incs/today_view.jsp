@@ -287,7 +287,7 @@
 				<!-- 최근본 상품 반복문 -->
 					<c:forEach var="i" begin="0" end="${(fn:length(ckMenuList))-1 }">
 						<div class="todayview">
-							<a href="#">
+							<a href="<c:url value='/main/menuinfo/menuinfo_Detail.do?productNo=${ckMenuList[i].productNo}'/>">
 							<img src="/jamong/upload/categoryM/${ckImageList[i].fileName }" style="opacity: 0.5; width: 100%; height: 100%"
 									onmouseover="this.style.opacity='0.9'"
 									onmouseout="this.style.opacity='0.5'" alt="${ckMenuList[i].productName }"></a>
