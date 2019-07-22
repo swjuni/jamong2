@@ -195,6 +195,13 @@
     float: left;
     text-align: center;
 }
+#todayDiv{
+	overflow: hidden;
+    height: 210px;
+    width: inherit;
+    position: absolute;
+    overflow-x: auto;
+}
 </style>
 	<div id="stv2">
 		<div id="stv2_list">
@@ -233,10 +240,12 @@
 			
 			<!-- 최근 본 상품 -->
 			<h2 style="position: absolute; top: 240px;">최근본상품</h2>
-			<h3 style="position: absolute; top: 265px;"
-				onmouseover="this.style.opacity='1'"
-				onmouseout="this.style.opacity='0.6'" onclick="">▲</h3> 
-			<div style="position: absolute; top: 280px;">
+			<c:if test="${fn:length(ckMenuList) >3 }">
+				<h3 style="position: absolute; top: 265px;"
+					onmouseover="this.style.opacity='1'"
+					onmouseout="this.style.opacity='0.6'" onclick="">▲</h3>
+			</c:if> 
+			<div style="position: absolute; top: 280px; height: 210px;" id="todayDiv">
 
 			<!-- 최근본 상품 반복문 -->
 				<c:forEach var="i" begin="0" end="${fn:length(ckMenuList) }">
@@ -248,9 +257,11 @@
 					</div>
 				</c:forEach>
 			</div>
-			<h3 style="position: absolute; top: 485px;"
-				onmouseover="this.style.opacity='1'"
-				onmouseout="this.style.opacity='0.6'" onclick="">▼</h3> 
+			<c:if test="${fn:length(ckMenuList) >3 }">
+				<h3 style="position: absolute; top: 485px;"
+					onmouseover="this.style.opacity='1'"
+					onmouseout="this.style.opacity='0.6'" onclick="">▼</h3> 
+			</c:if>
 			<button type="button" onclick="addCookie(2)" style="position: absolute; top: 585px; font-size: 0.9em;">쿠키추가</button> 
 		</div>
 	</div>

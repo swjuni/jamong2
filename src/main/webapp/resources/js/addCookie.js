@@ -6,9 +6,9 @@ function setCookie(cookie_name, value, days) {
 
 	//escape를 사용하는 경우는 ,를 구분자로 사용한 경우 cookie가 ,를 포함할 수 없어 escape로 변환해서 저장하는데
 	//이경우 컨트롤러에서 불러오는 값이 escape로 변환된 값이라서 unescape 상태로 컨트롤러가 받지 못하기 때문에 별도의 처리가 필요한데
-	//그 방법을 찾지 못해서 임시로 ,값 대신 /값을 쿠키 구분자로 사용함
-	var cookie_value = value + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
-	//var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
+	// -> 리턴값 변수 = URLDecoder.decode(unescape처리할 변수);
+	//var cookie_value = value + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
+	var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
 	document.cookie = cookie_name + '=' + cookie_value;
 }
 
@@ -33,8 +33,8 @@ function addCookie(productNo) {
 	var maxItemNum = 5; // 최대 저장 가능한 아이템개수
 	var expire = 1; // 쿠키값을 저장할 기간
 	if (items) {
-		var itemArray = items.split('/');
-		//var itemArray = items.split(',');
+		//var itemArray = items.split('/');
+		var itemArray = items.split(',');
 		if (itemArray.indexOf(productNo) != -1) {
 			// 이미 존재하는 경우 종료
 			console.log('Already exists.');
@@ -43,8 +43,8 @@ function addCookie(productNo) {
 			// 새로운 값 저장 및 최대 개수 유지하기
 			itemArray.unshift(productNo);
 			if (itemArray.length > maxItemNum ) itemArray.length = 5;
-			items = itemArray.join('/');
-			//items = itemArray.join(',');
+			//items = itemArray.join('/');
+			items = itemArray.join(',');
 			setCookie('productItems', items, expire);
 		}
 	}
