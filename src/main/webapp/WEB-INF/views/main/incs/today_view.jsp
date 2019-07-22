@@ -2,6 +2,33 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<script type="text/javascript">
+	var $flag = 0;
+	function left(){
+		if ($flag == 0) {
+			$flag=1;	//연속 클릭 이벤트 중복 방지 플레그
+			$("#todayDiv div").first().animate({"margin-top": '-=65'},"slow", function(){
+				$("#todayDiv div").first().appendTo("#todayDiv");
+				$("#todayDiv div").attr("style","margin: 2px 0;");
+				$flag=0;
+			});
+			
+		}
+	}  
+	
+	function right(){
+		if ($flag == 0) {
+			$flag=1;	//연속 클릭 이벤트 중복 방지 플레그
+			$("#todayDiv div").last().prependTo("#todayDiv");
+			$("#todayDiv div").first().attr("style","margin-top: -65px;");
+			$("#todayDiv div").first().animate({"margin-top": '+=65'},"slow", function(){
+				$("#todayDiv div").attr("style","margin: 2px 0;");
+				$flag=0;
+			});    
+		}
+	}
+	
+</script>
 <style type="text/css">
 /* 오늘 본 상품(왼쪽) */
 #stv2 {
@@ -34,7 +61,7 @@
     padding: 2px;
     background: linear-gradient(0deg, black, transparent);
     width: 100%;
-    font-size: 10px;
+    font-size: 12px;
     color: #fff;
     text-align: center;
     opacity: 0.6;
@@ -179,7 +206,7 @@
 	position:absolute;
     z-index: 11;
     margin-top: 25px;
-    margin-left: 19px;
+    margin-left: 7px;
     font-size:12px;
     font-family: Malgun Gothic,'맑은 고딕',dotum, 돋움, sans-serif;
     font-weight:bold;
@@ -228,42 +255,53 @@
 
 				<!-- <div class="hexagon2-line2"></div> -->
 				<div class="hexagon2">
-					<a href="#">
+					<a href="<c:url value="/mypage/mypage.do?userNo=${sessionScope.userNo }"/>">
 					<span class="intext-text3">
 					<img src="/jamong/resources/images/l_3.png" style="opacity: 0.5"
 							onmouseover="this.style.opacity='0.9'"
 							onmouseout="this.style.opacity='0.5'" alt="자료실">
 					</span>
-					<span class="intext-text3-korean">자료실</span></a>
+					<span class="intext-text3-korean">마이페이지</span></a>
 				</div>
 			</div>
 			
 			<!-- 최근 본 상품 -->
-			<h2 style="position: absolute; top: 240px;">최근본상품</h2>
-			<c:if test="${fn:length(ckMenuList) >3 }">
-				<h3 style="position: absolute; top: 265px;"
-					onmouseover="this.style.opacity='1'"
-					onmouseout="this.style.opacity='0.6'" onclick="">▲</h3>
-			</c:if> 
-			<div style="position: absolute; top: 280px; height: 210px;" id="todayDiv">
-
-			<!-- 최근본 상품 반복문 -->
-				<c:forEach var="i" begin="0" end="${fn:length(ckMenuList) }">
-					<div class="todayview">
-						<a href="#">
-						<img src="/jamong/upload/categoryM/${ckImageList[i].fileName }" style="opacity: 0.5; width: 100%; height: 100%"
-								onmouseover="this.style.opacity='0.9'"
-								onmouseout="this.style.opacity='0.5'" alt="${ckMenuList[i].productName }"></a>
-					</div>
-				</c:forEach>
-			</div>
-			<c:if test="${fn:length(ckMenuList) >3 }">
-				<h3 style="position: absolute; top: 485px;"
-					onmouseover="this.style.opacity='1'"
-					onmouseout="this.style.opacity='0.6'" onclick="">▼</h3> 
+			<c:if test="${!empty ckMenuList }">
+				<c:if test="${fn:length(ckMenuList) >0 }">
+					<h2 style="position: absolute; top: 240px;">최근본상품</h2>
+				</c:if>
+				
+				<c:if test="${fn:length(ckMenuList) >3 }">
+					<h3 style="position: absolute; top: 265px;"
+						onmouseover="this.style.opacity='1'"
+						onmouseout="this.style.opacity='0.6'" onclick="left()">▲</h3>
+				</c:if> 
+				
+				<div style="position: absolute; top: 265px; height: 210px;" id="todayDiv">
+				<script type="text/javascript">
+					var t = document.getElementById("todayDiv");
+					if(${fn:length(ckMenuList)}>3){
+						t.style.top="282px";
+					}
+				</script>
+				<!-- 최근본 상품 반복문 -->
+					<c:forEach var="i" begin="0" end="${(fn:length(ckMenuList))-1 }">
+						<div class="todayview">
+							<a href="#">
+							<img src="/jamong/upload/categoryM/${ckImageList[i].fileName }" style="opacity: 0.5; width: 100%; height: 100%"
+									onmouseover="this.style.opacity='0.9'"
+									onmouseout="this.style.opacity='0.5'" alt="${ckMenuList[i].productName }"></a>
+						</div>
+					</c:forEach>
+				</div>
+				<c:if test="${fn:length(ckMenuList) >3 }">
+					<h3 style="position: absolute; top: 490px;"
+						onmouseover="this.style.opacity='1'"
+						onmouseout="this.style.opacity='0.6'" onclick="right()">▼</h3> 
+				</c:if>
 			</c:if>
 			<button type="button" onclick="addCookie(2)" style="position: absolute; top: 585px; font-size: 0.9em;">쿠키추가</button> 
 		</div>
-	</div>
+	</div> 
 	<!-- } 오늘 본 상품 끝 -->
 <script src="<c:url value='/resources/js/addCookie.js'/>"></script>

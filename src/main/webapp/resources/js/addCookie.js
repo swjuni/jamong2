@@ -30,7 +30,7 @@ function getCookie(cookie_name) {
 //쿠키를 추가하는 함수  - id값 가져오기 addCookie() - 새로운 id값 추가하기 addCookie(productNo)
 function addCookie(productNo) {
 	var items = getCookie('productItems'); // 이미 저장된 값을 쿠키에서 가져오기
-	var maxItemNum = 5; // 최대 저장 가능한 아이템개수
+	var maxItemNum = 6; // 최대 저장 가능한 아이템개수
 	var expire = 1; // 쿠키값을 저장할 기간
 	if (items) {
 		//var itemArray = items.split('/');
