@@ -1,7 +1,9 @@
 package com.ez.jamong.menuInfo.controller;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ez.jamong.categoryl.model.CategoryLService;
+import com.ez.jamong.categoryl.model.CategoryLVO;
+import com.ez.jamong.categorym.model.CategoryMService;
 import com.ez.jamong.image.ImageService;
 import com.ez.jamong.image.ImageVO;
 import com.ez.jamong.menuInfo.model.MenuInfoService;
@@ -23,6 +28,8 @@ public class TodayController {
 	private Logger logger = LoggerFactory.getLogger(TodayController.class);
 	@Autowired private MenuInfoService menuInfoService;
 	@Autowired private ImageService imageService;
+	@Autowired CategoryLService categorylService;
+	@Autowired CategoryMService categoryMService;
 	
 	@RequestMapping("/todayList.do")
 	public String todayList(HttpServletRequest request, Model model) {
@@ -49,8 +56,10 @@ public class TodayController {
 					String productValues=ck[i].getValue();
 					logger.info("productValues={}",productValues);
 					
+					productValues = URLDecoder.decode(productValues);
+
 					//value에 저장된 값에서 /를 split으로 나눠서 배열에 저장
-					String[] productNo = productValues.split("/");
+					String[] productNo = productValues.split(",");
 					logger.info("productNo배열={}, size={}",productNo, productNo.length);
 					
 					for(int j=0; j<productNo.length;j++) {
@@ -78,5 +87,15 @@ public class TodayController {
 		model.addAttribute("ckMenuList", arrMenuInfo);
 		model.addAttribute("ckImageList", arrImageInfo);
 		return "main/incs/today_view";
+	}
+	
+	@RequestMapping("/indexTest.do")
+	public String main_view(Model model) {
+		logger.info("메인 페이지");
+		//카테고리 영역
+		List<CategoryLVO> list=categorylService.selectCategorylAll();
+		
+		model.addAttribute("list",list);
+		return "main/index";
 	}
 }

@@ -126,14 +126,14 @@
 	}
 	.inside {
 		overflow: hidden;
-	    height: 130px;
-	    width: inherit;
-	    position: absolute;
-	    overflow-x: auto;
+	    height: inherit;
+	    width: 2000px;
 	}
 	.roll{ 
 		padding-left: 0 !important;
 		padding-right: 0 !important;
+	    height: 130px;
+    	overflow-x: hidden;
 	}
 
 </style>
@@ -150,8 +150,8 @@
 		</small>
 		</div>
 		<div class="container roll" id="rollTar${i }">
-			<div class="firs"></div>
-			<div class="sec"></div>
+<!-- 			<div class="firs"></div>
+			<div class="sec"></div> -->
 			<div class="inside">
 				<c:import url="/main/showCategoryMimg.do?no=${vo.categoryNo }"/>
 			</div>
