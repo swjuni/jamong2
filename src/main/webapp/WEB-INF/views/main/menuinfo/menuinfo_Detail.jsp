@@ -6,10 +6,31 @@
 <style type="text/css">
 .productImages{
     background-color: #ffffff;
-    border: 1px solid #eeeeee;
+    border-top: 1px solid #eeeeee;
     padding: 10px;
     overflow: hidden;
-    position: relative
+    position: relative;
+}
+.client-box{
+    height: 120px;
+}
+.client-box img {
+	height: 100%;
+}
+.case-single .case-box{
+	border: 0px;
+}
+.optionSt{
+	padding: 10px;
+	background-color: white;
+	border-bottom: 1px solid #efefef;
+    border-left: 1px solid #efefef;
+    border-right: 1px solid #efefef;
+}
+.pricing-details li{
+    border-bottom: 1px solid #efefef;
+    border-left: 0px;
+    border-right: 0px;
 }
 </style>
   
@@ -23,30 +44,121 @@
 					</div><!-- end case-box -->
 					
 					<div class="productImages">
-					<div class="row text-center">
-						<div class="col-md-3 col-sm-3 col-xs-6">
-							<div class="client-box">
-								<a href="#"><img src="/jamong/resources/upload/client_01.png" alt="" class="img-responsive"></a>
-							</div>
-						</div><!-- end col -->
-						<div class="col-md-3 col-sm-3 col-xs-6">
-							<div class="client-box">
-								<a href="#"><img src="/jamong/resources/upload/client_02.png" alt="" class="img-responsive"></a>
-							</div>
-						</div><!-- end col -->
-						<div class="col-md-3 col-sm-3 col-xs-6">
-							<div class="client-box">
-								<a href="#"><img src="/jamong/resources/upload/client_03.png" alt="" class="img-responsive"></a>
-							</div>
-						</div><!-- end col -->	
-						<div class="col-md-3 col-sm-3 col-xs-6">
-							<div class="client-box">
-								<a href="#"><img src="/jamong/resources/upload/client_04.png" alt="" class="img-responsive"></a>
-							</div>
-						</div><!-- end col -->
-					</div>
+						<div class="row text-center">
+							<div class="col-md-3 col-sm-3 col-xs-6">
+								<div class="client-box">
+									<a href="#"><img src="/jamong/resources/upload/client_01.png" alt="" class="img-responsive"></a>
+								</div>
+							</div><!-- end col -->
+							<div class="col-md-3 col-sm-3 col-xs-6">
+								<div class="client-box">
+									<a href="#"><img src="/jamong/resources/upload/client_02.png" alt="" class="img-responsive"></a>
+								</div>
+							</div><!-- end col -->
+							<div class="col-md-3 col-sm-3 col-xs-6">
+								<div class="client-box">
+									<a href="#"><img src="/jamong/resources/upload/client_03.png" alt="" class="img-responsive"></a>
+								</div>
+							</div><!-- end col -->	
+							<div class="col-md-3 col-sm-3 col-xs-6">
+								<div class="client-box">
+									<a href="#"><img src="/jamong/resources/upload/client_04.png" alt="" class="img-responsive"></a>
+								</div>
+							</div><!-- end col -->
+						</div>
 					</div>
 					
+
+
+					<div class="content blog-alt">
+						<div class="blog-box clearfix">
+							<div class="blog-single"><br><br>
+								<h3 class="post-title">서비스 설명</h3>
+								<p>The plugin will automatically include the most commonly used words in the text as a label. This way you gain backlinks within the site. In addition, one of the best features is that the words in the article are automatically linked to the label page. In this case, the article..</p>
+								<p>The plugin will automatically include the most commonly used words in the text as a label. This way you gain backlinks within the site. In addition, one of the best features is that the words in the article are automatically linked to the label page. In this case, the article..</p>
+
+								<div class="tags">
+									<a class="readmore" href="#">web design</a>
+									<a class="readmore" href="#">web development</a>
+									<a class="readmore" href="#">seo</a>
+									<a class="readmore" href="#">wordpress seo</a>
+								</div>
+							</div><!-- end blog-desc -->
+						</div><!-- end blogbox -->
+
+                        <div class="blog-box clearfix">
+                            <div class="custom-title">
+                                <h4>5 Comments</h4>
+                                <hr>
+                            </div><!-- end -->
+
+                            <div class="row">
+                                <div class="col-md-12" style="background: white;">
+                                    <div class="panel panel-info">
+                                        <div class="panel-body comments">
+                                            <ul class="media-list">
+                                                <li class="media">
+                                                    <div class="comment">
+                                                        <a href="#" class="pull-left">
+                                                            <img src="/jamong/resources/upload/team_01.jpeg" alt="" class="img-circle">
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <strong class="text-success">Jane Doe</strong>
+                                                            <span class="text-muted">
+																<small class="text-muted">6 days ago</small></span> | 
+															<span>★★★★★</span>
+                                                            <p>빠른 처리 감사합니다</p>
+                                                            <a href="#" class="btn btn-primary btn-sm" style="float: right;">Reply</a>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+													<ul class="media-list" style="background: aliceblue;">
+                                                        <li class="media">
+                                                            <div class="comment">
+                                                                <div class="media-body">
+                                                                    <strong class="text-success">전문가</strong>
+                                                                    <span class="text-muted">
+                                                                    	<small class="text-muted">2 days ago</small></span>
+                                                                    <p>감사합니다~~~~</p>
+                                                                    <a href="#" class="btn btn-primary btn-sm" style="float: right;">Reply</a>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </li>
+													</ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end postpager -->
+
+                        <div class="blog-box clearfix">
+                            <div class="custom-title">
+                                <h4>Leave a Comment</h4>
+                            </div><!-- end about -->
+
+                            <div class="contact_form comment-form">
+                                <form class="row" style="background: white;">
+                                    <div class="col-md-4 col-sm-12" style="margin-top: 15px;">
+                                        <label>서비스 평가 <span class="required">*</span></label>
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <label>Comment <span class="required">*</span></label>
+                                        <textarea class="form-control" placeholder=""></textarea>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12" style="margin-bottom: 15px; text-align: right;">
+                                        <input type="submit" value="comment" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div><!-- end commentform -->
+                        </div><!-- end postpager -->
+					</div><!-- end content -->
+
+
+
 					
 					
 					
@@ -57,6 +169,9 @@
 			<div class="col-md-5 col-sm-5 col-xs-12">
 				<div class="pitem">
 					<div class="pricing-box clearfix">
+						<div class="pricing-header" style="padding: 20px 0;">
+							<h4 style="color:black; text-align: left;">상품명들어가는 위치</h4>
+						</div><!-- end pricing-header -->
 						<div class="panel-group" id="accordion">
 							<div class="panel panel-default">
 					            <a data-toggle="collapse" data-parent="#accordion" href="#collapseA">
@@ -79,6 +194,15 @@
 												<li>Support <span><i class="fa fa-phone"></i></span></li>
 											</ul>
 										</div><!-- end pricing-details -->
+										<div class="d-block p-2 bg-primary text-center optionSt">
+											<select name="optionsNo" class="border border-warning "
+											 style="width: 90%; height: 33px; color:black;background: linear-gradient(30deg, #ffffff 1%, #adadad 300%);">
+												<option value="0">옵션을 선택하세요</option>
+												<option value="1">옵션1</option>
+												<option value="2">옵션2</option>
+												<option value="3">옵션3</option>
+											</select>
+										</div>
 										<div class="pricing-footer text-center">
 											<div class="case-box">
 												<a href="#" class="btn btn-primary c1btn">주문하기</a>
@@ -150,20 +274,34 @@
 					    </div>
 					</div><!-- end pricing-box -->
 
-					<div class="pricing-box clearfix">
-						<div class="pricing-header firstch">
-							<h4>판매자 명</h4>
-						</div><!-- end pricing-header -->
-						<div class="pricing-top secondch">
-							<i class="flaticon-crown"></i>
-							<p style="font-size: 14px;">연락가능시간 : </p>
+					<div class="pricing-box clearfix" style="border: 1px solid #efefef;">
+						<div class="pricing-top" style="color: black; padding: 20px; background: white;">
+							<button id="bookmarkBtn" type="button" class="inline-block"
+								style="border: 0px; background: transparent; position: absolute; font-size: 16px; right: 40px;">
+								<!-- if문 처리할 곳 -->
+								<i class="fa fa-heart-o"></i>
+								<i class="fa fa-heart" style="color: red;"></i>
+								<!-- /if-->
+								<span style="font-size: 15px;"> 찜하기</span> 
+							</button>
+							<c:if test="${!empty list }">
+								<i class="flaticon-crown"></i>
+							</c:if>
+							<div class="client-box" style="width: 120px; display: inline-block;">
+								<a href="#"><img src="/jamong/assets/images/bookingSystem/2.png" alt="" class="img-responsive"></a>
+							</div> 
+							<h4 style="font-weight: bold;">닉네임</h4>
+							<div style="font-size: 14px;">연락가능시간 : </div>
 							<div style="font-size: 14px;">10시~12시 </div>
 						</div><!-- end pricing-top -->
 						<div class="pricing-details">
 							<div class="pricing-footer text-center">
-								<div class="case-box">
-									<a href="#" class="btn btn-primary c1btn">전문가에게 문의</a>
-								</div>
+								<div style="background: white;" >  
+									<a href="#" class="btn btn-primary" style="background:#4d4d4d; border-radius: 7px; width: 80%;
+									padding: 8px; font-size: 13px; border-left: 1px solid #efefef; border-right: 1px solid #efefef;">
+									<i class="fa fa-envelope" style="color: white; margin-right: 8px; font-size: 1.1em;"></i>
+									전문가에게 문의</a>
+								</div> 
 							</div>
 							<ul>
 								<li>Competition power <span><i class="fa fa-check"></i></span></li>
@@ -171,7 +309,7 @@
 								<li>Keyword <span>3</span></li>
 							</ul>
 						</div><!-- end pricing-details -->
-						<div style="background-color: #ffffff;border: 1px solid #eeeeee;padding: 10px 20px;">
+						<div style="background-color: #ffffff;padding: 10px 20px;">
 							<span><b>전문가 소개</b></span><br>
 							<span>내맘대로 작업하는게 문제다</span>
 						</div>
