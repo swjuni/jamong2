@@ -33,4 +33,14 @@ public class ReportDAOMybatis implements ReportDAO{
 	public int refuseReport(Map<String, Integer> map) {
 		return session.update(namespace+"refuseReport",map);
 	}
+
+	@Override
+	public int reportAdd(ReportVO reportVo) {
+		return session.insert(namespace+"reportAdd",reportVo);
+	}
+
+	@Override
+	public List<ReportExtendsVO> reportListByUserNo(int userNo) {
+		return session.selectList(namespace+"reportListByUserNo", userNo);
+	}
 }

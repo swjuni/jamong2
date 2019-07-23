@@ -60,4 +60,21 @@
 		set delflag='N', admin_no=#{adminNo}
 		where report_no=#{reportNo}
 	</update>
+	
+	<insert id="reportAdd" parameterType="reportVo">
+		<selectKey resultType="int" keyProperty="reportNo" order="BEFORE">
+			select report_seq.nextval from dual
+		</selectKey>
+		insert into report(report_no, report_desc, report_date, user_no, expert_no, product_no)
+		values(#{reportNo}, #{reportDesc},sysdate,#{userNo},#{expertNo},#{productNo})
+	</insert>
+	
+	<select id="reportListByUserNo" parameterType="int" resultType="reportExtendsVo">
+		select *
+		from report r join expert e
+		on r.EXPERT_NO = e.EXPERT_NO
+		join menu_info m
+		on r.PRODUCT_NO = m.PRODUCT_NO
+		where r.user_no=#{userNo}
+	</select>
 </mapper>

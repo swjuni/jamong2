@@ -69,10 +69,11 @@
 								</div>
 								<!-- end service-box -->
 								<div class="service-box nmb">
+									<a href="<c:url value='/mypage/reportedExpert.do'/>">
 									<i class="flaticon-content"></i>
 									<h4>알림(신고)</h4>
-									<p>The SEO toolset that's got it all: keyword research, link
-										building, site audits.</p>
+									<p>The SEO that's got it all</p>
+									</a>
 								</div>
 								<!-- end service-box -->
 							</div>

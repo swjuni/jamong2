@@ -10,4 +10,6 @@ public interface ReportDAO {
 	public int selectTotalCount(SearchVO searchVo);
 	public int acceptReport(Map<String, Integer> map);
 	public int refuseReport(Map<String, Integer> map);
+	public int reportAdd(ReportVO reportVo);
+	public List<ReportExtendsVO> reportListByUserNo(int userNo);
 }

@@ -74,4 +74,9 @@
 		set bank_name=#{bankName},account_no=#{accountNo}
 		where user_no=#{userNo}
 	</update>
+	
+	<select id="selectByExpertNo" parameterType="int" resultType="expertVo">
+		select * from expert
+		where expert_no=#{expertNo}
+	</select>
 </mapper>
