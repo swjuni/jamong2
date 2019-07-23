@@ -95,4 +95,14 @@ public class ReportServiceImpl implements ReportService{
 		map.put("adminNo", adminNo);
 		return reportDao.refuseReport(map);
 	}
+
+	@Override
+	public int reportAdd(ReportVO reportVo) {
+		return reportDao.reportAdd(reportVo);
+	}
+
+	@Override
+	public List<ReportExtendsVO> reportListByUserNo(int userNo) {
+		return reportDao.reportListByUserNo(userNo);
+	}
 }

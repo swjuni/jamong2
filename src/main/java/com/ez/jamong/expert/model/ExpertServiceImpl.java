@@ -34,5 +34,10 @@ public class ExpertServiceImpl implements ExpertService{
 		}
 		return cnt;
 	}
+
+	@Override
+	public ExpertVO selectByExpertNo(int expertNo) {
+		return expertDao.selectByExpertNo(expertNo);
+	}
 	
 }

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../incs/top_main.jsp" %>
 <!-- 각 화면별 내용 코딩-->
-<script type="text/javascript">	
+<script type="text/javascript">
+	function report(){
+		location.href="<c:url value='/mypage/reportAdd.do?expertNo=1&productNo=${param.productNo}'/>";
+	}
 </script>
 <style type="text/css">
 .productImages{
@@ -284,6 +287,15 @@
 								<!-- /if-->
 								<span style="font-size: 15px;"> 찜하기</span> 
 							</button>
+							
+							<button id="reportkBtn" type="button" class="inline-block" onclick="report()"
+								style="border: 0px; background: transparent; position: absolute; font-size: 16px; right: 40px; bottom:-20px;">
+								<!-- if문 처리할 곳 -->
+								<i class="fa fa-exclamation-circle" style="color: red;"></i>
+								<!-- /if-->
+								<span style="font-size: 15px;"> 신고하기</span> 
+							</button>
+							
 							<c:if test="${!empty list }">
 								<i class="flaticon-crown"></i>
 							</c:if>
@@ -319,6 +331,8 @@
 		</div><!-- end row -->
 	</div><!-- end container -->
 </section><!-- end section -->
+
+
 
 <%@include file="../incs/bottom_main.jsp" %>
 <!-- 화면별 고유 하단js 포함할 위치 -->

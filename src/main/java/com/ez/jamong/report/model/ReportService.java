@@ -12,4 +12,6 @@ public interface ReportService {
 	public int refuseReport(List<ReportVO> list, int adminNo);
 	public int approveOne(int reportNo, int productNo, int adminNo);
 	public int refuseOne(int reportNo, int adminNo);
+	public int reportAdd(ReportVO reportVo);
+	public List<ReportExtendsVO> reportListByUserNo(int userNo);
 }
