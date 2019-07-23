@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.message">
+	<insert id="insertMessage" parameterType="messageVo">
+		insert into message(message_no, user_id, user_id2, contents, file_Name, file_Size, original_File_Name) 
+		values(message_seq.nextval, #{userId}, #{userId2}, #{contents},
+			#{fileName}, #{fileSize}, #{originalFileName})
+	</insert>
+	<select id="selectSendMessage" resultType="messageVo" parameterType="string">
+		select * from message where user_id=#{userId}
+	</select>
+	<select id="selectRecieveMessage" resultType="messageVo" parameterType="string">
+		select * from message where user_id2=#{userId}
+	</select>
+</mapper>
+
+
+

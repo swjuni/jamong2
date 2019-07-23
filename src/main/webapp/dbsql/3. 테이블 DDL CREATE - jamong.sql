@@ -789,6 +789,8 @@ ALTER TABLE FILES
 			FILES_NO -- 자료실번호
 		);
 
+
+
 -- 회원정보
 ALTER TABLE USER_INFO
 	ADD
@@ -1260,4 +1262,53 @@ ALTER TABLE FILES
 		)
 		REFERENCES ORDERS ( -- 고객_주문
 			ORDER_LIST_NO -- 고객_주문번호
+		);
+
+
+-- 메시지
+CREATE TABLE MESSAGE (
+	MESSAGE_NO         NUMBER        NOT NULL, -- 메시지번호
+	USER_ID            VARCHAR2(20)  NOT NULL, -- 보낸아이디
+	USER_ID2           VARCHAR2(20)  NOT NULL, -- 받는아이디
+	CONTENTS           VARCHAR2(500) NULL,     -- 내용
+	TRASH              VARCHAR2(10)  DEFAULT 'N' NOT NULL, -- 휴지통여부
+	FILE_NAME          VARCHAR2(200) NULL,     -- 파일명
+	ORIGINAL_FILE_NAME VARCHAR2(200) NULL,     -- 원본파일명
+	FILE_SIZE          NUMBER        NULL,     -- 파일사이즈
+	REGDATE            TIMESTAMP     DEFAULT SYSDATE NULL      -- 날짜
+);
+-- 메시지 기본키
+CREATE UNIQUE INDEX PK_MESSAGE
+	ON MESSAGE ( -- 메시지
+		MESSAGE_NO ASC -- 메시지번호
+	);
+
+-- 메시지
+ALTER TABLE MESSAGE
+	ADD
+		CONSTRAINT PK_MESSAGE -- 메시지 기본키
+		PRIMARY KEY (
+			MESSAGE_NO -- 메시지번호
+		);
+		
+		-- 메시지
+ALTER TABLE MESSAGE
+	ADD
+		CONSTRAINT FK_USER_INFO_TO_MESSAGE -- 회원정보 -> 메시지
+		FOREIGN KEY (
+			USER_ID -- 보낸아이디
+		)
+		REFERENCES USER_INFO ( -- 회원정보
+			USER_ID -- 아이디
+		);
+
+-- 메시지
+ALTER TABLE MESSAGE
+	ADD
+		CONSTRAINT FK_USER_INFO_TO_MESSAGE2 -- 회원정보 -> 메시지2
+		FOREIGN KEY (
+			USER_ID2 -- 받는아이디
+		)
+		REFERENCES USER_INFO ( -- 회원정보
+			USER_ID -- 아이디
 		);

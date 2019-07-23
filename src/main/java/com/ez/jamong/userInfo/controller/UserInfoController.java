@@ -23,7 +23,6 @@ import com.ez.jamong.userInfo.model.UserInfoService;
 import com.ez.jamong.userInfo.model.UserInfoVO;
 
 @Controller
-@RequestMapping("/main/userlogin")
 public class UserInfoController {
 	private Logger logger = LoggerFactory.getLogger(UserInfoController.class);
 	
@@ -33,19 +32,19 @@ public class UserInfoController {
 	@Autowired
 	UserInfoService userInfoService;
 	
-	@RequestMapping("/login.do")
+	@RequestMapping("/main/userlogin/login.do")
 	public String loginUser() {
 		logger.info("로그인 페이지 뷰");
 		return "/main/userlogin/login";
 	}
 	
-	@RequestMapping("/userRegist.do")
+	@RequestMapping("/main/userlogin/userRegist.do")
 	public String registUser() {
 		logger.info("회원가입 페이지 뷰");
 		return "/main/userlogin/userRegist";
 	}
 	
-	@RequestMapping(value="/userRegist.do",method = RequestMethod.POST)
+	@RequestMapping(value="/main/userlogin/userRegist.do",method = RequestMethod.POST)
 	public String registUser_POST(@ModelAttribute UserInfoVO vo,Model model) {
 		logger.info("회원가입 정보 vo={}",vo);
 		vo.setUserPwd(encoder.encode(vo.getUserPwd()));
@@ -67,7 +66,7 @@ public class UserInfoController {
 		return "common/message";
 	}
 	
-	@RequestMapping("/userCheckId.do")
+	@RequestMapping("/main/userlogin/userCheckId.do")
 	@ResponseBody
 	public int idCheck(@RequestParam String id) {
 		logger.info("아이디 중복 검사 파라미터 id={}",id);
@@ -79,15 +78,15 @@ public class UserInfoController {
 	}
 	
 	
-	@RequestMapping(value="/login.do",method=RequestMethod.GET)  
-	public String loginAdmin_get() {
+	@RequestMapping(value="/main/userlogin/login.do",method=RequestMethod.GET)  
+	public String loginUser_get() {
 		logger.info("회원 로그인화면 보기");
 		
 		return "main/userlogin/login";
 	}
 	
-	@RequestMapping(value = "/login.do",method=RequestMethod.POST)
-	public String loginAdmin_post(@RequestParam String userId,
+	@RequestMapping(value = "/main/userlogin/login.do",method=RequestMethod.POST)
+	public String loginUser_post(@RequestParam String userId,
 			@RequestParam String pwd,
 			@RequestParam (required=false) String saveId,
 			HttpServletRequest request, HttpServletResponse response,
@@ -132,8 +131,8 @@ public class UserInfoController {
 		return "common/message";
 	}
 	
-	@RequestMapping("/logout.do")
-	public String adminLogout(HttpSession session) {
+	@RequestMapping("/main/userlogin/logout.do")
+	public String userLogout(HttpSession session) {
 		logger.info("로그아웃 처리");
 		
 		session.removeAttribute("userId");
@@ -143,5 +142,36 @@ public class UserInfoController {
 		
 		return "redirect:/main/userlogin/login.do";
 	}
+	
+	@RequestMapping("/main/mypage/myInfo.do")
+	public String userInfo(HttpSession session,Model model,
+			@ModelAttribute UserInfoVO vo) {
+		logger.info("회원정보 수정 화면");
+		
+		return "/main/mypage/myInfo";
+	}
+	
+	@RequestMapping(value="/main/mypage/myInfo.do",method = RequestMethod.POST)
+	public String userInfo_POST(@ModelAttribute UserInfoVO vo,Model model) {
+		logger.info("회원수정 정보 vo={}",vo);
+		vo.setUserPwd(encoder.encode(vo.getUserPwd()));
+		int cnt = userInfoService.updateUser(vo);
+		
+		logger.info("회원수정 결과 cnt={}",cnt);
+		
+		String msg="",url="/mypage/myInfo.do";
+		if(cnt>0) {
+			msg="회원수정 성공!";
+			url="/mypage/mypage.do";
+		}else {
+			msg="회원가입 실패";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+
 }
 
