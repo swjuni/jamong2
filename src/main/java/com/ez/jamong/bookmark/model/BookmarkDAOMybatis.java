@@ -26,5 +26,11 @@ public class BookmarkDAOMybatis implements BookmarkDAO{
 	public int bookmarkDelete(int bookmarkNo) {
 		return sqlSession.delete(namespace+"bookmarkDelete", bookmarkNo);
 	}
+
+	@Override
+	public BookmarkVO bookmarkExist(BookmarkVO bookmarkVo) {
+		return sqlSession.selectOne(namespace+"bookmarkExist", bookmarkVo);
+	}
+
 	
 }

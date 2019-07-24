@@ -21,7 +21,12 @@ public class BookmarkServiceImpl implements BookmarkService{
 	}
 
 	@Override
-	public int bookmarkDelete(List<BookmarkVO> list) {
+	public int bookmarkDelete(int bookmarkNo) {
+		return bookmarkDao.bookmarkDelete(bookmarkNo);
+	}
+	
+	@Override
+	public int bookmarkDeleteList(List<BookmarkVO> list) {
 		int cnt = 0;
 		
 		try {
@@ -36,6 +41,11 @@ public class BookmarkServiceImpl implements BookmarkService{
 		}
 		
 		return cnt;
+	}
+
+	@Override
+	public BookmarkVO bookmarkExist(BookmarkVO bookmarkVo) {
+		return bookmarkDao.bookmarkExist(bookmarkVo);
 	}
 
 }

@@ -1,7 +1,10 @@
 package com.ez.jamong.message.model;
 
+import java.sql.Timestamp;
+
 public class MessageVO {
 	
+	private int messageNo;
 	private String userId;//보낸아이디
 	private String userId2;//받는아이디
 	private String contents;//내용
@@ -9,6 +12,7 @@ public class MessageVO {
 	private String fileName;
 	private String originalFileName;
 	private long fileSize;
+	private Timestamp regdate;
 	public String getUserId() {
 		return userId;
 	}
@@ -51,11 +55,29 @@ public class MessageVO {
 	public void setFileSize(long fileSize) {
 		this.fileSize = fileSize;
 	}
+	public Timestamp getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Timestamp regdate) {
+		this.regdate = regdate;
+	}
+	
+	
+	public int getMessageNo() {
+		return messageNo;
+	}
+	public void setMessageNo(int messageNo) {
+		this.messageNo = messageNo;
+	}
 	@Override
 	public String toString() {
-		return "MessageVO [userId=" + userId + ", userId2=" + userId2 + ", contents=" + contents + ", trash=" + trash
-				+ ", fileName=" + fileName + ", originalFileName=" + originalFileName + ", fileSize=" + fileSize + "]";
-	}   
+		return "MessageVO [messageNo=" + messageNo + ", userId=" + userId + ", userId2=" + userId2 + ", contents="
+				+ contents + ", trash=" + trash + ", fileName=" + fileName + ", originalFileName=" + originalFileName
+				+ ", fileSize=" + fileSize + ", regdate=" + regdate + "]";
+	}
+	
+	
+	
 	
 	
 }

@@ -23,4 +23,9 @@
 		delete from bookmark
 		where bookmark_no=#{bookmarkNo}
 	</delete>
+	
+	<select id="bookmarkExist" parameterType="bookmarkVo" resultType="bookmarkVo">
+		select * from bookmark
+		where user_no=#{userNo} and expert_no=${expertNo}
+	</select>
 </mapper>

@@ -13,6 +13,7 @@ public class ExpertVO {
 	private String bankName;
 	private String accountNo;
 	private int userNo;
+	
 	public int getExpertNo() {
 		return expertNo;
 	}
@@ -62,6 +63,7 @@ public class ExpertVO {
 	public void setInformation(String information) {
 		this.information = information;
 	}
+	
 	public String getEtc() {
 		return etc;
 	}
@@ -86,7 +88,6 @@ public class ExpertVO {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
-	
 	@Override
 	public String toString() {
 		return "ExpertVO [expertNo=" + expertNo + ", id=" + id + ", fileName=" + fileName + ", originalFileName="
