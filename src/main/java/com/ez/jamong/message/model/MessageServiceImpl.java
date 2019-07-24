@@ -25,5 +25,31 @@ public class MessageServiceImpl implements MessageService{
 		return messageDao.selectRecieveMessage(userid);
 	}
 
+
+	@Override
+	public List<MessageVO> trashRecieveMessage(String userid) {
+		return messageDao.trashRecieveMessage(userid);
+	}
+
+	@Override
+	public int updateSendMessage(int messageNo) {
+		return messageDao.updateSendMessage(messageNo);
+	}
+
+	@Override
+	public int updateRecieveMessage(int messageNo) {
+		return messageDao.updateRecieveMessage(messageNo);
+	}
+
+	@Override
+	public int deleteRecieveMessage(int messageNo) {
+		return messageDao.deleteRecieveMessage(messageNo);
+	}
+
+	@Override
+	public int recoveryRecieveMessage(int messageNo) {
+		return messageDao.recoveryRecieveMessage(messageNo);
+	}
+
 	
 }

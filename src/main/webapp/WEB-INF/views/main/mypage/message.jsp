@@ -7,6 +7,22 @@
 
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->
 <link href="<c:url value='/assets/css/style2.css'/>" rel="stylesheet">
+<style>
+.header{
+	margin-left: 0px;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.modaldata').click(function(){
+		alert($(this).attr('data-user1'));
+		$('#modalsId').val($(this).attr('data-user1'));
+		$('#modalrId').val($(this).attr('data-user2'));
+		$('#modalcontents').val($(this).attr('data-contents'));
+	});
+	
+});
+</script>
 <div class="main-content">
             <div class="row">
               <div class="col-lg-12">
@@ -25,8 +41,8 @@
                             </div>
                           </div>
                           <div class="inbox-body text-center">
-                            <!-- Modal -->
-                            <div aria-hidden="true" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                            <%--modal --%>
+                            <div aria-hidden="true" role="dialog" tabindex="-1" id="myModal1" class="modal fade">
                               <div class="modal-dialog">
                                 <div class="modal-content text-left">
                                   <div class="modal-header">
@@ -59,7 +75,7 @@
                                         <div class="col-lg-offset-2 col-lg-10">
                                           <span class="btn green fileinput-button"><i class="fa fa-plus fa fa-white"></i>
 																	<span>첨부</span>
-                                          <input type="file" name="files[]" multiple="">
+                                          <input type="file" name="files[]" multiple="multiple">
                                           </span>
                                           <button class="btn btn-primary" type="submit">보내기</button>
                                         </div>
@@ -67,11 +83,9 @@
                                     </form>
                                   </div>
                                 </div>
-                                <!-- /.modal-content -->
                               </div>
-                              <!-- /.modal-dialog -->
                             </div>
-                            <!-- /.modal -->
+                            <%--modal --%>
                           </div>
                           <ul class="inbox-nav inbox-divider">
                             <li class="breadcrumb-item active">
@@ -88,7 +102,7 @@
 
                           <div class="inbox-body text-center">
                             <div class="btn-group">
-                              <a class="btn mini btn-primary" href="#myModal" data-toggle="modal">
+                              <a class="btn mini btn-primary" href="#myModal1" data-toggle="modal">
                                                             쪽지보내기
                                                         </a>
                             </div>
@@ -112,10 +126,10 @@
           </div>
 <!--아래는 mypage 공통 사용 코드  -->
 			
-					</div><!-- end col -->
-				</div><!-- end row -->
-			</div><!-- end container -->
-		</section><!-- end section -->
+					</div>
+				</div>
+			</div>
+		</section>
 
 <%@include file="../incs/bottom_main.jsp" %>
 <!-- 화면별 고유 하단js 포함할 위치 -->

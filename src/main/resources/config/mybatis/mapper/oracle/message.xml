@@ -9,12 +9,25 @@
 			#{fileName}, #{fileSize}, #{originalFileName})
 	</insert>
 	<select id="selectSendMessage" resultType="messageVo" parameterType="string">
-		select * from message where user_id=#{userId}
+		select * from message where user_id=#{userId} and trash='N' order by regdate desc
 	</select>
 	<select id="selectRecieveMessage" resultType="messageVo" parameterType="string">
-		select * from message where user_id2=#{userId}
+		select * from message where user_id2=#{userId} and trash2='N' order by regdate desc
 	</select>
+	<select id="trashRecieveMessage" resultType="messageVo" parameterType="string">
+		select * from message where user_id2=#{userId} and trash2='Y' order by regdate desc
+	</select>
+	
+	<update id="updateSendMessage" parameterType="int">
+		update message set trash='Y' where message_no=#{messageNo}
+	</update>
+	<update id="updateRecieveMessage" parameterType="int">
+		update message set trash2='Y' where message_no=#{messageNo}
+	</update>
+	<update id="deleteRecieveMessage" parameterType="int">
+		update message set trash2='D' where message_no=#{messageNo}
+	</update>
+	<update id="recoveryRecieveMessage" parameterType="int">
+		update message set trash2='N' where message_no=#{messageNo}
+	</update>
 </mapper>
-
-
-

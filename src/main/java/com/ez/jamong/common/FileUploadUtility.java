@@ -24,6 +24,7 @@ import com.ez.jamong.announcce.model.AnnouncceVO;
 import com.ez.jamong.bannerEx.model.BannerExVO;
 import com.ez.jamong.categoryl.model.CategoryLVO;
 import com.ez.jamong.categorym.model.CategoryMVO;
+import com.ez.jamong.message.model.MessageVO;
 
 @Component
 public class FileUploadUtility {
@@ -35,6 +36,7 @@ public class FileUploadUtility {
 	public static final int CATEGORYL_UPLOAD=3;	//카테고리(대) 파일 업로드
 	public static final int CATEGORYM_UPLOAD=4;	//카테고리(중) 파일 업로드
 	public static final int BANNER_UPLOAD=5;	//배너 파일 업로드에 사용
+	public static final int MESSAGEFILE_UPLOAD=6;	//메시지 파일 업로드에 사용
 	
 	@Resource(name="fileUploadProperties")
 	Properties props;
@@ -129,6 +131,8 @@ public class FileUploadUtility {
 				result = props.getProperty("category_m.upload.path.test");
 			}else if(uploadPathGb==BANNER_UPLOAD) {
 				result = props.getProperty("banner.upload.path.test");
+			}else if(uploadPathGb==MESSAGEFILE_UPLOAD) {
+				result = props.getProperty("message.upload.path.test");
 			}
 		}else {
 			//배포 경로
@@ -143,6 +147,8 @@ public class FileUploadUtility {
 				key="category_m.upload.path";
 			}else if(uploadPathGb==BANNER_UPLOAD) {
 				key="banner.upload.path";
+			}else if(uploadPathGb==MESSAGEFILE_UPLOAD) {
+				key="message.upload.path";
 			}
 			String path = props.getProperty(key);	//pds_upload
 			//실제 물리적 경로 구하기
@@ -176,6 +182,9 @@ public class FileUploadUtility {
 			map = tempInfo(vo.getImgOriginalName(), vo.getImgSize());
 		}else if(uploadPathGb==BANNER_UPLOAD) {
 			BannerExVO vo = (BannerExVO) objectVo;
+			map = tempInfo(vo.getOriginalFileName(), vo.getFileSize());
+		}else if(uploadPathGb==MESSAGEFILE_UPLOAD) {
+			MessageVO vo = (MessageVO) objectVo;
 			map = tempInfo(vo.getOriginalFileName(), vo.getFileSize());
 		}
 		

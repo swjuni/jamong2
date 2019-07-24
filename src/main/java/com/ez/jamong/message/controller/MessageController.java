@@ -1,5 +1,6 @@
 package com.ez.jamong.message.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ez.jamong.common.FileUploadUtility;
 import com.ez.jamong.message.model.MessageService;
 import com.ez.jamong.message.model.MessageVO;
+import com.fasterxml.jackson.databind.annotation.JsonAppend.Attr;
 
 @Controller
 public class MessageController {
@@ -28,9 +30,12 @@ public class MessageController {
 	@Autowired private FileUploadUtility fileUtility;
 	
 	@RequestMapping("/main/mypage/message.do")
-	public String message(Model model) {
+	public String message(Model model,HttpServletRequest request) {
 		logger.info("쪽지함 화면");
-		
+		List<MessageVO> list=null;
+		HttpSession session = request.getSession();
+		list = messageService.selectRecieveMessage((String)session.getAttribute("userId"));
+		model.addAttribute("list", list);
 		return "main/mypage/message";
 	}
 	
@@ -44,9 +49,48 @@ public class MessageController {
 		}else if(type==2) {
 			list = messageService.selectSendMessage((String)session.getAttribute("userId"));
 		}else {
-			list = messageService.selectRecieveMessage((String)session.getAttribute("userId"));
+			list = messageService.trashRecieveMessage((String)session.getAttribute("userId"));
 		}
 		model.addAttribute("list", list);
+		return "main/mypage/message";
+	}
+	
+	@RequestMapping("/main/mypage/messageup1.do")
+	public String messageUpdate1(@RequestParam int messageNo) {
+		logger.info("수신자 휴지통 업데이트 파라미터 messageNo={}",messageNo);
+		int cnt = 0;
+		cnt = messageService.updateRecieveMessage(messageNo);
+
+		logger.info("수신자 휴지통 업데이트 cnt = {}",cnt);
+		return "main/mypage/message";
+	}
+	
+	@RequestMapping("/main/mypage/messageup2.do")
+	public String messageUpdate2(@RequestParam int messageNo) {
+		logger.info("발신자 휴지통 업데이트 파라미터 messageNo={}",messageNo);
+		int cnt = 0;
+		cnt = messageService.updateSendMessage(messageNo);
+		logger.info("발신자 휴지통 업데이트 cnt = {}",cnt);
+		return "main/mypage/message";
+	}
+	
+	@RequestMapping("/main/mypage/messageup3.do")
+	public String messageUpdate3(@RequestParam int messageNo) {
+		logger.info("수신자 휴지통 삭제 파라미터 messageNo={}",messageNo);
+		int cnt = 0;
+		cnt = messageService.deleteRecieveMessage(messageNo);
+
+		logger.info("수신자 휴지통에서 삭제 cnt = {}",cnt);
+		return "main/mypage/message";
+	}
+	
+	@RequestMapping("/main/mypage/messageup4.do")
+	public String messageUpdate4(@RequestParam int messageNo) {
+		logger.info("수신자 휴지통 복구 파라미터 messageNo={}",messageNo);
+		int cnt = 0;
+		cnt = messageService.recoveryRecieveMessage(messageNo);
+
+		logger.info("수신자 휴지통에서 복구 cnt = {}",cnt);
 		return "main/mypage/message";
 	}
 	

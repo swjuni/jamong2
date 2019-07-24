@@ -26,5 +26,32 @@ public class MessageMybatis implements MessageDAO{
 	public List<MessageVO> selectRecieveMessage(String userid) {
 		return sqlSession.selectList(namespace+"selectRecieveMessage",userid);
 	}
+
+
+	@Override
+	public List<MessageVO> trashRecieveMessage(String userid) {
+		return sqlSession.selectList(namespace+"trashRecieveMessage",userid);
+	}
+
+	@Override
+	public int updateSendMessage(int messageNo) {
+		return sqlSession.update(namespace+"updateSendMessage",messageNo);
+	}
+
+	@Override
+	public int updateRecieveMessage(int messageNo) {
+		return sqlSession.update(namespace+"updateRecieveMessage",messageNo);
+	}
+
+	@Override
+	public int deleteRecieveMessage(int messageNo) {
+		return sqlSession.update(namespace+"deleteRecieveMessage",messageNo);
+	}
+
+	@Override
+	public int recoveryRecieveMessage(int messageNo) {
+		return sqlSession.update(namespace+"recoveryRecieveMessage",messageNo);
+	}
+	
 	
 }
