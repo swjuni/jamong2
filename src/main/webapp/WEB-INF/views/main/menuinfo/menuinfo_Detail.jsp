@@ -2,8 +2,55 @@
 <%@include file="../incs/top_main.jsp" %>
 <!-- 각 화면별 내용 코딩-->
 <script type="text/javascript">
+	var markS = ${bookmarkExist};
+	
+	$(function(){
+		if(${bookmarkExist}){
+			//alert("${bookmarkExist}"+"트루가 와야함");
+			$('#bookmarkBtn').prepend("<i class='fa fa-heart' id='bookmarkTag' style='color: red;'></i>");
+		}else if(!${bookmarkExist} ){
+			//alert("${bookmarkExist}"+"펄스가 와야함");
+			$('#bookmarkBtn').prepend("<i class='fa fa-heart-o' id='bookmarkTag'></i>");
+		}  
+	});
+		
 	function report(){
-		location.href="<c:url value='/mypage/reportAdd.do?expertNo=1&productNo=${param.productNo}'/>";
+		location.href="<c:url value='/mypage/reportAdd.do?expertNo=${menuinfoVo.expertNo}&productNo=${param.productNo}'/>";
+	}
+	
+	function bookmark(){
+		//ajax아닌 일반 전송 (이경우 컨트롤러에서도 일부값 변경해야함)
+		//location.href="<c:url value='/mypage/bookmarkExist.do?expertNo=${menuinfoVo.expertNo}'/>";
+		//ajax 방식 사용
+		if(markS){
+			if(!confirm("즐겨찾기 삭제하시겠습니까?")){
+				return false;
+			}
+		}else if(!markS ){
+			if(!confirm("즐겨찾기 등록하시겠습니까?")){
+				return false;
+			}
+		}
+		
+		$.ajax({
+			url:"<c:url value='/mypage/bookmarkExist.do'/>",
+			type:"get",
+			data:{
+				expertNo:"${menuinfoVo.expertNo}",
+				},
+			success:function(res){
+				if(res==0){
+					$('#bookmarkTag').attr("class",'fa fa-heart-o').css('color','black');
+					markS=false;
+				}else if(res==1){
+					$('#bookmarkTag').attr("class",'fa fa-heart').css('color','red');
+					markS=true;
+				}
+			},
+			error:function(xhr,status, error){
+				alert(status+":"+error);
+			}
+		});
 	}
 </script>
 <style type="text/css">
@@ -173,7 +220,7 @@
 				<div class="pitem">
 					<div class="pricing-box clearfix">
 						<div class="pricing-header" style="padding: 20px 0;">
-							<h4 style="color:black; text-align: left;">상품명들어가는 위치</h4>
+							<h4 style="color:black; text-align: left;">${menuinfoVo.productName }</h4>
 						</div><!-- end pricing-header -->
 						<div class="panel-group" id="accordion">
 							<div class="panel panel-default">
@@ -279,12 +326,21 @@
 
 					<div class="pricing-box clearfix" style="border: 1px solid #efefef;">
 						<div class="pricing-top" style="color: black; padding: 20px; background: white;">
-							<button id="bookmarkBtn" type="button" class="inline-block"
+							<button id="bookmarkBtn" type="button" class="inline-block" onclick="bookmark()"
 								style="border: 0px; background: transparent; position: absolute; font-size: 16px; right: 40px;">
-								<!-- if문 처리할 곳 -->
-								<i class="fa fa-heart-o"></i>
-								<i class="fa fa-heart" style="color: red;"></i>
-								<!-- /if-->
+								<!-- ajax 방식으로 사용할 경우 아래 위치에 ajax 태그 입력시키기-->
+								
+								
+								
+								<!-- ajax 방식으로 사용 안할 경우 아래 태그 사용-->
+								<%-- 
+								<c:if test="${bookmarkExist }">
+									<i class="fa fa-heart" style="color: red;"></i>
+								</c:if>
+								<c:if test="${!bookmarkExist }">
+									<i class="fa fa-heart-o"></i>
+								</c:if>
+								 --%>
 								<span style="font-size: 15px;"> 찜하기</span> 
 							</button>
 							
@@ -300,11 +356,16 @@
 								<i class="flaticon-crown"></i>
 							</c:if>
 							<div class="client-box" style="width: 120px; display: inline-block;">
-								<a href="#"><img src="/jamong/assets/images/bookingSystem/2.png" alt="" class="img-responsive"></a>
+								<c:if test="${empty expertVo.fileName }">
+									<a href="#"><img src="/jamong/assets/images/bookingSystem/2.png" alt="" class="img-responsive"></a>
+								</c:if>
+								<c:if test="${!empty expertVo.fileName }">
+									<a href="#"><img src="<c:url value='/upload/expert/${expertVo.fileName }'/>" alt="" class="img-responsive"></a>
+								</c:if>
 							</div> 
-							<h4 style="font-weight: bold;">닉네임</h4>
+							<h4 style="font-weight: bold;">${expertVo.id}</h4>
 							<div style="font-size: 14px;">연락가능시간 : </div>
-							<div style="font-size: 14px;">10시~12시 </div>
+							<div style="font-size: 14px;">${expertVo.serviceableTime }</div>
 						</div><!-- end pricing-top -->
 						<div class="pricing-details">
 							<div class="pricing-footer text-center">
@@ -323,7 +384,7 @@
 						</div><!-- end pricing-details -->
 						<div style="background-color: #ffffff;padding: 10px 20px;">
 							<span><b>전문가 소개</b></span><br>
-							<span>내맘대로 작업하는게 문제다</span>
+							<span>${expertVo.introduction }</span>
 						</div>
 					</div><!-- end pricing-box -->
 				</div>

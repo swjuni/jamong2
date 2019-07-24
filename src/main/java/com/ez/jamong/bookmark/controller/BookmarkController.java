@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -17,16 +18,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ez.jamong.bookmark.model.BookmarkListVO;
 import com.ez.jamong.bookmark.model.BookmarkService;
 import com.ez.jamong.bookmark.model.BookmarkVO;
+import com.ez.jamong.expert.model.ExpertService;
+import com.ez.jamong.expert.model.ExpertVO;
 
 @Controller
 @RequestMapping("/mypage")
 public class BookmarkController {
 	private Logger logger = LoggerFactory.getLogger(BookmarkController.class);
 	@Autowired private BookmarkService bookmarkService;
+	@Autowired private ExpertService expertService;
 	
 	@RequestMapping("/bookmark.do")
 	public String bookmark(HttpSession session, Model model) {
@@ -72,7 +77,7 @@ public class BookmarkController {
 		
 		List<BookmarkVO> list = bookmarkItems.getBookmarkItems();
 		
-		int cnt = bookmarkService.bookmarkDelete(list);
+		int cnt = bookmarkService.bookmarkDeleteList(list);
 		logger.info("선택한 즐겨찾기 삭제 결과, cnt={}", cnt);
 		
 		String msg="", url="/mypage/bookmark.do";
@@ -88,34 +93,41 @@ public class BookmarkController {
 		
 		return "common/message";
 	}
-	
-	@RequestMapping("/bookmarkAdd.do")
-	public String bookmarkAdd(@RequestParam(defaultValue = "0") int expertNo, HttpSession session, Model model) {
-		logger.info("즐겨찾기 등록 요청 파라미터 expertNo={}", expertNo);
-		if(expertNo==0) {
-			model.addAttribute("msg", "잘못된 url입니다.");
-			model.addAttribute("url", "/main/index_main.do");
+
+	@RequestMapping("bookmarkExist.do")
+	@ResponseBody
+	public int bookmarkExist(@RequestParam(defaultValue = "0") int expertNo, HttpSession session, HttpServletRequest request) {
+		logger.info("즐겨찾기 상태 확인 파라미터 expertNo={}", expertNo);
+		
+		int result = -1;
+		if(expertNo!=0) {
+			BookmarkVO bookmarkVo = new BookmarkVO();
+			bookmarkVo.setUserNo((Integer)session.getAttribute("userNo"));
+			bookmarkVo.setExpertNo(expertNo);
 			
-			return "common/message";
+			BookmarkVO bookmarkVoExist = new BookmarkVO();
+			bookmarkVoExist = bookmarkService.bookmarkExist(bookmarkVo);
+			if(bookmarkVoExist!=null) {	//기존에 즐겨찾기 상태 - 등록된 즐겨찾기를 삭제하는 메서드
+				int cnt = bookmarkService.bookmarkDelete(bookmarkVoExist.getBookmarkNo());
+				logger.info("즐겨찾기 삭제 결과, cnt={}", cnt);
+				if(cnt>0) result=0;
+			}else {	//기존에 즐겨찾기 상태가 아님 - 즐겨찾기 등록 처리
+				//expertNo 존재여부 검증 추가
+				ExpertVO expertVo = expertService.selectByExpertNo(expertNo);
+				logger.info("expertVo상세보기 결과 vo={}", expertVo);
+				if(expertVo!=null) {
+					int cnt = bookmarkService.bookmarkAdd(bookmarkVo);
+					logger.info("즐겨찾기 등록 결과, cnt={}", cnt);
+					if(cnt>0) result=1;
+				}
+			}
 		}
-		BookmarkVO bookmarkVo = new BookmarkVO();
-		bookmarkVo.setUserNo((Integer)session.getAttribute("userNo"));
-		bookmarkVo.setExpertNo(expertNo);
 		
-		int cnt = bookmarkService.bookmarkAdd(bookmarkVo);
-		logger.info("즐겨찾기 등록 결과, cnt={}", cnt);
-		 
-		String msg="", url="";
-		if(cnt>0) {
-			msg="즐겨찾기 등록 완료.";
-			url="/mypage/bookmark.do";
-		}else {
-			msg="즐겨찾기 등록 실패";
-			url="/main/index_main.do";
-		}
-		model.addAttribute("msg", msg);
-		model.addAttribute("url", url);
+		//페이지 직접 로딩으로 반환할 경우 아래 코드 사용 반환타입도 String으로 변경
+		//String referer = request.getHeader("Referer");
+		//return "redirect:"+referer;
 		
-		return "common/message";
+		//ajax 방식으로 반환할 경우 아래 값 리턴
+		return result;
 	}
 }

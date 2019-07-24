@@ -8,11 +8,18 @@ public class ExpertVO {
 	private int fileSize;
 	private String serviceableTime;
 	private int workAmount;
-	private String clob;
+	private String introduction;
 	private String etc;
 	private String bankName;
 	private String accountNo;
 	private int userNo;
+	
+	public String getIntroduction() {
+		return introduction;
+	}
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
 	public int getExpertNo() {
 		return expertNo;
 	}
@@ -55,12 +62,6 @@ public class ExpertVO {
 	public void setWorkAmount(int workAmount) {
 		this.workAmount = workAmount;
 	}
-	public String getClob() {
-		return clob;
-	}
-	public void setClob(String clob) {
-		this.clob = clob;
-	}
 	public String getEtc() {
 		return etc;
 	}
@@ -85,13 +86,12 @@ public class ExpertVO {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
-	
 	@Override
 	public String toString() {
 		return "ExpertVO [expertNo=" + expertNo + ", id=" + id + ", fileName=" + fileName + ", originalFileName="
 				+ originalFileName + ", fileSize=" + fileSize + ", serviceableTime=" + serviceableTime + ", workAmount="
-				+ workAmount + ", clob=" + clob + ", etc=" + etc + ", bankName=" + bankName + ", accountNo=" + accountNo
-				+ ", userNo=" + userNo + "]";
+				+ workAmount + ", introduction=" + introduction + ", etc=" + etc + ", bankName=" + bankName
+				+ ", accountNo=" + accountNo + ", userNo=" + userNo + "]";
 	}
 	
 }
