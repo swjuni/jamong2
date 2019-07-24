@@ -27,16 +27,17 @@
 	
 	.col-md-9{
 		margin-left: 42px;
-		margin-top: 21px;
+		margin-top: 5px;
 	}
 	
 	.mb30 {
+		margin-top: 12px;
 	    width: 250px;
 	    height: 1000px;
 	}
 
 	.col-md-5 {
-		margin-top: -3px;
+		margin-top: 9px;
 	    width: 500px;
 	    height: 1000px;
 	}
@@ -60,9 +61,53 @@
 	button{
 		margin-left: 70px;
 	}
+	
+	.service-list .col-md-4 {
+	    width: 241px;
+	}
+	
+	h4{
+		font-size: 18px;
+		padding: 0;
+	}
 </style>
 <%@include file="../incs/side_mypage.jsp"%>
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->
+<div class="row service-list text-center">
+					<div class="col-md-4 col-sm-12 col-xs-12 first">
+						<div class="service-wrapper wow fadeIn" style="visibility: visible; animation-name: fadeIn;">	
+							<i class="flaticon-competition"></i>
+							<div class="service-details">
+								<h4><a 
+								<c:if test="${param.state=='expert' }">
+									style="color:#f47664;"
+								</c:if>
+								 href="<c:url value='/registExpert/registExpert.do?state=expert&userNo=${sessionScope.userNo }'/>">전문가 등록</a></h4>
+							</div>
+						</div><!-- end service-wrapper -->
+					</div><!-- end col -->
+
+					<div class="col-md-4 col-sm-12 col-xs-12">
+						<div class="service-wrapper wow fadeIn" style="visibility: visible; animation-name: fadeIn;">	
+							<i class="flaticon-content"></i>
+							<div class="service-details">
+								<h4><a 
+								<c:if test="${param.state=='profile' }">
+									style="color:#f47664;"
+								</c:if>>프로필 작성</a></h4>
+							</div>
+						</div><!-- end service-wrapper -->
+					</div><!-- end col -->
+
+					<div class="col-md-4 col-sm-12 col-xs-12 last">
+						<div class="service-wrapper wow fadeIn" style="visibility: visible; animation-name: fadeIn;">	
+							<i class="flaticon-html"></i>
+							<div class="service-details">
+								<h4><a href="service-02.html">서비스 등록</a></h4>
+							</div>
+						</div><!-- end service-wrapper -->
+					</div><!-- end col -->
+				</div>
 				<div class="col-md-3 mb30">
 					<div class="contact-details">
 						<ul>
@@ -87,20 +132,40 @@
 							<span id="confirm" class="btn btn-primary" style="width: 20%; padding: 12px 0px; border-radius: 3px;">인증하기</span>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" id="subject" name="bankName" required="required">
+							<input type="text" class="form-control" id="subject" name="bankName" required="required"
+							<c:if test="${!empty expert }">
+								value="${expert.bankName }"
+							</c:if>
+							>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" id="subject" name="accountNo" required="required">
+							<input type="text" class="form-control" id="subject" name="accountNo" required="required"
+							<c:if test="${!empty expert }">
+								value="${expert.accountNo }"
+							</c:if>
+							>
 						</div>
 						<div class="form-group agreement" >
 							  <iframe name='hipinfo' frameborder='0' src='<%=request.getContextPath() %>/resources/agreement.html' scrolling="auto" border="no" maginwidth="0" marginheight="0" frameborder="0" style="height: 100%; width: 100%; background: #f0f1f2;">
 							  </iframe>
-							<small><strong>* 본인은 위 약관의 내용을 모두 확인하였으며, 동의합니다.&nbsp;</strong></small> <label  style="float: right;"><small>동의합니다&nbsp;</small><input type="checkbox" name="agree" id="agree"></label>
-							<input type="hidden" name="agreeText" id="agreeText">
+							<small><strong>* 본인은 위 약관의 내용을 모두 확인하였으며, 동의합니다.&nbsp;</strong></small> <label  style="float: right;">
+							<c:if test="${empty expert }">
+							<small>동의합니다&nbsp;</small>
+							<input type="checkbox" name="agree" id="agree"></label>
+							</c:if>
+							<c:if test="${!empty expert }">
+							<small>이미 동의하셨습니다</small>
+							</c:if>
+							<input type="hidden" name="agreeText" id="agreeText"
+							<c:if test="${!empty expert }">
+							value='Y'
+							</c:if>
+							>
 						</div>
 						<br> 
-						<button type="submit" id="submit" name="submit"	class="btn btn-primary">정보 저장</button>
+						<button type="submit" id="submit" name="submit"	class="btn btn-primary" style="margin-left: 29px;">저장하고 다음으로</button>
 					</form>
+				</div>
 					<!--아래는 mypage 공통 사용 코드  -->
 			</div>
 <!-- end col -->

@@ -88,6 +88,12 @@
 		where user_id=#{userId}
 	</select>
 	
+	<update id="updateUser" parameterType="userinfoVo">
+		update user_info set
+		user_pwd=#{userPwd},user_name=#{userName},
+		hp=#{hp},zipcode=#{zipcode},address=#{address},address_detail=#{addressDetail} where user_id=#{userId}
+	</update>
+	
 	<select id="selectByuserNo" parameterType="int" resultType="userinfoVo">
 		select * from user_info
 		where user_no=#{userNo}

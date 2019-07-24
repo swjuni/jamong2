@@ -10,4 +10,5 @@ public interface ExpertService {
 	public int selectTotalCount(SearchVO searchVo);
 	public int InsertExpert(ExpertVO expertVo);
 	public ExpertVO selectByExpertNo(int expertNo);
+	public ExpertVO selectByUserNo(int userNo);
 }

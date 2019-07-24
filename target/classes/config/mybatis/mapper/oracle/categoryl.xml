@@ -13,7 +13,7 @@
 	</insert>
 	
 	<select id="selectCategorylAll" resultType="categorylVo">
-		select * from category_l
+		select * from category_l order by category_no
 	</select>
 	
 	<select id="selectCategorylByNo" parameterType="int" resultType="categorylVo">

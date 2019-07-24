@@ -79,4 +79,9 @@
 		select * from expert
 		where expert_no=#{expertNo}
 	</select>
+	
+	<select id="selectByUserNo" parameterType="int" resultType="expertVo">
+		select * from expert
+		where user_no=#{userNo}
+	</select>
 </mapper>
