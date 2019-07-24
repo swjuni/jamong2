@@ -45,10 +45,12 @@
 					
 							<div class="col-md-3 col-sm-6">
 								<div class="service-box">
+									<a href="<c:url value='/main/mypage/message.do'/>">
 									<i class="flaticon-message"></i>
 									<h4>메시지</h4>
 									<p>Manage all of your SEO with these nifty plugins and toolbars
 										that help you do your.</p>
+									</a>
 								</div>
 								<!-- end service-box -->
 								<div class="service-box nmb">
@@ -62,10 +64,12 @@
 							
 							<div class="col-md-3 col-sm-6">
 								<div class="service-box">
+									<a href="<c:url value='/main/mypage/myInfo.do'/>">
 									<i class="flaticon-translation-and-localization"></i>
 									<h4>나의 정보</h4>
 									<p>Manage all of your SEO with these nifty plugins and toolbars
 										that help you do your.</p>
+									</a>
 								</div>
 								<!-- end service-box -->
 								<div class="service-box nmb">

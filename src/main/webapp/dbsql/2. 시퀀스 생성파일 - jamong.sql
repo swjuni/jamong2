@@ -31,7 +31,7 @@ EXPERT_Q_SEQ	전문가문의
 BOOKMARK_SEQ	즐겨찾기
 SCHEDULE_SEQ	전문가일정
 FILES_SEQ	자료실
-
+MESSAGE_SEQ	메시지첨부파일
 */
 
 --시퀀스 삭제
@@ -129,7 +129,8 @@ drop sequence SCHEDULE_SEQ;
 /* FILES */
 drop sequence FILES_SEQ;
 
-
+/* MESSAGE */
+drop sequence MESSAGE_SEQ;
 
 --시퀀스 생성
 
@@ -315,6 +316,12 @@ nocache;
 
 /* FILES */
 create sequence FILES_SEQ
+increment by 1
+start with 1
+nocache;
+
+/* MESSAGE */
+create sequence MESSAGE_SEQ
 increment by 1
 start with 1
 nocache;

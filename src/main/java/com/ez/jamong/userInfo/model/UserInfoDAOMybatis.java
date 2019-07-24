@@ -54,6 +54,11 @@ public class UserInfoDAOMybatis implements UserInfoDAO{
 	}
 
 	@Override
+	public int updateUser(UserInfoVO vo) {
+		return session.update(namespace+"updateUser",vo);
+	}
+	
+	@Override
 	public UserInfoVO selectByuserNo(int userNo) {
 		return session.selectOne(namespace+"selectByuserNo", userNo);
 	}

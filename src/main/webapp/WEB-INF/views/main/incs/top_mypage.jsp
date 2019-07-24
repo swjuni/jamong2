@@ -7,10 +7,102 @@
 <!--[if gt IE 9]><!--> <html class="no-js " lang="en"> <!--<![endif]-->
 <head>
 <%@include file="head_mypage.jsp" %>
-
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/jquery.min.js"/>"></script>
 <script type="text/javascript">
+ 		$(document).ready(function(){
+ 		});
+    	function zipcode123(){
+        new daum.Postcode({
+            oncomplete: function(data) {
+            	var zip=document.getElementById('zipcode');
+            	var addr=document.getElementById('address');
+               	zip.value=data.zonecode;
+               	addr.value=data.roadAddress;
+               	zip.readOnly = true;
+               	addr.readOnly = true;
+               	
+            }
+        }).open();
+    	}
+    	
+    	function inputPhoneNumber(obj) {/* 전화번호 하이픈(-) 자동삽입 */
+    	    var number = obj.value.replace(/[^0-9]/g, "");
+    	    var phone = "";
 
+    	    if(number.length < 4) {
+    	        return number;
+    	    } else if(number.length < 7) {
+    	        phone += number.substr(0, 3);
+    	        phone += "-";
+    	        phone += number.substr(3);
+    	    } else if(number.length < 11) {
+    	        phone += number.substr(0, 3);
+    	        phone += "-";
+    	        phone += number.substr(3, 3);
+    	        phone += "-";
+    	        phone += number.substr(6);
+    	    } else {
+    	        phone += number.substr(0, 3);
+    	        phone += "-";
+    	        phone += number.substr(3, 4);
+    	        phone += "-";
+    	        phone += number.substr(7);
+    	    }
+    	    obj.value = phone;
+    	}
+    	var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    	$(function(){
+    		$('#name').focusout(function(){//값 없을시 필수입력이라는 표시 출력
+    			if($(this).val().length==0){
+    				$(this).css("border","2px solid red");
+    				$(this).attr( 'placeholder', '성명(필수 입력값입니다)' );
+    			}else{
+    				$(this).css("border","2px solid skyblue");
+    			}
+    		});
+    		$('#pwd').focusout(function(){
+    			if($(this).val().length==0){
+    				$(this).css("border","2px solid red");
+    				$(this).attr( 'placeholder', '필수 입력값입니다' );
+    			}else{
+    				$(this).css("border","2px solid skyblue");
+    			}
+    		});
+    		
+    		$('#pwdchk').focusout(function(){
+    			if(!($('#pwd').val()==$('#pwdchk').val())){
+    				$(this).css("border","2px solid red");
+    			}else{
+    				$(this).css("border","2px solid skyblue");
+    			}
+    		});
+    		
+    	//가입 누를때 입력 안된사항들 체크
+    	$('#sign').click(function(){
+			if($('#name').val().length==0){
+				alert('성명을 입력해주세요');
+				event.preventDefault();
+				$('#name').focus();
+			}
+			else if($('#pwd').val().length==0){
+				alert('비밀번호를 입력해주세요');
+				event.preventDefault();
+				$('#pwd').focus();
+			}
+			else if(!($('#pwd').val()==$('#pwdchk').val())){
+				alert('비밀번호가 같은지 확인하세요');
+				event.preventDefault();
+				$('#pwdchk').focus();
+			}
+				
+		});
+    	
+    	
+    });
+ 
 </script>
+
 <style type="text/css">
 
 </style>

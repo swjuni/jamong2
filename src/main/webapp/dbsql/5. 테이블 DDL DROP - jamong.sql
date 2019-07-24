@@ -90,3 +90,7 @@ DROP TABLE SCHEDULE cascade constraint;
 
 -- 자료실
 DROP TABLE FILES cascade constraint;
+
+-- 메시지
+DROP TABLE MESSAGE cascade constraint;
+
