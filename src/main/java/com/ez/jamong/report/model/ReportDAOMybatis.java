@@ -40,7 +40,7 @@ public class ReportDAOMybatis implements ReportDAO{
 	}
 
 	@Override
-	public List<ReportExtendsVO> reportListByUserNo(int userNo) {
-		return session.selectList(namespace+"reportListByUserNo", userNo);
+	public List<ReportExtendsVO> reportListByUserNo(ReportSearchVO searchVo) {
+		return session.selectList(namespace+"reportListByUserNo", searchVo);
 	}
 }
