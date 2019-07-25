@@ -51,6 +51,24 @@
 						</div>
 						<div class="row">
 							<div class="col-md-4">
+								<i class="fa fa-twitter iconRound"></i> <span>신고유형</span>
+							</div>
+							<div class="col-md-8">
+								<div class="form-group">
+									<select class="form-control" id="reportType" name="reportType" required="required">
+										<option value="">신고유형을 선택하세요</option>
+										<option value="욕설">욕설</option>
+										<option value="전문성 부족">전문성 부족</option>
+										<option value="마감기한 초과">마감기한 초과</option>
+										<option value="저작권 위반">저작권 위반</option>
+										<option value="외부거래 유도">외부거래 유도</option>
+										<option value="계산서 미발행">계산서 미발행</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
 									<i class="fa fa-envelope iconRound"></i> <span>신고내용</span>
 							</div>
 							<div class="col-md-8">
