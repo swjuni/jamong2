@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <aside class="lg-side">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
                           <div class="inbox-head">
-                            <h3 class="input-text">쪽지함</h3>
+                            <h3 class="input-text">
+							<c:if test="${param.type == 1}">쪽지함</c:if>
+                            <c:if test="${param.type == 2}">보낸 쪽지</c:if>
+                            <c:if test="${param.type == 3}">휴지통</c:if>
+							</h3>
                             <form action="#" class="pull-right position">
                               
                             </form>
@@ -13,7 +17,7 @@
                             
 
                             <ul class="unstyled inbox-pagination pagination-list">
-                              <li><span>1-50 of 234</span></li>
+                              <li><span>쪽지 리스트</span></li>
                               <li>
                                 <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
                               </li>
@@ -52,10 +56,8 @@
 
                                       <div class="form-group">
                                         <div class="col-lg-offset-2 col-lg-10">
-                                          <span class="btn green fileinput-button"><i class="fa fa-plus fa fa-white"></i>
-																	<span>첨부</span>
+										<a href="<c:url value='/main/mypage/messagedownload.do?fileName=${vo.fileName }'/>"><c:if test="${!empty vo.fileName }">${vo.originalFileName }</c:if></a>
                                           <!-- <input type="file" name="files[]" multiple="multiple"> -->
-                                          </span>
                                         </div>
                                       </div>
                                     </form>
@@ -82,17 +84,25 @@
                                   <c:if test="${param.type != 2}">${vo.userId }</c:if>
                                   <c:if test="${param.type == 2}">${vo.userId2 }</c:if>
                                   </a></td>
-                                  <td class="view-message ">${vo.contents }</td>
-                                  <td class="view-message  inbox-small-cells"><fmt:formatDate value="${vo.regdate }" type="both" pattern="yyyy-MM-dd HH:mm:ss "/></td>
+                                  <td class="view-message "><a href="#myModal2" data-toggle="modal" class="modaldata" data-no=${vo.messageNo } data-user1="${vo.userId }" data-user2="${vo.userId2 }" data-contents="${vo.contents }" data-regdate="${vo.regdate }">
+                                  <c:if test="${fn:length(vo.contents) >=20 }">
+                                  ${fn:substring(vo.contents, 0,30)}...
+                                  </c:if>
+                                  <c:if test="${fn:length(vo.contents) <20 }">
+                                  ${vo.contents}
+                                  </c:if>
+                                  </a>
+                                  </td>
+                                  <td class="view-message  inbox-small-cells"><fmt:formatDate value="${vo.regdate }" type="both" pattern="yy-MM-dd HH:mm:ss "/></td>
                                   <td class="view-message  text-right">
-                                  <c:if test=" ${fn:length(vo.fileName)>0 }">${vo.fileName }</c:if>
+                                  <a href="<c:url value='/main/mypage/messagedownload.do?fileName=${vo.fileName }'/>" download="${vo.originalFileName }"><c:if test="${!empty vo.fileName }"><span class="ti-import"></span></c:if></a>
                                   </td>
                                   
-                                  <td class="inbox-small-cells">
-                                  	<c:if test="${param.type == 1}"><a href="<c:url value='/main/mypage/messageup1.do?messageNo=${vo.messageNo }'/>" data-no=${vo.messageNo }> 휴지통 </a></c:if>
-                                  	<c:if test="${param.type == 2}"><a href="<c:url value='/main/mypage/messageup2.do?messageNo=${vo.messageNo }'/>" data-no=${vo.messageNo }> 삭제 </a></c:if>
-                                  	<c:if test="${param.type == 3}"><a href="<c:url value='/main/mypage/messageup3.do?messageNo=${vo.messageNo }'/>" data-no=${vo.messageNo }> 삭제 </a></c:if>
-                                  	<c:if test="${param.type == 3}"><a href="<c:url value='/main/mypage/messageup4.do?messageNo=${vo.messageNo }'/>" data-no=${vo.messageNo }> 복구 </a></c:if>
+                                  <td class="inbox-small-cells" style="display: inline-block">
+                                  	<c:if test="${param.type == 1}"><a href="<c:url value='/main/mypage/messageup1.do?messageNo=${vo.messageNo }'/>" data-no=${vo.messageNo } >  <span class="ti-trash"></span></a></c:if>
+                                  	<c:if test="${param.type == 2}"><a href="<c:url value='/main/mypage/messageup2.do?messageNo=${vo.messageNo }'/>" data-no=${vo.messageNo } onclick="return confirm('정말 삭제하시겠습니까??');"> <span class="ti-na"></span> </a></c:if>
+                                  	<c:if test="${param.type == 3}"><a href="<c:url value='/main/mypage/messageup4.do?messageNo=${vo.messageNo }'/>" data-no=${vo.messageNo }> <span class="ti-back-right"></span> </a></c:if>
+                                  	<c:if test="${param.type == 3}"><a href="<c:url value='/main/mypage/messageup3.do?messageNo=${vo.messageNo }'/>" data-no=${vo.messageNo } onclick="return confirm('정말 삭제하시겠습니까??');">  <span class="ti-na"></span></a></c:if>
                                   </td>
                                 
                                 </tr>

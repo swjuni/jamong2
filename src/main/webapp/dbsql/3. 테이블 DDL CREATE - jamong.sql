@@ -1314,7 +1314,4 @@ ALTER TABLE MESSAGE
 		);
 
 alter table message add TRASH2 varchar2(10) default 'N' not null;
-select * from message where user_id='123@naver.com' and trash='N' order by regdate desc;
-
-update message set trash='Y' where message_no=9;
 commit;

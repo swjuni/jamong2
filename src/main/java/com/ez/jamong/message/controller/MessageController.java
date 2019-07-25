@@ -1,6 +1,8 @@
 package com.ez.jamong.message.controller;
 
+import java.io.File;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ez.jamong.common.FileUploadUtility;
 import com.ez.jamong.message.model.MessageService;
@@ -133,6 +136,27 @@ public class MessageController {
 		
 		//4. 뷰페이지 리턴
 		return "common/message";
+	}
+	
+	@RequestMapping("/main/mypage/messagedownload.do")
+	public ModelAndView download(
+				@RequestParam String fileName, HttpServletRequest request) {
+		//1
+		logger.info("파라미터 fileName={}",fileName);
+		
+		//2
+		
+		//3
+		//파일객체를 만들어서 보내줌
+		String path = fileUtility.getUploadPath(request,FileUploadUtility.MESSAGEFILE_UPLOAD);
+		File file = new File(path, fileName);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("downFile", file);
+		
+		//ModelAndView(String viewName, Map<String, ?> model)
+		ModelAndView mav = new ModelAndView("messageDownloadView", map);
+		
+		return mav;
 	}
 	
 	
