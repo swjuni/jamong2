@@ -25,6 +25,8 @@ import com.ez.jamong.categorym.model.CategoryMVO;
 import com.ez.jamong.common.FileUploadUtility;
 import com.ez.jamong.expert.model.ExpertService;
 import com.ez.jamong.expert.model.ExpertVO;
+import com.ez.jamong.expert_profile.model.ExpertProfileService;
+import com.ez.jamong.expert_profile.model.ExpertProfileVO;
 import com.ez.jamong.userInfo.model.UserInfoService;
 import com.ez.jamong.userInfo.model.UserInfoVO;
 
@@ -37,6 +39,7 @@ public class RegistExpertController {
 	@Autowired private CategoryLService categoryLService;
 	@Autowired private FileUploadUtility fileUtility;
 	@Autowired private CategoryMService categoryMService;
+	@Autowired private ExpertProfileService expertprofileService;
 	
 	@RequestMapping("/registExpert.do")
 	public String registExpert(@RequestParam(defaultValue = "0") int userNo, Model model) {
@@ -101,7 +104,7 @@ public class RegistExpertController {
 		
 		String msg="", url="";
 		if(cnt>0) {
-			msg="저장 성공";
+			msg="저장 되었습니다.";
 			url="/registExpert/profile.do?userNo="+expertVo.getUserNo();
 			//새로 업로드한 경우, 기존 파일이 있으면 기존파일은 삭제
 			if(fileName!=null && !fileName.isEmpty()) {
@@ -129,6 +132,20 @@ public class RegistExpertController {
 		logger.info("전문가로 전환 전공 등록 페이지 파라미터 userNo={}",userNo);
 		ExpertVO expert=expertService.selectByUserNo(userNo);
 		List<CategoryLVO> list=categoryLService.selectCategorylAll();
+		ExpertProfileVO epVo=expertprofileService.selectByExpertNo(expert.getExpertNo());
+		if(epVo!=null) {
+			String[] majorArr=epVo.getMajor().split("/");
+			String majorL="";
+			for(int i=0;i<majorArr.length;i++) {
+				CategoryMVO cmVo=categoryMService.selectCategorymByNo(Integer.parseInt(majorArr[i]));
+				if(majorL.indexOf(Integer.toString(cmVo.getCategoryNoL()))==-1){
+					majorL+=cmVo.getCategoryNoL()+"/";
+				}
+			}	
+			System.out.println(majorL);
+			model.addAttribute("majorM",epVo.getMajor());
+			model.addAttribute("majorL",majorL);
+		}
 		model.addAttribute("expert",expert);
 		model.addAttribute("list",list);
 		return "main/mypage/majorFrame";
@@ -141,5 +158,33 @@ public class RegistExpertController {
 		List<CategoryMVO> list=categoryMService.selectCategoryM(categoryLNo);
 		logger.info("상세분야 선택 결과 list.size()={}",list.size());
 		return list;
+	}
+	
+	@RequestMapping(value = "/registMajor.do")
+	public String registMajor(@RequestParam(defaultValue = "0") int expertNo,
+			@RequestParam String[] major2,Model model, HttpSession session) {
+		int userNo=(Integer)session.getAttribute("userNo");
+		logger.info("전문분야 등록 파라미터 expertNo={}", expertNo);
+		ExpertProfileVO vo=new ExpertProfileVO();
+		vo.setExpertNo(expertNo);
+		String majorExpert="";
+		for(int i=0;i<major2.length;i++) {
+			majorExpert+=major2[i]+"/";
+		}
+		vo.setMajor(majorExpert);
+		int cnt=expertprofileService.saveProfile(vo);
+		
+		String msg="", url="";
+		if(cnt>0) {
+			msg="저장 되었습니다.";
+			url="/registExpert/major.do?userNo="+userNo;
+		}else {
+			msg="저장 실패";
+			url="/registExpert/major.do?userNo="+userNo;
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
 	}
 }

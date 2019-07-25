@@ -61,7 +61,7 @@
 		select expert_seq.nextval from dual
 	</selectKey>
 		insert into expert(expert_no, id,bank_name, account_no, user_no)
-		values(expert_seq.nextval,#{id},#{bankName},#{accountNo},#{userNo})
+		values(#{expertNo},#{id},#{bankName},#{accountNo},#{userNo})
 	</insert>
 	
 	<select id="checkByUserNo" parameterType="int" resultType="int">

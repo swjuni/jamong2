@@ -12,6 +12,12 @@
 <script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
 <script type="text/javascript">
 $(function(){
+	$("select[name=majorSelected]").find('option').each(function(index, item){
+		var cateL=$(this).text();
+		var cateNo=$(this).val();
+		findcateM(cateL, cateNo);
+	});
+	
 	$("select[name=major] option").dblclick(function(){
 		if($(".submajor:eq(2)").length){
 			alert("전문분야는 3항목까지 선택가능합니다.");
@@ -24,16 +30,14 @@ $(function(){
 		$.ajax({
 			url:"<c:url value='/registExpert/submajor.do'/>",
 			type:"get",
-			data:"categoryLNo="+$(this).val(),
+			data:"categoryLNo="+cateNo,
 			dataType:"json",
 			success:function(res){
 				var str="<div id='"+cateNo+"' class='submajor' style='margin-bottom:25px; padding: 12px 12px; background: #f5f5f5;'><p><a>"+cateL+"</a></p>"
 				$.each(res, function(idx, item){
 					var id=item.categoryName.replace(" ","");
 					var cateName=id.replace(".","");
-					if(item.categoryName!='기타'){
-						str+="<span id='"+cateName+"' >"+ item.categoryName +"</span>";
-					}
+					str+="<span id='"+cateName+item.categoryNoM+"' >"+ item.categoryName +"</span><input type='hidden' value='"+item.categoryNoM+"'>";
 				});
 				
 				str+="</div>";
@@ -50,6 +54,7 @@ $(function(){
 		$("#"+$(this).val()).find('span').each(function(index, item1){
 			$("#submajorSelected").find('span').each(function(index, item2){
 				if($(item1).text()==$(item2).text()){
+					$(item2).next().remove();
 					$(item2).remove();
 				}
 			});
@@ -68,35 +73,59 @@ $(function(){
 	});
 	
 	$(document).on("click",(".submajor span"),function(){
+		$("#submit").attr("disabled",false);
+		var no=$(this).next().val();
 		var value=$(this).html();
 		var re=$(this).prevAll('p:first').text();
 		$(this).hide();
 		$("#submajorSelected").find('p').each(function(index, item){
 			if($(this).text()==re){
-				$(this).after("<span>"+value+"</span>");
+				$(this).after("<span>"+value+"</span><input name='major2' type='hidden' value='"+no+"'>");
 			}
 		});
 	});
 	
 	$(document).on("click",("#submajorSelected span"),function(){
+		if($("#submajorSelected span").length==1){
+			$("#submit").attr("disabled","disabled");	
+		}
 		var id=$(this).text().replace(" ","");
 		var realid=id.replace(".","");
+		$("#"+realid+$(this).next().val()).show();
+		$(this).next().remove();
 		$(this).remove();
-		$("#"+realid).show();
 	});
 	
 });
-
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			
-			reader.onload = function (e) {
-			$('#image').attr('src', e.target.result);
-		}
-		
-		reader.readAsDataURL(input.files[0]);
-		}
+	function findcateM(cateL, cateNo){
+		var except=$("input[name=except]").val();
+		$.ajax({
+			url:"<c:url value='/registExpert/submajor.do'/>",
+			type:"get",
+			data:"categoryLNo="+cateNo,
+			dataType:"json",
+			success:function(res){
+				var str="<div id='"+cateNo+"' class='submajor' style='margin-bottom:25px; padding: 12px 12px; background: #f5f5f5;'><p><a>"+cateL+"</a></p>"
+				var str2="";
+				$.each(res, function(idx, item){
+					var id=item.categoryName.replace(" ","");
+					var cateName=id.replace(".","");
+					if(except.indexOf(item.categoryNoM)!=-1){
+						str+="<span id='"+cateName+item.categoryNoM+"' style='display:none;'>"+ item.categoryName +"</span><input type='hidden' value='"+item.categoryNoM+"'>";
+						str2+="<span>"+item.categoryName+"</span><input name='major2' type='hidden' value='"+item.categoryNoM+"'>";
+					}else{
+						str+="<span id='"+cateName+item.categoryNoM+"' >"+ item.categoryName +"</span><input type='hidden' value='"+item.categoryNoM+"'>";
+					}
+				});
+				
+				str+="</div>";
+				$("li:eq(0)").append(str);
+				var append=$("#submajorSelected").append("<p><a>"+cateL+"</a></p>"+str2);
+			},
+			error:function(xhr, status, error){
+				alert(status+":"+error);
+			}
+		});//ajax
 	}
 	
 </script>
@@ -131,39 +160,55 @@ $(function(){
 </style>
 </head>
 <body>
-	<form name="frm" role="form" class="contactform" action="<c:url value='/registExpert/basic.do'/>" enctype="multipart/form-data" method="post">
+	<form name="frm" role="form" class="contactform" action="<c:url value='/registExpert/registMajor.do'/>" method="post">
+	<input name="expertNo" type="hidden" value="${expert.expertNo }">
 		<div style="margin-top:30px;">
+		<input type="hidden" value="${majorM }" name="except">
 									<p><a>&nbsp;전문분야 선택</a></p>
 									<div class="major">
-										<select name="major" multiple="multiple" style="width: 200px;height: 200px; float: left;">
+										<select name="major" multiple="multiple" style="width: 200px;height: 130px; float: left;">
 										<c:forEach var="cateLvo" items="${list }">
-											<option value="${cateLvo.categoryNo }">${cateLvo.categoryNameL }</option>
+											<c:if test="${fn:indexOf(majorL,cateLvo.categoryNo)!=-1 }">
+												<option value="${cateLvo.categoryNo }" style="display: none;">${cateLvo.categoryNameL }</option>
+											</c:if>
+											<c:if test="${fn:indexOf(majorL,cateLvo.categoryNo)==-1 }">
+												<option value="${cateLvo.categoryNo }">${cateLvo.categoryNameL }</option>
+											</c:if>
 										</c:forEach>
 										</select>
 										<br>
-										<p style="margin-top: 52px; float: left;"><a style="margin-left: 55px;">▶▶</a></p>
-										<select name="majorSelected" multiple="multiple" style="width: 200px;height: 200px; margin-top: -28px;margin-left: 55px;">
+										<p style="margin-top: 25px; float: left;"><a style="margin-left: 55px;">▶▶</a></p>
+										<select name="majorSelected" multiple="multiple" style="width: 200px;height: 130px; margin-top: -28px;margin-left: 55px;">
+										<c:forEach var="cateLvo" items="${list }">
+										<c:if test="${fn:indexOf(majorL,cateLvo.categoryNo)!=-1 }">
+												<option value="${cateLvo.categoryNo }">${cateLvo.categoryNameL }</option>
+										</c:if>
+										</c:forEach>
 										</select>
 									</div>
 								</div>
 								</li>
-								<li>
+								<li style="border-bottom: 1px whitesmoke dashed;">
 									<div style="margin-top:30px;">
 									<p><a>&nbsp;상세분야 선택</a></p>
+									</div>
 								</li>
 								<li>
-									<div style="background: whitesmoke; margin-bottom: 12px; padding: 10px;" id="submajorSelected"></div>
+								<p style="margin-top: 10px;"><a>&nbsp;내 전문분야</a></p>
+									<div style="background: whitesmoke; margin-bottom: 12px; padding: 10px;" id="submajorSelected">
+									</div>
 								</li>
 							</ul>
-		<button type="button" id="next" name="next"	class="btn btn-primary">다음</button>
+		<button type="button" id="next" name="next"	class="btn btn-primary"
+		<c:if test='${empty majorM }'>
+			disabled="disabled"
+		</c:if>
+		>다음</button>
 		<button type="submit" id="submit" name="submit"	class="btn btn-primary"
-		<c:if test='${empty expert }'>
-		 disabled="disabled"
+		<c:if test='${empty majorM }'>
+			disabled="disabled"
 		</c:if>
 		>저장</button>
-		<c:if test="${!empty expert }">
-			<input type="hidden" value="${expert.fileName }" name="oldFileName">
-		</c:if>
 		<br>
 		<br>
 	</form>
