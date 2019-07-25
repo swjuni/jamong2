@@ -22,6 +22,7 @@ import com.ez.jamong.expert.model.ExpertVO;
 import com.ez.jamong.menuInfo.model.MenuInfoService;
 import com.ez.jamong.menuInfo.model.MenuInfoVO;
 import com.ez.jamong.report.model.ReportExtendsVO;
+import com.ez.jamong.report.model.ReportSearchVO;
 import com.ez.jamong.report.model.ReportService;
 import com.ez.jamong.report.model.ReportVO;
 
@@ -80,7 +81,7 @@ public class ReportController {
 	
 	//아래내용은 전부 바꿔야함
 	@RequestMapping("/reportedExpert.do")
-	public String reportedExpert(@ModelAttribute SearchVO searchVo, HttpSession session, Model model) {
+	public String reportedExpert(@ModelAttribute ReportSearchVO searchVo, HttpSession session, Model model) {
 		logger.info("마이페이지 전문가 신고 목록 화면");
 		logger.info("글목록 파라미터 searchVo={}", searchVo);
 		int userNo = (Integer) session.getAttribute("userNo");
@@ -88,17 +89,18 @@ public class ReportController {
 		//2
 		//[1] PaginationInfo 객체 생성
 		PaginationInfo pagingInfo=new PaginationInfo();
-		pagingInfo.setBlockSize(WebUtility.BLOCK_SIZE);
-		pagingInfo.setRecordCountPerPage(WebUtility.RECORD_COUNT_PER_PAGE);
+		pagingInfo.setBlockSize(5);
+		pagingInfo.setRecordCountPerPage(4);
 		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 		
 		//[2] SearchVo에 페이징 관련 변수 셋팅
-		searchVo.setRecordCountPerPage(WebUtility.RECORD_COUNT_PER_PAGE);
+		searchVo.setUserNo(userNo);
+		searchVo.setRecordCountPerPage(4);
 		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		logger.info("셋팅 후 searchVo={}", searchVo);
 		
 		//[3] 조회처리
-		List<ReportExtendsVO> list = reportService.reportListByUserNo(userNo);
+		List<ReportExtendsVO> list = reportService.reportListByUserNo(searchVo);
 		logger.info("글목록 결과, list.size={}",list.size());
 		
 		//[4] 전체 레코드 개수 조회

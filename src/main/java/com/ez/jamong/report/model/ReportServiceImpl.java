@@ -102,7 +102,7 @@ public class ReportServiceImpl implements ReportService{
 	}
 
 	@Override
-	public List<ReportExtendsVO> reportListByUserNo(int userNo) {
-		return reportDao.reportListByUserNo(userNo);
+	public List<ReportExtendsVO> reportListByUserNo(ReportSearchVO searchVo) {
+		return reportDao.reportListByUserNo(searchVo);
 	}
 }

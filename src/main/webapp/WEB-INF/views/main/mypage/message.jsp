@@ -7,6 +7,7 @@
 
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->
 <link href="<c:url value='/assets/css/style2.css'/>" rel="stylesheet">
+<link href="<c:url value='/assets/css/lib/themify-icons.css'/>" rel="stylesheet">
 <style>
 .header{
 	margin-left: 0px;
@@ -15,7 +16,6 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('.modaldata').click(function(){
-		alert($(this).attr('data-user1'));
 		$('#modalsId').val($(this).attr('data-user1'));
 		$('#modalrId').val($(this).attr('data-user2'));
 		$('#modalcontents').val($(this).attr('data-contents'));
@@ -88,13 +88,16 @@ $(document).ready(function(){
                             <%--modal --%>
                           </div>
                           <ul class="inbox-nav inbox-divider">
-                            <li class="breadcrumb-item active">
+                            <c:if test="${param.type == 1}"><li class="breadcrumb-item active"></c:if>
+                            <c:if test="${param.type != 1}"><li></c:if>
                               <a href="<c:url value='/main/mypage/messageT.do?type=1'/>"><i class="fa fa-inbox"></i> 쪽지함</a>
                             </li>
-                            <li>
+                            <c:if test="${param.type == 2}"><li class="breadcrumb-item active"></c:if>
+                            <c:if test="${param.type != 2}"><li></c:if>
                               <a href="<c:url value='/main/mypage/messageT.do?type=2'/>"><i class="fa fa-envelope-o"></i> 보낸 쪽지</a>
                             </li>
-                            <li>
+                            <c:if test="${param.type == 3}"><li class="breadcrumb-item active"></c:if>
+                            <c:if test="${param.type != 3}"><li></c:if>
                               <a href="<c:url value='/main/mypage/messageT.do?type=3'/>"><i class=" fa fa-trash-o"></i> 휴지통</a>
                             </li>
                           </ul>

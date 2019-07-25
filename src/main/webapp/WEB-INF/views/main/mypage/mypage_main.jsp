@@ -54,10 +54,12 @@
 								</div>
 								<!-- end service-box -->
 								<div class="service-box nmb">
+									<a href="<c:url value='/main/mypage/filesExUser.do'/>">
 									<i class="flaticon-presentation-1"></i>
 									<h4>자료실</h4>
 									<p>The SEO toolset that's got it all: keyword research, link
 										building, site audits.</p>
+									</a>
 								</div>
 								<!-- end service-box -->
 							</div>

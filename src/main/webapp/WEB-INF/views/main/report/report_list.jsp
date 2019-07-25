@@ -8,6 +8,11 @@
 		 document.frmSearch.currentPage.value = curPage;
 		 document.frmSearch.submit();
 	}
+	function readMore(index){
+		$('#readMoreH'+index).css("display","block");
+		$('#readMoreS'+index).css("display","none");
+		$('#readMoreB'+index).css("display","none");
+	}
 </script>
 <style type="text/css">
 	#underTitle:hover {
@@ -16,6 +21,10 @@
 </style>
 <%@include file="../incs/side_mypage.jsp"%>
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->
+				<form class="form-inline" role="search" name="frmSearch" method="post" action="<c:url value='/mypage/reportedExpert.do'/>">
+			   		<input type="hidden" name="currentPage" value="1">
+				</form>
+				
 				<div style="font-size:30px;  font-weight:bolder; margin-bottom: 30px;">상품 신고 목록</div>
 				<div style="clear: both;"></div>
 	
@@ -28,22 +37,44 @@
 						</div><!-- end blogbox -->
 					</c:if>
 					<c:if test="${!empty list }">
+						<c:set var="i" value="0"/>
 						<c:forEach var="vo" items="${list }">
 							<div class="blog-box clearfix row">
 								<div class="media-box col-md-3">
-									<a href="<c:url value='#'/>" title=""><img src="/jamong/assets/images/bookingSystem/2.png" alt=""
-									 	class="img-responsive img-thumbnail"></a>
+									<c:if test="${empty vo.fileName }">
+										<img src="/jamong/assets/images/bookingSystem/2.png" style="width: 120px; height: 120px;" alt="" class="img-responsive img-thumbnail">
+									</c:if>
+									<c:if test="${!empty vo.fileName }">
+										<img src="<c:url value='/upload/expert/${vo.fileName }'/>" style="width: 120px; height: 120px;" alt="" class="img-responsive img-thumbnail">
+									</c:if>
 								</div><!-- end media-box -->
 								<div class="blog-desc col-md-9">
 									<div style="float: right; bottom: 10px;"><fmt:formatDate value="${vo.reportDate }" pattern="yyyy-MM-dd"/></div>
-									<h3><a href="<c:url value='#'/>" title="" id="underTitle">${vo.id }</a></h3>
-									<p>${fn:substring(vo.reportDesc,0, 60)}...</p>
-									<a class="readmore" href="<c:url value='#'/>">Read more</a>
+									
 									<c:if test="${empty vo.delflag }">
-										<div style="font-size: 0.9em; color: blue;">신고 접수 처리 중</div>
-									</c:if> 
+										<div style="font-size: 0.9em; color: teal;">신고 접수 처리 중</div>
+									</c:if>
+									<c:if test="${vo.delflag=='Y' }">
+										<div style="font-size: 0.9em; color: blue;">승인 완료</div>
+									</c:if>
+									<c:if test="${vo.delflag=='N' }">
+										<div style="font-size: 0.9em; color: red;">승인 거부</div>
+									</c:if>
+									 
+									<h3>상품명 : ${vo.productName }</h3>
+									<h4>판매자 : ${vo.id }</h4>
+									<h4>신고유형 : ${vo.reportType }</h4>
+									
+									<p id="readMoreS${i }">${fn:substring(vo.reportDesc,0, 20)}...</p>
+									<% pageContext.setAttribute("line", "\n"); %>
+									<p id="readMoreH${i }" style="display:none; ">${fn:replace(vo.reportDesc,line,"<br>")}</p>
+									
+									<c:if test="${fn:length(vo.reportDesc)>20}">
+										<a class="readmore" id="readMoreB${i }" href="javascript:void(0)" onclick="readMore(${i})">Read more</a>
+									</c:if>
 								</div><!-- end blog-desc -->
 							</div><!-- end blogbox -->
+							<c:set var="i" value="${i+1 }"></c:set>
 						</c:forEach> 
 					</c:if>
 	
