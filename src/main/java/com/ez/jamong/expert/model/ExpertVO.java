@@ -8,7 +8,7 @@ public class ExpertVO {
 	private int fileSize;
 	private String serviceableTime;
 	private int workAmount;
-	private String information;
+	private String introduction;
 	private String etc;
 	private String bankName;
 	private String accountNo;
@@ -56,14 +56,12 @@ public class ExpertVO {
 	public void setWorkAmount(int workAmount) {
 		this.workAmount = workAmount;
 	}
-	
-	public String getInformation() {
-		return information;
+	public String getIntroduction() {
+		return introduction;
 	}
-	public void setInformation(String information) {
-		this.information = information;
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
 	}
-	
 	public String getEtc() {
 		return etc;
 	}
@@ -92,7 +90,7 @@ public class ExpertVO {
 	public String toString() {
 		return "ExpertVO [expertNo=" + expertNo + ", id=" + id + ", fileName=" + fileName + ", originalFileName="
 				+ originalFileName + ", fileSize=" + fileSize + ", serviceableTime=" + serviceableTime + ", workAmount="
-				+ workAmount + ", information=" + information + ", etc=" + etc + ", bankName=" + bankName
+				+ workAmount + ", introduction=" + introduction + ", etc=" + etc + ", bankName=" + bankName
 				+ ", accountNo=" + accountNo + ", userNo=" + userNo + "]";
 	}
 	
