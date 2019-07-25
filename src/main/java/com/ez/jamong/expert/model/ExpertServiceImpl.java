@@ -44,5 +44,10 @@ public class ExpertServiceImpl implements ExpertService{
 	public ExpertVO selectByUserNo(int userNo) {
 		return expertDao.selectByUserNo(userNo);
 	}
+
+	@Override
+	public int saveBasicInfo(ExpertVO expertVo) {
+		return expertDao.saveBasicInfo(expertVo);
+	}
 	
 }

@@ -140,7 +140,6 @@
 			</c:if>
 			<div class="col-md-5" style="height: 500px; width: 500px; margin-top: -75px; border: 1px solid #ea5035c9; border-radius: 20px; float: right;">
 				실시간 평가<br>
-				
 			</div>
 		</div>
 	</div>

@@ -84,4 +84,10 @@
 		select * from expert
 		where user_no=#{userNo}
 	</select>
+	
+	<update id="saveBasicInfo" parameterType="expertVo">
+		update expert
+		set file_name=#{fileName},original_file_name=#{originalFileName},file_size=#{fileSize},introduction=#{introduction,jdbcType=CLOB},id=#{id}
+		where user_no=#{userNo}
+	</update>
 </mapper>

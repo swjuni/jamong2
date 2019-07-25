@@ -46,8 +46,13 @@ public class ExpertDAOMybatis implements ExpertDAO{
 
 	@Override
 	public ExpertVO selectByUserNo(int userNo) {
-		ExpertVO expert=session.selectOne(namespace+"selectByUserNo", userNo);
-		return expert;
+		return session.selectOne(namespace+"selectByUserNo", userNo);
+	}
+
+	@Override
+	public int saveBasicInfo(ExpertVO expertVo) {
+		int cnt=session.update(namespace+"saveBasicInfo",expertVo);
+		return cnt;
 	}
 	
 }
