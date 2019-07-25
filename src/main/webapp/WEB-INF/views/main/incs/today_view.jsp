@@ -154,6 +154,17 @@
 	position:absolute;
     z-index: 11;
     margin-top: 25px;
+    margin-left: 20px;
+    font-size:12px;
+    font-family: Malgun Gothic,'맑은 고딕',dotum, 돋움, sans-serif;
+    font-weight:bold;
+    color:#666;
+}
+.intext-text1-korean2 {
+    float: left;
+	position:absolute;
+    z-index: 11;
+    margin-top: 25px;
     margin-left: 13px;
     font-size:12px;
     font-family: Malgun Gothic,'맑은 고딕',dotum, 돋움, sans-serif;
@@ -161,6 +172,7 @@
     color:#666;
 }
 .intext-text1-korean:hover {color:#FF6173;}
+.intext-text1-korean2:hover {color:#FF6173;}
 
 /* 텍스트 - text2 */
 .intext-text2 {
@@ -236,12 +248,13 @@
 			<h2>빠른이동</h2>
 			<div style="position: absolute;">
 				<div class="hexagon2">
-					<a href="#">
-					<span class="intext-text1">
-					<img src="/jamong/resources/images/l_1.png" style="opacity: 0.5"
+					<a href="<c:url value="/mypage/mypage.do?userNo=${sessionScope.userNo }"/>">
+					<span class="intext-text3">
+					<img src="/jamong/resources/images/l_3.png" style="opacity: 0.5"
 							onmouseover="this.style.opacity='0.9'"
-							onmouseout="this.style.opacity='0.5'" alt="구매관리"></span>
-					<span class="intext-text1-korean">구매관리</span></a>
+							onmouseout="this.style.opacity='0.5'" alt="자료실">
+					</span>
+					<span class="intext-text3-korean">마이페이지</span></a>
 				</div>
 
 				<div class="hexagon2">
@@ -252,17 +265,28 @@
 							onmouseout="this.style.opacity='0.5'" alt="즐겨찾기"></span>
 					<span class="intext-text2-korean">즐겨찾기</span></a>
 				</div>
-
+				<c:if test="${empty sessionScope.userNo }">
+					<div class="hexagon2">
+						<a href="<c:url value="/main/userlogin/login.do"/>">
+						<span class="intext-text1">
+						<img src="/jamong/resources/images/l_1.png" style="opacity: 0.5"
+								onmouseover="this.style.opacity='0.9'"
+								onmouseout="this.style.opacity='0.5'" alt="구매관리"></span>
+						<span class="intext-text1-korean">로그인</span></a>
+					</div>
+				</c:if>
+				<c:if test="${!empty sessionScope.userNo }">
+					<div class="hexagon2">
+						<a href="<c:url value="/main/userlogin/logout.do"/>">
+						<span class="intext-text1">
+						<img src="/jamong/resources/images/l_1.png" style="opacity: 0.5"
+								onmouseover="this.style.opacity='0.9'"
+								onmouseout="this.style.opacity='0.5'" alt="구매관리"></span>
+						<span class="intext-text1-korean2">로그아웃</span></a>
+					</div>
+				</c:if>
+				
 				<!-- <div class="hexagon2-line2"></div> -->
-				<div class="hexagon2">
-					<a href="<c:url value="/mypage/mypage.do?userNo=${sessionScope.userNo }"/>">
-					<span class="intext-text3">
-					<img src="/jamong/resources/images/l_3.png" style="opacity: 0.5"
-							onmouseover="this.style.opacity='0.9'"
-							onmouseout="this.style.opacity='0.5'" alt="자료실">
-					</span>
-					<span class="intext-text3-korean">마이페이지</span></a>
-				</div>
 			</div>
 			
 			<!-- 최근 본 상품 -->

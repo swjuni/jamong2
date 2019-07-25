@@ -37,7 +37,15 @@ public class BookmarkController {
 	public String bookmark(HttpSession session, Model model) {
 		logger.info("즐겨찾기 화면 요청");
 		
+		//인터셉터 걸고 지울 체크
+		if(session.getAttribute("userNo")==null) {
+			model.addAttribute("msg", "먼저 로그인하세요.");
+			model.addAttribute("url", "/main/index_main.do");
+			return "common/message";
+		}
+		
 		int userNo = (Integer)session.getAttribute("userNo");	//세션 userNo
+
 		List<Map<String, Object>> list = bookmarkService.bookmarkList(userNo);
 		logger.info("즐겨찾기 목록 요청 결과 list.size={}, userNo={}",list, userNo);
 		

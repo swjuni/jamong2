@@ -110,6 +110,7 @@
             </div><!-- end container -->
         </div><!-- end topbar -->
 
+		<c:import url="/todayList.do"/>
 		<header class="header site-header">
 			<div class="container">
 				<nav class="navbar navbar-default yamm">

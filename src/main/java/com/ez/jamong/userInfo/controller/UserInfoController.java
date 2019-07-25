@@ -140,7 +140,7 @@ public class UserInfoController {
 		session.removeAttribute("userAuthor");
 		session.removeAttribute("userNo");
 		
-		return "redirect:/main/userlogin/login.do";
+		return "redirect:/main/index_main.do";
 	}
 	
 	@RequestMapping("/main/mypage/myInfo.do")

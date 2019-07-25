@@ -97,6 +97,7 @@
 				</nav><!-- end nav -->
 			</div><!-- end container -->
 		</header><!-- end header -->
+		<c:import url="/todayList.do"/>
 	<section class="section transheader bgcolor">
 		<form name="searchKeyword" class="calculateform" method="post" action="">
 		        <div class="item-top form-inline">
