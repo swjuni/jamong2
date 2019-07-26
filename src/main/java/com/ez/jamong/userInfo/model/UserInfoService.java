@@ -27,6 +27,8 @@ public interface UserInfoService {
 	public UserInfoVO selectUser(String userid);
 	public int updateUser (UserInfoVO vo);
 	public UserInfoVO selectByuserNo(int userNo);
+	public int findUserPwd(UserInfoVO vo);
+	public int outUser(String userId);
 }
 
 
