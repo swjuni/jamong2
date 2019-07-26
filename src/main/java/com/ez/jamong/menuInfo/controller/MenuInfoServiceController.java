@@ -48,16 +48,20 @@ public class MenuInfoServiceController {
 		ExpertVO expertVo = expertService.selectByExpertNo(menuinfoVo.getExpertNo());
 		logger.info("expertVo상세보기 결과 vo={}", expertVo);
 		
-		
-		BookmarkVO bookmarkVo = new BookmarkVO();
-		bookmarkVo.setUserNo((Integer)session.getAttribute("userNo"));
-		bookmarkVo.setExpertNo(expertVo.getExpertNo());
-		
 		boolean bookmarkExist = false;
-		BookmarkVO bookmarkVoExist = new BookmarkVO();
-		bookmarkVoExist = bookmarkService.bookmarkExist(bookmarkVo);
-		if(bookmarkVoExist!=null) {
-			bookmarkExist = true;
+		
+		//로그인 안해서 세션 userNo 없는 경우에는 실행안함
+		if(session.getAttribute("userNo")!=null) {
+			BookmarkVO bookmarkVo = new BookmarkVO();
+			bookmarkVo.setUserNo((Integer)session.getAttribute("userNo"));
+			bookmarkVo.setExpertNo(expertVo.getExpertNo());
+			
+			BookmarkVO bookmarkVoExist = new BookmarkVO();
+			bookmarkVoExist = bookmarkService.bookmarkExist(bookmarkVo);
+			if(bookmarkVoExist!=null) {
+				bookmarkExist = true;
+			}
+			logger.info("선택한 상품 기존 bookmark 등록 여부={}",bookmarkExist);
 		}
 		
 		/*
