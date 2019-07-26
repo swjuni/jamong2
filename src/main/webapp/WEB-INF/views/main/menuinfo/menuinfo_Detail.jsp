@@ -3,15 +3,18 @@
 <!-- 각 화면별 내용 코딩-->
 <script type="text/javascript">
 	var markS = ${bookmarkExist};
+	var userNo = "${sessionScope.userNo}"; 
 	
 	$(function(){
-		if(${bookmarkExist}){
-			//alert("${bookmarkExist}"+"트루가 와야함");
-			$('#bookmarkBtn').prepend("<i class='fa fa-heart' id='bookmarkTag' style='color: red;'></i>");
-		}else if(!${bookmarkExist} ){
-			//alert("${bookmarkExist}"+"펄스가 와야함");
-			$('#bookmarkBtn').prepend("<i class='fa fa-heart-o' id='bookmarkTag'></i>");
-		}  
+		if(userNo!=""){
+			if(markS){
+				//alert("${bookmarkExist}"+"트루가 와야함");
+				$('#bookmarkBtn').prepend("<i class='fa fa-heart' id='bookmarkTag' style='color: red;'></i>");
+			}else if(!markS ){
+				//alert("${bookmarkExist}"+"펄스가 와야함");
+				$('#bookmarkBtn').prepend("<i class='fa fa-heart-o' id='bookmarkTag'></i>");
+			}
+		}
 	});
 		
 	function report(){
@@ -22,35 +25,39 @@
 		//ajax아닌 일반 전송 (이경우 컨트롤러에서도 일부값 변경해야함)
 		//location.href="<c:url value='/mypage/bookmarkExist.do?expertNo=${menuinfoVo.expertNo}'/>";
 		//ajax 방식 사용
-		if(markS){
-			if(!confirm("즐겨찾기 삭제하시겠습니까?")){
-				return false;
-			}
-		}else if(!markS ){
-			if(!confirm("즐겨찾기 등록하시겠습니까?")){
-				return false;
-			}
-		}
-		
-		$.ajax({
-			url:"<c:url value='/mypage/bookmarkExist.do'/>",
-			type:"get",
-			data:{
-				expertNo:"${menuinfoVo.expertNo}",
-				},
-			success:function(res){
-				if(res==0){
-					$('#bookmarkTag').attr("class",'fa fa-heart-o').css('color','black');
-					markS=false;
-				}else if(res==1){
-					$('#bookmarkTag').attr("class",'fa fa-heart').css('color','red');
-					markS=true;
+		if(userNo!=""){
+			if(markS){
+				if(!confirm("즐겨찾기 삭제하시겠습니까?")){
+					return false;
 				}
-			},
-			error:function(xhr,status, error){
-				alert(status+":"+error);
+			}else if(!markS ){
+				if(!confirm("즐겨찾기 등록하시겠습니까?")){
+					return false;
+				}
 			}
-		});
+			
+			$.ajax({
+				url:"<c:url value='/mypage/bookmarkExist.do'/>",
+				type:"get",
+				data:{
+					expertNo:"${menuinfoVo.expertNo}",
+					},
+				success:function(res){
+					if(res==0){
+						$('#bookmarkTag').attr("class",'fa fa-heart-o').css('color','black');
+						markS=false;
+					}else if(res==1){
+						$('#bookmarkTag').attr("class",'fa fa-heart').css('color','red');
+						markS=true;
+					}
+				},
+				error:function(xhr,status, error){
+					alert(status+":"+error);
+				}
+			});
+		}else{
+			alert("먼저 로그인 하세요");
+		}
 	}
 </script>
 <style type="text/css">

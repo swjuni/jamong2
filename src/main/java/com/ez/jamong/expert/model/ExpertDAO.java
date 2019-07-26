@@ -13,4 +13,5 @@ public interface ExpertDAO {
 	public int updateExpertBasicInfo(ExpertVO expertVo);
 	public ExpertVO selectByExpertNo(int expertNo);
 	public ExpertVO selectByUserNo(int userNo);
+	public int saveBasicInfo(ExpertVO expertVo);
 }

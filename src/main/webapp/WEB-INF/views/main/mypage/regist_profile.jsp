@@ -1,20 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../incs/top_mypage.jsp"%>
-<script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
-<script type="text/javascript">
-	$(function(){
-		$("select[name=major] option").dblclick(function(){
-			$(this).hide();
-			$("<option value='"+$(this).val()+"'>"+$(this).val()+"</option>").appendTo($("select[name=majorSelected]"));
-		})
-		
-		$(document).on("dblclick",("select[name=majorSelected] option"),function(){
-			$(this).remove();
-			$("select[name=major] option[value='"+$(this).val()+"']").show();
-		})
-	})
-</script>
 <style type="text/css">
 	.col-md-3{
 		width: 290px;
@@ -70,31 +56,9 @@
 		margin-left:16px;
 		width: 100%;
 	}
-	.major{
-		background: #f0f1f2;
-		width: 600px;
-		height: 248px;
-		padding: 26px;
-		margin-left: 0;	
-	}
-	.submajor{
-		background: #f0f1f2;
-		width: 600px;
-		padding: 10px;
-		margin-left: 0;
-		float:left;
-	}
-	.submajor span{
-		background: #f58866;
-		color: white;
-		padding: 5px 10px;
-		margin: 7px;
-		border-radius: 10px;
-		float:left;
-	}
 	
-	option:hover {
-		background:#f7b96d66;
+	iframe{
+		margin-left: 16px;
 	}
 </style>
 <%@include file="../incs/side_mypage.jsp"%>
@@ -138,65 +102,7 @@
 				
 					<!-- end contact details -->
 				<div class="col-md-5">
-					<form name="frm" role="form" class="contactform" action="<c:url value='/registExpert/regist.do'/>">
-						<div class="contact-details">
-							<ul>
-								<li><img src="/jamong/resources/images/userinfo.png" alt="" class="img-thumbnail" style="width: 100px; border-radius: 50%; float: left; margin-left:10px;">
-								<div style="padding: 13px 115px;">
-								<span><a>닉네임</a></span>
-								<input style="width:300px;" type="text" class="form-control" id="id" name="id" value="${expert.id }" required="required">
-								</div>
-								</li>
-								<li>
-								<div style="margin-top:-25px;">
-								<span><a>&nbsp;자기소개</a></span>
-								<textarea style="width:600px;height:250px;margin-top:13px;" class="form-control" id="message" placeholder="Message" maxlength="450" rows="10"></textarea>
-								</div>
-								<div style="margin-top:30px;">
-									<p><a>&nbsp;전문분야 선택</a></p>
-									<div class="major">
-										<select name="major" multiple="multiple" style="width: 200px;height: 200px; float: left;">
-										<c:forEach var="cateLvo" items="${list }">
-											<option value="${cateLvo.categoryNameL }">${cateLvo.categoryNameL }</option>
-										</c:forEach>
-										</select>
-										<br>
-										<p style="margin-top: 52px; float: left;"><a style="margin-left: 55px;">▶▶</a></p>
-										<select name="majorSelected" multiple="multiple" style="width: 200px;height: 200px; margin-top: -28px;margin-left: 55px;">
-										</select>
-									</div>
-								</div>
-								</li>
-								<li>
-									<div style="margin-top:30px;">
-									<p><a>&nbsp;상세분야 선택</a></p>
-									<div class="submajor" style="">
-										<p><a>&nbsp;디자인</a></p>
-										<span>ddddddddddd</span>
-										<span>dddddddddddd</span>
-										<span>ddddddddddd</span>
-										<span>ddddddddddd</span>
-										<span>dddddddddddd</span>
-										<span>dddddddddddddd</span>
-										<span>ddddddddddd</span>
-									</div>
-									<div class="submajor" style="">
-										<p><a>&nbsp;디자인</a></p>
-										<span>ddddddddddd</span>
-										<span>dddddddddddd</span>
-										<span>ddddddddddd</span>
-										<span>ddddddddddd</span>
-										<span>dddddddddddd</span>
-										<span>dddddddddddddd</span>
-										<span>ddddddddddd</span>
-									</div>
-								</div>
-								</li>
-							</ul>
-						</div>
-							
-							<!-- <button type="submit" id="submit" name="submit"	class="btn btn-primary" style="margin-left: 29px;">저장하고 다음으로</button> -->
-						</form>
+				<iframe src="<c:url value='/registExpert/profile.do?userNo=${sessionScope.userNo }'/>" id="the_iframe" name="WrittenPublic" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; width:100%; height: 100%;"></iframe>
 				</div>
 					<!--아래는 mypage 공통 사용 코드  -->
 			</div>
