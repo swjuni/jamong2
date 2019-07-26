@@ -75,4 +75,10 @@ public class MenuInfoServiceController {
 		
 		return "main/menuinfo/menuinfo_Detail";
 	}
+
+	@RequestMapping(value = "/main/menuinfo/menuinfo_List.do")
+	public String menuinfoList_get() {
+		logger.info("카테고리별 상품 리스트 목록 화면 요청");
+		return "main/menuinfo/menuinfo_List";
+	}
 }
