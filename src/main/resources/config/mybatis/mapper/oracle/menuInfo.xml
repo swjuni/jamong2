@@ -32,7 +32,7 @@
 	
 	<update id="updateMenuInfo" parameterType="menuinfoVo">
 		update menu_info
-		set CATEGORY_TYPE_NO=#{categoryTypeNo}, PRODUCT_NAME=#{PRODUCT_NAME},
+		set CATEGORY_TYPE_NO=#{categoryTypeNo}, PRODUCT_NAME=#{productName},
 			EVAL_SCORE=#{evalScore}, SUMMARY=#{summary}, DETAIL_DESC=#{detailDesc},
 			REGDATE=sysdate, ORDER_LEVEL=#{orderLevel}, RECOMMEND=#{recommend}, 
 			ACTIVATION=#{activation}, EXPERT_NO=#{expertNo}
@@ -92,8 +92,8 @@
 		values(#{productNo},#{categoryTypeNo},#{productName},#{expertNo})
 	</insert>
 	
-	<select id="NonAvtivatedProduct" parameterType="expertNo" resultType="menuInfoVo">
-		select count(*) from menu_info
-		where expert_no=10 and activation is null
+	<select id="NonAvtivatedProduct" parameterType="int" resultType="menuInfoVo">
+		select * from menu_info
+		where expert_no=#{expertNo} and activation is null
 	</select>
 </mapper>

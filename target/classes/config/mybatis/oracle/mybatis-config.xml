@@ -5,9 +5,8 @@
 <configuration>
 	<!-- 마이바티스의 작동 규칙정의 -->
 	<settings>
-	  <setting name="cacheEnabled" value="true"/>
-	  <setting name="useGeneratedKeys" value="false"/>
-	  <setting name="mapUnderscoreToCamelCase" value="true"/>
+		<setting name="cacheEnabled" value="true"/>
+		<setting name="useGeneratedKeys" value="false"/>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
-	
 </configuration>

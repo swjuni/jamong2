@@ -62,7 +62,12 @@ public class MenuInfoServiceImpl implements MenuInfoService{
 
 	@Override
 	public int saveProduct(MenuInfoVO vo) {
-		return menuInfoDao.insertProduct(vo);
+		MenuInfoVO menuvo=menuInfoDao.NonAvtivatedProduct(vo.getExpertNo());
+		int cnt=0;
+		if(menuvo==null) {
+			cnt=menuInfoDao.insertProduct(vo);
+		}
+		return cnt;
 	}
 
 	@Override
