@@ -9,9 +9,15 @@
 		 document.frmSearch.submit();
 	}
 	function readMore(index){
-		$('#readMoreH'+index).css("display","block");
-		$('#readMoreS'+index).css("display","none");
-		$('#readMoreB'+index).css("display","none");
+		if($('#readMoreB'+index).text()=="close"){
+			$('#readMoreH'+index).css("display","none");
+			$('#readMoreS'+index).css("display","block");
+			$('#readMoreB'+index).text("Read more");
+		}else{
+			$('#readMoreH'+index).css("display","block");
+			$('#readMoreS'+index).css("display","none");
+			$('#readMoreB'+index).text("close");
+		}
 	}
 </script>
 <style type="text/css">
