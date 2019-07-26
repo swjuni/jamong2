@@ -17,7 +17,7 @@ select A.product_no,A.product_name,B.* from packagemenuview A, orderfilesview B 
 
 create or replace view expertfilesview
 as
-select A.product_no,A.PRODUCT_NAME,B.* from expertmenuview A, orderfilesview B where A.USER_NO = B.USER_NO;
+select A.product_no,A.PRODUCT_NAME,A.EXPERT_NO,B.* from expertmenuview A, orderfilesview B where A.USER_NO = B.USER_NO;
 
 
 --일반회원방향에서 자료 (구매자료)

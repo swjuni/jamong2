@@ -99,5 +99,15 @@ public class UserInfoServiceImpl implements UserInfoService{
 	public UserInfoVO selectByuserNo(int userNo) {
 		return userInfoDao.selectByuserNo(userNo);
 	}
+
+	@Override
+	public int findUserPwd(UserInfoVO vo) {
+		return userInfoDao.findUserPwd(vo);
+	}
+
+	@Override
+	public int outUser(String userId) {
+		return userInfoDao.outUser(userId);
+	}
 	
 }

@@ -118,6 +118,7 @@
 			<c:if test="${empty userName }">
 			    <li><a href="<c:url value="/main/userlogin/login.do"/>" style="cursor: pointer;">로그인</a></li>
 			    <li><a href="<c:url value="/main/userlogin/userRegist.do"/>" style="cursor: pointer;">회원가입</a></li>
+			    <li><a href="<c:url value="/main/userlogin/SearchPwd.do"/>" style="cursor: pointer;">비밀번호 찾기</a></li>
 			</c:if>
 			</ul>
 		</div>

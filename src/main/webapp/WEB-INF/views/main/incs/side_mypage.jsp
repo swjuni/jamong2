@@ -66,6 +66,9 @@
 									        </div>
 									    </div>
 								    </div>
+								    <div>
+								    	<a href="<c:url value='/main/mypage/outUser.do'/>" onclick="return confirm('정말 탈퇴하시겠습니까??');">회원 탈퇴</a>
+								    </div>
 								</div>
 							</div>
 						</div><!-- end score -->
