@@ -53,4 +53,12 @@ public class MenuInfoDAOMybatis implements MenuInfoDAO{
 	public List<Map<String, Object[]>> selectAdsYearCount() {
 		return sqlSession.selectList(namespace+"selectAdsYearCount");
 	}
+	@Override
+	public int insertProduct(MenuInfoVO vo) {
+		return sqlSession.insert(namespace+"insertProduct",vo);
+	}
+	@Override
+	public MenuInfoVO NonAvtivatedProduct(int expertNo) {
+		return sqlSession.selectOne(namespace+"NonAvtivatedProduct", expertNo);
+	}
 }

@@ -64,7 +64,7 @@ $(function(){
 	
 	.uploadImg label {
 		cursor: pointer;
-		margin: 63px -42px;
+		margin: 67px -28px;
 	}
 	
 	.uploadImg input[type="file"] {
@@ -99,7 +99,7 @@ $(function(){
 				<c:if test="${!empty expert }">
 				src="<c:url value='/upload/expert/${expert.fileName }'/>"
 				</c:if>
-				alt="" style="width: 100px; height:100px; border-radius: 50%; float: left; margin-left:10px; border: 4px solid #f1f6f7;">
+				alt="" style="width: 100px; height:100px; border-radius: 50%; float: left; border: 4px solid #f1f6f7;">
 					<div class="uploadImg">
 					<label for="profileImg"><i class="fa fa-search"></i></label>
 					<input type="file" id="profileImg" accept="image/gif,image/jpeg,image/png,image/jpg" multiple="multiple" name="file_Name">

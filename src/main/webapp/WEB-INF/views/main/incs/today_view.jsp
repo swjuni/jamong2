@@ -324,7 +324,7 @@
 						onmouseout="this.style.opacity='0.6'" onclick="right()">▼</h3> 
 				</c:if>
 			</c:if>
-			<button type="button" onclick="addCookie(2)" style="position: absolute; top: 585px; font-size: 0.9em;">쿠키추가</button> 
+			<button type="button" onclick="addCookie(32774)" style="position: absolute; top: 585px; font-size: 0.9em;">쿠키추가</button> 
 		</div>
 	</div> 
 	<!-- } 오늘 본 상품 끝 -->

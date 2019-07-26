@@ -156,6 +156,7 @@ $(function(){
 		border-radius:12px;
 		margin-right:5px;
 		cursor:pointer;
+		display: -webkit-inline-box;
 	}
 </style>
 </head>
@@ -200,6 +201,7 @@ $(function(){
 								</li>
 							</ul>
 		<button type="button" id="next" name="next"	class="btn btn-primary"
+			onclick="location.href='<c:url value="/registExpert/licenseView.do?expertNo=${expert.expertNo }"/>'"
 		<c:if test='${empty majorM }'>
 			disabled="disabled"
 		</c:if>

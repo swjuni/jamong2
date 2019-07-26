@@ -14,4 +14,6 @@ public interface MenuInfoService {
 	public List<Map<String, Object>> selectMenuinfoAllView();
 	public List<Map<String, Object[]>> selectMenuinfoYearCount();
 	public List<Map<String, Object[]>> selectAdsYearCount();
+	public int saveProduct(MenuInfoVO vo);
+	public MenuInfoVO NonAvtivatedProduct(int expertNo);
 }

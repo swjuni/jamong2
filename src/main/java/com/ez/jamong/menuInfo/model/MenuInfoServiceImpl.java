@@ -59,4 +59,14 @@ public class MenuInfoServiceImpl implements MenuInfoService{
 	public List<Map<String, Object[]>> selectAdsYearCount() {
 		return menuInfoDao.selectAdsYearCount();
 	}
+
+	@Override
+	public int saveProduct(MenuInfoVO vo) {
+		return menuInfoDao.insertProduct(vo);
+	}
+
+	@Override
+	public MenuInfoVO NonAvtivatedProduct(int expertNo) {
+		return menuInfoDao.NonAvtivatedProduct(expertNo);
+	}
 }

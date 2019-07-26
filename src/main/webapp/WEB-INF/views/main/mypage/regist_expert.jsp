@@ -103,7 +103,7 @@
 						<div class="service-wrapper wow fadeIn" style="visibility: visible; animation-name: fadeIn;">	
 							<i class="flaticon-html"></i>
 							<div class="service-details">
-								<h4><a href="service-02.html">서비스 등록</a></h4>
+								<h4><a href="<c:url value='/registExpert/service.do?expertNo=${expert.expertNo }'/>">서비스 등록</a></h4>
 							</div>
 						</div><!-- end service-wrapper -->
 					</div><!-- end col -->
@@ -164,6 +164,7 @@
 						</div>
 						<br> 
 						<button type="submit" id="submit" name="submit"	class="btn btn-primary" style="margin-left: 29px;">저장하고 다음으로</button>
+						
 					</form>
 				</div>
 					<!--아래는 mypage 공통 사용 코드  -->

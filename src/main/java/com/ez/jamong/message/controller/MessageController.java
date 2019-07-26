@@ -1,12 +1,15 @@
 package com.ez.jamong.message.controller;
 
 import java.io.File;
-import java.sql.SQLException;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,17 +17,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ez.jamong.common.FileUploadUtility;
 import com.ez.jamong.message.model.MessageService;
 import com.ez.jamong.message.model.MessageVO;
-import com.fasterxml.jackson.databind.annotation.JsonAppend.Attr;
 
 @Controller
 public class MessageController {
@@ -140,16 +142,28 @@ public class MessageController {
 	
 	@RequestMapping("/main/mypage/messagedownload.do")
 	public ModelAndView download(
-				@RequestParam String fileName, HttpServletRequest request) {
+				@RequestParam String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//1
 		logger.info("파라미터 fileName={}",fileName);
 		
 		//2
-		
-		//3
-		//파일객체를 만들어서 보내줌
 		String path = fileUtility.getUploadPath(request,FileUploadUtility.MESSAGEFILE_UPLOAD);
 		File file = new File(path, fileName);
+		//3
+		//파일객체를 만들어서 보내줌
+		//다운로드 창 띄우기
+				response.setContentType("application/octet-stream");
+				String fileN=new String(fileName.getBytes("euc-kr"),"8859_1");
+				response.setHeader("Content-disposition", 
+						"attachment;fileName="+ fileN);
+				
+				FileInputStream fis=new FileInputStream(file);
+				OutputStream os = response.getOutputStream();
+				
+				FileCopyUtils.copy(fis, os);
+				
+				if(fis!=null) fis.close();
+				
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("downFile", file);
 		

@@ -14,4 +14,6 @@ public interface MenuInfoDAO {
 	public List<Map<String, Object>> selectMenuinfoAllView();
 	public List<Map<String, Object[]>> selectMenuinfoYearCount();
 	public List<Map<String, Object[]>> selectAdsYearCount();
+	public int insertProduct(MenuInfoVO vo);
+	public MenuInfoVO NonAvtivatedProduct(int expertNo);
 }

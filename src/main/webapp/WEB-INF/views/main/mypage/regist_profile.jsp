@@ -60,6 +60,10 @@
 	iframe{
 		margin-left: 16px;
 	}
+	
+	.section{
+		padding-bottom:40rem;
+	}
 </style>
 <%@include file="../incs/side_mypage.jsp"%>
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->
@@ -81,11 +85,11 @@
 						<div class="service-wrapper wow fadeIn" style="visibility: visible; animation-name: fadeIn;">	
 							<i class="flaticon-content"></i>
 							<div class="service-details">
-								<h4><a style="cursor: default;"
+								<h4><a style="cursor: inherit;"
 								<c:if test="${param.state=='profile' }">
 									style="color:#f47664;"
 								</c:if>
-								href="<c:url value='/registExpert/registProfile.do?state=profile&userNo=${sessionScope.userNo }'/>">프로필 작성</a></h4>
+								>프로필 작성</a></h4>
 							</div>
 						</div><!-- end service-wrapper -->
 					</div><!-- end col -->
@@ -94,7 +98,7 @@
 						<div class="service-wrapper wow fadeIn" style="visibility: visible; animation-name: fadeIn;">	
 							<i class="flaticon-html"></i>
 							<div class="service-details">
-								<h4><a href="service-02.html">서비스 등록</a></h4>
+								<h4><a href="<c:url value='/registExpert/service.do?expertNo=${param.expertNo }'/>">서비스 등록</a></h4>
 							</div>
 						</div><!-- end service-wrapper -->
 					</div><!-- end col -->
