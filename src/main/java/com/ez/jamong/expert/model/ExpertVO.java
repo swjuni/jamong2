@@ -5,7 +5,7 @@ public class ExpertVO {
 	private String id;
 	private String fileName;
 	private String originalFileName;
-	private int fileSize;
+	private long fileSize;
 	private String serviceableTime;
 	private int workAmount;
 	private String introduction;
@@ -38,10 +38,10 @@ public class ExpertVO {
 	public void setOriginalFileName(String originalFileName) {
 		this.originalFileName = originalFileName;
 	}
-	public int getFileSize() {
+	public long getFileSize() {
 		return fileSize;
 	}
-	public void setFileSize(int fileSize) {
+	public void setFileSize(long fileSize) {
 		this.fileSize = fileSize;
 	}
 	public String getServiceableTime() {

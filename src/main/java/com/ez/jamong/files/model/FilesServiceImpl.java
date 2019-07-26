@@ -10,4 +10,14 @@ import org.springframework.stereotype.Service;
 public class FilesServiceImpl implements FilesService{
 	@Autowired FilesDAO filesDao;
 
+	@Override
+	public List<FilesVO> selectfileUser(int userno) {
+		return filesDao.selectfileUser(userno);
+	}
+
+	@Override
+	public List<FilesVO> selectfileExpert(int userno) {
+		return filesDao.selectfileExpert(userno);
+	}
+
 }
