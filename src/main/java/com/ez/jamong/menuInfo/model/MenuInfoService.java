@@ -16,4 +16,8 @@ public interface MenuInfoService {
 	public List<Map<String, Object[]>> selectAdsYearCount();
 	public int saveProduct(MenuInfoVO vo);
 	public MenuInfoVO NonAvtivatedProduct(int expertNo);
+	
+	//원준 상품목록화면 사용 메서드
+	public List<MenuInfoExtendsVO> menuinfoByList(MenuInfoSearchVO searchVo);
+	public int selectTotalCount(MenuInfoSearchVO searchVo);
 }

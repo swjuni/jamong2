@@ -2,6 +2,10 @@
 <%@include file="../incs/top_main.jsp" %>
 <!-- 각 화면별 내용 코딩-->
 <script type="text/javascript">
+	function pageFunc(curPage){
+		 document.frmSearch.currentPage.value = curPage;
+		 document.frmSearch.submit();
+	}
 </script>
 <style type="text/css">
 .section{
@@ -29,6 +33,27 @@
     width: 220px;
     padding: 0;
     color: black;
+    transition: all .1s ease-in-out;
+}
+.case-boxUser a{
+    color: black;
+}
+.case-boxUser a:hover{
+    color: black;
+}
+.forFont a{
+	color: black;
+}
+.forFont a:hover{
+	color: #337ab7;
+}
+.case-boxUser:hover{
+    -ms-transform: scale(1.05, 1.05);
+    /* IE 9 */
+    -webkit-transform: scale(1.05, 1.05);
+    /* Safari */
+    transform: scale(1.05, 1.05);
+    cursor: pointer;
 }
 
 .lightcasestudiesUser .case-boxUser{
@@ -48,140 +73,124 @@
     position: relative;
     padding: 0 10px;
 }
-.case-boxUser:hover{
-	background: -webkit-linear-gradient(45deg, #3ac5c8 1%, #0b509e 100%);
+ 
+.row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.heartDiv{
+    line-height: 31px;
+    text-align: right;
+    font-size: 0.9em;
+}
+.moneyDiv{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+	font-size: 20px;
+}
+.gig-profile{
+	position: absolute;
+	right: 10px;
+	top: 110px;
+	display: block;
+}
+.gig-profile .gig-user-profile{
+	width: 60px;
+	height: 60px;
+	padding: 1px;
+	border: solid #E6E6E6 1px;
+	background-color: #fff;
+	position: relative;
+	z-index: 1;
+	border-radius: 500px !important;
 }
 </style>
   
 		<section class="section">
 			<div class="container">
 				<div class="row lightcasestudiesUser">
-					<div class="col-md-2">
-						<h3>카테고리명</h3> 
-						<hr class="hrLine">
-						<div class="catLine">
-							<p><b>카테고리</b></p>
-							<hr class="hrSubLine">
-							<div class="forFont">카테고리 for위치</div>
-						</div>
-						<hr class="hrLine">
-						<div class="catLine">
-							<p><b>필터</b></p>
-							<hr class="hrSubLine">
-							<div class="forFont">필터 for위치</div>
-						</div>
-						<hr class="hrLine">
-						<div class="catLine">
-							<p><b>전문가 등급</b></p>
-							<hr class="hrSubLine">
-							<div class="forFont">등급 for위치</div>
-						</div>
-						<br><br>
-					</div>
-					
-					
-					
+					<c:import url="/main/menuinfo/menuListCategoryM.do?categoryNoL=
+					${menuInfoSearchVO.categoryNoL }&categoryNoM=${menuInfoSearchVO.categoryNoM }&expertNo=${menuInfoSearchVO.expertNo }"/>
 					
 					<div class="col-md-10">
 						<div class="row">
 							<div class="col-md-12">
-								<p>상단 카테고리 디렉토리 구조 보여주는 곳</p>
+								<p style="font-size: 0.9em;"><b>HOME &nbsp; > &nbsp;${epName }${cNameL } &nbsp; > &nbsp; ${cNameM }</b></p>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-								<div class="case-boxUser">
-									<img src="/jamong/resources/upload/case_04.jpg" alt="" class="img-responsive" style="width: 100%; height: 45%;">
-									<div class="case-info clearfix" style="height:40% ;border-bottom: 1px solid #ededed;">
-										<div>
-											<h4>판매자 ID</h4>
-											<span>상품명</span><br>
-											<div style="float: right; bottom: 5px;">가격 1,000,000원</div> 
-										</div> 
-									</div><!-- end case-info -->
-									<div class="case-info clearfix">
-										<div>평점 하트 위치</div> 
-									</div>
-								</div><!-- end case-box -->
-							</div><!-- end col -->
-							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-								<div class="case-boxUser">
-									<img src="/jamong/resources/upload/case_04.jpg" alt="" class="img-responsive" style="width: 100%; height: 45%;">
-									<div class="case-info clearfix" style="height:40% ;border-bottom: 1px solid #ededed;">
-										<div>
-											<h4>판매자 ID</h4>
-											<span>상품명</span><br>
-											<div style="float: right; bottom: 5px;">가격 1,000,000원</div> 
-										</div> 
-									</div><!-- end case-info -->
-									<div class="case-info clearfix">
-										<div>평점 하트 위치</div> 
-									</div>
-								</div><!-- end case-box -->
-							</div><!-- end col -->
-							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-								<div class="case-boxUser">
-									<img src="/jamong/resources/upload/case_04.jpg" alt="" class="img-responsive" style="width: 100%; height: 45%;">
-									<div class="case-info clearfix" style="height:40% ;border-bottom: 1px solid #ededed;">
-										<div>
-											<h4>판매자 ID</h4>
-											<span>상품명</span><br>
-											<div style="float: right; bottom: 5px;">가격 1,000,000원</div> 
-										</div> 
-									</div><!-- end case-info -->
-									<div class="case-info clearfix">
-										<div>평점 하트 위치</div> 
-									</div>
-								</div><!-- end case-box -->
-							</div><!-- end col -->
-							<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-								<div class="case-boxUser">
-									<img src="/jamong/resources/upload/case_04.jpg" alt="" class="img-responsive" style="width: 100%; height: 45%;">
-									<div class="case-info clearfix" style="height:40% ;border-bottom: 1px solid #ededed;">
-										<div>
-											<h4>판매자 ID</h4>
-											<span>상품명</span><br>
-											<div style="float: right; bottom: 5px;">가격 1,000,000원</div> 
-										</div> 
-									</div><!-- end case-info -->
-									<div class="case-info clearfix">
-										<div>평점 하트 위치</div> 
-									</div>
-								</div><!-- end case-box -->
-							</div><!-- end col -->
+							<c:if test="${!empty list }">
+								<c:forEach var="vo" items="${list }">
+									<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+										<div class="case-boxUser" >
+											<a href="<c:url value='/main/menuinfo/menuinfo_Detail.do?productNo=${vo.productNo }'/>" onclick="addCookie('${vo.productNo}')">
+												<img src="<c:url value='/upload/product/${vo.fileName }'/>" 
+													alt="" class="img-responsive" style="width: 100%; height: 45%;">
+												<div class="gig-profile">
+													<img class="gig-user-profile" src="<c:url value='/upload/expert/${vo.expertFileName }'/>"
+														onerror="this.onerror=null;this.src='/jamong/upload/expert/2.png'">
+												</div>
+												<div class="case-info clearfix" style="height:45% ;border-bottom: 1px solid #ededed;">
+													<div>
+														<h4>${vo.id }</h4>
+														<span>${vo.productName }</span><br>
+														<div class="moneyDiv"><b>1,000,000</b>원</div> 
+													</div>
+												</div><!-- end case-info -->
+												<div class="case-info clearfix  heartDiv">
+													<div>평점 하트 위치</div> 
+												</div>
+											</a>
+										</div><!-- end case-box -->
+									</div><!-- end col -->
+								</c:forEach>
+							</c:if>
 						</div>
 						
 						
 						<!-- 페이징 처리 -->
-						<div class="row">
-							<div class="pagination-wrapper row text-center">
-							 	<ul class="pagination col-md-12">
-									<!-- 이전블럭으로 이동하기 -->
-									<c:if test="${pagingInfo.firstPage>1 }">
-										<li><a href="#" onclick="pageFunc(${pagingInfo.firstPage-1})">&lt;</a></li>
-									</c:if>
-									
-									<!-- 페이지 번호 추가 -->		
-									<!-- [1][2][3][4][5][6][7][8][9][10] -->
-	
-									<c:forEach var="i" begin="${pagingInfo.firstPage }" end="${pagingInfo.lastPage }">
-										<c:if test="${i==pagingInfo.currentPage }">
-											<li class="active"><a href="#" style="color:red;" >${i}</a></li>
-										</c:if>
-										<c:if test="${i!=pagingInfo.currentPage }">
-											<li><a href="#" onclick="pageFunc(${i})">${i}</a></li>
-										</c:if>
-									</c:forEach>
-									<!--  페이지 번호 끝 -->
-									
-									<!-- 다음 블럭으로 이동하기 -->
-									<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage}">
-										<li><a href="#" onclick="pageFunc(${pagingInfo.lastPage+1})">&gt;</a></li>
-									</c:if>
-								</ul>
-							</div>
-						</div><!-- end 페이징 처리 -->
+						<form class="form-inline" role="search" name="frmSearch" method="post" action="<c:url value='/main/menuinfo/menuinfo_List.do'/>">
+                            <div class="form-1">
+						   		<!-- 현재 페이지 hidden에 넣기 -->
+						   		<input type="hidden" name="currentPage" value="1">
+						   		<input type="hidden" name="searchCondition" value="product_name">
+						   		<input type="hidden" name="categoryNoL" value="${menuInfoSearchVO.categoryNoL }">
+						   		<input type="hidden" name="categoryNoM" value="${menuInfoSearchVO.categoryNoM }">
+						   		<input type="hidden" name="expertNo" value="${menuInfoSearchVO.expertNo }">
+                            </div>
+						</form>
 						
+						<div class="row">
+							<div class="content">
+								<div class="pagination-wrapper row text-center">
+								 	<ul class="pagination col-md-12">
+										<!-- 이전블럭으로 이동하기 -->
+										<c:if test="${pagingInfo.firstPage>1 }">
+											<li><a href="#" onclick="pageFunc(${pagingInfo.firstPage-1})">&lt;</a></li>
+										</c:if>
+										
+										<!-- 페이지 번호 추가 -->		
+										<!-- [1][2][3][4][5][6][7][8][9][10] -->
+		
+										<c:forEach var="i" begin="${pagingInfo.firstPage }" end="${pagingInfo.lastPage }">
+											<c:if test="${i==pagingInfo.currentPage }">
+												<li class="active"><a href="#" style="color:seashell;" >${i}</a></li>
+											</c:if>
+											<c:if test="${i!=pagingInfo.currentPage }">
+												<li><a href="#" onclick="pageFunc(${i})">${i}</a></li>
+											</c:if>
+										</c:forEach>
+										<!--  페이지 번호 끝 -->
+										
+										<!-- 다음 블럭으로 이동하기 -->
+										<c:if test="${pagingInfo.lastPage < pagingInfo.totalPage}">
+											<li><a href="#" onclick="pageFunc(${pagingInfo.lastPage+1})">&gt;</a></li>
+										</c:if>
+									</ul>
+								</div><!-- ne dpagi -->
+							</div><!-- end 페이징 처리 -->
+						</div>
 					</div><!-- end col-md-10 -->
 				</div><!-- end row lightcasestudies -->
 			</div><!-- end container -->
@@ -191,6 +200,6 @@
 
 <%@include file="../incs/bottom_main.jsp" %>
 <!-- 화면별 고유 하단js 포함할 위치 -->
-
+<script src="<c:url value='/resources/js/addCookie.js'/>"></script>
 </body>
 </html>

@@ -53,7 +53,11 @@
 						<div class="col-md-6 col-sm-6">
 							<div class="ebook-details copybox row">
 								<div class="col-md-4">
-									<img src="/jamong/resources/upload/book_01.png" alt="" class="img-responsive">
+									<a href="<c:url value='/main/menuinfo/menuinfo_List.do?expertNo=${map["EXPERT_NO"] }'/>">
+										<img src="<c:url value='/upload/expert/${map["FILE_NAME"] }'/>" alt="전문가 이미지" class="img-responsive"
+										onerror="this.onerror=null;this.src='/jamong/upload/expert/2.png'">
+										
+									</a>
 								</div>
 								<div class="col-md-8">
 									<div class="chk" style="float: right;">

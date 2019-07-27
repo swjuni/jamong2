@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 public class MenuInfoDAOMybatis implements MenuInfoDAO{
 	@Autowired private SqlSessionTemplate sqlSession;
 	private String namespace="config.mybatis.mapper.oracle.menuInfo.";
+	private String namespaceList="config.mybatis.mapper.oracle.menuInfoList.";
 	
 	@Override
 	public int suspendedByPdNo(int productNo) {
@@ -60,5 +61,16 @@ public class MenuInfoDAOMybatis implements MenuInfoDAO{
 	@Override
 	public MenuInfoVO NonAvtivatedProduct(int expertNo) {
 		return sqlSession.selectOne(namespace+"NonAvtivatedProduct", expertNo);
+	}
+	
+	//원준 상품목록화면 사용 메서드
+	@Override
+	public List<MenuInfoExtendsVO> menuinfoByList(MenuInfoSearchVO searchVo) {
+		return sqlSession.selectList(namespaceList+"menuinfoByList", searchVo);
+	}
+	//원준 상품목록화면 사용 메서드
+	@Override
+	public int selectTotalCount(MenuInfoSearchVO searchVo) {
+		return sqlSession.selectOne(namespaceList+"selectTotalCount", searchVo);
 	}
 }

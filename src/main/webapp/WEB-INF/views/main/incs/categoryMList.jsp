@@ -6,7 +6,8 @@
 		<img src="<c:url value='/upload/categoryM/${vo.imgName }'/>" alt="" style="width: 100%; height: 100%;">
 		<p>${vo.categoryName }</p>
 		<div class="magnifier">
-			<a href="case-studies-single.html"><i class="fa fa-link"></i></a> 
+			<a href="<c:url value='/main/menuinfo/menuinfo_List.do?categoryNoL=
+					${vo.categoryNoL }&categoryNoM=${vo.categoryNoM }'/>"><i class="fa fa-link"></i></a> 
 		</div>
 	</div>
 </c:forEach>

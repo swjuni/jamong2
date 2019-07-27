@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../incs/top_main.jsp" %>
 <!-- 각 화면별 내용 코딩-->
+
 <script type="text/javascript">
 	var markS = ${bookmarkExist};
 	var userNo = "${sessionScope.userNo}"; 
@@ -90,7 +91,6 @@
     border-right: 0px;
 }
 </style>
-  
 <section class="section lb">
 	<div class="container">
 		<div class="row case-single">
@@ -367,7 +367,8 @@
 									<a href="#"><img src="/jamong/assets/images/bookingSystem/2.png" alt="" class="img-responsive"></a>
 								</c:if>
 								<c:if test="${!empty expertVo.fileName }">
-									<a href="#"><img src="<c:url value='/upload/expert/${expertVo.fileName }'/>" alt="" class="img-responsive"></a>
+									<a href="<c:url value='/main/menuinfo/menuinfo_List.do?expertNo=${expertVo.expertNo }'/>">
+									<img src="<c:url value='/upload/expert/${expertVo.fileName }'/>" alt="" class="img-responsive"></a>
 								</c:if>
 							</div> 
 							<h4 style="font-weight: bold;">${expertVo.id}</h4>
@@ -404,6 +405,5 @@
 
 <%@include file="../incs/bottom_main.jsp" %>
 <!-- 화면별 고유 하단js 포함할 위치 -->
-
 </body>
 </html>

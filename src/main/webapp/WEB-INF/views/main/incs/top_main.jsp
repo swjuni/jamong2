@@ -21,7 +21,7 @@
 						if(res.length>0){
 							var str="<div class='subCategory' name='subCategory'><ul>";
 								 $.each(res, function(idx, item){
-									str+="<li class='categoryM'><a>"+item.categoryName+"</a></li>";
+									str+="<li class='categoryM'><a href='<c:url value='/main/menuinfo/menuinfo_List.do?categoryNoM="+item.categoryNoM+"&categoryNoL="+item.categoryNoL+"'/>'>"+item.categoryName+"</a></li>";
 								});
 							str+="</ul></div>";
 							$t.find("a").append(str);

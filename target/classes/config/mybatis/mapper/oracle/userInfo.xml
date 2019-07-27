@@ -80,7 +80,7 @@
 	
 	<select id="selectForUserLogin" parameterType="string" resultType="string">
 		select user_pwd from user_info
-		where user_id=#{userId}
+		where user_id=#{userId} and outdate is null
 	</select>
 	
 	<select id="selectUser" parameterType="string" resultType="userinfoVo">
@@ -98,4 +98,12 @@
 		select * from user_info
 		where user_no=#{userNo}
 	</select>
+	
+	<update id="findUserPwd" parameterType="userinfoVo">
+		update user_info set user_pwd=#{userPwd} where user_id=#{userId}
+	</update>
+	
+	<update id="outUser" parameterType="string">
+		update user_info set outdate=sysdate where user_id=#{userId}
+	</update>
 </mapper>

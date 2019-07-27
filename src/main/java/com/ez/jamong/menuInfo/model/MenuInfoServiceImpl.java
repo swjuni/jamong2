@@ -74,4 +74,15 @@ public class MenuInfoServiceImpl implements MenuInfoService{
 	public MenuInfoVO NonAvtivatedProduct(int expertNo) {
 		return menuInfoDao.NonAvtivatedProduct(expertNo);
 	}
+
+	//원준 상품목록화면 사용 메서드
+	@Override
+	public List<MenuInfoExtendsVO> menuinfoByList(MenuInfoSearchVO searchVo) {
+		return menuInfoDao.menuinfoByList(searchVo);
+	}
+	//원준 상품목록화면 사용 메서드
+	@Override
+	public int selectTotalCount(MenuInfoSearchVO searchVo) {
+		return menuInfoDao.selectTotalCount(searchVo);
+	}
 }
