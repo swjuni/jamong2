@@ -8,7 +8,14 @@
 							<div class="website-screen" style="text-align: center;">
 								<img src="<c:url value='/resources/images/userinfo.png'/>" alt="" class="img-thumbnail" style="width: 200px; border-radius: 50%; ">
 								<h4 style="margin: 20px 0;">${userName}</h4>
-								<a href="<c:url value='/registExpert/registExpert.do?state=expert&userNo=${sessionScope.userNo }'/>" class="btn btn-primary">전문가로 전환</a>
+								<a href="<c:url value='/registExpert/registExpert.do?state=expert'/>" class="btn btn-primary">
+								<c:if test="${empty expert }">
+									전문가로 전환
+								</c:if>
+								<c:if test="${!empty expert }">
+									프로필 수정/서비스 등록
+								</c:if>
+								</a>
 							</div><!-- end website-screen -->
 
 							<div class="circle-detail">

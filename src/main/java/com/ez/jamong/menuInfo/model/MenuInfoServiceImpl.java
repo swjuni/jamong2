@@ -60,16 +60,20 @@ public class MenuInfoServiceImpl implements MenuInfoService{
 		return menuInfoDao.selectAdsYearCount();
 	}
 
+	//주영 상품등록 메서드
 	@Override
 	public int saveProduct(MenuInfoVO vo) {
 		MenuInfoVO menuvo=menuInfoDao.NonAvtivatedProduct(vo.getExpertNo());
 		int cnt=0;
 		if(menuvo==null) {
 			cnt=menuInfoDao.insertProduct(vo);
+		}else {
+			cnt=menuInfoDao.updateMenuInfo1(vo);
 		}
 		return cnt;
 	}
 
+	//주영 삼품등록 진행중인 상품 찾는 메서드
 	@Override
 	public MenuInfoVO NonAvtivatedProduct(int expertNo) {
 		return menuInfoDao.NonAvtivatedProduct(expertNo);
@@ -84,5 +88,17 @@ public class MenuInfoServiceImpl implements MenuInfoService{
 	@Override
 	public int selectTotalCount(MenuInfoSearchVO searchVo) {
 		return menuInfoDao.selectTotalCount(searchVo);
+	}
+
+	//주영 상품등록 메서드2
+	@Override
+	public int updateMenuInfo2(MenuInfoVO menuInfoVo) {
+		return menuInfoDao.updateMenuInfo2(menuInfoVo);
+
+	}
+
+	@Override
+	public int registProduct(int productNo) {
+		return menuInfoDao.registProduct(productNo);
 	}
 }

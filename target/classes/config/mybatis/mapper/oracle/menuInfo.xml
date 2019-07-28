@@ -96,4 +96,22 @@
 		select * from menu_info
 		where expert_no=#{expertNo} and activation is null
 	</select>
+	
+	<update id="updateMenuInfo1" parameterType="menuInfoVo">
+		update menu_info
+		set product_name=#{productName},category_type_no=#{categoryTypeNo}
+		where expert_no=#{expertNo}
+	</update>
+	
+	<update id="updateMenuInfo2" parameterType="menuInfoVo">
+		update menu_info
+		set summary=#{summary},detail_desc=#{detailDesc}
+		where expert_no=#{expertNo} and activation is null
+	</update>
+	
+		<update id="registProduct" parameterType="int">
+		update menu_info
+		set activation='P'
+		where product_no=#{productNo}
+	</update>
 </mapper>

@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
@@ -35,8 +33,6 @@ import com.ez.jamong.expert.model.ExpertService;
 import com.ez.jamong.expert.model.ExpertVO;
 import com.ez.jamong.expert_profile.model.ExpertProfileService;
 import com.ez.jamong.expert_profile.model.ExpertProfileVO;
-import com.ez.jamong.menuInfo.model.MenuInfoService;
-import com.ez.jamong.menuInfo.model.MenuInfoVO;
 import com.ez.jamong.userInfo.model.UserInfoService;
 import com.ez.jamong.userInfo.model.UserInfoVO;
 
@@ -50,10 +46,10 @@ public class RegistExpertController {
 	@Autowired private FileUploadUtility fileUtility;
 	@Autowired private CategoryMService categoryMService;
 	@Autowired private ExpertProfileService expertprofileService;
-	@Autowired private MenuInfoService menuInfoService;
 	
 	@RequestMapping("/registExpert.do")
-	public String registExpert(@RequestParam(defaultValue = "0") int userNo, Model model) {
+	public String registExpert(HttpSession session, Model model) {
+		int userNo=(Integer)session.getAttribute("userNo");
 		logger.info("전문가로 전환 페이지 파라미터 userNo={}",userNo);
 		UserInfoVO userInfo=userInfoService.selectByuserNo(userNo);
 		ExpertVO expert=expertService.selectByUserNo(userNo);
@@ -63,15 +59,17 @@ public class RegistExpertController {
 	}
 	
 	@RequestMapping("/regist.do")
-	public String regist(@ModelAttribute ExpertVO expertVo,Model model) {
+	public String regist(@ModelAttribute ExpertVO expertVo,Model model,HttpSession session) {
 		logger.info("전문가 인증등록 파라미터 expertVo={}",expertVo);
+		int userNo=(Integer)session.getAttribute("userNo");
+		expertVo.setUserNo(userNo);
 		int cnt=expertService.InsertExpert(expertVo);
-		String msg="", url="/registExpert/registProfile.do?state=profile&userNo="+expertVo.getUserNo();//페이지 생성하고 바꾸기
+		String msg="", url="/registExpert/registProfile.do?state=profile";//페이지 생성하고 바꾸기
 		if(cnt>0) {
 			msg="저장되었습니다.";
 		}else {
 			msg="저장에 실패하였습니다.";
-			url="/registExpert/registExpert.do?userNo="+expertVo.getUserNo();
+			url="/registExpert/registExpert.do";
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
@@ -79,7 +77,10 @@ public class RegistExpertController {
 	}
 	
 	@RequestMapping("/registProfile.do")
-	public String registProfile() {
+	public String registProfile(HttpSession session, Model model) {
+		int userNo=(Integer)session.getAttribute("userNo");
+		ExpertVO vo=expertService.selectByUserNo(userNo);
+		model.addAttribute("expert",vo);
 		return "main/mypage/regist_profile";
 	}
 	

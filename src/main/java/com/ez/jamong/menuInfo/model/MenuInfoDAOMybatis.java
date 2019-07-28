@@ -73,4 +73,16 @@ public class MenuInfoDAOMybatis implements MenuInfoDAO{
 	public int selectTotalCount(MenuInfoSearchVO searchVo) {
 		return sqlSession.selectOne(namespaceList+"selectTotalCount", searchVo);
 	}
+	@Override
+	public int updateMenuInfo1(MenuInfoVO menuInfoVo) {
+		return sqlSession.update(namespace+"updateMenuInfo1",menuInfoVo);
+	}
+	@Override
+	public int updateMenuInfo2(MenuInfoVO menuInfoVo) {
+		return sqlSession.update(namespace+"updateMenuInfo2",menuInfoVo);
+	}
+	@Override
+	public int registProduct(int productNo) {
+		return sqlSession.update(namespace+"registProduct",productNo);
+	}
 }

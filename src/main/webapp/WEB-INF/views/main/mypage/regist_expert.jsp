@@ -65,49 +65,11 @@
 	.service-list .col-md-4 {
 	    width: 241px;
 	}
-	
-	h4{
-		font-size: 18px;
-		padding: 0;
-	}
 </style>
 <%@include file="../incs/side_mypage.jsp"%>
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->
 <div class="row service-list text-center">
-					<div class="col-md-4 col-sm-12 col-xs-12 first">
-						<div class="service-wrapper wow fadeIn" style="visibility: visible; animation-name: fadeIn;">	
-							<i class="flaticon-competition"></i>
-							<div class="service-details">
-								<h4><a 
-								<c:if test="${param.state=='expert' }">
-									style="color:#f47664;"
-								</c:if>
-								 href="<c:url value='/registExpert/registExpert.do?state=expert&userNo=${sessionScope.userNo }'/>">전문가 등록</a></h4>
-							</div>
-						</div><!-- end service-wrapper -->
-					</div><!-- end col -->
-
-					<div class="col-md-4 col-sm-12 col-xs-12">
-						<div class="service-wrapper wow fadeIn" style="visibility: visible; animation-name: fadeIn;">	
-							<i class="flaticon-content"></i>
-							<div class="service-details">
-								<h4><a 
-								<c:if test="${param.state=='profile' }">
-									style="color:#f47664;"
-								</c:if>>프로필 작성</a></h4>
-							</div>
-						</div><!-- end service-wrapper -->
-					</div><!-- end col -->
-
-					<div class="col-md-4 col-sm-12 col-xs-12 last">
-						<div class="service-wrapper wow fadeIn" style="visibility: visible; animation-name: fadeIn;">	
-							<i class="flaticon-html"></i>
-							<div class="service-details">
-								<h4><a href="<c:url value='/registExpert/service.do?expertNo=${expert.expertNo }'/>">서비스 등록</a></h4>
-							</div>
-						</div><!-- end service-wrapper -->
-					</div><!-- end col -->
-				</div>
+	<%@include file="../incs/registexpert.jsp"%>
 				<div class="col-md-3 mb30">
 					<div class="contact-details">
 						<ul>
@@ -122,7 +84,6 @@
 				</div>
 				<div class="col-md-5">
 					<form name="frm" role="form" class="contactform" action="<c:url value='/registExpert/regist.do'/>">
-					<input type="hidden" name="userNo" value="${param.userNo }">
 					<input type="hidden" name="id" value="${userInfo.userId }">
 						<div class="form-group">
 							<input type="text" class="form-control" id="userName" name="userName" value="${userInfo.userName }" disabled="disabled">
