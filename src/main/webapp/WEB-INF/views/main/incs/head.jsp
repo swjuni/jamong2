@@ -26,6 +26,7 @@
 	<link rel="stylesheet" href="<c:url value='/resources/css/animate.css'/>">
 	<link rel="stylesheet" href="<c:url value='/resources/css/carousel.css'/>">
 	<link rel="stylesheet" href="<c:url value='/resources/style.css'/>">
+	<link rel="stylesheet" href="<c:url value='/resources/css/cloudzoom.css'/>">
  
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -39,4 +40,8 @@
 	<script src="<c:url value='/resources/js/animate.js'/>"></script>
 	<script src="<c:url value='/resources/js/owl.carousel.js'/>"></script>
 	<script src="<c:url value='/resources/js/custom.js'/>"></script>
+	<script src="<c:url value='/resources/js/cloudzoom.js'/>"></script>
 	
+	<script type="text/javascript">
+		CloudZoom.quickStart();
+	</script>   

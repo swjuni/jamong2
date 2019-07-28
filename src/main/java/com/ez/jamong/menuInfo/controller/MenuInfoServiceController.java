@@ -21,6 +21,8 @@ import com.ez.jamong.categoryl.model.CategoryLVO;
 import com.ez.jamong.categorym.model.CategoryMService;
 import com.ez.jamong.categorym.model.CategoryMVO;
 import com.ez.jamong.common.PaginationInfo;
+import com.ez.jamong.evaluation.model.EvaluationService;
+import com.ez.jamong.evaluation.model.EvaluationVO;
 import com.ez.jamong.expert.model.ExpertService;
 import com.ez.jamong.expert.model.ExpertVO;
 import com.ez.jamong.menuInfo.model.MenuInfoExtendsVO;
@@ -36,6 +38,7 @@ public class MenuInfoServiceController {
 	@Autowired private BookmarkService bookmarkService;
 	@Autowired private CategoryLService categorylService;
 	@Autowired private CategoryMService categoryMService;
+	@Autowired private EvaluationService evaluationService;
 	
 	@RequestMapping(value = "/main/menuinfo/menuinfo_Detail.do")
 	public String menuinfoDetail_get(@RequestParam(defaultValue = "0") int productNo, HttpServletRequest request, HttpSession session,Model model) {
@@ -82,6 +85,11 @@ public class MenuInfoServiceController {
 		logger.info("목록 파라미터, map={}", map);
 		model.addAttribute("map", map);
 		*/
+		
+		List<EvaluationVO> evalList = evaluationService.evaluationListByPdNo(productNo);
+		logger.info("서비스 평가 목록 조회 결과 evalList.size={}",evalList.size());
+		
+		model.addAttribute("evalList", evalList);
 		model.addAttribute("menuinfoVo", menuinfoVo);
 		model.addAttribute("expertVo", expertVo);
 		model.addAttribute("bookmarkExist", bookmarkExist);

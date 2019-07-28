@@ -7,4 +7,6 @@ public interface EvaluationService {
 	List<Map<String, Object>> selectAll();
 	Map<String, Object> selectByNo(int evalNo);
 	int deleteEvaluation(int evalNo);
+	int evaluationAdd(EvaluationVO evaluationVo);
+	List<EvaluationVO> evaluationListByPdNo(int productNo);
 }

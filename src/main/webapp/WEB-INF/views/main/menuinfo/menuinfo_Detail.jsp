@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../incs/top_main.jsp" %>
 <!-- 각 화면별 내용 코딩-->
-
 <script type="text/javascript">
 	var markS = ${bookmarkExist};
 	var userNo = "${sessionScope.userNo}"; 
@@ -74,6 +73,7 @@
 }
 .client-box img {
 	height: 100%;
+	width: 100%;
 }
 .case-single .case-box{
 	border: 0px;
@@ -90,6 +90,9 @@
     border-left: 0px;
     border-right: 0px;
 }
+img.cloudzoom {
+	width:100%;
+}
 </style>
 <section class="section lb">
 	<div class="container">
@@ -97,29 +100,42 @@
 			<div class="col-md-7 col-sm-7 col-xs-12">
 				<div class="pitem">
 					<div class="case-box">
-						<img src="/jamong/resources/upload/case_03.png" alt="" class="img-responsive">
+						<!-- <img src="/jamong/resources/upload/case_03.png" alt="" class="img-responsive"> -->
+						<img class="img-responsive cloudzoom" alt ="Cloud Zoom small image" id ="zoom1"
+							src="/jamong/upload/product/Jellyfish.jpg"
+							data-cloudzoom='
+								zoomSizeMode:"image",
+								autoInside: 550 
+							'>
 					</div><!-- end case-box -->
-					
 					<div class="productImages">
 						<div class="row text-center">
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="client-box">
-									<a href="#"><img src="/jamong/resources/upload/client_01.png" alt="" class="img-responsive"></a>
+									<!-- <a href="#"><img src="/jamong/resources/upload/client_01.png" alt="" class="img-responsive"></a> -->
+									<img class = 'cloudzoom-gallery' src = "/jamong/upload/product/Jellyfish.jpg" 
+									data-cloudzoom = "useZoom: '.cloudzoom', image: '/jamong/upload/product/Jellyfish.jpg' " >
+								</div>
+							</div><!-- end col -->
+							<div class="col-md-3 col-sm-3 col-xs-6">
+								<div class="client-box" style="width: 100%;">
+									<!-- <a href="#"><img src="/jamong/resources/upload/client_02.png" alt="" class="img-responsive"></a> -->
+				        			<img class = 'cloudzoom-gallery' src = "/jamong/upload/product/2.png" 
+				        			data-cloudzoom = "useZoom: '.cloudzoom', image: '/jamong/upload/product/2.png' " >
 								</div>
 							</div><!-- end col -->
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="client-box">
-									<a href="#"><img src="/jamong/resources/upload/client_02.png" alt="" class="img-responsive"></a>
-								</div>
-							</div><!-- end col -->
-							<div class="col-md-3 col-sm-3 col-xs-6">
-								<div class="client-box">
-									<a href="#"><img src="/jamong/resources/upload/client_03.png" alt="" class="img-responsive"></a>
+									<!-- <a href="#"><img src="/jamong/resources/upload/client_03.png" alt="" class="img-responsive"></a> -->
+				        			<img class = 'cloudzoom-gallery' src = "/jamong/upload/product/3.png" 
+				        			data-cloudzoom = "useZoom: '.cloudzoom', image: '/jamong/upload/product/3.png' " >
 								</div>
 							</div><!-- end col -->	
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="client-box">
-									<a href="#"><img src="/jamong/resources/upload/client_04.png" alt="" class="img-responsive"></a>
+									<!-- <a href="#"><img src="/jamong/resources/upload/client_04.png" alt="" class="img-responsive"></a> -->
+				        			<img class = 'cloudzoom-gallery' src = "/jamong/upload/product/4.png" 
+				        			data-cloudzoom = "useZoom: '.cloudzoom', image: '/jamong/upload/product/4.png' " >
 								</div>
 							</div><!-- end col -->
 						</div>
@@ -143,9 +159,10 @@
 							</div><!-- end blog-desc -->
 						</div><!-- end blogbox -->
 
+						<c:if test="${!empty evalList }">
                         <div class="blog-box clearfix">
                             <div class="custom-title">
-                                <h4>5 Comments</h4>
+                                <h4>${evalList.size()} Comments</h4>
                                 <hr>
                             </div><!-- end -->
 
@@ -153,18 +170,21 @@
                                 <div class="col-md-12" style="background: white;">
                                     <div class="panel panel-info">
                                         <div class="panel-body comments">
+                                        	<c:forEach var="vo" items="${evalList }">
                                             <ul class="media-list">
                                                 <li class="media">
                                                     <div class="comment">
-                                                        <a href="#" class="pull-left">
-                                                            <img src="/jamong/resources/upload/team_01.jpeg" alt="" class="img-circle">
-                                                        </a>
                                                         <div class="media-body">
-                                                            <strong class="text-success">Jane Doe</strong>
-                                                            <span class="text-muted">
-																<small class="text-muted">6 days ago</small></span> | 
-															<span>★★★★★</span>
-                                                            <p>빠른 처리 감사합니다</p>
+                                                            <strong class="text-success">${vo.userId }</strong>
+                                                            <span class="text-muted" style="float: right;">
+                                                            	<small class="text-muted"><fmt:formatDate value="${vo.col }" pattern="yyyy-MM-dd"/></small>
+                                                           	</span> 
+															<div class="progress">
+															 	<div class="progress-bar progress-bar-striped active" 
+															 	role="progressbar" aria-valuenow="${vo.evalScore }" aria-valuemin="0" aria-valuemax="100" style="width:${vo.evalScore }%">
+															  	</div>
+															</div>
+                                                            <p>${vo.review }</p>
                                                             <a href="#" class="btn btn-primary btn-sm" style="float: right;">Reply</a>
                                                         </div>
                                                         <div class="clearfix"></div>
@@ -185,33 +205,45 @@
 													</ul>
                                                 </li>
                                             </ul>
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div><!-- end postpager -->
+						</c:if>
 
+						<c:if test="${!empty sessionScope.userNo }">
                         <div class="blog-box clearfix">
                             <div class="custom-title">
                                 <h4>Leave a Comment</h4>
                             </div><!-- end about -->
 
                             <div class="contact_form comment-form">
-                                <form class="row" style="background: white;">
+	                            <form class="row" name="frmWrite" method="post" action="<c:url value='/main/menuinfo/evaluationAdd.do'/>" style="background: white;">
+	                            	<input type="hidden" name="productNo" value="${param.productNo }"/>
                                     <div class="col-md-4 col-sm-12" style="margin-top: 15px;">
                                         <label>서비스 평가 <span class="required">*</span></label>
-                                        <input type="text" class="form-control" placeholder="">
+                                        <select class="form-control" name="evalScore" required="required" style="color: black; font-weight: bold;">
+                                        	<option value="" style="color: black; font-weight: bold;">평점을 선택하세요</option>
+                                        	<option value="100" style="color: red;">★★★★★</option>
+                                        	<option value="80" style="color: red;">★★★★</option>
+                                        	<option value="60" style="color: red;">★★★</option>
+                                        	<option value="40" style="color: black;">★★</option>
+                                        	<option value="20" style="color: black;">★</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <label>Comment <span class="required">*</span></label>
-                                        <textarea class="form-control" placeholder=""></textarea>
+                                        <textarea class="form-control" name="review" placeholder=""></textarea>
                                     </div>
                                     <div class="col-md-12 col-sm-12" style="margin-bottom: 15px; text-align: right;">
-                                        <input type="submit" value="comment" class="btn btn-primary" />
+                                        <input type="submit" id="submit" name="submit" class="btn btn-primary" />
                                     </div>
                                 </form>
                             </div><!-- end commentform -->
                         </div><!-- end postpager -->
+						</c:if>
 					</div><!-- end content -->
 
 

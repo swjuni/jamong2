@@ -91,6 +91,11 @@ DROP TABLE SCHEDULE cascade constraint;
 -- 자료실
 DROP TABLE FILES cascade constraint;
 
--- 메시지
+-- 메시지첨부파일
 DROP TABLE MESSAGE cascade constraint;
 
+-- 전문가프로필 
+DROP TABLE EXPERT_PROFILE cascade constraint;
+
+-- 서비스평가댓글
+DROP TABLE EVAL_COMMENT cascade constraint;

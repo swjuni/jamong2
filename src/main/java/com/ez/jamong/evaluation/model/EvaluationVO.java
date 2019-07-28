@@ -9,7 +9,14 @@ public class EvaluationVO {
 	private String review;
 	private Timestamp col;
 	private int userNo;
+	private String userId;
 	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public int getEvalNo() {
 		return evalNo;
 	}
@@ -49,7 +56,7 @@ public class EvaluationVO {
 	@Override
 	public String toString() {
 		return "EvaluationVO [evalNo=" + evalNo + ", productNo=" + productNo + ", evalScore=" + evalScore + ", review="
-				+ review + ", col=" + col + ", userNo=" + userNo + "]";
+				+ review + ", col=" + col + ", userNo=" + userNo + ", userId=" + userId + "]";
 	}
 	
 	

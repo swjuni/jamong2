@@ -32,6 +32,8 @@ BOOKMARK_SEQ	즐겨찾기
 SCHEDULE_SEQ	전문가일정
 FILES_SEQ	자료실
 MESSAGE_SEQ	메시지첨부파일
+EXPERT_PROFILE_SEQ  전문가프로필
+EVAL_COMMENT_SEQ    서비스평가댓글
 */
 
 --시퀀스 삭제
@@ -131,6 +133,12 @@ drop sequence FILES_SEQ;
 
 /* MESSAGE */
 drop sequence MESSAGE_SEQ;
+
+/* EXPERT_PROFILE */
+drop sequence EXPERT_PROFILE_SEQ;
+
+/* EVAL_COMMENT_SEQ */
+drop sequence EVAL_COMMENT_SEQ;
 
 --시퀀스 생성
 
@@ -322,6 +330,18 @@ nocache;
 
 /* MESSAGE */
 create sequence MESSAGE_SEQ
+increment by 1
+start with 1
+nocache;
+
+/* EXPERT_PROFILE */
+create sequence EXPERT_PROFILE_SEQ
+increment by 1
+start with 1
+nocache;
+
+/* EVAL_COMMENT_SEQ */
+create sequence EVAL_COMMENT_SEQ
 increment by 1
 start with 1
 nocache;

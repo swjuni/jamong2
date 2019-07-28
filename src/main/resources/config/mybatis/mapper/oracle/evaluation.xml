@@ -38,4 +38,16 @@
 		delete from EVALUATION where EVAL_NO=#{evalNo}
 	</delete>
 	
+	<insert id="evaluationAdd" parameterType="evaluationVo">
+		<selectKey resultType="int" keyProperty="evalNo" order="BEFORE">
+			select evaluation_seq.nextval from dual
+		</selectKey>
+		insert into evaluation(eval_no, product_no, eval_score, review, user_no) 
+		values(#{evalNo},#{productNo},#{evalScore},#{review},#{userNo})
+	</insert>
+	
+	<select id="evaluationListByPdNo" parameterType="int" resultType="evaluationVo">
+		select e.*, u.user_id from evaluation e join user_info u on e.USER_NO = u.USER_NO 
+		where product_no = #{productNo}
+	</select>
 </mapper>

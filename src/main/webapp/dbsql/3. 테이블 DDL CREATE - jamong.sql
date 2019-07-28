@@ -11,10 +11,8 @@ CREATE TABLE USER_INFO (
 	REGDATE        DATE          DEFAULT sysdate, -- 등록일
 	OUTDATE        DATE          NULL,     -- 탈퇴일
 	ACTIVATION     VARCHAR2(10)  DEFAULT 'Y', -- 활성화
-	AUTHOR_NO      NUMBER        DEFAULT 6 NOT NULL -- 권한번호
+	AUTHOR_NO      NUMBER        DEFAULT 6 NOT NULL-- 권한번호
 );
-
-alter table user_info modify(zipcode varchar2(30));
 
 -- 회원정보 기본키
 CREATE UNIQUE INDEX UserInfo
@@ -59,8 +57,6 @@ CREATE TABLE MENU_INFO (
 	EXPERT_NO        NUMBER        NOT NULL  -- 전문가정보번호
 );
 
-		
-select * from user_info;
 -- 상품 기본키
 CREATE UNIQUE INDEX PK_MENU_INFO
 	ON MENU_INFO ( -- 상품
@@ -135,7 +131,7 @@ CREATE TABLE FAQ (
 	FAQ_TITLE   VARCHAR2(150) NOT NULL, -- 제목
 	FAQ_CONTENT CLOB          NOT NULL, -- 내용
 	FAQ_REGDATE DATE          DEFAULT sysdate, -- 작성일
-	FAQ_DELFLAG VARCHAR2(10)  DEFAULT 'N' NOT NULL , -- 삭제여부
+	FAQ_DELFLAG VARCHAR2(10)  DEFAULT 'N' NOT NULL, -- 삭제여부
 	FAQ_CATE_NO NUMBER        NOT NULL, -- FAQ카테고리번호
 	ADMIN_NO    NUMBER        NULL      -- 관리자번호
 );
@@ -204,7 +200,7 @@ CREATE TABLE LOGS (
 	USER_NO    NUMBER        NOT NULL, -- 회원번호
 	LOGIN_IP   VARCHAR2(100) NULL,     -- 로그인IP
 	LOGIN_OS   VARCHAR2(100) NULL,     -- 로그인OS
-	LOGIN_TIME DATE          DEFAULT sysdate -- 로그인시간
+	LOGIN_TIME DATE          DEFAULT sysdate NULL -- 로그인시간
 );
 
 -- 회원_로그인로그 기본키
@@ -228,8 +224,8 @@ CREATE TABLE ORDERS (
 	PURCHASE_PRICE NUMBER       NULL,     -- 패키지구매시점금액
 	COUPON_CHECK   VARCHAR2(10) DEFAULT 'N', -- 쿠폰적용여부
 	PURCHASE_DATE  DATE         NULL,     -- 구매확정일자
-	DELFALG        VARCHAR2(10) DEFAULT 'N' NOT NULL , -- 의뢰마감결과
-	PAY_CHECK      VARCHAR2(10) DEFAULT 'N', -- 결제여부
+	DELFALG        VARCHAR2(10) DEFAULT 'N' NOT NULL, -- 의뢰마감결과
+	PAY_CHECK      VARCHAR2(10) DEFAULT 'N' NULL, -- 결제여부
 	PACK_NO        NUMBER       NOT NULL, -- 패키지번호
 	USER_NO        NUMBER       NOT NULL  -- 회원번호
 );
@@ -252,7 +248,7 @@ ALTER TABLE ORDERS
 CREATE TABLE AUTHORITY (
 	AUTHOR_NO   NUMBER        NOT NULL, -- 권한번호
 	AUTHOR_NAME VARCHAR2(100) NOT NULL, -- 권한명
-	AUTHOR_DESC VARCHAR2(100) DEFAULT 'N' NOT NULL , -- 권한설명
+	AUTHOR_DESC VARCHAR2(100) DEFAULT 'N' NOT NULL, -- 권한설명
 	AUTHOR_LEV  NUMBER        NOT NULL  -- 권한레벨
 );
 
@@ -275,7 +271,7 @@ CREATE TABLE PAY (
 	PAY_NO     NUMBER        NOT NULL, -- 결제번호
 	ORDER_NO   NUMBER        NOT NULL, -- 고객_주문번호
 	PAY_METHOD VARCHAR2(100) NULL,     -- 결제수단
-	PRICE      NUMBER        DEFAULT 0 NOT NULL , -- 결제금액
+	PRICE      NUMBER        DEFAULT 0 NOT NULL, -- 결제금액
 	REGDATE    DATE          DEFAULT sysdate -- 결제일
 );
 
@@ -336,7 +332,7 @@ CREATE TABLE EXPERT_REQUEST (
 	REQUEST_CONTENT VARCHAR2(100) NULL,     -- 승인요청내용
 	REQUEST_DATE    DATE          DEFAULT SYSDATE, -- 신청일
 	APPROVE_DATE    DATE          NULL,     -- 승인일
-	DELFLAG         VARCHAR2(10)  DEFAULT 'N' NOT NULL , -- 승인여부
+	DELFLAG         VARCHAR2(10)  DEFAULT 'N' NOT NULL, -- 승인여부
 	USER_NO         NUMBER        NOT NULL, -- 회원번호
 	ADMIN_NO        NUMBER        NOT NULL  -- 관리자번호
 );
@@ -676,9 +672,9 @@ ALTER TABLE CATEGORY
 CREATE TABLE REPORT (
 	REPORT_NO   NUMBER       NOT NULL, -- 전문가신고번호
 	REPORT_DESC CLOB         NOT NULL, -- 신고내용
-	REPORT_DATE DATE         NOT NULL, -- 신고일
+	REPORT_DATE DATE         DEFAULT SYSDATE NOT NULL, -- 신고일
 	DELFLAG     VARCHAR2(10) NULL,     -- 승인여부
-	REPORT_TYPE VARCHAR(150) NULL,     -- 신고타입
+	REPORT_TYPE VARCHAR2(100) NULL,     -- 신고타입
 	USER_NO     NUMBER       NOT NULL, -- 회원번호
 	EXPERT_NO   NUMBER       NOT NULL, -- 전문가정보번호
 	PRODUCT_NO  NUMBER       NOT NULL, -- 상품번호
@@ -789,7 +785,84 @@ ALTER TABLE FILES
 			FILES_NO -- 자료실번호
 		);
 
+-- 메시지
+CREATE TABLE MESSAGE (
+	MESSAGE_NO         NUMBER        NOT NULL, -- 메시지번호
+	USER_ID            VARCHAR2(20)  NOT NULL, -- 보낸아이디
+	USER_ID2           VARCHAR2(20)  NOT NULL, -- 받는아이디
+	CONTENTS           VARCHAR2(500) NULL,     -- 내용
+	TRASH              VARCHAR2(10)  DEFAULT 'N' NOT NULL, -- 휴지통여부
+	TRASH2             VARCHAR2(10)  DEFAULT 'N' NOT NULL, -- 상대방휴지통
+	FILE_NAME          VARCHAR2(200) NULL,     -- 파일명
+	ORIGINAL_FILE_NAME VARCHAR2(200) NULL,     -- 원본파일명
+	FILE_SIZE          NUMBER        NULL,     -- 파일사이즈
+	REGDATE            DATE          DEFAULT SYSDATE -- 날짜
+);
 
+-- 메시지 기본키
+CREATE UNIQUE INDEX PK_MESSAGE
+	ON MESSAGE ( -- 메시지
+		MESSAGE_NO ASC -- 메시지번호
+	);
+
+-- 메시지
+ALTER TABLE MESSAGE
+	ADD
+		CONSTRAINT PK_MESSAGE -- 메시지 기본키
+		PRIMARY KEY (
+			MESSAGE_NO -- 메시지번호
+		);
+
+-- 전문가프로필
+CREATE TABLE EXPERT_PROFILE (
+	PROFILE_NO NUMBER NOT NULL, -- 전문가프로필번호
+	EXPERT_NO  NUMBER NOT NULL, -- 전문가정보번호
+	MAJOR      CLOB   NULL,     -- 전공
+	LICENSE    CLOB   NULL,     -- 자격증
+	EDUCATION  CLOB   NULL,     -- 학력
+	CAREER     CLOB   NULL      -- 경력
+);
+
+-- 전문가프로필 기본키
+CREATE UNIQUE INDEX PK_EXPERT_PROFILE
+	ON EXPERT_PROFILE ( -- 전문가프로필
+		PROFILE_NO ASC -- 전문가프로필번호
+	);
+
+-- 전문가프로필
+ALTER TABLE EXPERT_PROFILE
+	ADD
+		CONSTRAINT PK_EXPERT_PROFILE -- 전문가프로필 기본키
+		PRIMARY KEY (
+			PROFILE_NO -- 전문가프로필번호
+		);
+
+-- 평가댓글
+CREATE TABLE EVAL_COMMENT (
+	EVAL_C_NO    NUMBER        NOT NULL, -- 평가댓글번호
+	EVAL_NO      NUMBER        NOT NULL, -- 서비스평가번호
+	USER_NO      NUMBER        NOT NULL, -- 회원번호
+	EVAL_COMMENT VARCHAR2(500) NULL,     -- 댓글내용
+	REGDATE      DATE          DEFAULT SYSDATE, -- 작성일
+	GROUP_NO     NUMBER        NULL,     -- 그룹번호
+	STEP         NUMBER        NULL,     -- 단계
+	SORT_NO      NUMBER        NULL,     -- 정렬번호
+	DELFLAG      VARCHAR(10)   DEFAULT 'N' -- 삭제여부
+);
+
+-- 평가댓글 기본키
+CREATE UNIQUE INDEX PK_EVAL_COMMENT
+	ON EVAL_COMMENT ( -- 평가댓글
+		EVAL_C_NO ASC -- 평가댓글번호
+	);
+
+-- 평가댓글
+ALTER TABLE EVAL_COMMENT
+	ADD
+		CONSTRAINT PK_EVAL_COMMENT -- 평가댓글 기본키
+		PRIMARY KEY (
+			EVAL_C_NO -- 평가댓글번호
+		);
 
 -- 회원정보
 ALTER TABLE USER_INFO
@@ -1264,34 +1337,7 @@ ALTER TABLE FILES
 			ORDER_LIST_NO -- 고객_주문번호
 		);
 
-
 -- 메시지
-CREATE TABLE MESSAGE (
-	MESSAGE_NO         NUMBER        NOT NULL, -- 메시지번호
-	USER_ID            VARCHAR2(20)  NOT NULL, -- 보낸아이디
-	USER_ID2           VARCHAR2(20)  NOT NULL, -- 받는아이디
-	CONTENTS           VARCHAR2(500) NULL,     -- 내용
-	TRASH              VARCHAR2(10)  DEFAULT 'N' NOT NULL, -- 휴지통여부
-	FILE_NAME          VARCHAR2(200) NULL,     -- 파일명
-	ORIGINAL_FILE_NAME VARCHAR2(200) NULL,     -- 원본파일명
-	FILE_SIZE          NUMBER        NULL,     -- 파일사이즈
-	REGDATE            TIMESTAMP     DEFAULT SYSDATE NULL      -- 날짜
-);
--- 메시지 기본키
-CREATE UNIQUE INDEX PK_MESSAGE
-	ON MESSAGE ( -- 메시지
-		MESSAGE_NO ASC -- 메시지번호
-	);
-
--- 메시지
-ALTER TABLE MESSAGE
-	ADD
-		CONSTRAINT PK_MESSAGE -- 메시지 기본키
-		PRIMARY KEY (
-			MESSAGE_NO -- 메시지번호
-		);
-		
-		-- 메시지
 ALTER TABLE MESSAGE
 	ADD
 		CONSTRAINT FK_USER_INFO_TO_MESSAGE -- 회원정보 -> 메시지
@@ -1313,5 +1359,35 @@ ALTER TABLE MESSAGE
 			USER_ID -- 아이디
 		);
 
-alter table message add TRASH2 varchar2(10) default 'N' not null;
-commit;
+-- 전문가프로필
+ALTER TABLE EXPERT_PROFILE
+	ADD
+		CONSTRAINT FK_EXPERT_TO_EXPERT_PROFILE -- 전문가정보 -> 전문가프로필
+		FOREIGN KEY (
+			EXPERT_NO -- 전문가정보번호
+		)
+		REFERENCES EXPERT ( -- 전문가정보
+			EXPERT_NO -- 전문가정보번호
+		);
+
+-- 평가댓글
+ALTER TABLE EVAL_COMMENT
+	ADD
+		CONSTRAINT FK_USER_INFO_TO_EVAL_COMMENT -- 회원정보 -> 평가댓글
+		FOREIGN KEY (
+			USER_NO -- 회원번호
+		)
+		REFERENCES USER_INFO ( -- 회원정보
+			USER_NO -- 회원번호
+		);
+
+-- 평가댓글
+ALTER TABLE EVAL_COMMENT
+	ADD
+		CONSTRAINT FK_EVALUATION_TO_EVAL_COMMENT -- 서비스평가 -> 평가댓글
+		FOREIGN KEY (
+			EVAL_NO -- 서비스평가번호
+		)
+		REFERENCES EVALUATION ( -- 서비스평가
+			EVAL_NO -- 서비스평가번호
+		);

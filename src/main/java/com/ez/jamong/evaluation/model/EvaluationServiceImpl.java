@@ -25,4 +25,14 @@ public class EvaluationServiceImpl implements EvaluationService{
 		return evaluationDao.deleteEvaluation(evalNo);
 	}
 
+	@Override
+	public int evaluationAdd(EvaluationVO evaluationVo) {
+		return evaluationDao.evaluationAdd(evaluationVo);
+	}
+
+	@Override
+	public List<EvaluationVO> evaluationListByPdNo(int productNo) {
+		return evaluationDao.evaluationListByPdNo(productNo);
+	}
+
 }

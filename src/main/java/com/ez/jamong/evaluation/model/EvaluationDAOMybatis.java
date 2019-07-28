@@ -23,5 +23,13 @@ public class EvaluationDAOMybatis implements EvaluationDAO{
 	public int deleteEvaluation(int evalNo) {
 		return sqlSession.delete(namespace+"deleteEvaluation", evalNo);
 	}
+	@Override
+	public int evaluationAdd(EvaluationVO evaluationVo) {
+		return sqlSession.insert(namespace+"evaluationAdd", evaluationVo);
+	}
+	@Override
+	public List<EvaluationVO> evaluationListByPdNo(int productNo) {
+		return sqlSession.selectList(namespace+"evaluationListByPdNo", productNo);
+	}
 
 }
