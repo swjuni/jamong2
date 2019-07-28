@@ -14,9 +14,14 @@ public interface MenuInfoDAO {
 	public List<Map<String, Object>> selectMenuinfoAllView();
 	public List<Map<String, Object[]>> selectMenuinfoYearCount();
 	public List<Map<String, Object[]>> selectAdsYearCount();
+	
+	//주영 상품등록화면 사용 메서드
 	public int insertProduct(MenuInfoVO vo);
 	public MenuInfoVO NonAvtivatedProduct(int expertNo);
-	
+	public int updateMenuInfo1(MenuInfoVO menuInfoVo);
+	public int updateMenuInfo2(MenuInfoVO menuInfoVo);
+	public int registProduct(int productNo);
+
 	//원준 상품목록화면 사용 메서드
 	public List<MenuInfoExtendsVO> menuinfoByList(MenuInfoSearchVO searchVo);
 	public int selectTotalCount(MenuInfoSearchVO searchVo);
