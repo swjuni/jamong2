@@ -24,7 +24,9 @@ public class ImageServiceImpl implements ImageService{
 	public int insertImage(ImageVO imgVo, List<ImgDetailVO> list) {
 		int cnt=0;
 		cnt=imageDao.insertImage(imgVo);
-		cnt=imgDetailService.insertImgDetail(list);
+		if(list!=null) {
+			cnt=imgDetailService.insertImgDetail(list);
+		}
 		return cnt;
 	}
 	

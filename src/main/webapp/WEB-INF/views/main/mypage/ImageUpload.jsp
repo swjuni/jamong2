@@ -19,7 +19,7 @@ $(function(){
 <body>
 	<form name="frm" role="form" class="contactform" action="<c:url value='/registService/imageUpload.do'/>" method="post" enctype="multipart/form-data">
 	<input type="file" id="main" name="files">
-	<input type="file" id="sub1" name="files">
+	<input type="file" id="main2" name="files">
 	<input type="text" name="productNo" value="${param.productNo }">
 	<button type="button" id="dd" value="업로드"></button>
 	<button type="submit" value="업로드"></button>
