@@ -50,5 +50,6 @@
 	<select id="evaluationListByPdNo" parameterType="int" resultType="evaluationVo">
 		select e.*, u.user_id from evaluation e join user_info u on e.USER_NO = u.USER_NO 
 		where product_no = #{productNo}
+		order by e.COL desc
 	</select>
 </mapper>
