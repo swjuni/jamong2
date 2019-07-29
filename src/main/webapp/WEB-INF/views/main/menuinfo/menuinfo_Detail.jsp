@@ -59,6 +59,15 @@
 			alert("먼저 로그인 하세요");
 		}
 	}
+	
+	function replyOpen(index){
+		$('#replyWrite'+index).show();
+		$('#replyId'+index).attr("onclick","replyClose("+index+")").text("cancel");
+	}
+	function replyClose(index){
+		$('#replyWrite'+index).hide();
+		$('#replyId'+index).attr("onclick","replyOpen("+index+")").text("reply");
+	}
 </script>
 <style type="text/css">
 .productImages{
@@ -170,6 +179,7 @@ img.cloudzoom {
                                 <div class="col-md-12" style="background: white;">
                                     <div class="panel panel-info">
                                         <div class="panel-body comments">
+                                        	<c:set var="i" value="0"></c:set>
                                         	<c:forEach var="vo" items="${evalList }">
                                             <ul class="media-list">
                                                 <li class="media">
@@ -181,30 +191,71 @@ img.cloudzoom {
                                                            	</span> 
 															<div class="progress">
 															 	<div class="progress-bar progress-bar-striped active" 
-															 	role="progressbar" aria-valuenow="${vo.evalScore }" aria-valuemin="0" aria-valuemax="100" style="width:${vo.evalScore }%">
+															 	role="progressbar" aria-valuenow="${vo.evalScore }" aria-valuemin="0" aria-valuemax="100"
+															 	 style="width:${vo.evalScore }%">
 															  	</div>
 															</div>
                                                             <p>${vo.review }</p>
-                                                            <a href="#" class="btn btn-primary btn-sm" style="float: right;">Reply</a>
+                                                            <a href="javascript:void(0)" class="btn btn-primary btn-sm" style="float: right;"
+                                                            	onclick="replyOpen(${i})" id="replyId${i }">Reply</a>
+                                                            
+															<div class="clearfix"></div>
+															
+                                                            <div class="comment" id="replyWrite${i }" style="display: none;">
+																<ul class="media-list" style="background: aliceblue;">
+	                                                        		<li class="media" style="padding-bottom: 10px;">
+																		<form class="row" name="frmEvalComment" method="post" 
+																			action="<c:url value='/main/menuinfo/evaluationReply.do'/>">
+											                            	<input type="hidden" name="evalNo" value="${vo.evalNo }"/>
+										                                    <div class="col-md-12 col-sm-12">
+										                                        <label for="evalComment">Reply <span class="required">*</span></label>
+																				<span class="text-muted" style="float: right; color:#3f51b5;">
+																				<b>${sessionScope.userId }</b></span> 
+										                                        <textarea class="form-control" rows="3" name="evalComment" id="evalComment"
+										                                        	placeholder="" style="resize: none; background: white;"></textarea>
+										                                    </div>
+										                                    <div class="col-md-12 col-sm-12" style="text-align: right;">
+										                                        <input type="submit" id="evalCommentSubmit" name="evalCommentSubmit"
+										                                         class="btn btn-primary btn-sm" style="float: right; width: 70px;" value="OK"/>
+										                                    </div>
+										                                </form>
+	                                                            	</li>
+																</ul>
+                                                           	</div>
+                                                            
                                                         </div>
                                                         <div class="clearfix"></div>
                                                     </div>
-													<ul class="media-list" style="background: aliceblue;">
-                                                        <li class="media">
-                                                            <div class="comment">
-                                                                <div class="media-body">
-                                                                    <strong class="text-success">전문가</strong>
-                                                                    <span class="text-muted">
-                                                                    	<small class="text-muted">2 days ago</small></span>
-                                                                    <p>감사합니다~~~~</p>
-                                                                    <a href="#" class="btn btn-primary btn-sm" style="float: right;">Reply</a>
-                                                                </div>
-                                                                <div class="clearfix"></div>
-                                                            </div>
-                                                        </li>
-													</ul>
+
+													<c:if test="${!empty evalCommentList }">
+                                                    <c:forEach var="evalCommentVo" items="${evalCommentList }">
+														<c:if test="${!empty evalCommentVo }">
+	                                                    <c:forEach var="ecVo" items="${evalCommentVo }">
+														<c:if test="${vo.evalNo == ecVo.evalNo }">
+														<ul class="media-list" style="background: aliceblue;">
+	                                                        <li class="media">
+	                                                            <div class="comment">
+	                                                                <div class="media-body">
+	                                                                    <strong class="text-success">${ecVo.userNo }</strong>
+	                                                                    <span class="text-muted" style="float: right;">
+	                                                                    	<small class="text-muted"><fmt:formatDate value="${ecVo.regdate }"
+	                                                                    	 pattern="yyyy-MM-dd"/></small></span>
+	                                                                    <p>${ecVo.evalComment }</p>
+	                                                                    <a href="#" class="btn btn-primary btn-sm" style="float: right;">Reply</a>
+	                                                                </div>
+	                                                                <div class="clearfix"></div>
+	                                                            </div>
+	                                                        </li>
+														</ul>
+														</c:if>
+	                                                    </c:forEach>
+														</c:if>
+                                                    </c:forEach>
+                                                    </c:if>
+													
                                                 </li>
                                             </ul>
+                                            <c:set var="i" value="${i+1 }"></c:set>
                                             </c:forEach>
                                         </div>
                                     </div>

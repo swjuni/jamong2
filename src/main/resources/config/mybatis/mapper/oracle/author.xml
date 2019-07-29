@@ -22,6 +22,10 @@
 	<delete id="gradeDelete" parameterType="string">
 		delete authority where author_name=#{authorName}
 	</delete>
+	
+	<select id="selectAuthorityList" resultType="int">
+		select author_no from authority where author_desc='관리자'
+	</select>
 </mapper>
 
 

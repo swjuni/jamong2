@@ -2,7 +2,6 @@ package com.ez.jamong.message.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -119,17 +118,25 @@ public class MessageController {
 		vo.setFileSize(fileSize);
 		vo.setOriginalFileName(originalFileName);
 		
-		//db작업
-		int cnt=messageService.insertMessage(vo);
-		logger.info("메시지 전송 결과, cnt={}", cnt);
+		String userIdList=vo.getUserId2();
+		String[] userIdOne=userIdList.split(",");
+		int samcnt=1;
+		int cnt=0;
+		for(String uo : userIdOne) {
+			vo.setUserId2(uo);
+			cnt=messageService.insertMessage(vo);
+			samcnt*=cnt;
+			logger.info("메시지 전송 email 주소={}",vo.getUserId2());
+			logger.info("메시지 전송 결과, cnt={}", cnt);
+		}
 		
 		//3. model에 결과 저장
 		String msg="", url="";
-		if(cnt>0) {
+		if(samcnt>0) {
 			msg="메시지 전송 처리되었습니다.";
 			url="/main/mypage/message.do";
 		}else {
-			msg="메시지 전송 실패";
+			msg="메시지 최종 전송 실패, 주소값 확인";
 			url="/main/mypage/message.do";
 		}
 		

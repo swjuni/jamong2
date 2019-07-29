@@ -49,12 +49,7 @@
       
                 <li><a href="<c:url value='/admin/index_admin.do'/>"><i class="ti-layout-grid2-alt"></i> 쿠폰</a></li>
                 
-                <li><a class="sidebar-sub-toggle"><i class="ti-panel"></i> 배너 <span class="sidebar-collapse-icon ti-angle-down"></span></a>
-	                <ul>
-	                	<li><a href="<c:url value='/admin/bannermanager/bannerList.do'/>"><i class="ti-panel"></i> 관리자 배너</a></li>
-	                	<li><a href="<c:url value='/admin/bannerexpoert/bannerList.do'/>"><i class="ti-panel"></i> 전문가 배너</a></li>
-	                </ul>
-                </li>
+	            <li><a href="<c:url value='/admin/bannerexpoert/bannerList.do'/>"><i class="ti-panel"></i> 전문가 배너</a></li>
                 
                 <li><a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i> 통계 <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>

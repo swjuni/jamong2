@@ -58,5 +58,16 @@ public class AuthorController {
 		return cnt;
 	}
 	
+	@RequestMapping("/manage/grade_select.do")
+	@ResponseBody
+	public List<Integer> gradeSelect() {
+		logger.info("등급 List");
+		
+		List<Integer> list = authorService.selectAuthorityList();
+		logger.info("등급 List={}",list);
+		
+		return list;
+	}
+	
 	
 }
