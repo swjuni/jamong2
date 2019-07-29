@@ -34,6 +34,12 @@ public class AuthorServiceImpl implements AuthorService{
 	public int gradeDelete(String name) {
 		return admingradeDao.gradeDelete(name);
 	}
+
+
+	@Override
+	public List<Integer> selectAuthorityList() {
+		return admingradeDao.selectAuthorityList();
+	}
 	
 
 }

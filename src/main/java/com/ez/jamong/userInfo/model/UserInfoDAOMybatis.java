@@ -72,5 +72,10 @@ public class UserInfoDAOMybatis implements UserInfoDAO{
 	public int outUser(String userId) {
 		return session.update(namespace+"outUser",userId);
 	}
+
+	@Override
+	public List<String> AllUserEmail() {
+		return session.selectList(namespace+"AllUserEmail");
+	}
 	
 }

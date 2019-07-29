@@ -29,6 +29,7 @@ public interface UserInfoService {
 	public UserInfoVO selectByuserNo(int userNo);
 	public int findUserPwd(UserInfoVO vo);
 	public int outUser(String userId);
+	public List<String> AllUserEmail();
 }
 
 

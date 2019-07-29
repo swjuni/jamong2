@@ -7,4 +7,5 @@ public interface AuthorDAO {
 	public int updateAutorityAdmin(AuthorVO vo);
 	public int gradeInsert(AuthorVO vo);
 	public int gradeDelete(String name);
+	public List<Integer> selectAuthorityList();
 }

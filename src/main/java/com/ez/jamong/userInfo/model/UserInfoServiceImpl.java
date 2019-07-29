@@ -109,5 +109,10 @@ public class UserInfoServiceImpl implements UserInfoService{
 	public int outUser(String userId) {
 		return userInfoDao.outUser(userId);
 	}
+
+	@Override
+	public List<String> AllUserEmail() {
+		return userInfoDao.AllUserEmail();
+	}
 	
 }

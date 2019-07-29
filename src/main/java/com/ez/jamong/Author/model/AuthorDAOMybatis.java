@@ -36,6 +36,11 @@ public class AuthorDAOMybatis implements AuthorDAO{
 		int cnt = sqlSession.delete(namespace+"gradeDelete",name);
 		return cnt;
 	}
+
+	@Override
+	public List<Integer> selectAuthorityList() {
+		return sqlSession.selectList(namespace+"selectAuthorityList");
+	}
 	
 	
 }

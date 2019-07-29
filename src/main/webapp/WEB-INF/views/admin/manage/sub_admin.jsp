@@ -90,6 +90,19 @@
 			$('.admininserttr').css('visibility','visible');
 		});
 		
+		//등급리스트
+		
+		$.ajax({
+    		url :"<c:url value='/admin/manage/grade_select.do'/>",
+    		dataType: "json",
+    		success : function(res) {
+    			for(var i=0;i<res.length;i++){
+    				var $a = "<option value="+res[i]+">"+res[i]+"</option>";
+    				$('.admininsertpok').append($a);
+    			}
+    		}
+    		});
+		
 	});
 </script>
 <style>
@@ -183,8 +196,10 @@
                                                 <tr style="visibility: hidden" class="admininserttr">
 	                                                <td><input type="text" class="admininsertid"></td>
 													<td><input type="text" class="admininsertpwd"></td>
-													<td><input type="text" class="admininsertname"></td>
-													<td><input type="text" class="admininsertpok"></td>
+													<td><input type="text" class="admininsertname" value="관리자" readonly="readonly"></td>
+													<td>
+													<select class="admininsertpok">
+													</select>
 													<td><button type="button" class="admininsertok btn btn-info m-b-10 m-l-5">등록</button></td>
                                                 </tr>
                                                 
