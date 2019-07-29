@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.evalcomment">
+	<insert id="insertEvalComment" parameterType="evalCommentVo">
+		<selectKey resultType="int" keyProperty="evalCNo" order="BEFORE">
+			select EVAL_COMMENT_SEQ.nextval from dual
+		</selectKey>
+		insert into eval_comment(eval_c_no, eval_no, user_no, eval_comment, group_no, step, sort_no) 
+		values(#{evalCNo},#{evalNo},#{userNo},#{evalComment},#{evalCNo}, 0, 0)
+	</insert>
+	
+	<insert id="insertReply" parameterType="evalCommentVo">
+		<selectKey resultType="int" keyProperty="evalCNo" order="BEFORE">
+			select EVAL_COMMENT_SEQ.nextval from dual
+		</selectKey>
+		insert into eval_comment(eval_c_no, eval_no, user_no, eval_comment, group_no, sort_no, step) 
+		values(#{evalCNo},#{evalNo},#{userNo},#{evalComment},#{groupNo}, #{sortNo}+1, #{step}+1)
+	</insert>
+	
+	<update id="updateSortNo" parameterType="evalCommentVo">
+		update eval_comment
+		set sort_no=sort_no+1
+		where group_no=#{groupNo} and sort_no > #{sortNo}
+	</update>
+	
+	<select id="selectByEvalNo" parameterType="int" resultType="evalCommentVo">
+		select * from eval_comment
+		where eval_no = #{evalNo}
+		order by group_no desc, sort_no
+	</select>
+</mapper>

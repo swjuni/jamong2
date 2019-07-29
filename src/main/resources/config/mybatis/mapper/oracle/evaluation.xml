@@ -16,6 +16,7 @@
 		on e.USER_NO = u.USER_NO
 		join EXPERT ex
 		on m.EXPERT_NO = ex.EXPERT_NO
+		order by e.COL desc 
 	</select>
 	
 	<select id="selectByNo" parameterType="int" resultType="map">
