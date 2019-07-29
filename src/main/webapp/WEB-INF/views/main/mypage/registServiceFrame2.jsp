@@ -56,7 +56,8 @@
 		})
 		
 		$("#next").click(function(){
-			location.href="<c:url value='/registService/uploadImageView.do'/>";
+			var url="<c:url value='/registService/uploadImageView.do?productNo=${menuVo.productNo }'/>";
+			location.href="<c:url value='/registService/uploadImageView.do?productNo=${menuVo.productNo }'/>";
 		})
 		
 /* 		$("#next").click(function(){
@@ -181,6 +182,7 @@ label{
 	disabled="disabled"
 	</c:if>
 	>다음</button>
+	<input type="text" value="${menuVo.productNo }">
 	</div>
 </form>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>

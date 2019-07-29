@@ -27,7 +27,7 @@
 	</update>
 	
 	<insert id="insertAdmin" parameterType="adminVo" >
-		insert into ADMINISTRATOR values(ADMINISTRATOR_seq.nextval,#{adminId},#{adminPwd},#{adminName},#{authorNo})
+		insert into ADMINISTRATOR values(ADMINISTRATOR_seq.nextval,#{adminId},#{adminPwd},'관리자',#{authorNo})
 	</insert>
 	
 	<delete id="deleteAdmin" parameterType="string">

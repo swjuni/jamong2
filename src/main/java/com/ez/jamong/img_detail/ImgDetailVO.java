@@ -1,17 +1,16 @@
-package com.ez.jamong.image;
+package com.ez.jamong.img_detail;
 
-public class ImageVO {
-	private int imgNo;
+public class ImgDetailVO {
+	private int detailImgNo;
 	private String fileName;
 	private String originalFileName;
 	private long fileSize;
 	private int productNo;
-	
-	public int getImgNo() {
-		return imgNo;
+	public int getDetailImgNo() {
+		return detailImgNo;
 	}
-	public void setImgNo(int imgNo) {
-		this.imgNo = imgNo;
+	public void setDetailImgNo(int detailImgNo) {
+		this.detailImgNo = detailImgNo;
 	}
 	public String getFileName() {
 		return fileName;
@@ -39,7 +38,7 @@ public class ImageVO {
 	}
 	@Override
 	public String toString() {
-		return "ImageVO [imgNo=" + imgNo + ", fileName=" + fileName + ", originalFileName=" + originalFileName
-				+ ", fileSize=" + fileSize + ", productNo=" + productNo + "]";
+		return "ImgDetailVO [detailImgNo=" + detailImgNo + ", fileName=" + fileName + ", originalFileName="
+				+ originalFileName + ", fileSize=" + fileSize + ", productNo=" + productNo + "]";
 	}
 }

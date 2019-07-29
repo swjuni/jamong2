@@ -1,8 +1,10 @@
 package com.ez.jamong.menuInfo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -12,14 +14,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ez.jamong.categoryl.model.CategoryLService;
 import com.ez.jamong.categoryl.model.CategoryLVO;
 import com.ez.jamong.categorym.model.CategoryMService;
+import com.ez.jamong.common.MultiFileUploadUtility2;
 import com.ez.jamong.expert.model.ExpertService;
 import com.ez.jamong.expert.model.ExpertVO;
 import com.ez.jamong.expert_profile.model.ExpertProfileService;
 import com.ez.jamong.expert_profile.model.ExpertProfileVO;
+import com.ez.jamong.image.ImageService;
+import com.ez.jamong.image.ImageVO;
+import com.ez.jamong.img_detail.ImgDetailVO;
 import com.ez.jamong.menuInfo.model.MenuInfoService;
 import com.ez.jamong.menuInfo.model.MenuInfoVO;
 
@@ -32,6 +40,8 @@ public class RegistMenuInfoController {
 	@Autowired private MenuInfoService menuInfoService;
 	@Autowired private ExpertService expertService;
 	@Autowired private ExpertProfileService profileService;
+	@Autowired private MultiFileUploadUtility2 multiFileUploadUtility;
+	@Autowired private ImageService imgService;
 
 	@RequestMapping("/service.do")
 	public String service(Model model, HttpSession session) {
@@ -123,6 +133,34 @@ public class RegistMenuInfoController {
 	@RequestMapping("/uploadImageView.do")
 	public String uploadImageView(Model model, HttpSession session) {
 		logger.info("이미지등록화면");
+		return "main/mypage/ImageUpload";
+		
+	}
+	
+	@RequestMapping("/imageUpload.do")
+	public String imageUpload(@RequestParam(defaultValue = "0") int productNo,@RequestParam MultipartFile[] files,HttpServletRequest request) {
+		System.out.println(productNo);
+		//메인 사진 저장
+		Map<String, Object> map=multiFileUploadUtility.multiFileUpload(files[0], request, MultiFileUploadUtility2.IMAGE_UPLOAD);
+		ImageVO imgVo=new ImageVO();
+		imgVo.setFileName((String)map.get("fileName"));
+		imgVo.setOriginalFileName((String)map.get("originalFileName"));
+		imgVo.setFileSize((Long)map.get("fileSize"));
+		imgVo.setProductNo(productNo);
+		List<ImgDetailVO> list=new ArrayList<ImgDetailVO>();
+		//상세 사진 저장
+		if(files.length>1) {
+			for(int i=1;i<files.length;i++) {
+				Map<String, Object> mapDetail=multiFileUploadUtility.multiFileUpload(files[i], request, MultiFileUploadUtility2.IMG_DETAIL_UPLOAD);
+				ImgDetailVO imgDetailVo=new ImgDetailVO();
+				imgDetailVo.setFileName((String)mapDetail.get("fileName"));
+				imgDetailVo.setOriginalFileName((String)mapDetail.get("originalFileName"));
+				imgDetailVo.setFileSize((Long)mapDetail.get("fileSize"));
+				imgDetailVo.setProductNo(productNo);
+				list.add(imgDetailVo);
+			}
+		}
+		int cnt=imgService.insertImage(imgVo, list);
 		return "main/mypage/ImageUpload";
 		
 	}
