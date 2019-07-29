@@ -56,11 +56,15 @@
 		})
 		
 		$("#next").click(function(){
+			location.href="<c:url value='/registService/uploadImageView.do'/>";
+		})
+		
+/* 		$("#next").click(function(){
 			var url = "<c:url value='/registService/setpackageFrame.do?productNo=${menuVo.productNo }'/>";
             var name = "package";
             var option = "width = 1298px, height = 500px, top = 100, left = 200, location = no"
 			window.open(url,name,option);
-		})
+		}) */
 	})
 </script>
 <!-- Include the Quill library -->
@@ -109,6 +113,9 @@ label{
 }
 .col-sm-10 {
     max-width: 100%;
+}
+.divbtn{
+	margin-left: 268px;
 }
 .form-control{
 	width: 82%;

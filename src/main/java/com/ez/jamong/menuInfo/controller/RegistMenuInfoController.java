@@ -119,4 +119,11 @@ public class RegistMenuInfoController {
 		logger.info("패키지 등록 화면");
 		return "main/mypage/setpackageFrame";
 	}
+	
+	@RequestMapping("/uploadImageView.do")
+	public String uploadImageView(Model model, HttpSession session) {
+		logger.info("이미지등록화면");
+		return "main/mypage/ImageUpload";
+		
+	}
 }

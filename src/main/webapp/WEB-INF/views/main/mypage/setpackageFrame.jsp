@@ -11,18 +11,14 @@
 <title>setpackageFrame</title>
 <script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
 <script type="text/javascript">
-function onlyNumber(){
-
-    if((event.keyCode<48)||(event.keyCode>57))
-
-       event.returnValue=false;
-
-}
 $(function(){
 	$("form").submit(function(){
 		opener.parent.location.href='<c:url value="/registExpert/registExpert.do?state=expert"/>';
 	    window.close();
 	})
+	$("input[type=text]").on("keyup", function() {
+	    $(this).val($(this).val().replace(/[^0-9]/g,""));
+	});
 })
 </script>
 <style type="text/css">
@@ -77,7 +73,7 @@ select{
 									<ul>
 										<li><textarea name="packName" required="required"></textarea></li>
 										<li><textarea name="packDesc" required="required"></textarea></li>
-										<li><input type="text" name="packPrice" required="required" onkeypress="onlyNumber();">원</i></li>
+										<li><input type="text" name="packPrice" required="required">원</i></li>
 										<li>
 										<select name="modifyCount" required="required">
 										<option value="">선택해주세요</option>
