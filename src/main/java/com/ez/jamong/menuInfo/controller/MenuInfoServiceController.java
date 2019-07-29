@@ -1,5 +1,6 @@
 package com.ez.jamong.menuInfo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,8 @@ import com.ez.jamong.categoryl.model.CategoryLVO;
 import com.ez.jamong.categorym.model.CategoryMService;
 import com.ez.jamong.categorym.model.CategoryMVO;
 import com.ez.jamong.common.PaginationInfo;
+import com.ez.jamong.evalComment.model.EvalCommentService;
+import com.ez.jamong.evalComment.model.EvalCommentVO;
 import com.ez.jamong.evaluation.model.EvaluationService;
 import com.ez.jamong.evaluation.model.EvaluationVO;
 import com.ez.jamong.expert.model.ExpertService;
@@ -39,6 +42,7 @@ public class MenuInfoServiceController {
 	@Autowired private CategoryLService categorylService;
 	@Autowired private CategoryMService categoryMService;
 	@Autowired private EvaluationService evaluationService;
+	@Autowired private EvalCommentService evalCommentService;
 	
 	@RequestMapping(value = "/main/menuinfo/menuinfo_Detail.do")
 	public String menuinfoDetail_get(@RequestParam(defaultValue = "0") int productNo, HttpServletRequest request, HttpSession session,Model model) {
@@ -89,10 +93,21 @@ public class MenuInfoServiceController {
 		List<EvaluationVO> evalList = evaluationService.evaluationListByPdNo(productNo);
 		logger.info("서비스 평가 목록 조회 결과 evalList.size={}",evalList.size());
 		
+		List<EvalCommentVO>[] evalCommentList = new ArrayList[evalList.size()];
+		
+		for(int i=0; i<evalList.size();i++) {
+			EvaluationVO vo = evalList.get(i);
+			int evalNo = vo.getEvalNo();
+			
+			evalCommentList[i] = evalCommentService.selectByEvalNo(evalNo);
+			logger.info("서비스 평가의 댓글 배열 값 evalCommentList{}={}",i, evalCommentList[i]);
+		}
+		
 		model.addAttribute("evalList", evalList);
 		model.addAttribute("menuinfoVo", menuinfoVo);
 		model.addAttribute("expertVo", expertVo);
 		model.addAttribute("bookmarkExist", bookmarkExist);
+		model.addAttribute("evalCommentList", evalCommentList);
 		
 		return "main/menuinfo/menuinfo_Detail";
 	}
