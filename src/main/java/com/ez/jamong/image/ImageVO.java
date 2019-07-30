@@ -4,7 +4,7 @@ public class ImageVO {
 	private int imgNo;
 	private String fileName;
 	private String originalFileName;
-	private int fileSize;
+	private long fileSize;
 	private int productNo;
 	
 	public int getImgNo() {
@@ -25,10 +25,10 @@ public class ImageVO {
 	public void setOriginalFileName(String originalFileName) {
 		this.originalFileName = originalFileName;
 	}
-	public int getFileSize() {
+	public long getFileSize() {
 		return fileSize;
 	}
-	public void setFileSize(int fileSize) {
+	public void setFileSize(long fileSize) {
 		this.fileSize = fileSize;
 	}
 	public int getProductNo() {

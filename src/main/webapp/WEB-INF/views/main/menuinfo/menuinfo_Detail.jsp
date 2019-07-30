@@ -15,6 +15,7 @@
 				$('#bookmarkBtn').prepend("<i class='fa fa-heart-o' id='bookmarkTag'></i>");
 			}
 		}
+		
 	});
 		
 	function report(){
@@ -68,6 +69,16 @@
 		$('#replyWrite'+index).hide();
 		$('#replyId'+index).attr("onclick","replyOpen("+index+")").text("reply");
 	}
+	
+	function evalReplyOpen(indexI,indexJ){
+		$('#evalReplyWriteI'+indexI+"J"+indexJ).show();
+		$('#evalReplyIdI'+indexI+"J"+indexJ).attr("onclick","evalReplyClose("+indexI+","+indexJ+")").text("cancel");
+	}
+	function evalReplyClose(indexI,indexJ){
+		$('#evalReplyWriteI'+indexI+"J"+indexJ).hide();
+		$('#evalReplyIdI'+index+"J"+indexJ).attr("onclick","evalReplyOpen("+indexI+","+indexJ+")").text("reply");
+	}
+	
 </script>
 <style type="text/css">
 .productImages{
@@ -102,18 +113,29 @@
 img.cloudzoom {
 	width:100%;
 }
+
+.comments .media-list li {
+    margin: 3px 0;
+    padding: 0px 10px;
+}
+.comments .btn {
+	margin: 4px 0;
+}
 </style>
 <section class="section lb">
 	<div class="container">
 		<div class="row case-single">
 			<div class="col-md-7 col-sm-7 col-xs-12">
 				<div class="pitem">
-					<div class="case-box">
+					<!-- <div class="case-box"> -->
+					<div class="">
 						<!-- <img src="/jamong/resources/upload/case_03.png" alt="" class="img-responsive"> -->
 						<img class="img-responsive cloudzoom" alt ="Cloud Zoom small image" id ="zoom1"
 							src="/jamong/upload/product/Jellyfish.jpg"
 							data-cloudzoom='
 								zoomSizeMode:"image",
+								startMagnification: 2,
+								<%-- disableZoom: "auto", --%>
 								autoInside: 550 
 							'>
 					</div><!-- end case-box -->
@@ -127,7 +149,7 @@ img.cloudzoom {
 								</div>
 							</div><!-- end col -->
 							<div class="col-md-3 col-sm-3 col-xs-6">
-								<div class="client-box" style="width: 100%;">
+								<div class="client-box">
 									<!-- <a href="#"><img src="/jamong/resources/upload/client_02.png" alt="" class="img-responsive"></a> -->
 				        			<img class = 'cloudzoom-gallery' src = "/jamong/upload/product/2.png" 
 				        			data-cloudzoom = "useZoom: '.cloudzoom', image: '/jamong/upload/product/2.png' " >
@@ -177,10 +199,10 @@ img.cloudzoom {
 
                             <div class="row">
                                 <div class="col-md-12" style="background: white;">
-                                    <div class="panel panel-info">
+                                    <div class="panel panel-info" style="margin-top:20px;">
                                         <div class="panel-body comments">
                                         	<c:set var="i" value="0"></c:set>
-                                        	<c:forEach var="vo" items="${evalList }">
+                                        	<c:forEach var="vo" items="${evalList }"><!-- 평가글 목록 -->
                                             <ul class="media-list">
                                                 <li class="media">
                                                     <div class="comment">
@@ -196,11 +218,12 @@ img.cloudzoom {
 															  	</div>
 															</div>
                                                             <p>${vo.review }</p>
-                                                            <a href="javascript:void(0)" class="btn btn-primary btn-sm" style="float: right;"
+                                                            <a href="javascript:void(0)" class="btn btn-primary btn-sm" style="float: right; width: 70px;"
                                                             	onclick="replyOpen(${i})" id="replyId${i }">Reply</a>
                                                             
 															<div class="clearfix"></div>
 															
+															<!-- 평가글의 댓글 쓰기 -->
                                                             <div class="comment" id="replyWrite${i }" style="display: none;">
 																<ul class="media-list" style="background: aliceblue;">
 	                                                        		<li class="media" style="padding-bottom: 10px;">
@@ -227,31 +250,64 @@ img.cloudzoom {
                                                         <div class="clearfix"></div>
                                                     </div>
 
-													<c:if test="${!empty evalCommentList }">
-                                                    <c:forEach var="evalCommentVo" items="${evalCommentList }">
-														<c:if test="${!empty evalCommentVo }">
-	                                                    <c:forEach var="ecVo" items="${evalCommentVo }">
-														<c:if test="${vo.evalNo == ecVo.evalNo }">
-														<ul class="media-list" style="background: aliceblue;">
-	                                                        <li class="media">
-	                                                            <div class="comment">
-	                                                                <div class="media-body">
-	                                                                    <strong class="text-success">${ecVo.userNo }</strong>
-	                                                                    <span class="text-muted" style="float: right;">
-	                                                                    	<small class="text-muted"><fmt:formatDate value="${ecVo.regdate }"
-	                                                                    	 pattern="yyyy-MM-dd"/></small></span>
-	                                                                    <p>${ecVo.evalComment }</p>
-	                                                                    <a href="#" class="btn btn-primary btn-sm" style="float: right;">Reply</a>
-	                                                                </div>
-	                                                                <div class="clearfix"></div>
-	                                                            </div>
-	                                                        </li>
-														</ul>
-														</c:if>
-	                                                    </c:forEach>
-														</c:if>
-                                                    </c:forEach>
-                                                    </c:if>
+												<!-- 평가글의 댓글 목록 -->
+												<c:if test="${!empty evalCommentList }">
+												<c:forEach var="evalCommentVo" items="${evalCommentList }">
+													<c:if test="${!empty evalCommentVo }">
+														<c:set var="j" value="0"/>
+														<c:forEach var="ecVo" items="${evalCommentVo }">
+															<c:if test="${vo.evalNo == ecVo.evalNo }">
+																<div style="float:right; width: ${100-(ecVo.step*3)}%;">
+																	<c:if test="${ecVo.step==0 }">
+																		<ul class="media-list" style="background: lemonchiffon">
+																	</c:if>
+																	<c:if test="${ecVo.step!=0 }">
+																		<ul class="media-list" style="background: aliceblue">
+																	</c:if>
+																	
+																		<li class="media">
+																			<div class="comment">
+																				<div class="media-body">
+																					<strong class="text-success">${ecVo.userId }</strong>
+																					<span class="text-muted" style="float: right;">
+																						<small class="text-muted"><fmt:formatDate value="${ecVo.regdate }"
+																						pattern="yyyy-MM-dd"/></small></span>
+																					<p>${ecVo.evalComment }</p>
+																					<a href="javascript:void(0)" class="btn btn-primary btn-sm" style="float: right; width: 70px;"
+																					onclick="evalReplyOpen(${i},${j})" id="evalReplyIdI${i }J${j}">Reply</a>
+																				</div>
+																				<div class="clearfix"></div>
+																			</div>
+																		</li>
+																	<!-- 평가글 댓글의 reply 쓰기 -->
+																		<li class="media" id="evalReplyWriteI${i }J${j }" style="display: none;">
+																			<form class="row" name="frmEvalReplyComment" method="post" 
+																				action="<c:url value='/main/menuinfo/evaluationReplyAdd.do'/>">
+																				<input type="hidden" name="evalNo" value="${ecVo.evalNo }"/>
+																				<input type="hidden" name="groupNo" value="${ecVo.groupNo }"/>
+																				<input type="hidden" name="step" value="${ecVo.step }"/>
+																				<input type="hidden" name="sortNo" value="${ecVo.sortNo }"/>
+																				<div class="col-md-12 col-sm-12" style="background: #8dcfdee8;">
+																					<label for="evalComment">Reply <span class="required">*</span></label>
+																					<span class="text-muted" style="float: right; color:#3f51b5;">
+																					<b>${sessionScope.userId }</b></span> 
+																					<textarea class="form-control" rows="3" name="evalComment" id="evalComment"
+																						placeholder="" style="resize: none; background:white; ;"></textarea>
+																				</div>
+																				<div class="col-md-12 col-sm-12" style="text-align: right; background: #8dcfdee8;">
+																					<input type="submit" id="evalReplyCommentSubmit" name="evalReplyCommentSubmit"
+																						class="btn btn-primary btn-sm" style="float: right; width: 70px;" value="OK"/>
+																				</div>
+																			</form>
+																		</li>
+																	</ul>
+																</div>
+															</c:if>
+														<c:set var="j" value="${j+1 }"></c:set>
+														</c:forEach>
+													</c:if>
+												</c:forEach>
+												</c:if>
 													
                                                 </li>
                                             </ul>

@@ -12,6 +12,14 @@ public class EvalCommentVO {
 	private int step;
 	private int sortNo;
 	private String delflag;
+	private String userId;
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public int getEvalCNo() {
 		return evalCNo;
 	}
@@ -70,7 +78,7 @@ public class EvalCommentVO {
 	public String toString() {
 		return "EvalCommentVO [evalCNo=" + evalCNo + ", evalNo=" + evalNo + ", userNo=" + userNo + ", evalComment="
 				+ evalComment + ", regdate=" + regdate + ", groupNo=" + groupNo + ", step=" + step + ", sortNo="
-				+ sortNo + ", delflag=" + delflag + "]";
+				+ sortNo + ", delflag=" + delflag + ", userId=" + userId + "]";
 	}
 	
 	

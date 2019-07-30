@@ -26,7 +26,8 @@
 	</update>
 	
 	<select id="selectByEvalNo" parameterType="int" resultType="evalCommentVo">
-		select * from eval_comment
+		select e.*, u.USER_ID from eval_comment e join user_info u
+		on e.USER_NO = u.USER_NO
 		where eval_no = #{evalNo}
 		order by group_no desc, sort_no
 	</select>

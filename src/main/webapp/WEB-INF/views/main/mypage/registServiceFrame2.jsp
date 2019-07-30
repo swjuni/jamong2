@@ -56,11 +56,16 @@
 		})
 		
 		$("#next").click(function(){
+			var url="<c:url value='/registService/uploadImageView.do?productNo=${menuVo.productNo }'/>";
+			location.href="<c:url value='/registService/uploadImageView.do?productNo=${menuVo.productNo }'/>";
+		})
+		
+/* 		$("#next").click(function(){
 			var url = "<c:url value='/registService/setpackageFrame.do?productNo=${menuVo.productNo }'/>";
             var name = "package";
             var option = "width = 1298px, height = 500px, top = 100, left = 200, location = no"
 			window.open(url,name,option);
-		})
+		}) */
 	})
 </script>
 <!-- Include the Quill library -->
@@ -109,6 +114,9 @@ label{
 }
 .col-sm-10 {
     max-width: 100%;
+}
+.divbtn{
+	margin-left: 268px;
 }
 .form-control{
 	width: 82%;
@@ -174,6 +182,7 @@ label{
 	disabled="disabled"
 	</c:if>
 	>다음</button>
+	<input type="text" value="${menuVo.productNo }">
 	</div>
 </form>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>

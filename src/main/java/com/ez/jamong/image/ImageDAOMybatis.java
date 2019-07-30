@@ -13,6 +13,12 @@ public class ImageDAOMybatis implements ImageDAO{
 	public ImageVO selectByProductNoFirstImage(int productNo) {
 		return sqlSession.selectOne(namespace+"selectByProductNoFirstImage",productNo);
 	}
+
+	@Override
+	public int insertImage(ImageVO imgVo) {
+		return sqlSession.insert(namespace+"insertImage",imgVo);
+	}
+	
 	
 	
 }

@@ -42,6 +42,8 @@ public class EvalCommentController {
 	@RequestMapping(value="/menuinfo/evaluationReplyAdd.do", method = RequestMethod.POST)
 	public String reply_post(@ModelAttribute EvalCommentVO evalCommentVo, HttpServletRequest request, HttpSession session, Model model) {
 		logger.info("평가글 reply에 댓글 등록하기 파라미터, evalCommentVo={}",evalCommentVo);
+		int userNo = (Integer) session.getAttribute("userNo");
+		evalCommentVo.setUserNo(userNo);
 		
 		//db
 		int cnt = evalCommentService.insertReply(evalCommentVo);
