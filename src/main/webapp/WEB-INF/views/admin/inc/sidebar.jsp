@@ -57,7 +57,7 @@
                         <li><a href="<c:url value='/admin/statistics/Sales_statistics.do'/>">매출</a></li>
                     </ul>
                 </li>
-                <li><a href="<c:url value='/admin/index_admin.do'/>"><i class="ti-email"></i> 회원 메일 발송</a></li>
+                <li><a href="<c:url value='/admin/manage/send.do'/>"><i class="ti-email"></i> 회원 메일 발송</a></li>
             </ul>
         </div>
     </div>

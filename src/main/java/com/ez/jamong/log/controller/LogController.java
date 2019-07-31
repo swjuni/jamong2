@@ -1,12 +1,10 @@
 package com.ez.jamong.log.controller;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.http.HttpRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +47,31 @@ public class LogController {
 		
 		return "common/message";
 	}
+	
+	@RequestMapping("/admin/manage/log.do")
+	public String LogSelect(@RequestParam int userNo, Model model) {
+		logger.info("로그기록 화면");
+		List<LogVO> list = logService.selectLogsAll();
+		
+		logger.info("파라미터 userNo={}, 결과값 list.size={}",userNo,list.size());
+		model.addAttribute("list",list);
+		
+		return "admin/manage/log";
+	}
+	
+	/*
+	@RequestMapping("/admin/manage/log.do")
+	public String LogSelect(@RequestParam int userNo, Model model) {
+		logger.info("로그기록 화면");
+		List<LogVO> list = logService.selectLogs(userNo);
+		
+		logger.info("파라미터 userNo={}, 결과값 list.size={}",userNo,list.size());
+		model.addAttribute("list",list);
+		
+		return "admin/manage/log";
+	}
+	*/
+	
 	//ip가져오는 함수
 	public String getIp(HttpServletRequest request) {
 		String ip = request.getHeader("X-Forwarded-For");
@@ -107,6 +130,8 @@ public class LogController {
         
          return os;
 	}
+	
+	
 	
 }
 
