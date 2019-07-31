@@ -92,7 +92,11 @@ select A.product_no,A.PRODUCT_NAME,A.EXPERT_NO,B.* from expertmenuview A, orderf
 --ฟ๘มุ
 create or replace view MENULISTCATEGORYVIEW
 as
-select m.*, F.FILE_NAME, cl.CATEGORY_NO, cl.CATEGORY_NAME_L, cm.CATEGORY_NAME,
+select 
+m.product_no, m.category_type_no, m.product_name,
+(select sum(eval_score)/count(*) from evaluation ev where ev.product_no=m.product_no  ) as eval_score,
+m.summary, m.detail_desc, m.regdate, m.order_level, m.recommend, m.activation, m.expert_no,
+F.FILE_NAME, cl.CATEGORY_NO, cl.CATEGORY_NAME_L, cm.CATEGORY_NAME,
 e.id, e.FILE_NAME as expert_file_name
 from MENU_INFO m join CATEGORY_M cm
 on m.CATEGORY_TYPE_NO = cm.CATEGORY_NO_M
