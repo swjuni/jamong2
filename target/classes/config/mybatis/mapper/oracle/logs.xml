@@ -9,6 +9,13 @@
 	</selectKey>
 		insert into logs(logs_no,user_no,login_ip,login_os) values(#{logsNo},#{userNo},#{loginIp},#{loginOs})
 	</insert>
+	
+	<select id="selectLogs" resultType="logVo" parameterType="int">
+		select * from logs where <if test="userNo!=null">user_no=#{userNo}</if> order by login_time desc
+	</select>
+	<select id="selectLogsAll" resultType="logVo">
+		select * from logs where order by login_time desc
+	</select>
 </mapper>
 
 
