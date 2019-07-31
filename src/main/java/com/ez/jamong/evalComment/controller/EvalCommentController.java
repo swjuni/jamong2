@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ez.jamong.evalComment.model.EvalCommentService;
 import com.ez.jamong.evalComment.model.EvalCommentVO;
@@ -57,5 +58,30 @@ public class EvalCommentController {
 		
 		String referer = request.getHeader("Referer");
 		return "redirect:"+referer;
+	}
+	
+	@RequestMapping(value="/menuinfo/evaluationReplyDel.do")
+	public String reply_delete(@RequestParam(defaultValue = "0") int evalCNo,
+			@RequestParam(defaultValue = "0") int productNo, HttpServletRequest request, Model model) {
+		logger.info("평가글 reply 삭제, 파라미터 evalCNo={}",evalCNo);
+		
+		if(evalCNo==0 || productNo==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/main/index_main.do");
+			return "common/message";
+		}
+		
+		int cnt = evalCommentService.deleteReplyComment(evalCNo);
+		String msg="", url="/main/menuinfo/menuinfo_Detail.do?productNo="+productNo;
+		if(cnt>0) {
+			msg="댓글 삭제 완료";
+		}else {
+			msg="댓글 삭제 실패";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
 	}
 }

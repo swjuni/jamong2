@@ -1,5 +1,7 @@
 package com.ez.jamong.packages.model;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,5 +13,9 @@ public class PackageDAOMybatis implements PackageDAO{
 	@Override
 	public int insertPackage(PackageVO vo) {
 		return session.insert(namespace+"insertPackage",vo);
+	}
+	@Override
+	public List<PackageVO> packageByProductNo(int productNo) {
+		return session.selectList(namespace+"packageByProductNo", productNo);
 	}
 }

@@ -27,5 +27,10 @@ public class EvalCommentServiceImpl implements EvalCommentService{
 	public List<EvalCommentVO> selectByEvalNo(int evalNo) {
 		return evalCommentDao.selectByEvalNo(evalNo);
 	}
+
+	@Override
+	public int deleteReplyComment(int evalCNo) {
+		return evalCommentDao.deleteReplyComment(evalCNo);
+	}
 	
 }

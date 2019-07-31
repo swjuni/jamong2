@@ -37,7 +37,7 @@ import com.ez.jamong.userInfo.model.UserInfoService;
 import com.ez.jamong.userInfo.model.UserInfoVO;
 
 @Controller
-@RequestMapping("/registExpert")
+@RequestMapping("/mypage")
 public class RegistExpertController {
 	private Logger logger=LoggerFactory.getLogger(RegistExpertController.class);
 	@Autowired private UserInfoService userInfoService;
@@ -64,12 +64,12 @@ public class RegistExpertController {
 		int userNo=(Integer)session.getAttribute("userNo");
 		expertVo.setUserNo(userNo);
 		int cnt=expertService.InsertExpert(expertVo);
-		String msg="", url="/registExpert/registProfile.do?state=profile";//페이지 생성하고 바꾸기
+		String msg="", url="/mypage/registProfile.do?state=profile";//페이지 생성하고 바꾸기
 		if(cnt>0) {
 			msg="저장되었습니다.";
 		}else {
 			msg="저장에 실패하였습니다.";
-			url="/registExpert/registExpert.do";
+			url="/mypage/registExpert.do";
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
@@ -117,7 +117,7 @@ public class RegistExpertController {
 		String msg="", url="";
 		if(cnt>0) {
 			msg="저장 되었습니다.";
-			url="/registExpert/profile.do?userNo="+expertVo.getUserNo();
+			url="/mypage/profile.do?userNo="+expertVo.getUserNo();
 			//새로 업로드한 경우, 기존 파일이 있으면 기존파일은 삭제
 			if(fileName!=null && !fileName.isEmpty()) {
 				if(oldFileName!=null && !oldFileName.isEmpty()) {
@@ -131,7 +131,7 @@ public class RegistExpertController {
 			}//if
 		}else {
 			msg="저장 실패";
-			url="/registExpert/profile.do?userNo="+expertVo.getUserNo();
+			url="/mypage/profile.do?userNo="+expertVo.getUserNo();
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
@@ -189,10 +189,10 @@ public class RegistExpertController {
 		String msg="", url="";
 		if(cnt>0) {
 			msg="저장 되었습니다.";
-			url="/registExpert/major.do?userNo="+userNo;
+			url="/mypage/major.do?userNo="+userNo;
 		}else {
 			msg="저장 실패";
-			url="/registExpert/major.do?userNo="+userNo;
+			url="/mypage/major.do?userNo="+userNo;
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);

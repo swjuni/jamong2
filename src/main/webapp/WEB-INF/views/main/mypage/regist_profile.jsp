@@ -58,7 +58,7 @@
 <div class="row service-list text-center">
 	<%@include file="../incs/registexpert.jsp"%>
 					<div class="col-md-5">
-				<iframe src="<c:url value='/registExpert/profile.do?userNo=${sessionScope.userNo }'/>" id="the_iframe" name="WrittenPublic" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; width:100%; height: 100%;"></iframe>
+				<iframe src="<c:url value='/mypage/profile.do?userNo=${sessionScope.userNo }'/>" id="the_iframe" name="WrittenPublic" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; width:100%; height: 100%;"></iframe>
 				</div>
 					<!--아래는 mypage 공통 사용 코드  -->
 			</div>

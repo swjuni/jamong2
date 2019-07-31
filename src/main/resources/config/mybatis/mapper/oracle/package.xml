@@ -19,4 +19,7 @@
 		select * from show_ads
 	</select>
 	 -->
+	 <select id="packageByProductNo" parameterType="int" resultType="packageVo">
+	 	select * from package where product_no=#{productNo}
+	 </select>
 </mapper>

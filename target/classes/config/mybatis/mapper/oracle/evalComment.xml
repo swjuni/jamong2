@@ -31,4 +31,10 @@
 		where eval_no = #{evalNo}
 		order by group_no desc, sort_no
 	</select>
+	
+	<update id="deleteReplyComment" parameterType="int">
+		update eval_comment
+		set delflag = 'Y'
+		where eval_c_no=#{evalCNo}
+	</update>
 </mapper>

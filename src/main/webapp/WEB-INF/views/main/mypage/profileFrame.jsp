@@ -87,7 +87,7 @@ $(function(){
 </style>
 </head>
 <body>
-	<form name="frm" role="form" class="contactform" action="<c:url value='/registExpert/basic.do'/>" enctype="multipart/form-data" method="post">
+	<form name="frm" role="form" class="contactform" action="<c:url value='/mypage/basic.do'/>" enctype="multipart/form-data" method="post">
 		<div class="contact-details">
 			<ul>
 			
@@ -121,7 +121,7 @@ $(function(){
 		<c:if test='${empty expert }'>
 		 disabled="disabled"
 		</c:if>
-		onclick="location.href='<c:url value="/registExpert/major.do?userNo=${sessionScope.userNo }"/>'">다음</button>
+		onclick="location.href='<c:url value="/mypage/major.do?userNo=${sessionScope.userNo }"/>'">다음</button>
 		<button type="submit" id="submit" name="submit"	class="btn btn-primary"
 		<c:if test='${empty expert }'>
 		 disabled="disabled"

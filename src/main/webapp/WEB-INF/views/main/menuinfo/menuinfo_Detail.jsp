@@ -76,7 +76,7 @@
 	}
 	function evalReplyClose(indexI,indexJ){
 		$('#evalReplyWriteI'+indexI+"J"+indexJ).hide();
-		$('#evalReplyIdI'+index+"J"+indexJ).attr("onclick","evalReplyOpen("+indexI+","+indexJ+")").text("reply");
+		$('#evalReplyIdI'+indexI+"J"+indexJ).attr("onclick","evalReplyOpen("+indexI+","+indexJ+")").text("reply");
 	}
 	
 </script>
@@ -135,6 +135,7 @@ img.cloudzoom {
 							data-cloudzoom='
 								zoomSizeMode:"image",
 								startMagnification: 2,
+								zoomPosition: "inside",
 								<%-- disableZoom: "auto", --%>
 								autoInside: 550 
 							'>
@@ -178,15 +179,7 @@ img.cloudzoom {
 						<div class="blog-box clearfix">
 							<div class="blog-single"><br><br>
 								<h3 class="post-title">서비스 설명</h3>
-								<p>The plugin will automatically include the most commonly used words in the text as a label. This way you gain backlinks within the site. In addition, one of the best features is that the words in the article are automatically linked to the label page. In this case, the article..</p>
-								<p>The plugin will automatically include the most commonly used words in the text as a label. This way you gain backlinks within the site. In addition, one of the best features is that the words in the article are automatically linked to the label page. In this case, the article..</p>
-
-								<div class="tags">
-									<a class="readmore" href="#">web design</a>
-									<a class="readmore" href="#">web development</a>
-									<a class="readmore" href="#">seo</a>
-									<a class="readmore" href="#">wordpress seo</a>
-								</div>
+								<div>${menuinfoVo.detailDesc }</div>
 							</div><!-- end blog-desc -->
 						</div><!-- end blogbox -->
 
@@ -195,6 +188,17 @@ img.cloudzoom {
                             <div class="custom-title">
                                 <h4>${evalList.size()} Comments</h4>
                                 <hr>
+                                <div>상품 서비스 평점</div>
+                                <div class="circle-detail">
+	                                <div class="progress">
+									 	<div class="progress-bar progress-bar-striped active" 
+									 	role="progressbar" aria-valuenow="${menuinfoVo.evalScore }" aria-valuemin="0" aria-valuemax="100"
+									 	 style="width:${menuinfoVo.evalScore }%; background-color:blue;">
+									 	 <span style="background-color: dodgerblue;">${menuinfoVo.evalScore }</span>
+									  	</div>
+									</div>
+								</div>
+								<hr>
                             </div><!-- end -->
 
                             <div class="row">
@@ -265,6 +269,7 @@ img.cloudzoom {
 																		<ul class="media-list" style="background: aliceblue">
 																	</c:if>
 																	
+																	<c:if test="${ecVo.delflag=='N' }">
 																		<li class="media">
 																			<div class="comment">
 																				<div class="media-body">
@@ -273,12 +278,28 @@ img.cloudzoom {
 																						<small class="text-muted"><fmt:formatDate value="${ecVo.regdate }"
 																						pattern="yyyy-MM-dd"/></small></span>
 																					<p>${ecVo.evalComment }</p>
+																					<c:if test="${ecVo.userNo==sessionScope.userNo }">
+																					<a href="<c:url value='/main/menuinfo/evaluationReplyDel.do?evalCNo=${ecVo.evalCNo }
+																						&productNo=${param.productNo }'/>" class="btn btn-primary btn-sm" style="float: right; width: 70px;">삭제</a>
+																					</c:if>
 																					<a href="javascript:void(0)" class="btn btn-primary btn-sm" style="float: right; width: 70px;"
 																					onclick="evalReplyOpen(${i},${j})" id="evalReplyIdI${i }J${j}">Reply</a>
 																				</div>
 																				<div class="clearfix"></div>
 																			</div>
 																		</li>
+																	</c:if>
+																	<c:if test="${ecVo.delflag=='Y' }">
+																		<li class="media">
+																			<div class="comment">
+																				<div class="media-body">
+																					<p>삭제된 글입니다.</p>
+																				</div>
+																				<div class="clearfix"></div>
+																			</div>
+																		</li>
+																	</c:if>
+																	
 																	<!-- 평가글 댓글의 reply 쓰기 -->
 																		<li class="media" id="evalReplyWriteI${i }J${j }" style="display: none;">
 																			<form class="row" name="frmEvalReplyComment" method="post" 
@@ -368,28 +389,45 @@ img.cloudzoom {
 						<div class="pricing-header" style="padding: 20px 0;">
 							<h4 style="color:black; text-align: left;">${menuinfoVo.productName }</h4>
 						</div><!-- end pricing-header -->
+						<div>${menuinfoVo.summary }</div>
 						<div class="panel-group" id="accordion">
 							<div class="panel panel-default">
-					            <a data-toggle="collapse" data-parent="#accordion" href="#collapseA">
-									<div class="pricing-header firstch">
-										<h4 class="panel-title">
-								            STANDARD <i class="fa fa-angle-down"></i>
-								        </h4>
-									</div><!-- end pricing-header -->
-					            </a>
-							    <div id="collapseA" class="panel-collapse collapse">
-							        <div class="panel-body">
-										<div class="pricing-top secondch">
-											<i class="flaticon-crown"></i>
-											<p>$500/Month</p>
-										</div><!-- end pricing-top -->
-										<div class="pricing-details">
-											<ul>
-												<li><a href="#">Link Building</a> Analysis <span><i class="fa fa-check"></i></span></li>
-												<li>Sectoral Agreement Limit <span><i class="fa fa-close"></i></span></li>
-												<li>Support <span><i class="fa fa-phone"></i></span></li>
-											</ul>
-										</div><!-- end pricing-details -->
+							
+								<!-- 패키지 구분 -->
+								<c:set var="packI" value="1"/>
+								<c:forEach var="packVo" items="${packageList }">
+						            <a data-toggle="collapse" data-parent="#accordion" href="#collapseA">
+										<div class="pricing-header firstch">
+											<h4 class="panel-title">
+									            ${packVo.packLevel } <i class="fa fa-angle-down"></i>
+									        </h4>
+										</div><!-- end pricing-header -->
+						            </a>
+								    <div id="collapseA" class="panel-collapse collapse">
+								        <div class="panel-body">
+											<div class="pricing-top secondch">
+												<p>${packVo.packName }</p>
+												<p><fmt:formatNumber value="${packVo.packPrice }" pattern="#,###"></fmt:formatNumber></p>
+											</div><!-- end pricing-top -->
+											<div class="pricing-details">
+												<ul>
+													<li>작업기간 <span>${packVo.workingPeriod } </span></li>
+													<li>수정횟수 <span>${packVo.modifyCount } </span></li>
+													<li>패키지설명</li>
+													<li>${packVo.packDesc }</li>
+												</ul>
+											</div><!-- end pricing-details -->
+											<div class="pricing-footer text-center">
+												<div class="case-box">
+													<a href="#" class="btn btn-primary c${packI }btn">주문하기</a>
+												</div>
+											</div>
+								        </div>
+								    </div>
+								    <c:set var="packI" value="${packI+1 }"/>
+								</c:forEach>
+							    
+										<!-- 상품 옵션 제거 
 										<div class="d-block p-2 bg-primary text-center optionSt">
 											<select name="optionsNo" class="border border-warning "
 											 style="width: 90%; height: 33px; color:black;background: linear-gradient(30deg, #ffffff 1%, #adadad 300%);">
@@ -399,73 +437,7 @@ img.cloudzoom {
 												<option value="3">옵션3</option>
 											</select>
 										</div>
-										<div class="pricing-footer text-center">
-											<div class="case-box">
-												<a href="#" class="btn btn-primary c1btn">주문하기</a>
-											</div>
-										</div>
-							        </div>
-							    </div>
-							    
-							    
-							    <!-- 패키지 구분 -->
-					            <a data-toggle="collapse" data-parent="#accordion" href="#collapseB">
-									<div class="pricing-header threech">
-										<h4 class="panel-title">
-								            DELUXE <i class="fa fa-angle-down"></i>
-								        </h4>
-									</div><!-- end pricing-header -->
-					            </a>
-							    <div id="collapseB" class="panel-collapse collapse">
-							        <div class="panel-body">
-										<div class="pricing-top fourch">
-											<i class="flaticon-crown"></i>
-											<p>$500/Month</p>
-										</div><!-- end pricing-top -->
-										<div class="pricing-details">
-											<ul>
-												<li><a href="#">Link Building</a> Analysis <span><i class="fa fa-check"></i></span></li>
-												<li>Sectoral Agreement Limit <span><i class="fa fa-close"></i></span></li>
-												<li>Support <span><i class="fa fa-phone"></i></span></li>
-											</ul>
-										</div><!-- end pricing-details -->
-										<div class="pricing-footer text-center">
-											<div class="case-box">
-												<a href="#" class="btn btn-primary c2btn">주문하기</a>
-											</div>
-										</div>
-							        </div>
-							    </div>
-							    
-							    
-							    <!-- 패키지 구분 -->
-					            <a data-toggle="collapse" data-parent="#accordion" href="#collapseC">
-									<div class="pricing-header sixch">
-										<h4 class="panel-title">
-								            PREMIUM <i class="fa fa-angle-down"></i>
-								        </h4>
-									</div><!-- end pricing-header -->
-					            </a>
-							    <div id="collapseC" class="panel-collapse collapse">
-							        <div class="panel-body">
-										<div class="pricing-top sevench">
-											<i class="flaticon-crown"></i>
-											<p>$500/Month</p>
-										</div><!-- end pricing-top -->
-										<div class="pricing-details">
-											<ul>
-												<li><a href="#">Link Building</a> Analysis <span><i class="fa fa-check"></i></span></li>
-												<li>Sectoral Agreement Limit <span><i class="fa fa-close"></i></span></li>
-												<li>Support <span><i class="fa fa-phone"></i></span></li>
-											</ul>
-										</div><!-- end pricing-details -->
-										<div class="pricing-footer text-center">
-											<div class="case-box">
-												<a href="#" class="btn btn-primary c3btn">주문하기</a>
-											</div>
-										</div>
-							        </div>
-							    </div>
+										 -->
 						    </div>
 					    </div>
 					</div><!-- end pricing-box -->

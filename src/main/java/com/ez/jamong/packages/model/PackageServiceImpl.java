@@ -23,4 +23,9 @@ public class PackageServiceImpl implements PackageService{
 		cnt=menuInfoService.registProduct(list.get(0).getProductNo());
 		return cnt;
 	}
+
+	@Override
+	public List<PackageVO> packageByProductNo(int productNo) {
+		return packageDao.packageByProductNo(productNo);
+	}
 }

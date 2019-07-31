@@ -28,7 +28,7 @@ $(function(){
 		$(this).hide();
 		$("<option value='"+$(this).val()+"'>"+$(this).text()+"</option>").appendTo($("select[name=majorSelected]"));
 		$.ajax({
-			url:"<c:url value='/registExpert/submajor.do'/>",
+			url:"<c:url value='/mypage/submajor.do'/>",
 			type:"get",
 			data:"categoryLNo="+cateNo,
 			dataType:"json",
@@ -100,7 +100,7 @@ $(function(){
 	function findcateM(cateL, cateNo){
 		var except=$("input[name=except]").val();
 		$.ajax({
-			url:"<c:url value='/registExpert/submajor.do'/>",
+			url:"<c:url value='/mypage/submajor.do'/>",
 			type:"get",
 			data:"categoryLNo="+cateNo,
 			dataType:"json",
@@ -161,7 +161,7 @@ $(function(){
 </style>
 </head>
 <body>
-	<form name="frm" role="form" class="contactform" action="<c:url value='/registExpert/registMajor.do'/>" method="post">
+	<form name="frm" role="form" class="contactform" action="<c:url value='/mypage/registMajor.do'/>" method="post">
 	<input name="expertNo" type="hidden" value="${expert.expertNo }">
 		<div style="margin-top:30px;">
 		<input type="hidden" value="${majorM }" name="except">
@@ -201,7 +201,7 @@ $(function(){
 								</li>
 							</ul>
 		<button type="button" id="next" name="next"	class="btn btn-primary"
-			onclick="location.href='<c:url value="/registExpert/licenseView.do?expertNo=${expert.expertNo }"/>'"
+			onclick="location.href='<c:url value="/mypage/licenseView.do?expertNo=${expert.expertNo }"/>'"
 		<c:if test='${empty majorM }'>
 			disabled="disabled"
 		</c:if>

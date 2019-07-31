@@ -32,7 +32,7 @@ import com.ez.jamong.menuInfo.model.MenuInfoService;
 import com.ez.jamong.menuInfo.model.MenuInfoVO;
 
 @Controller
-@RequestMapping("/registService")
+@RequestMapping("/mypage")
 public class RegistMenuInfoController {
 	private Logger logger=LoggerFactory.getLogger(RegistMenuInfoController.class);
 	@Autowired private CategoryLService categoryLService;
@@ -51,7 +51,7 @@ public class RegistMenuInfoController {
 		ExpertProfileVO profileVo=profileService.selectByExpertNo(expertVo.getExpertNo());
 		if(profileVo==null) {
 			String msg="프로필 등록이 필요합니다.";
-			String url="/registExpert/registProfile.do?state=profile";
+			String url="/mypage/registProfile.do?state=profile";
 			model.addAttribute("msg",msg);
 			model.addAttribute("url",url);
 			return "common/message";
@@ -96,7 +96,7 @@ public class RegistMenuInfoController {
 	@RequestMapping("/registService.do")
 	public String registServiceFrame(@ModelAttribute MenuInfoVO menuInfoVo, Model model) {
 		int cnt=menuInfoService.saveProduct(menuInfoVo);
-		String msg="", url="/registService/serviceFrame.do";
+		String msg="", url="/mypage/serviceFrame.do";
 		if(cnt>0) {
 			msg="저장되었습니다.";
 		}else {
@@ -113,7 +113,7 @@ public class RegistMenuInfoController {
 		ExpertVO expertVo=expertService.selectByUserNo(userNo);
 		menuInfoVo.setExpertNo(expertVo.getExpertNo());
 		int cnt=menuInfoService.updateMenuInfo2(menuInfoVo);
-		String msg="", url="/registService/serviceFrame2.do";
+		String msg="", url="/mypage/serviceFrame2.do";
 		if(cnt>0) {
 			msg="저장되었습니다.";
 		}else {

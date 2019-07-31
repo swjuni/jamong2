@@ -17,7 +17,7 @@ import com.ez.jamong.packages.model.PackageService;
 import com.ez.jamong.packages.model.PackageVO;
 
 @Controller
-@RequestMapping("/registService")
+@RequestMapping("/mypage")
 public class PackageController {
 	private Logger logger=LoggerFactory.getLogger(PackageController.class);
 	@Autowired private PackageService packageService;
@@ -42,12 +42,12 @@ public class PackageController {
 		}
 		int cnt=packageService.insertPackage(list);
 		
-		String msg="", url="/registService/service.do";
+		String msg="", url="/mypage/service.do";
 		if(cnt>0) {
 			msg="서비스가 등록되었습니다.";
 		}else {
 			msg="등록에 실패하였습니다.";
-			url="/registService/registPackage.do";
+			url="/mypage/registPackage.do";
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);

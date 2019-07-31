@@ -32,6 +32,8 @@ import com.ez.jamong.menuInfo.model.MenuInfoExtendsVO;
 import com.ez.jamong.menuInfo.model.MenuInfoSearchVO;
 import com.ez.jamong.menuInfo.model.MenuInfoService;
 import com.ez.jamong.menuInfo.model.MenuInfoVO;
+import com.ez.jamong.packages.model.PackageService;
+import com.ez.jamong.packages.model.PackageVO;
 
 @Controller
 public class MenuInfoServiceController {
@@ -43,6 +45,7 @@ public class MenuInfoServiceController {
 	@Autowired private CategoryMService categoryMService;
 	@Autowired private EvaluationService evaluationService;
 	@Autowired private EvalCommentService evalCommentService;
+	@Autowired private PackageService packageService;
 	
 	@RequestMapping(value = "/main/menuinfo/menuinfo_Detail.do")
 	public String menuinfoDetail_get(@RequestParam(defaultValue = "0") int productNo, HttpServletRequest request, HttpSession session,Model model) {
@@ -60,6 +63,12 @@ public class MenuInfoServiceController {
 		
 		if(menuinfoVo.getActivation().equals("N")){
 			model.addAttribute("msg", "판매 중지된 상품입니다.");
+			model.addAttribute("url", "/main/index_main.do");
+			return "common/message";
+		}
+		
+		if(menuinfoVo.getActivation()==null || menuinfoVo.getActivation().isEmpty()){
+			model.addAttribute("msg", "미승인 상품입니다.");
 			model.addAttribute("url", "/main/index_main.do");
 			return "common/message";
 		}
@@ -103,6 +112,11 @@ public class MenuInfoServiceController {
 			logger.info("서비스 평가의 댓글 배열 값 evalCommentList{}={}",i, evalCommentList[i]);
 		}
 		
+		
+		List<PackageVO> packageList = packageService.packageByProductNo(productNo);
+		logger.info("패키지 리스트 결과 packageList={}",packageList);
+		
+		model.addAttribute("packageList", packageList);
 		model.addAttribute("evalList", evalList);
 		model.addAttribute("menuinfoVo", menuinfoVo);
 		model.addAttribute("expertVo", expertVo);
