@@ -27,5 +27,9 @@ public class EvalCommentDAOMybatis implements EvalCommentDAO{
 	public List<EvalCommentVO> selectByEvalNo(int evalNo) {
 		return sqlSession.selectList(namespace+"selectByEvalNo", evalNo);
 	}
+	@Override
+	public int deleteReplyComment(int evalCNo) {
+		return sqlSession.update(namespace+"deleteReplyComment", evalCNo);
+	}
 	
 }

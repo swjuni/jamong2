@@ -76,7 +76,7 @@
 	}
 	function evalReplyClose(indexI,indexJ){
 		$('#evalReplyWriteI'+indexI+"J"+indexJ).hide();
-		$('#evalReplyIdI'+index+"J"+indexJ).attr("onclick","evalReplyOpen("+indexI+","+indexJ+")").text("reply");
+		$('#evalReplyIdI'+indexI+"J"+indexJ).attr("onclick","evalReplyOpen("+indexI+","+indexJ+")").text("reply");
 	}
 	
 </script>
@@ -265,6 +265,7 @@ img.cloudzoom {
 																		<ul class="media-list" style="background: aliceblue">
 																	</c:if>
 																	
+																	<c:if test="${ecVo.delflag=='N' }">
 																		<li class="media">
 																			<div class="comment">
 																				<div class="media-body">
@@ -273,12 +274,28 @@ img.cloudzoom {
 																						<small class="text-muted"><fmt:formatDate value="${ecVo.regdate }"
 																						pattern="yyyy-MM-dd"/></small></span>
 																					<p>${ecVo.evalComment }</p>
+																					<c:if test="${ecVo.userNo==sessionScope.userNo }">
+																					<a href="<c:url value='/main/menuinfo/evaluationReplyDel.do?evalCNo=${ecVo.evalCNo }
+																						&productNo=${param.productNo }'/>" class="btn btn-primary btn-sm" style="float: right; width: 70px;">삭제</a>
+																					</c:if>
 																					<a href="javascript:void(0)" class="btn btn-primary btn-sm" style="float: right; width: 70px;"
 																					onclick="evalReplyOpen(${i},${j})" id="evalReplyIdI${i }J${j}">Reply</a>
 																				</div>
 																				<div class="clearfix"></div>
 																			</div>
 																		</li>
+																	</c:if>
+																	<c:if test="${ecVo.delflag=='Y' }">
+																		<li class="media">
+																			<div class="comment">
+																				<div class="media-body">
+																					<p>삭제된 글입니다.</p>
+																				</div>
+																				<div class="clearfix"></div>
+																			</div>
+																		</li>
+																	</c:if>
+																	
 																	<!-- 평가글 댓글의 reply 쓰기 -->
 																		<li class="media" id="evalReplyWriteI${i }J${j }" style="display: none;">
 																			<form class="row" name="frmEvalReplyComment" method="post" 

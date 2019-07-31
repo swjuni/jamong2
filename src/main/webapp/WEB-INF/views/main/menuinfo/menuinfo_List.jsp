@@ -122,28 +122,30 @@
 						<div class="row">
 							<c:if test="${!empty list }">
 								<c:forEach var="vo" items="${list }">
-									<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-										<div class="case-boxUser" >
-											<a href="<c:url value='/main/menuinfo/menuinfo_Detail.do?productNo=${vo.productNo }'/>" onclick="addCookie('${vo.productNo}')">
-												<img src="<c:url value='/upload/product/${vo.fileName }'/>" 
-													alt="" class="img-responsive" style="width: 100%; height: 45%;">
-												<div class="gig-profile">
-													<img class="gig-user-profile" src="<c:url value='/upload/expert/${vo.expertFileName }'/>"
-														onerror="this.onerror=null;this.src='/jamong/upload/expert/2.png'">
-												</div>
-												<div class="case-info clearfix" style="height:45% ;border-bottom: 1px solid #ededed;">
-													<div>
-														<h4>${vo.id }</h4>
-														<span>${vo.productName }</span><br>
-														<div class="moneyDiv"><b>1,000,000</b>원</div> 
+									<c:if test="${vo.activation=='Y' }">
+										<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+											<div class="case-boxUser" >
+												<a href="<c:url value='/main/menuinfo/menuinfo_Detail.do?productNo=${vo.productNo }'/>" onclick="addCookie('${vo.productNo}')">
+													<img src="<c:url value='/upload/product/${vo.fileName }'/>" 
+														alt="" class="img-responsive" style="width: 100%; height: 45%;">
+													<div class="gig-profile">
+														<img class="gig-user-profile" src="<c:url value='/upload/expert/${vo.expertFileName }'/>"
+															onerror="this.onerror=null;this.src='/jamong/upload/expert/2.png'">
 													</div>
-												</div><!-- end case-info -->
-												<div class="case-info clearfix  heartDiv">
-													<div>평점 하트 위치</div> 
-												</div>
-											</a>
-										</div><!-- end case-box -->
-									</div><!-- end col -->
+													<div class="case-info clearfix" style="height:45% ;border-bottom: 1px solid #ededed;">
+														<div>
+															<h4>${vo.id }</h4>
+															<span>${vo.productName }</span><br>
+															<div class="moneyDiv"><b>1,000,000</b>원</div> 
+														</div>
+													</div><!-- end case-info -->
+													<div class="case-info clearfix  heartDiv">
+														<div>평점 하트 위치</div> 
+													</div>
+												</a>
+											</div><!-- end case-box -->
+										</div><!-- end col -->
+									</c:if>
 								</c:forEach>
 							</c:if>
 						</div>

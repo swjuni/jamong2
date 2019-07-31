@@ -7,4 +7,5 @@ public interface EvalCommentDAO {
 	public int insertReply(EvalCommentVO evalCommentVo);
 	public int updateSortNo(EvalCommentVO evalCommentVo);
 	public List<EvalCommentVO> selectByEvalNo(int evalNo);
+	public int deleteReplyComment(int evalCNo);
 }

@@ -64,6 +64,12 @@ public class MenuInfoServiceController {
 			return "common/message";
 		}
 		
+		if(menuinfoVo.getActivation()==null || menuinfoVo.getActivation().isEmpty()){
+			model.addAttribute("msg", "미승인 상품입니다.");
+			model.addAttribute("url", "/main/index_main.do");
+			return "common/message";
+		}
+		
 		ExpertVO expertVo = expertService.selectByExpertNo(menuinfoVo.getExpertNo());
 		logger.info("expertVo상세보기 결과 vo={}", expertVo);
 		
