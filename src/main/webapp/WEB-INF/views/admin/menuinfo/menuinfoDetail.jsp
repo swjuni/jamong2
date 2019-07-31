@@ -112,6 +112,10 @@
 								            <input type = "button" value="활성화" class="btn btn-primary"
 								            onclick="location.href='<c:url value='/admin/menuinfo/menuinfoDetail.do?productNo=${map["PRODUCT_NO"] }&activation=${map["ACTIVATION"] }'/>'">&nbsp;&nbsp;
 							            </c:if>
+										<c:if test="${empty map['ACTIVATION']}">
+								            <input type = "button" value="활성화" class="btn btn-primary"
+								            onclick="location.href='<c:url value='/admin/menuinfo/menuinfoDetail.do?productNo=${map["PRODUCT_NO"] }&activation=N'/>'">&nbsp;&nbsp;
+							            </c:if>
 							            <input type = "Button" value="삭제" class="btn btn-primary"
 				            			onclick="location.href='<c:url value='/admin/menuinfo/menuinfoDelete.do?productNo=${map["PRODUCT_NO"] }'/>'">&nbsp;&nbsp;
 							            <input type = "Button" value="글목록" class="btn btn-primary"
