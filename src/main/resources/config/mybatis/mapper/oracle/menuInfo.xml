@@ -59,6 +59,7 @@
 	<!-- mapmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm -->
 	<select id="selectMenuinfoAllView" resultMap="menuinfoViewResult">
 		select * from menuinfoView
+		where activation is not null
 	</select>
 	
 	<select id="selectMenuinfoView" parameterType="map" resultMap="menuinfoViewResult">
