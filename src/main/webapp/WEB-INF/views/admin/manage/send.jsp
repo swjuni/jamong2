@@ -4,7 +4,17 @@
 <!-- 관리자 홈 top include -->
 <%@include file="../inc/admin_top.jsp"%>
 
-<!-- 버튼 클릭 이벤트 -->
+<!-- 파일 이름 변경 이벤트 -->
+<script type="text/javascript">
+$(function(){
+	$('#file_name').change(function(){
+		var fileName = $(this).val();
+		$(this).next().html(fileName);
+	});
+});
+</script>
+
+		
 
 <!-- 각자가 분담해서 디자인할 바디 태그 -->
 
@@ -22,8 +32,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>내용</label>
-                                    <textarea class="form-control" placeholder="Contents" name="text" id="text"></textarea>
-                                     <input type="file" name="files[]" multiple="multiple">
+                                    <textarea class="form-control" placeholder="Contents" name="text" id="text" style="height: 250px"></textarea>
+                                    <div class="custom-file">
+                                     	<input type="file" name="files[]" id="file_name" multiple="multiple" class="custom-file-input" />
+										<label class="custom-file-label" for="file_name">첨부 파일(쪽지만 적용)</label>
+									</div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" formaction="<c:url value='/admin/manage/send_email.do'/>">메일 전송</button>
                                 <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" formaction="<c:url value='/admin/manage/send_message.do'/>">쪽지 전송</button>

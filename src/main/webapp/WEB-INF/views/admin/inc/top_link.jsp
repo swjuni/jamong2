@@ -21,6 +21,7 @@
         <link href="<c:url value='/assets/css/lib/data-table/buttons.bootstrap.min.css'/>" rel="stylesheet" />
         <link href="<c:url value='/assets/css/lib/menubar/sidebar.css'/>" rel="stylesheet">
         <link href="<c:url value='/assets/css/lib/bootstrap.min.css'/>" rel="stylesheet">
+        <link href="<c:url value='/assets/css/lib/owl2.carousel.min.css'/>" rel="stylesheet">
 
         <link href="<c:url value='/assets/css/lib/helper.css'/>" rel="stylesheet">
         <link href="<c:url value='/assets/css/style.css'/>" rel="stylesheet">
