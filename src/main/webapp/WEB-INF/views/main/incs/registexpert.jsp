@@ -16,7 +16,7 @@
 								<c:if test="${param.state=='expert' }">
 									style="color:#f47664;"
 								</c:if>
-								 href="<c:url value='/registExpert/registExpert.do?state=expert'/>">
+								 href="<c:url value='/mypage/registExpert.do?state=expert'/>">
 								 <c:if test="${empty expert }">
 								 전문가 등록
 								 </c:if>
@@ -49,7 +49,7 @@
 									style="color:#f47664;"
 								</c:if>
 								<c:if test='${!empty expert }'>
-								 href="<c:url value='/registService/service.do?state=service'/>"
+								 href="<c:url value='/mypage/service.do?state=service'/>"
 								</c:if> 
 								 >서비스 등록</a></h4>
 							</div>

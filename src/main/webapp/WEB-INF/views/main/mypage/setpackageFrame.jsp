@@ -52,7 +52,7 @@ select{
 </style>
 </head>
 <body>
-<form action="<c:url value='/registService/registPackage.do'/>" name="form" method="post">
+<form action="<c:url value='/mypage/registPackage.do'/>" name="form" method="post">
 <div class="row big-pricing">
 								<div class="col-md-4 col-sm-6 col-xs-12 colon1 nopad" style="width: 30%;">
 									<div class="pricing-header firstch c0">

@@ -83,7 +83,7 @@
 					<!-- end contact details -->
 				</div>
 				<div class="col-md-5">
-					<form name="frm" role="form" class="contactform" action="<c:url value='/registExpert/regist.do'/>">
+					<form name="frm" role="form" class="contactform" action="<c:url value='/mypage/regist.do'/>">
 					<input type="hidden" name="id" value="${userInfo.userId }">
 						<div class="form-group">
 							<input type="text" class="form-control" id="userName" name="userName" value="${userInfo.userName }" disabled="disabled">
