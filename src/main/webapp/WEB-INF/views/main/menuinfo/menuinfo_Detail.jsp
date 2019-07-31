@@ -135,6 +135,7 @@ img.cloudzoom {
 							data-cloudzoom='
 								zoomSizeMode:"image",
 								startMagnification: 2,
+								zoomPosition: "inside",
 								<%-- disableZoom: "auto", --%>
 								autoInside: 550 
 							'>
@@ -178,15 +179,7 @@ img.cloudzoom {
 						<div class="blog-box clearfix">
 							<div class="blog-single"><br><br>
 								<h3 class="post-title">서비스 설명</h3>
-								<p>The plugin will automatically include the most commonly used words in the text as a label. This way you gain backlinks within the site. In addition, one of the best features is that the words in the article are automatically linked to the label page. In this case, the article..</p>
-								<p>The plugin will automatically include the most commonly used words in the text as a label. This way you gain backlinks within the site. In addition, one of the best features is that the words in the article are automatically linked to the label page. In this case, the article..</p>
-
-								<div class="tags">
-									<a class="readmore" href="#">web design</a>
-									<a class="readmore" href="#">web development</a>
-									<a class="readmore" href="#">seo</a>
-									<a class="readmore" href="#">wordpress seo</a>
-								</div>
+								<div>${menuinfoVo.detailDesc }</div>
 							</div><!-- end blog-desc -->
 						</div><!-- end blogbox -->
 
@@ -195,6 +188,17 @@ img.cloudzoom {
                             <div class="custom-title">
                                 <h4>${evalList.size()} Comments</h4>
                                 <hr>
+                                <div>상품 서비스 평점</div>
+                                <div class="circle-detail">
+	                                <div class="progress">
+									 	<div class="progress-bar progress-bar-striped active" 
+									 	role="progressbar" aria-valuenow="${menuinfoVo.evalScore }" aria-valuemin="0" aria-valuemax="100"
+									 	 style="width:${menuinfoVo.evalScore }%; background-color:blue;">
+									 	 <span style="background-color: dodgerblue;">${menuinfoVo.evalScore }</span>
+									  	</div>
+									</div>
+								</div>
+								<hr>
                             </div><!-- end -->
 
                             <div class="row">
@@ -385,6 +389,7 @@ img.cloudzoom {
 						<div class="pricing-header" style="padding: 20px 0;">
 							<h4 style="color:black; text-align: left;">${menuinfoVo.productName }</h4>
 						</div><!-- end pricing-header -->
+						<div>${menuinfoVo.summary }</div>
 						<div class="panel-group" id="accordion">
 							<div class="panel panel-default">
 							

@@ -26,7 +26,10 @@
 	</select>
 
 	<select id="selectMenuInfoByNo" parameterType="int" resultType="menuinfoVo">
-		select * from menu_info
+		select product_no, category_type_no, product_name,
+		(select sum(eval_score)/count(*) from evaluation where product_no=#{productNo}) as eval_score,
+		summary, detail_desc, regdate, order_level, recommend, activation, expert_no
+		from menu_info
 		where PRODUCT_NO=#{productNo}
 	</select>
 	

@@ -140,7 +140,12 @@
 														</div>
 													</div><!-- end case-info -->
 													<div class="case-info clearfix  heartDiv">
-														<div>평점 하트 위치</div> 
+														<div class="progress">
+															<div class="progress-bar progress-bar-striped active" 
+																role="progressbar" aria-valuenow="${vo.evalScore }" aria-valuemin="0" aria-valuemax="100"
+																style="width:${vo.evalScore }%;">
+															</div>
+														</div>
 													</div>
 												</a>
 											</div><!-- end case-box -->
