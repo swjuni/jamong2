@@ -65,9 +65,7 @@ public class MenuInfoController {
 			menuinfoVo.setActivation(activation);
 			logger.info("활성화/비활성화 버튼 클릭 , 파라미터 productNo={}, activation={}", productNo, activation);
 		}
-		if(activation!=null) {
-			int cnt=menuinfoService.updateActivation(menuinfoVo);
-		}
+		menuinfoService.updateActivation(menuinfoVo);
 		Map<String, Object> map = menuinfoService.selectMenuinfoView(productNo);
 		logger.info("목록 파라미터, map={}", map);
 		

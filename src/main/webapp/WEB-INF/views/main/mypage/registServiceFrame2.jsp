@@ -56,8 +56,7 @@
 		})
 		
 		$("#next").click(function(){
-			var url="<c:url value='/registService/uploadImageView.do?productNo=${menuVo.productNo }'/>";
-			location.href="<c:url value='/registService/uploadImageView.do?productNo=${menuVo.productNo }'/>";
+			location.href="<c:url value='/mypage/uploadImageView.do?productNo=${menuVo.productNo }'/>";
 		})
 		
 /* 		$("#next").click(function(){
@@ -126,7 +125,7 @@ label{
 </style>
 </head>
 <body>
-<form name="frm" role="form" class="contactform" action="<c:url value='/registService/registService2.do'/>" method="post">
+<form name="frm" role="form" class="contactform" action="<c:url value='/mypage/registService2.do'/>" method="post">
 	<div class="row">
 	    <div class="col-lg-6">
 	<!--  -->

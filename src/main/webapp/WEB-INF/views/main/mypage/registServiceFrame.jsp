@@ -18,7 +18,7 @@ $(function(){
 	var firstNo=$("#firstCategory").val();
 	var secondNo=$("#secondCategory").val();
 	$.ajax({
-		url:"<c:url value='/registExpert/submajor.do'/>",
+		url:"<c:url value='/mypage/submajor.do'/>",
 		type:"get",
 		data:"categoryLNo="+firstNo,
 		dataType:"json",
@@ -39,7 +39,7 @@ $(function(){
 	$("#categoryNameL").change(function(){
 		var categoryNo=$(this).val();
 		$.ajax({
-			url:"<c:url value='/registExpert/submajor.do'/>",
+			url:"<c:url value='/mypage/submajor.do'/>",
 			type:"get",
 			data:"categoryLNo="+categoryNo,
 			dataType:"json",
@@ -88,7 +88,7 @@ button:hover{
 	</c:if>
 	id="firstCategory">
 	<input type="hidden" value="${menuVo.categoryTypeNo }" id="secondCategory">
-	<form name="frm" role="form" class="contactform" action="<c:url value='/registService/registService.do'/>" method="post">
+	<form name="frm" role="form" class="contactform" action="<c:url value='/mypage/registService.do'/>" method="post">
 	<div class="row">
 	    <div class="col-lg-6">
 	        <div class="form-group">
@@ -120,7 +120,7 @@ button:hover{
 	<c:if test='${empty menuVo }'>
 	disabled="disbled"
 	</c:if>
-	onclick="location.href='<c:url value="/registService/serviceFrame2.do"/>'"
+	onclick="location.href='<c:url value="/mypage/serviceFrame2.do"/>'"
 	>다음</button>
 	</div>
 	<input type="hidden" value="${expert.expertNo }" name="expertNo">
