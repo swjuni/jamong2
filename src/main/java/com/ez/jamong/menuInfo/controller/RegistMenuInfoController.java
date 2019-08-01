@@ -140,6 +140,7 @@ public class RegistMenuInfoController {
 		logger.info("등록된 이미지 listImage.size={}, listImgDetail.size={}", listImage.size(), listImgDetail.size());
 		model.addAttribute("listImage",listImage);
 		model.addAttribute("listImgDetail",listImgDetail);
+		model.addAttribute("productNo",productNo);
 		return "main/mypage/ImageUpload";
 		
 	}
@@ -156,17 +157,17 @@ public class RegistMenuInfoController {
 		//삭제해야될거 불러오고 업로드된거에서 지우기
 		List<Integer> imageNo=new ArrayList<Integer>();
 		List<Integer> imgDetailNo=new ArrayList<Integer>();
-		if(imageNoR!=null&&imageNoR.isEmpty()) {
+		if(imageNoR!=null) {
 			imageNo=imageNoR;
 		}else {
 			imageNo.add(-1);
 		}
-		if(imgDetailNoR!=null&&imgDetailNoR.isEmpty()) {
+		if(imgDetailNoR!=null) {
 			imgDetailNo=imgDetailNoR;
 		}else {
 			imgDetailNo.add(-1);
 		}
-				
+		
 		List<ImageVO> listM=imageService.selectDelete(imageNo);
 		for(int i=0;i<listM.size();i++) {
 			multiFileUploadUtility.deleteFile(MultiFileUploadUtility2.IMAGE_UPLOAD, listM.get(i).getFileName(),request);

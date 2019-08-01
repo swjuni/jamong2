@@ -19,6 +19,7 @@
 	<select id="selectImageByProductNo" parameterType="int" resultType="imageVo">
 		select * from image
 		where product_no=#{productNo}
+		order by img_no
 	</select>
 	
 	<insert id="insertImage" parameterType="imageVo">
