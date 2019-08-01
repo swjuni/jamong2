@@ -45,7 +45,7 @@ ALTER TABLE EVAL_COMMENT
 		)
 		REFERENCES EVALUATION ( -- 서비스평가
 			EVAL_NO -- 서비스평가번호
-		);
+		)on delete cascade;
 		
 		
 		select * from message;
