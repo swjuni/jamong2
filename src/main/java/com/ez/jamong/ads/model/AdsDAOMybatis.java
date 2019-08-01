@@ -16,5 +16,10 @@ public class AdsDAOMybatis implements AdsDAO{
 	public List<Map<String, Object>> selectShowAds() {
 		return session.selectList(namespace+"selectShowAds");
 	}
+
+	@Override
+	public List<AdsVO> AgreeAds() {
+		return session.selectList(namespace+"AgreeAds");
+	}
 	
 }

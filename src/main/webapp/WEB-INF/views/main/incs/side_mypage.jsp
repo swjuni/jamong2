@@ -80,5 +80,5 @@
 							</div>
 						</div><!-- end score -->
 					</div><!-- end col -->
-					<div class="col-md-9">
+					<div class="col-md-9" style="display: contents;">
     
