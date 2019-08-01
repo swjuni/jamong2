@@ -5,4 +5,5 @@ import java.util.Map;
 
 public interface AdsDAO {
 	public List<Map<String, Object>> selectShowAds();
+	public List<AdsVO> AgreeAds();
 }

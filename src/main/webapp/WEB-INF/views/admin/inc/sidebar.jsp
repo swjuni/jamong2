@@ -7,7 +7,7 @@
                 <li class="label">Main</li>
                 <li><a class="sidebar-sub-toggle"><i class="ti-home"></i> 마이페이지 <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
-                        <li><a href="<c:url value='/admin/index_admin.do'/>">메인페이지로 이동</a></li>
+                        <li><a href="<c:url value='/main/index_main.do'/>">메인페이지로 이동</a></li>
                         <li><a href="<c:url value='/admin/login/logout.do'/>">로그아웃</a></li>
                     </ul>
                 </li>

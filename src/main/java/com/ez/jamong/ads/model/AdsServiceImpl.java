@@ -14,5 +14,10 @@ public class AdsServiceImpl implements AdsService{
 	public List<Map<String, Object>> selectShowAds() {
 		return adsDao.selectShowAds();
 	}
+
+	@Override
+	public List<AdsVO> AgreeAds() {
+		return adsDao.AgreeAds();
+	}
 	
 }

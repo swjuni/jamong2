@@ -33,29 +33,6 @@
 									<div class="panel panel-default">
 									    <div class="panel-heading">
 									        <h4 class="panel-title">
-									            <a data-toggle="collapse" data-parent="#accordion" href="#collapseBuy">
-									            	마이페이지
-									            <i class="fa fa-angle-down"></i></a>
-									        </h4>
-									    </div>
-									    <div id="collapseBuy" class="panel-collapse collapse">
-									        <div class="panel-body">
-												<ul style="list-style: none; padding-top: 10px; padding-left: 30px;">
-					                    			<li><a href="#">구매관리</a></li>
-					                    			<li><a href="#">결제내역</a></li>
-					                    			<li><a href="<c:url value='/mypage/bookmark.do'/>">즐겨찾기</a></li>
-					                    			<li><a href="#">최근 본 서비스</a></li>
-					                    			<li><a href="#">메시지</a></li>
-					                    			<li><a href="#">자료실</a></li>
-					                    			<li><a href="#">나의정보</a></li>
-					                    			<li><a href="#">알림(신고)</a></li>
-					                    		</ul>
-									        </div>
-									    </div>
-									</div>
-									<div class="panel panel-default">
-									    <div class="panel-heading">
-									        <h4 class="panel-title">
 									            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSell">
 									            	전문가 메뉴
 									            <i class="fa fa-angle-down"></i></a>
@@ -70,6 +47,7 @@
 					                    			<li><a href="#">배너관리</a></li>
 					                    			<li><a href="#">인증(프로필)정보</a></li>
 					                    			<li><a href="#">일정표</a></li>
+					                    			<li><a href="<c:url value='/admin/bannerexpoert/bannerAdd.do'/>">배너 등록</a></li>
 					                    		</ul>
 									        </div>
 									    </div>
