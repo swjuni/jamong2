@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ez.jamong.log.model.LogService;
@@ -49,20 +50,20 @@ public class LogController {
 	}
 	
 	@RequestMapping("/admin/manage/log.do")
-	public String LogSelect(@RequestParam int userNo, Model model) {
+	public String LogSelectAll(Model model) {
 		logger.info("로그기록 화면");
 		List<LogVO> list = logService.selectLogsAll();
 		
-		logger.info("파라미터 userNo={}, 결과값 list.size={}",userNo,list.size());
+		logger.info("파라미터 결과값 list.size={}",list.size());
 		model.addAttribute("list",list);
 		
 		return "admin/manage/log";
 	}
 	
-	/*
-	@RequestMapping("/admin/manage/log.do")
-	public String LogSelect(@RequestParam int userNo, Model model) {
-		logger.info("로그기록 화면");
+	
+	@RequestMapping(value="/admin/manage/logSelect.do",method ={RequestMethod.GET, RequestMethod.POST})
+	public String LogSelect(@RequestParam (defaultValue ="0")int userNo, Model model) {
+		logger.info("로그기록 화면 유저 검색");
 		List<LogVO> list = logService.selectLogs(userNo);
 		
 		logger.info("파라미터 userNo={}, 결과값 list.size={}",userNo,list.size());
@@ -70,7 +71,7 @@ public class LogController {
 		
 		return "admin/manage/log";
 	}
-	*/
+	
 	
 	//ip가져오는 함수
 	public String getIp(HttpServletRequest request) {
@@ -129,6 +130,13 @@ public class LogController {
          
         
          return os;
+	}
+	
+	@RequestMapping("/admin/manage/bannerView.do")
+	public String bannerSelectAll(Model model) {
+		logger.info("배너 리스트 화면");
+		
+		return "admin/manage/bannerView";
 	}
 	
 	

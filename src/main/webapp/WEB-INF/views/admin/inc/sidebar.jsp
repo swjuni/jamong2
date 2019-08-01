@@ -47,7 +47,6 @@
                 
                 <li class="label">기타관리</li>
       
-                <li><a href="<c:url value='/admin/index_admin.do'/>"><i class="ti-layout-grid2-alt"></i> 쿠폰</a></li>
                 
 	            <li><a href="<c:url value='/admin/bannerexpoert/bannerList.do'/>"><i class="ti-panel"></i> 전문가 배너</a></li>
                 

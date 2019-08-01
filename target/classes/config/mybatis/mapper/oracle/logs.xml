@@ -11,10 +11,11 @@
 	</insert>
 	
 	<select id="selectLogs" resultType="logVo" parameterType="int">
-		select * from logs where <if test="userNo!=null">user_no=#{userNo}</if> order by login_time desc
+		select * from logs where user_no=#{userNo} order by login_time desc
 	</select>
+	
 	<select id="selectLogsAll" resultType="logVo">
-		select * from logs where order by login_time desc
+		select * from logs order by login_time desc
 	</select>
 </mapper>
 

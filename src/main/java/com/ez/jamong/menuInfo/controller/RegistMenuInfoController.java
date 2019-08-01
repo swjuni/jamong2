@@ -141,27 +141,7 @@ public class RegistMenuInfoController {
 	public String imageUpload(@RequestParam(defaultValue = "0") int productNo,@RequestParam MultipartFile[] files,HttpServletRequest request) {
 		System.out.println(productNo);
 		//메인 사진 저장
-		Map<String, Object> map=multiFileUploadUtility.multiFileUpload(files[0], request, MultiFileUploadUtility2.IMAGE_UPLOAD);
-		ImageVO imgVo=new ImageVO();
-		imgVo.setFileName((String)map.get("fileName"));
-		imgVo.setOriginalFileName((String)map.get("originalFileName"));
-		imgVo.setFileSize((Long)map.get("fileSize"));
-		imgVo.setProductNo(productNo);
-		List<ImgDetailVO> list=new ArrayList<ImgDetailVO>();
-		//상세 사진 저장
-		if(files.length>1) {
-			for(int i=1;i<files.length;i++) {
-				Map<String, Object> mapDetail=multiFileUploadUtility.multiFileUpload(files[i], request, MultiFileUploadUtility2.IMG_DETAIL_UPLOAD);
-				ImgDetailVO imgDetailVo=new ImgDetailVO();
-				imgDetailVo.setFileName((String)mapDetail.get("fileName"));
-				imgDetailVo.setOriginalFileName((String)mapDetail.get("originalFileName"));
-				imgDetailVo.setFileSize((Long)mapDetail.get("fileSize"));
-				imgDetailVo.setProductNo(productNo);
-				list.add(imgDetailVo);
-			}
-		}
-		int cnt=imgService.insertImage(imgVo, list);
-		return "main/mypage/ImageUpload";
+		return "redirect: /mypage/uploadImageView.do";
 		
 	}
 }

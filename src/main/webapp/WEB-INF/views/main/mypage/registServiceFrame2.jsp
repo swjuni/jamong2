@@ -181,7 +181,6 @@ label{
 	disabled="disabled"
 	</c:if>
 	>다음</button>
-	<input type="text" value="${menuVo.productNo }">
 	</div>
 </form>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>
