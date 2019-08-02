@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.pay">
+	<select id="selectByUserNo" parameterType="int" resultType="map">
+		select o.ORDER_LIST_NO, o.ORDER_DATE, m.PRODUCT_NAME,
+		p.PACK_NAME, pa.PAY_NO, pa.PAY_METHOD, pa.PRICE, pa.REGDATE 
+		from menu_info m join package p
+		on m.PRODUCT_NO = p.PRODUCT_NO
+		join orders o
+		on o.PACK_NO = p.PACK_NO
+		join pay pa
+		on pa.ORDER_NO = o.ORDER_LIST_NO
+		where o.PAY_CHECK = 'Y' and o.USER_NO=#{userNo}
+	</select>
+	
+</mapper>
