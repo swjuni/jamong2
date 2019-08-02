@@ -32,17 +32,17 @@ public class BannerController {
 	@Autowired private BannerExService bannerExService;
 	@Autowired private FileUploadUtility fileUtility;
 	
-	@RequestMapping(value = "/admin/bannerexpoert/bannerAdd.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/bannerexpoert/bannerAdd.do", method = RequestMethod.GET)
 	public String bannerAdd_get(Model model) {
 		logger.info("배너 등록 화면 요청");
 		
 		List<CategoryLVO> list = categorylService.selectCategorylAll();
 		model.addAttribute("list", list);
 		
-		return "admin/bannerexpoert/bannerAdd";
+		return "main/bannerexpoert/bannerAdd";
 	}
 	
-	@RequestMapping(value = "/admin/bannerexpoert/bannerAdd.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/bannerexpoert/bannerAdd.do", method = RequestMethod.POST)
 	public String bannerAdd_post(@ModelAttribute BannerExVO bannerVo, HttpServletRequest request, Model model) {
 		logger.info("배너 등록 요청, 파라미터 bannerVo={}", bannerVo);
 		String fileName="", originalFileName="";
@@ -67,10 +67,10 @@ public class BannerController {
 		String msg="", url="";
 		if(cnt>0) {
 			msg="배너 등록이 완료되었습니다.";
-			url="/admin/bannerexpoert/bannerList.do";
+			url="/main/bannerexpoert/bannerList.do";
 		}else {
 			msg="배너 등록 실패";
-			url="/admin/bannerexpoert/bannerAdd.do";
+			url="/main/bannerexpoert/bannerAdd.do";
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
@@ -79,7 +79,7 @@ public class BannerController {
 		
 	}
 	
-	@RequestMapping("/admin/bannerexpoert/bannerList.do")
+	@RequestMapping("/main/bannerexpoert/bannerList.do")
 	public String bannereList_get(Model model) {
 		logger.info("배너 목록 보기");
 		
@@ -88,17 +88,17 @@ public class BannerController {
 		
 		model.addAttribute("map", map);
 		
-		return "admin/bannerexpoert/bannerList";
+		return "main/bannerexpoert/bannerList";
 	}
 	
-	@RequestMapping(value = "/admin/bannerexpoert/bannerDetail.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/bannerexpoert/bannerDetail.do", method = RequestMethod.GET)
 	public String bannereDetail_get(HttpSession session,@RequestParam(defaultValue = "0") int adsNo, @RequestParam(required = false) String activation,  @RequestParam(required = false) String approveDelflag, HttpServletRequest request, Model model) {
 		logger.info("배너 상세보기 화면 요청, 파라미터 no={}, activation={}", adsNo, activation);
 		logger.info("approveDelflag={}",approveDelflag);
 
 		if(adsNo==0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
-			model.addAttribute("url", "/admin/bannerexpoert/bannerList.do");
+			model.addAttribute("url", "/main/bannerexpoert/bannerList.do");
 			return "common/message";
 		}
 
@@ -109,7 +109,7 @@ public class BannerController {
 		if(activation != null && !activation.isEmpty()) {
 			if(!activation.equals("Y") && !activation.equals("N")){
 				model.addAttribute("msg", "잘못된 url입니다.");
-				model.addAttribute("url", "/admin/bannerexpoert/bannerList.do");
+				model.addAttribute("url", "/main/bannerexpoert/bannerList.do");
 				return "common/message";
 			}else if(activation.equals("Y")) {
 				activation = "N";
@@ -168,13 +168,13 @@ public class BannerController {
 		return "admin/bannerexpoert/bannerDetail";
 	}
 	
-	@RequestMapping(value = "/admin/bannerexpoert/bannerDelete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/bannerexpoert/bannerDelete.do", method = RequestMethod.GET)
 	public String bannereDelete_get(@RequestParam(defaultValue = "0") int adsNo, HttpServletRequest request, Model model) {
 		logger.info("배너 삭제 화면 요청");
 		
 		if(adsNo==0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
-			model.addAttribute("url", "/admin/bannerexpoert/bannerList.do");
+			model.addAttribute("url", "/mypage/mypage.do");
 			
 			return "common/message";
 		}
@@ -188,23 +188,23 @@ public class BannerController {
 		model.addAttribute("fileInfo", fileInfo);
 		
 		
-		return "admin/bannerexpoert/bannerDelete";
+		return "main/bannerexpoert/bannerDelete";
 	}
 	
-	@RequestMapping(value = "/admin/bannerexpoert/bannerDelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/bannerexpoert/bannerDelete.do", method = RequestMethod.POST)
 	public String bannereDelete_post(@ModelAttribute BannerExVO bannerExVo, HttpServletRequest request, Model model) {
 		logger.info("배너 삭제 요청, 파라미터 bannerExVo={}", bannerExVo);
 		
 		String fileName = bannerExVo.getFileName();
 		
-		String msg="", url="/admin/bannerexpoert/bannerDelete.do?adsNo=" + bannerExVo.getAdsNo();
+		String msg="", url="/main/bannerexpoert/bannerDelete.do?adsNo=" + bannerExVo.getAdsNo();
 		
 		int cnt = bannerExService.deleteBanner(bannerExVo.getAdsNo());
 		logger.info("배너 삭제 처리 결과  cnt={}", cnt);
 		
 		if(cnt>0) {
 			msg="배너가 삭제되었습니다.";
-			url="/admin/bannerexpoert/bannerList.do";
+			url="/main/bannerexpoert/bannerList.do";
 			
 			//파일 삭제
 			if(fileName!=null&&!fileName.isEmpty()){
@@ -227,13 +227,13 @@ public class BannerController {
 		return "common/message";
 	}
 	
-	@RequestMapping(value = "/admin/bannerexpoert/bannerEdit.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/bannerexpoert/bannerEdit.do", method = RequestMethod.GET)
 	public String bannereEdit_get(@RequestParam(defaultValue = "0") int adsNo, HttpServletRequest request, Model model) {
 		logger.info("배너 수정화면 요청");
 		
 		if(adsNo==0) {
 			model.addAttribute("msg", "잘못된 url입니다.");
-			model.addAttribute("url", "/admin/bannerexpoert/bannerList.do");
+			model.addAttribute("url", "/mypage/mypage.do");
 			
 			return "common/message";
 		}
@@ -249,10 +249,10 @@ public class BannerController {
 		model.addAttribute("fileInfo", fileInfo);
 		model.addAttribute("list", list);
 		
-		return "admin/bannerexpoert/bannerEdit";
+		return "main/bannerexpoert/bannerEdit";
 	}
 	
-	@RequestMapping(value = "/admin/bannerexpoert/bannerEdit.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/bannerexpoert/bannerEdit.do", method = RequestMethod.POST)
 	public String categorymEdit_post(@ModelAttribute BannerExVO bannerVo, @RequestParam String oldFileName, HttpServletRequest request, Model model) {
 		logger.info("배너 수정 요청, 파라미터  vo={}, oldFileName={}", bannerVo, oldFileName);
 		
@@ -274,10 +274,10 @@ public class BannerController {
 		int cnt = bannerExService.updateBanner(bannerVo);
 		logger.info("업데이트 결과 cnt={}, 파라미터 vo={}", cnt, bannerVo);
 		
-		String msg="", url="/admin/bannerexpoert/bannerEdit.do?adsNo=" + bannerVo.getAdsNo();
+		String msg="", url="/main/bannerexpoert/bannerEdit.do?adsNo=" + bannerVo.getAdsNo();
 		if(cnt>0) {
 			msg="배너가 수정되었습니다.";
-			url="/admin/bannerexpoert/bannerDetail.do?adsNo=" + bannerVo.getAdsNo();
+			url="/mypage/mypage.do";
 		
 			if(fileName!=null && !fileName.isEmpty()) {
 				if(oldFileName!=null && !oldFileName.isEmpty()){

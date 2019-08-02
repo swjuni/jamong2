@@ -28,6 +28,12 @@ import com.ez.jamong.evaluation.model.EvaluationService;
 import com.ez.jamong.evaluation.model.EvaluationVO;
 import com.ez.jamong.expert.model.ExpertService;
 import com.ez.jamong.expert.model.ExpertVO;
+import com.ez.jamong.expert_profile.model.ExpertProfileService;
+import com.ez.jamong.expert_profile.model.ExpertProfileVO;
+import com.ez.jamong.image.ImageService;
+import com.ez.jamong.image.ImageVO;
+import com.ez.jamong.img_detail.ImgDetailService;
+import com.ez.jamong.img_detail.ImgDetailVO;
 import com.ez.jamong.menuInfo.model.MenuInfoExtendsVO;
 import com.ez.jamong.menuInfo.model.MenuInfoSearchVO;
 import com.ez.jamong.menuInfo.model.MenuInfoService;
@@ -46,6 +52,9 @@ public class MenuInfoServiceController {
 	@Autowired private EvaluationService evaluationService;
 	@Autowired private EvalCommentService evalCommentService;
 	@Autowired private PackageService packageService;
+	@Autowired private ImageService imageService;
+	@Autowired private ImgDetailService imgDetailservice;
+	@Autowired private ExpertProfileService expertProfileService;
 	
 	@RequestMapping(value = "/main/menuinfo/menuinfo_Detail.do")
 	public String menuinfoDetail_get(@RequestParam(defaultValue = "0") int productNo, HttpServletRequest request, HttpSession session,Model model) {
@@ -116,12 +125,23 @@ public class MenuInfoServiceController {
 		List<PackageVO> packageList = packageService.packageByProductNo(productNo);
 		logger.info("패키지 리스트 결과 packageList={}",packageList);
 		
+		
+		List<ImageVO> imageList = imageService.selectImageByProductNo(productNo);
+		logger.info("이미지 리스트 결과 imageList={}",imageList);
+		List<ImgDetailVO> imgDetailList = imgDetailservice.selectImgDetailByProductNo(productNo);
+		logger.info("이미지디테일 리스트 결과 imgDetailList={}",imgDetailList);
+		
+		ExpertProfileVO expertProfileVO=expertProfileService.selectByExpertNo(menuinfoVo.getExpertNo());
+		
 		model.addAttribute("packageList", packageList);
 		model.addAttribute("evalList", evalList);
 		model.addAttribute("menuinfoVo", menuinfoVo);
 		model.addAttribute("expertVo", expertVo);
 		model.addAttribute("bookmarkExist", bookmarkExist);
 		model.addAttribute("evalCommentList", evalCommentList);
+		model.addAttribute("imageList", imageList);
+		model.addAttribute("imgDetailList", imgDetailList);
+		model.addAttribute("expertProfileVO", expertProfileVO);
 		
 		return "main/menuinfo/menuinfo_Detail";
 	}

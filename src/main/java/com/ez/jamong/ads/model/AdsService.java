@@ -5,4 +5,5 @@ import java.util.Map;
 
 public interface AdsService {
 	public List<Map<String, Object>> selectShowAds();
+	public List<AdsVO> AgreeAds();
 }

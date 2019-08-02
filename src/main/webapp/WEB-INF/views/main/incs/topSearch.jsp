@@ -57,10 +57,28 @@
 	}
 	
 </style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.slide-one-item').owlCarousel({
+		    center: false,
+		    items: 1,
+		    loop: true,
+				stagePadding: 0,
+		    margin: 0,
+		    smartSpeed: 1500,
+		    autoplay: true,
+		    pauseOnHover: false,
+		    dots: true,
+		    nav: true,
+		    navText: ['<span class="icon-keyboard_arrow_left">', '<span class="icon-keyboard_arrow_right">']
+		  });
+	});
+
+</script>
 <link href="<c:url value="/assets/js/lib/jeoncss/logoChange.css"/>" rel="stylesheet">
 </head>
 <body>
-	<div id="wrapper">
+	<div id="wrapper" style="background: white">
 		<header class="header site-header header-transparent affix-top">
 			<div class="container">
 				<nav class="navbar navbar-default yamm">
@@ -99,7 +117,59 @@
 		</header><!-- end header -->
 		<c:import url="/todayList.do"/>
 	<section class="section transheader bgcolor">
-		<form name="searchKeyword" class="calculateform" method="post" action="">
+
+			<div class="col-lg-6" style="margin: auto;width:100%;height:500px;">
+				<div class="card">
+
+					<div class="owl-carousel slide-one-item">
+
+						<div class="site-section-cover overlay img-bg-section"
+							style="background-image: url(<c:url value='/resources/images/배경.png'/>); height:500px;">
+							<div class="container">
+								<div class="row align-items-center justify-content-center">
+									<div class="col-md-12 col-lg-7 text-center">
+										<h1></h1>
+										<p></p>
+										<p>
+											<a href="#" class="btn btn-white-outline border-w-2 btn-md"></a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="site-section-cover overlay img-bg-section"
+							style="background-image: url(<c:url value='/resources/images/배경1.png'/>); height:500px;">
+							<div class="container">
+								<div class="row align-items-center justify-content-center">
+									<div class="col-md-12 col-lg-7 text-center">
+										<h1></h1>
+										<p></p>
+										<p>
+											<a href="#" class="btn btn-white-outline border-w-2 btn-md"></a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+				<!-- /# card -->
+
+			</div>
+		</section>
+	<div class="center-pricing" style="margin-top:0px">
+			<ul class="nav nav-tabs"  <c:if test="${!empty userId }">style="display: flex"</c:if>>
+			<c:if test="${empty userName }">
+			    <li><a href="<c:url value="/main/userlogin/login.do"/>" style="cursor: pointer; border-color: #ffffff;">로그인</a></li>
+			    <li><a href="<c:url value="/main/userlogin/userRegist.do"/>" style="cursor: pointer; border-color: #ffffff;">회원가입</a></li>
+			    <li><a href="<c:url value="/main/userlogin/SearchPwd.do"/>" style="cursor: pointer; border-color: #ffffff;">비밀번호 찾기</a></li>
+			</c:if>
+			</ul>
+		</div>
+	<form name="searchKeyword" class="calculateform" method="post" action="" style="margin-top: 20px; background: antiquewhite;">
 		        <div class="item-top form-inline">
 		            <div class="form-group">
 		                <div class="input-group2">
@@ -113,13 +183,3 @@
 		            <input type="submit" name="send" value="Search" class="btn btn-default">
 		        </div>
 		</form>
-		<div class="center-pricing">
-			<ul class="nav nav-tabs"  <c:if test="${!empty userId }">style="display: flex"</c:if>>
-			<c:if test="${empty userName }">
-			    <li><a href="<c:url value="/main/userlogin/login.do"/>" style="cursor: pointer;">로그인</a></li>
-			    <li><a href="<c:url value="/main/userlogin/userRegist.do"/>" style="cursor: pointer;">회원가입</a></li>
-			    <li><a href="<c:url value="/main/userlogin/SearchPwd.do"/>" style="cursor: pointer;">비밀번호 찾기</a></li>
-			</c:if>
-			</ul>
-		</div>
-	</section>

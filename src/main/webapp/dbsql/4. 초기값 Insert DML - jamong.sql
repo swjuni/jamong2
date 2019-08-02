@@ -5,7 +5,7 @@ insert into AUTHORITY values(authority_seq.nextval, '실버', '전문가', 4);
 insert into AUTHORITY values(authority_seq.nextval, '우수', '일반회원', 5);
 insert into AUTHORITY values(authority_seq.nextval, '일반', '일반회원', 6);
 
-insert into administrator values(administrator_seq.nextval,'admin','1','관리자',
+insert into administrator values(administrator_seq.nextval,'admin','$2a$10$5GhWqUF/zAZEU2ERrtGVV.YxMExMVEc4LbDm9WiwIKHg.6D8AxrL.','관리자',
 (select author_no from authority where author_lev=1));
 
 select author_no from authority where author_lev=1;

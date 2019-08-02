@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 관리자 홈 top include -->
 <%@include file="../inc/admin_top.jsp"%>
 <!-- 각자가 분담해서 디자인할 바디 태그 -->
@@ -27,7 +27,7 @@
 	
 		<div class="owl-carousel slide-one-item">
 		
-      <div class="site-section-cover overlay img-bg-section" style="background-image: url('https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png'); " >
+      <div class="site-section-cover overlay img-bg-section" style="background-image: url(<c:url value='/resources/images/배경.PNG'/>)">
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-md-12 col-lg-7 text-center">
@@ -39,7 +39,7 @@
         </div>
       </div>
       
-      <div class="site-section-cover overlay img-bg-section" style="background-image: url('https://www.google.co.kr/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png'); " >
+      <div class="site-section-cover overlay img-bg-section" style="background-image: url(<c:url value='/resources/images/배경2.PNG'/>)" >
         <div class="container">
           <div class="row align-items-center justify-content-center">
             <div class="col-md-12 col-lg-7 text-center">

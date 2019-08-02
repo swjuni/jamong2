@@ -23,7 +23,7 @@ public interface AdminService{
 	public int gradeAdminUpdate(AdminVO vo);
 	public int insertAdmin(AdminVO vo);
 	public int deleteAdmin(String id);
-	public int changeAdminPwd(String userid, AdminVO aftervo);
+	public int changeAdminPwd(String userid,String nowPwd, AdminVO aftervo);
 	public int[] mainPageData();
 	//지역별 회원
 	public int[] locationUserList();

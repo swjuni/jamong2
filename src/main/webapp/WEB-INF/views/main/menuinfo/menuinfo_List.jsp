@@ -126,7 +126,7 @@
 										<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
 											<div class="case-boxUser" >
 												<a href="<c:url value='/main/menuinfo/menuinfo_Detail.do?productNo=${vo.productNo }'/>" onclick="addCookie('${vo.productNo}')">
-													<img src="<c:url value='/upload/product/${vo.fileName }'/>" 
+													<img src="<c:url value='/upload/image/${vo.fileName }'/>" 
 														alt="" class="img-responsive" style="width: 100%; height: 45%;">
 													<div class="gig-profile">
 														<img class="gig-user-profile" src="<c:url value='/upload/expert/${vo.expertFileName }'/>"

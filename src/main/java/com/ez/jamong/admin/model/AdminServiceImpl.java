@@ -3,12 +3,16 @@ package com.ez.jamong.admin.model;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AdminServiceImpl implements AdminService{
 
 	@Autowired private AdminDAO adminDao;
+	
+	//암호화 인코더
+	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	@Override
 	public int adminLoginCheck(String userid, String pwd) {
@@ -18,7 +22,7 @@ public class AdminServiceImpl implements AdminService{
 		if(dbPwd==null || dbPwd.isEmpty()) {
 			result=AdminService.ID_NONE;
 		}else{
-			if(dbPwd.equals(pwd)) {
+			if(encoder.matches(pwd, dbPwd)) {
 				result=AdminService.LOGIN_OK;
 			}else {
 				result=AdminService.PWD_DISAGREE;
@@ -53,19 +57,21 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public int changeAdminPwd(String userid, AdminVO aftervo) {
+	public int changeAdminPwd(String userid,String nowPwd, AdminVO aftervo) {
 		int cnt=0;
 		AdminVO now = adminDao.selectAdmin(userid);
-		if(!now.getAdminPwd().equals(aftervo.getAdminPwd())) {
+		if(!encoder.matches(nowPwd, now.getAdminPwd())) {
 			cnt=AdminService.MISS_PWD;
 		}
-		if(now.getAdminPwd().isEmpty() || now.getAdminPwd()==null) {
+		else if(aftervo.getAdminPwd().isEmpty() || aftervo.getAdminPwd()==null) {
 			cnt=AdminService.EMPTY_PWD;
-			return cnt;
 		}else {
+			aftervo.setAdminPwd(encoder.encode(aftervo.getAdminPwd()));
 			cnt=adminDao.updateAdminPwd(aftervo);
 			System.out.println("비밀번호 변경 가능");
 		}
+		
+		
 		return cnt;
 	}
 

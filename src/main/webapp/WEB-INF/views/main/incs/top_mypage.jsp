@@ -131,7 +131,7 @@
 				                    	${userId}</a>
 									<ul class="dropdown-menu" style="margin-top: -5px; min-width:120px;">
 		                    			<li><a href="<c:url value="/mypage/mypage.do?userNo=${sessionScope.userNo }"/>">마이페이지</a></li>
-		                    			<li><a href="#">나의정보</a></li>
+		                    			<li><a href="<c:url value="/main/mypage/myInfo.do"/>">나의정보</a></li>
 		                    			<li><a href="<c:url value="/main/userlogin/logout.do"/>">로그아웃</a></li>
 		                    		</ul>
 				                </li>

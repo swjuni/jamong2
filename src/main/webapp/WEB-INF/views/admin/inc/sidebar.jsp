@@ -7,7 +7,8 @@
                 <li class="label">Main</li>
                 <li><a class="sidebar-sub-toggle"><i class="ti-home"></i> 마이페이지 <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
-                        <li><a href="<c:url value='/admin/index_admin.do'/>">메인페이지로 이동</a></li>
+                        <li><a href="<c:url value='/main/index_main.do'/>">메인페이지로 이동</a></li>
+                        <li><a href="<c:url value='/admin/login/changePwd.do'/>">비밀번호 변경</a></li>
                         <li><a href="<c:url value='/admin/login/logout.do'/>">로그아웃</a></li>
                     </ul>
                 </li>
@@ -25,6 +26,7 @@
 		                <li><a href="<c:url value='/admin/expert/reportedExpert.do'/>"><i class="ti-user"></i>신고 목록</a></li>
                 	</ul>
                 </li>
+                <li><a href="<c:url value='/admin/manage/log.do'/>"><i class="ti-user"></i>회원 로그 기록</a></li>
                 
                 <li class="label">서비스</li>
                 <li><a class="sidebar-sub-toggle"><i class="ti-layout"></i> 상품/카테고리 <span class="sidebar-collapse-icon ti-angle-down"></span></a>

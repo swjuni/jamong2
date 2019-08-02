@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,9 @@ public class SearchPwdAdminController {
 	private Logger logger = LoggerFactory.getLogger(SearchPwdAdminController.class);
 	
 	@Autowired private AdminService adminService;
+	
+	//암호화 인코더
+	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	@RequestMapping("/admin/login/SearchPwd.do") 
 	public String searchPwd() {
@@ -48,7 +52,7 @@ public class SearchPwdAdminController {
 		aftervo.setAdminId(userid);
 		aftervo.setAdminPwd(afterPWd);
 		String msg="",url="/admin/login/changePwd.do";
-		int result=adminService.changeAdminPwd(userid, aftervo);
+		int result=adminService.changeAdminPwd(userid,nowPwd, aftervo);
 		if(result==AdminService.EMPTY_PWD) {
 			msg="비밀번호를 입력하세요";
 		}else if(result == AdminService.MISS_PWD) {
