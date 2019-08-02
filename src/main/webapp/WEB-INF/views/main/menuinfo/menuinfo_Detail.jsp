@@ -121,6 +121,23 @@ img.cloudzoom {
 .comments .btn {
 	margin: 4px 0;
 }
+.mMove{
+	width: 32.3%;
+	height: 100%;
+	display: inline-table; 
+	line-height: 51px;
+	text-align: center;
+} 
+.menuMove{
+	width: 100%;
+	height: 55px;
+	text-align: center;
+	border-top: 1px solid silver;
+	border-bottom: 1px solid silver;
+}
+.mMove:hover{
+	background: linear-gradient(7deg,lavender , transparent);
+}
 </style>
 <section class="section lb">
 	<div class="container">
@@ -131,7 +148,7 @@ img.cloudzoom {
 					<div class="">
 						<!-- <img src="/jamong/resources/upload/case_03.png" alt="" class="img-responsive"> -->
 						<img class="img-responsive cloudzoom" alt ="Cloud Zoom small image" id ="zoom1"
-							src="/jamong/upload/product/Jellyfish.jpg"
+							src="/jamong/upload/image/${imageList[0].fileName }"
 							data-cloudzoom='
 								zoomSizeMode:"image",
 								startMagnification: 2,
@@ -142,53 +159,22 @@ img.cloudzoom {
 					</div><!-- end case-box -->
 					<div class="productImages">
 						<div class="row text-center">
+							<c:forEach var="imageVo" items="${imageList }">
 							<div class="col-md-3 col-sm-3 col-xs-6">
 								<div class="client-box">
-									<!-- <a href="#"><img src="/jamong/resources/upload/client_01.png" alt="" class="img-responsive"></a> -->
-									<img class = 'cloudzoom-gallery' src = "/jamong/upload/product/Jellyfish.jpg" 
-									data-cloudzoom = "useZoom: '.cloudzoom', image: '/jamong/upload/product/Jellyfish.jpg' " >
+									<img class = 'cloudzoom-gallery' src = "/jamong/upload/image/${imageVo.fileName }" 
+									data-cloudzoom = "useZoom: '.cloudzoom', image: '/jamong/upload/image/${imageVo.fileName }' " >
 								</div>
 							</div><!-- end col -->
-							<div class="col-md-3 col-sm-3 col-xs-6">
-								<div class="client-box">
-									<!-- <a href="#"><img src="/jamong/resources/upload/client_02.png" alt="" class="img-responsive"></a> -->
-				        			<img class = 'cloudzoom-gallery' src = "/jamong/upload/product/2.png" 
-				        			data-cloudzoom = "useZoom: '.cloudzoom', image: '/jamong/upload/product/2.png' " >
-								</div>
-							</div><!-- end col -->
-							<div class="col-md-3 col-sm-3 col-xs-6">
-								<div class="client-box">
-									<!-- <a href="#"><img src="/jamong/resources/upload/client_03.png" alt="" class="img-responsive"></a> -->
-				        			<img class = 'cloudzoom-gallery' src = "/jamong/upload/product/3.png" 
-				        			data-cloudzoom = "useZoom: '.cloudzoom', image: '/jamong/upload/product/3.png' " >
-								</div>
-							</div><!-- end col -->	
-							<div class="col-md-3 col-sm-3 col-xs-6">
-								<div class="client-box">
-									<!-- <a href="#"><img src="/jamong/resources/upload/client_04.png" alt="" class="img-responsive"></a> -->
-				        			<img class = 'cloudzoom-gallery' src = "/jamong/upload/product/4.png" 
-				        			data-cloudzoom = "useZoom: '.cloudzoom', image: '/jamong/upload/product/4.png' " >
-								</div>
-							</div><!-- end col -->
+							</c:forEach>
 						</div>
 					</div>
-					
-
-
-					<div class="content blog-alt">
-						<div class="blog-box clearfix">
-							<div class="blog-single"><br><br>
-								<h3 class="post-title">서비스 설명</h3>
-								<div>${menuinfoVo.detailDesc }</div>
-							</div><!-- end blog-desc -->
-						</div><!-- end blogbox -->
-
-						<c:if test="${!empty evalList }">
+					<hr>
+					<c:if test="${!empty evalList }">
                         <div class="blog-box clearfix">
                             <div class="custom-title">
-                                <h4>${evalList.size()} Comments</h4>
+                                <h4>상품 서비스 <span style="color: blue; font-weight: bold;">${evalList.size()}개</span>의 평가</h4>
                                 <hr>
-                                <div>상품 서비스 평점</div>
                                 <div class="circle-detail">
 	                                <div class="progress">
 									 	<div class="progress-bar progress-bar-striped active" 
@@ -199,140 +185,175 @@ img.cloudzoom {
 									</div>
 								</div>
 								<hr>
-                            </div><!-- end -->
+							</div><!-- end -->
+						</div>
+					</c:if>
+					
 
+					<div class="content blog-alt">
+						<!-- 서비스 설명 -->
+						<div class="menuMove">
+							<a class="mMove" href="#menu01">서비스 설명</a>
+							<a class="mMove" href="#menu02">수정 및 재진행</a>
+							<a class="mMove" href="#menu03">취소 및 환불규정</a>
+						</div>
+						<div class="blog-box clearfix" id="menu01">
+							<div class="blog-single"><br><br>
+								<h3 class="post-title" style="font-size: 1.2em;">서비스 설명</h3>
+								<div>${menuinfoVo.summary }</div>
+							</div><!-- end blog-desc -->
+						</div><!-- end blogbox -->
+
+						<!-- 수정 -->
+						<div class="blog-single"  id="menu02">
+							<h3 class="post-title" style="font-size: 1.2em;">수정 및 재진행</h3>
+						</div>
+						<div>${menuinfoVo.detailDesc }</div><br><br>
+
+						
+						<!-- 취소환불 -->
+						<div class="blog-single" id="menu03">
+							<h3 class="post-title" style="font-size: 1.2em;">취소 및 환불 규정</h3>
+						</div>
+						<div>
+							<iframe frameborder="0" src="/jamong/resources/cancelFrame.html"
+							 scrolling="auto" border="no" maginwidth="0" marginheight="0" 
+							 style="height: 300px; width: 100%; background: #f0f1f2;"></iframe>
+						</div><br><br>
+						 
+
+						<c:if test="${!empty evalList }">
+                        <div class="blog-box clearfix">
                             <div class="row">
                                 <div class="col-md-12" style="background: white;">
                                     <div class="panel panel-info" style="margin-top:20px;">
                                         <div class="panel-body comments">
-                                        	<c:set var="i" value="0"></c:set>
+                                        	<c:set var="i" value="0"/>
                                         	<c:forEach var="vo" items="${evalList }"><!-- 평가글 목록 -->
-                                            <ul class="media-list">
-                                                <li class="media">
-                                                    <div class="comment">
-                                                        <div class="media-body">
-                                                            <strong class="text-success">${vo.userId }</strong>
-                                                            <span class="text-muted" style="float: right;">
-                                                            	<small class="text-muted"><fmt:formatDate value="${vo.col }" pattern="yyyy-MM-dd"/></small>
-                                                           	</span> 
-															<div class="progress">
-															 	<div class="progress-bar progress-bar-striped active" 
-															 	role="progressbar" aria-valuenow="${vo.evalScore }" aria-valuemin="0" aria-valuemax="100"
-															 	 style="width:${vo.evalScore }%">
-															  	</div>
-															</div>
-                                                            <p>${vo.review }</p>
-                                                            <a href="javascript:void(0)" class="btn btn-primary btn-sm" style="float: right; width: 70px;"
-                                                            	onclick="replyOpen(${i})" id="replyId${i }">Reply</a>
-                                                            
-															<div class="clearfix"></div>
-															
-															<!-- 평가글의 댓글 쓰기 -->
-                                                            <div class="comment" id="replyWrite${i }" style="display: none;">
-																<ul class="media-list" style="background: aliceblue;">
-	                                                        		<li class="media" style="padding-bottom: 10px;">
-																		<form class="row" name="frmEvalComment" method="post" 
-																			action="<c:url value='/main/menuinfo/evaluationReply.do'/>">
-											                            	<input type="hidden" name="evalNo" value="${vo.evalNo }"/>
-										                                    <div class="col-md-12 col-sm-12">
-										                                        <label for="evalComment">Reply <span class="required">*</span></label>
-																				<span class="text-muted" style="float: right; color:#3f51b5;">
-																				<b>${sessionScope.userId }</b></span> 
-										                                        <textarea class="form-control" rows="3" name="evalComment" id="evalComment"
-										                                        	placeholder="" style="resize: none; background: white;"></textarea>
-										                                    </div>
-										                                    <div class="col-md-12 col-sm-12" style="text-align: right;">
-										                                        <input type="submit" id="evalCommentSubmit" name="evalCommentSubmit"
-										                                         class="btn btn-primary btn-sm" style="float: right; width: 70px;" value="OK"/>
-										                                    </div>
-										                                </form>
-	                                                            	</li>
-																</ul>
-                                                           	</div>
-                                                            
-                                                        </div>
-                                                        <div class="clearfix"></div>
-                                                    </div>
-
-												<!-- 평가글의 댓글 목록 -->
-												<c:if test="${!empty evalCommentList }">
-												<c:forEach var="evalCommentVo" items="${evalCommentList }">
-													<c:if test="${!empty evalCommentVo }">
-														<c:set var="j" value="0"/>
-														<c:forEach var="ecVo" items="${evalCommentVo }">
-															<c:if test="${vo.evalNo == ecVo.evalNo }">
-																<div style="float:right; width: ${100-(ecVo.step*3)}%;">
-																	<c:if test="${ecVo.step==0 }">
-																		<ul class="media-list" style="background: lemonchiffon">
-																	</c:if>
-																	<c:if test="${ecVo.step!=0 }">
-																		<ul class="media-list" style="background: aliceblue">
-																	</c:if>
-																	
-																	<c:if test="${ecVo.delflag=='N' }">
-																		<li class="media">
-																			<div class="comment">
-																				<div class="media-body">
-																					<strong class="text-success">${ecVo.userId }</strong>
-																					<span class="text-muted" style="float: right;">
-																						<small class="text-muted"><fmt:formatDate value="${ecVo.regdate }"
-																						pattern="yyyy-MM-dd"/></small></span>
-																					<p>${ecVo.evalComment }</p>
-																					<c:if test="${ecVo.userNo==sessionScope.userNo }">
-																					<a href="<c:url value='/main/menuinfo/evaluationReplyDel.do?evalCNo=${ecVo.evalCNo }
-																						&productNo=${param.productNo }'/>" class="btn btn-primary btn-sm" style="float: right; width: 70px;">삭제</a>
-																					</c:if>
-																					<a href="javascript:void(0)" class="btn btn-primary btn-sm" style="float: right; width: 70px;"
-																					onclick="evalReplyOpen(${i},${j})" id="evalReplyIdI${i }J${j}">Reply</a>
-																				</div>
-																				<div class="clearfix"></div>
-																			</div>
-																		</li>
-																	</c:if>
-																	<c:if test="${ecVo.delflag=='Y' }">
-																		<li class="media">
-																			<div class="comment">
-																				<div class="media-body">
-																					<p>삭제된 글입니다.</p>
-																				</div>
-																				<div class="clearfix"></div>
-																			</div>
-																		</li>
-																	</c:if>
-																	
-																	<!-- 평가글 댓글의 reply 쓰기 -->
-																		<li class="media" id="evalReplyWriteI${i }J${j }" style="display: none;">
-																			<form class="row" name="frmEvalReplyComment" method="post" 
-																				action="<c:url value='/main/menuinfo/evaluationReplyAdd.do'/>">
-																				<input type="hidden" name="evalNo" value="${ecVo.evalNo }"/>
-																				<input type="hidden" name="groupNo" value="${ecVo.groupNo }"/>
-																				<input type="hidden" name="step" value="${ecVo.step }"/>
-																				<input type="hidden" name="sortNo" value="${ecVo.sortNo }"/>
-																				<div class="col-md-12 col-sm-12" style="background: #8dcfdee8;">
-																					<label for="evalComment">Reply <span class="required">*</span></label>
+	                                            <ul class="media-list">
+	                                                <li class="media">
+	                                                    <div class="comment">
+	                                                        <div class="media-body">
+	                                                            <strong class="text-success">${vo.userId }</strong>
+	                                                            <span class="text-muted" style="float: right;">
+	                                                            	<small class="text-muted"><fmt:formatDate value="${vo.col }" pattern="yyyy-MM-dd"/></small>
+	                                                           	</span> 
+																<div class="progress">
+																 	<div class="progress-bar progress-bar-striped active" 
+																 	role="progressbar" aria-valuenow="${vo.evalScore }" aria-valuemin="0" aria-valuemax="100"
+																 	 style="width:${vo.evalScore }%">
+																  	</div>
+																</div>
+	                                                            <p>${vo.review }</p>
+	                                                            <a href="javascript:void(0)" class="btn btn-primary btn-sm" style="float: right; width: 70px;"
+	                                                            	onclick="replyOpen(${i})" id="replyId${i }">Reply</a>
+	                                                            
+																<div class="clearfix"></div>
+																
+																<!-- 평가글의 댓글 쓰기 -->
+	                                                            <div class="comment" id="replyWrite${i }" style="display: none;">
+																	<ul class="media-list" style="background: aliceblue;">
+		                                                        		<li class="media" style="padding-bottom: 10px;">
+																			<form class="row" name="frmEvalComment" method="post" 
+																				action="<c:url value='/main/menuinfo/evaluationReply.do'/>">
+												                            	<input type="hidden" name="evalNo" value="${vo.evalNo }"/>
+											                                    <div class="col-md-12 col-sm-12">
+											                                        <label for="evalComment">Reply <span class="required">*</span></label>
 																					<span class="text-muted" style="float: right; color:#3f51b5;">
 																					<b>${sessionScope.userId }</b></span> 
-																					<textarea class="form-control" rows="3" name="evalComment" id="evalComment"
-																						placeholder="" style="resize: none; background:white; ;"></textarea>
-																				</div>
-																				<div class="col-md-12 col-sm-12" style="text-align: right; background: #8dcfdee8;">
-																					<input type="submit" id="evalReplyCommentSubmit" name="evalReplyCommentSubmit"
-																						class="btn btn-primary btn-sm" style="float: right; width: 70px;" value="OK"/>
-																				</div>
-																			</form>
-																		</li>
+											                                        <textarea class="form-control" rows="3" name="evalComment" id="evalComment"
+											                                        	placeholder="" style="resize: none; background: white;"></textarea>
+											                                    </div>
+											                                    <div class="col-md-12 col-sm-12" style="text-align: right;">
+											                                        <input type="submit" id="evalCommentSubmit" name="evalCommentSubmit"
+											                                         class="btn btn-primary btn-sm" style="float: right; width: 70px;" value="OK"/>
+											                                    </div>
+											                                </form>
+		                                                            	</li>
 																	</ul>
-																</div>
-															</c:if>
-														<c:set var="j" value="${j+1 }"></c:set>
-														</c:forEach>
-													</c:if>
-												</c:forEach>
-												</c:if>
-													
-                                                </li>
-                                            </ul>
-                                            <c:set var="i" value="${i+1 }"></c:set>
+	                                                           	</div>
+	                                                            
+	                                                        </div>
+	                                                        <div class="clearfix"></div>
+	                                                    </div>
+	
+														<!-- 평가글의 댓글 목록 -->
+														<c:if test="${!empty evalCommentList }">
+															<c:forEach var="evalCommentVo" items="${evalCommentList }">
+																<c:if test="${!empty evalCommentVo }">
+																	<c:set var="j" value="0"/>
+																	<c:forEach var="ecVo" items="${evalCommentVo }">
+																		<c:if test="${vo.evalNo == ecVo.evalNo }">
+																			<div style="float:right; width: ${100-(ecVo.step*3)}%;">
+																				<ul class="media-list" style="background: lemonchiffon" id="evelCommentColor">
+																				<c:if test="${ecVo.step!=0 }">
+																					<script type="text/javascript">
+																						$('#evelCommentColor').css('background','aliceblue');
+																					</script>
+																				</c:if>
+																				<c:if test="${ecVo.delflag=='N' }">
+																					<li class="media">
+																						<div class="comment">
+																							<div class="media-body">
+																								<strong class="text-success">${ecVo.userId }</strong>
+																								<span class="text-muted" style="float: right;">
+																									<small class="text-muted"><fmt:formatDate value="${ecVo.regdate }"
+																									pattern="yyyy-MM-dd"/></small></span>
+																								<p>${ecVo.evalComment }</p>
+																								<c:if test="${ecVo.userNo==sessionScope.userNo }">
+																								<a href="<c:url value='/main/menuinfo/evaluationReplyDel.do?evalCNo=${ecVo.evalCNo }
+																									&productNo=${param.productNo }'/>" class="btn btn-primary btn-sm" style="float: right; width: 70px;">삭제</a>
+																								</c:if>
+																								<a href="javascript:void(0)" class="btn btn-primary btn-sm" style="float: right; width: 70px;"
+																								onclick="evalReplyOpen(${i},${j})" id="evalReplyIdI${i }J${j}">Reply</a>
+																							</div>
+																							<div class="clearfix"></div>
+																						</div>
+																					</li>
+																				</c:if>
+																				<c:if test="${ecVo.delflag=='Y' }">
+																					<li class="media">
+																						<div class="comment">
+																							<div class="media-body">
+																								<p>삭제된 글입니다.</p>
+																							</div>
+																							<div class="clearfix"></div>
+																						</div>
+																					</li>
+																				</c:if>
+																				
+																				<!-- 평가글 댓글의 reply 쓰기 -->
+																					<li class="media" id="evalReplyWriteI${i }J${j }" style="display: none;">
+																						<form class="row" name="frmEvalReplyComment" method="post" 
+																							action="<c:url value='/main/menuinfo/evaluationReplyAdd.do'/>">
+																							<input type="hidden" name="evalNo" value="${ecVo.evalNo }"/>
+																							<input type="hidden" name="groupNo" value="${ecVo.groupNo }"/>
+																							<input type="hidden" name="step" value="${ecVo.step }"/>
+																							<input type="hidden" name="sortNo" value="${ecVo.sortNo }"/>
+																							<div class="col-md-12 col-sm-12" style="background: #8dcfdee8;">
+																								<label for="evalComment">Reply <span class="required">*</span></label>
+																								<span class="text-muted" style="float: right; color:#3f51b5;">
+																								<b>${sessionScope.userId }</b></span> 
+																								<textarea class="form-control" rows="3" name="evalComment" id="evalComment"
+																									placeholder="" style="resize: none; background:white; ;"></textarea>
+																							</div>
+																							<div class="col-md-12 col-sm-12" style="text-align: right; background: #8dcfdee8;">
+																								<input type="submit" id="evalReplyCommentSubmit" name="evalReplyCommentSubmit"
+																									class="btn btn-primary btn-sm" style="float: right; width: 70px;" value="OK"/>
+																							</div>
+																						</form>
+																					</li>
+																				</ul>
+																			</div>
+																		</c:if>
+																	<c:set var="j" value="${j+1 }"></c:set>
+																	</c:forEach>
+																</c:if>
+															</c:forEach>
+														</c:if>
+	                                                </li>
+	                                            </ul>
+                                            	<c:set var="i" value="${i+1 }"/>
                                             </c:forEach>
                                         </div>
                                     </div>
@@ -373,13 +394,6 @@ img.cloudzoom {
                         </div><!-- end postpager -->
 						</c:if>
 					</div><!-- end content -->
-
-
-
-					
-					
-					
-					
 				</div><!-- end pitem -->
 			</div><!-- end col -->
 
@@ -389,7 +403,6 @@ img.cloudzoom {
 						<div class="pricing-header" style="padding: 20px 0;">
 							<h4 style="color:black; text-align: left;">${menuinfoVo.productName }</h4>
 						</div><!-- end pricing-header -->
-						<div>${menuinfoVo.summary }</div>
 						<div class="panel-group" id="accordion">
 							<div class="panel panel-default">
 							
@@ -446,19 +459,6 @@ img.cloudzoom {
 						<div class="pricing-top" style="color: black; padding: 20px; background: white;">
 							<button id="bookmarkBtn" type="button" class="inline-block" onclick="bookmark()"
 								style="border: 0px; background: transparent; position: absolute; font-size: 16px; right: 40px;">
-								<!-- ajax 방식으로 사용할 경우 아래 위치에 ajax 태그 입력시키기-->
-								
-								
-								
-								<!-- ajax 방식으로 사용 안할 경우 아래 태그 사용-->
-								<%-- 
-								<c:if test="${bookmarkExist }">
-									<i class="fa fa-heart" style="color: red;"></i>
-								</c:if>
-								<c:if test="${!bookmarkExist }">
-									<i class="fa fa-heart-o"></i>
-								</c:if>
-								 --%>
 								<span style="font-size: 15px;"> 찜하기</span> 
 							</button>
 							
@@ -479,7 +479,7 @@ img.cloudzoom {
 								</c:if>
 								<c:if test="${!empty expertVo.fileName }">
 									<a href="<c:url value='/main/menuinfo/menuinfo_List.do?expertNo=${expertVo.expertNo }'/>">
-									<img src="<c:url value='/upload/expert/${expertVo.fileName }'/>" alt="" class="img-responsive"></a>
+									<img src="<c:url value='/upload/expert/${expertVo.fileName }'/>" alt="" class="img-responsive" style="-webkit-filter: grayscale(0); opacity: 1;"></a>
 								</c:if>
 							</div> 
 							<h4 style="font-weight: bold;">${expertVo.id}</h4>
@@ -495,11 +495,14 @@ img.cloudzoom {
 									전문가에게 문의</a>
 								</div> 
 							</div>
+							<!-- 
 							<ul>
-								<li>Competition power <span><i class="fa fa-check"></i></span></li>
-								<li>Competition power <span><i class="fa fa-check"></i></span></li>
-								<li>Keyword <span>3</span></li>
+								<li>전공<span></span></li>
+								<li>자격증<span></span></li>
+								<li>학력<span></span></li>
+								<li>경력<span></span></li>
 							</ul>
+							 -->
 						</div><!-- end pricing-details -->
 						<div style="background-color: #ffffff;padding: 10px 20px;">
 							<span><b>전문가 소개</b></span><br>

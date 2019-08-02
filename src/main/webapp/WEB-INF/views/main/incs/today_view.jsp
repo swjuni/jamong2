@@ -312,9 +312,9 @@
 					<c:forEach var="i" begin="0" end="${(fn:length(ckMenuList))-1 }">
 						<div class="todayview">
 							<a href="<c:url value='/main/menuinfo/menuinfo_Detail.do?productNo=${ckMenuList[i].productNo}'/>">
-							<img src="/jamong/upload/categoryM/${ckImageList[i].fileName }" style="opacity: 0.5; width: 100%; height: 100%"
-									onmouseover="this.style.opacity='0.9'"
-									onmouseout="this.style.opacity='0.5'" alt="${ckMenuList[i].productName }"></a>
+							<img src="/jamong/upload/image/${ckImageList[i].fileName }" style="opacity: 0.5; width: 100%; height: 100%"
+									onmouseover="this.style.opacity='1'"
+									onmouseout="this.style.opacity='0.7'" alt="${ckMenuList[i].productName }"></a>
 						</div>
 					</c:forEach>
 				</div>
