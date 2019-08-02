@@ -58,7 +58,7 @@
                                                     <th>이미지 파일</th>
                                                     <td>
                                              		<c:if test="${!empty map['IMG_NAME'] }">
-					                          			<img class="img-fluid" src="<c:url value='/upload/category_m/${map["IMG_NAME"] }'/>" alt=""/>
+					                          			<img class="img-fluid" src="<c:url value='/upload/categoryM/${map["IMG_NAME"] }'/>" alt=""/>
 													</td>
 													<td></td>
 												</tr>

@@ -101,7 +101,7 @@
                     								<div style="color: red;">첨부이미지를 변경하면 기존 파일은 삭제됩니다.</div>
                     								<hr> 
 											        <div class="form-group">
-											 			<img class="img-fluid" src="<c:url value='/upload/category_m/${vo.imgName }'/>" alt=""/>
+											 			<img class="img-fluid" src="<c:url value='/upload/categoryM/${vo.imgName }'/>" alt=""/>
 											        </div>
 												</c:if>
 										        
