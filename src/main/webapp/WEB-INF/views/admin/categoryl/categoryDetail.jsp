@@ -58,7 +58,7 @@
                                                     <th>이미지 파일</th>
                                                     <td>
                                                     	<c:if test="${!empty vo.imgName }">
-					                          			<img class="img-fluid" src="<c:url value='/upload/category_l/${vo.imgName }'/>" alt=""/>
+					                          			<img class="img-fluid" src="<c:url value='/upload/categoryL/${vo.imgName }'/>" alt=""/>
 													</td>
 													<td></td>
 												</tr>

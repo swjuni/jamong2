@@ -179,6 +179,17 @@ values(category_m_seq.nextval,(select category_no from category_l where category
 insert into category_m(category_no_m,category_no_l,category_name,category_desc, img_name, img_original_name)
 values(category_m_seq.nextval,(select category_no from category_l where category_name_l='간판.인쇄'),'간판','설명','64.jpg','64.jpg');
 
+update category_m set img_name='book.gif',img_original_name='book.gif' where category_name='북커버';
+update category_m set img_name='3d.gif',img_original_name='3d.gif' where category_name='3D';
+update category_m set img_name='calligraphy.gif',img_original_name='calligraphy.gif' where category_name='캘리그라피';
+update category_m set img_name='powerpoint.gif',img_original_name='powerpoint.gif' where category_name='PPT';
+update category_m set img_name='photoshop.gif',img_original_name='photoshop.gif' where category_name='포토샵';
+update category_m set img_name='illust.gif',img_original_name='illust.gif' where category_name='일러스트';
+update category_m set img_name='coding.gif',img_original_name='coding.gif' where category_name='프로그램 개발';
+update category_m set img_name='shoping.gif',img_original_name='shoping.gif' where category_name='쇼핑몰';
+update category_m set img_name='blockchain.gif',img_original_name='blockchain.gif' where category_name='블록체인';
+update category_m set img_name='game.gif',img_original_name='game.gif' where category_name='게임';
+
 select * from authority;
 select * from administrator;
 select * from faq_category;

@@ -53,7 +53,7 @@ CREATE TABLE MENU_INFO (
 	REGDATE          DATE          DEFAULT SYSDATE, -- 등록일
 	ORDER_LEVEL      NUMBER        NULL,     -- 정렬레벨
 	RECOMMEND        VARCHAR2(10)  NULL,     -- 추천
-	ACTIVATION       VARCHAR2(10)  DEFAULT 'Y', -- 활성화
+	ACTIVATION       VARCHAR2(10)  NULL, -- 활성화
 	EXPERT_NO        NUMBER        NOT NULL  -- 전문가정보번호
 );
 
