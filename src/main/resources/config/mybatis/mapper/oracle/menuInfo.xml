@@ -115,7 +115,7 @@
 	
 		<update id="registProduct" parameterType="int">
 		update menu_info
-		set activation='P'
+		set activation='P', regdate=sysdate
 		where product_no=#{productNo}
 	</update>
 </mapper>
