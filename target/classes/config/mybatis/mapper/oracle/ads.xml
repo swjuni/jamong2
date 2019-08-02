@@ -12,4 +12,7 @@
 		select * from show_ads
 	</select>
 	
+	<select id="AgreeAds" resultType="adsVo">
+		select * from ads where sysdate>start_date and end_date>sysdate
+	</select>
 </mapper>
