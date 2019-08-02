@@ -50,12 +50,8 @@ form .btn{
 .service-list .col-md-4 {
 	width: 241px;
 }
-
-.section {
-	padding-bottom: 40rem;
-}
 </style>
-<%@include file="../incs/side_mypage.jsp"%>
+<c:import url="/mypage/sideMypage.do"/>
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->
 <div class="row service-list text-center">
 <%@include file="../incs/registexpert.jsp"%>

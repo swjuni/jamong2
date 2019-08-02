@@ -19,12 +19,18 @@ public class MypageController {
 	@Autowired private ExpertService expertService;
 	
 	@RequestMapping("/mypage.do")
-	public String mypage(HttpSession session, Model model) {
+	public String mypage() {
 		logger.info("마이페이지 요청");
+		
+		return "main/mypage/mypage_main";
+	}
+	
+	@RequestMapping("sideMypage.do")
+	public String side(HttpSession session,Model model) {
 		int userNo=(Integer)session.getAttribute("userNo");	
 		ExpertVO vo=expertService.selectByUserNo(userNo);
 		model.addAttribute("expert",vo);
-		return "main/mypage/mypage_main";
+		return "main/incs/side_mypage";
 	}
 	
 }

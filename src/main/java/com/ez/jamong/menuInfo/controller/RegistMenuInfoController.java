@@ -27,6 +27,7 @@ import com.ez.jamong.expert_profile.model.ExpertProfileService;
 import com.ez.jamong.expert_profile.model.ExpertProfileVO;
 import com.ez.jamong.image.ImageService;
 import com.ez.jamong.image.ImageVO;
+import com.ez.jamong.img_detail.ImgDetailService;
 import com.ez.jamong.img_detail.ImgDetailVO;
 import com.ez.jamong.menuInfo.model.MenuInfoService;
 import com.ez.jamong.menuInfo.model.MenuInfoVO;
@@ -41,7 +42,8 @@ public class RegistMenuInfoController {
 	@Autowired private ExpertService expertService;
 	@Autowired private ExpertProfileService profileService;
 	@Autowired private MultiFileUploadUtility2 multiFileUploadUtility;
-	@Autowired private ImageService imgService;
+	@Autowired private ImageService imageService;
+	@Autowired private ImgDetailService imgDetailService;
 
 	@RequestMapping("/service.do")
 	public String service(Model model, HttpSession session) {
@@ -131,17 +133,90 @@ public class RegistMenuInfoController {
 	}
 	
 	@RequestMapping("/uploadImageView.do")
-	public String uploadImageView(Model model, HttpSession session) {
-		logger.info("이미지등록화면");
+	public String uploadImageView(@RequestParam(required = true) int productNo,Model model, HttpSession session) {
+		logger.info("이미지등록화면 파라미터 productNo={}",productNo);
+		List<ImageVO> listImage=imageService.selectImageByProductNo(productNo);
+		List<ImgDetailVO> listImgDetail=imgDetailService.selectImgDetailByProductNo(productNo);
+		logger.info("등록된 이미지 listImage.size={}, listImgDetail.size={}", listImage.size(), listImgDetail.size());
+		model.addAttribute("listImage",listImage);
+		model.addAttribute("listImgDetail",listImgDetail);
+		model.addAttribute("productNo",productNo);
 		return "main/mypage/ImageUpload";
 		
 	}
 	
 	@RequestMapping("/imageUpload.do")
-	public String imageUpload(@RequestParam(defaultValue = "0") int productNo,@RequestParam MultipartFile[] files,HttpServletRequest request) {
-		System.out.println(productNo);
-		//메인 사진 저장
-		return "redirect: /mypage/uploadImageView.do";
+	public String imageUpload(@RequestParam(required = true) int productNo,@RequestParam MultipartFile[] imageFiles,
+			@RequestParam MultipartFile[] imgDetailFiles,HttpServletRequest request,
+			@RequestParam(required = false) List<Integer> imageNoR, @RequestParam(required = false) List<Integer> imgDetailNoR) {
+		logger.info("상품번호 productNo={}", productNo);
+		logger.info("파일 개수 imageFiles={}, imgDatailFiles={}", imageFiles.length, imgDetailFiles.length);
+		//db에 등록
+		//이미지 업로드
+		//1.기존에서 삭제한 이미지 삭제
+		//삭제해야될거 불러오고 업로드된거에서 지우기
+		List<Integer> imageNo=new ArrayList<Integer>();
+		List<Integer> imgDetailNo=new ArrayList<Integer>();
+		if(imageNoR!=null) {
+			imageNo=imageNoR;
+		}else {
+			imageNo.add(-1);
+		}
+		if(imgDetailNoR!=null) {
+			imgDetailNo=imgDetailNoR;
+		}else {
+			imgDetailNo.add(-1);
+		}
+		
+		List<ImageVO> listM=imageService.selectDelete(imageNo);
+		for(int i=0;i<listM.size();i++) {
+			multiFileUploadUtility.deleteFile(MultiFileUploadUtility2.IMAGE_UPLOAD, listM.get(i).getFileName(),request);
+		}
+		
+		List<ImgDetailVO> listD=imgDetailService.selectDelete(imgDetailNo);
+		for(int i=0;i<listD.size();i++) {
+			multiFileUploadUtility.deleteFile(MultiFileUploadUtility2.IMG_DETAIL_UPLOAD, listD.get(i).getFileName(),request);
+		}
+		
+		//2.새로 생성된 file upload 하고 디비 insert delete 함께
+		List<Map<String, Object>> listMU=multiFileUploadUtility.multiFileUpload(imageFiles, request, MultiFileUploadUtility2.IMAGE_UPLOAD);
+		List<ImageVO> listMVo=new ArrayList<ImageVO>();
+		for(int i=0; i<listMU.size();i++) {
+			Map<String, Object> map = listMU.get(i);
+
+			String fileName=(String)map.get("fileName");
+			String originalFileName = (String)map.get("originalFileName");
+			long fileSize=(Long)map.get("fileSize");
+			
+			ImageVO imgVo=new ImageVO();
+			imgVo.setProductNo(productNo);
+			imgVo.setFileName(fileName);
+			imgVo.setOriginalFileName(originalFileName);
+			imgVo.setFileSize(fileSize);
+			listMVo.add(imgVo);
+		}
+		int cnt=imageService.saveImage(listMVo, imageNo);
+		logger.info("이미지 등록결과 cnt={}",cnt);
+		
+		List<Map<String, Object>> listDU=multiFileUploadUtility.multiFileUpload(imgDetailFiles, request, MultiFileUploadUtility2.IMG_DETAIL_UPLOAD);
+		List<ImgDetailVO> listDVo=new ArrayList<ImgDetailVO>();
+		for(int i=0; i<listDU.size();i++) {
+			Map<String, Object> map = listDU.get(i);
+
+			String fileName=(String)map.get("fileName");
+			String originalFileName = (String)map.get("originalFileName");
+			long fileSize=(Long)map.get("fileSize");
+			
+			ImgDetailVO imgDetailVo=new ImgDetailVO();
+			imgDetailVo.setProductNo(productNo);
+			imgDetailVo.setFileName(fileName);
+			imgDetailVo.setOriginalFileName(originalFileName);
+			imgDetailVo.setFileSize(fileSize);
+			listDVo.add(imgDetailVo);
+		}
+		cnt=imgDetailService.saveImgDetail(listDVo, imgDetailNo);
+		logger.info("상세이미지 등록 결과 cnt={}",cnt);
+		return "redirect:/mypage/uploadImageView.do?productNo="+productNo;
 		
 	}
 }

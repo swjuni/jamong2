@@ -58,13 +58,6 @@
 		$("#next").click(function(){
 			location.href="<c:url value='/mypage/uploadImageView.do?productNo=${menuVo.productNo }'/>";
 		})
-		
-/* 		$("#next").click(function(){
-			var url = "<c:url value='/registService/setpackageFrame.do?productNo=${menuVo.productNo }'/>";
-            var name = "package";
-            var option = "width = 1298px, height = 500px, top = 100, left = 200, location = no"
-			window.open(url,name,option);
-		}) */
 	})
 </script>
 <!-- Include the Quill library -->

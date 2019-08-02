@@ -1,5 +1,7 @@
 package com.ez.jamong.img_detail;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,6 +14,21 @@ public class ImgDetailDAOMybatis implements ImgDetailDAO{
 	@Override
 	public int insertImgDetail(ImgDetailVO imgDetailVo) {
 		return session.insert(namespace+"insertImgDetail",imgDetailVo);
+	}
+
+	@Override
+	public List<ImgDetailVO> selectImgDetailByProductNo(int productNo) {
+		return session.selectList(namespace+"selectImgDetailByProductNo",productNo);
+	}
+
+	@Override
+	public List<ImgDetailVO> selectDelete(List<Integer> list) {
+		return session.selectList(namespace+"selectDelete", list);
+	}
+
+	@Override
+	public int deleteImgDetail(List<Integer> list) {
+		return session.delete(namespace+"deleteImgDetail",list);
 	}
 	
 }

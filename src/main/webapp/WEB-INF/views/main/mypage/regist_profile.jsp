@@ -48,13 +48,9 @@
 	iframe{
 		margin-left: 16px;
 	}
-	
-	.section{
-		padding-bottom:40rem;
-	}
 </style>
-<%@include file="../incs/side_mypage.jsp"%>
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->
+<c:import url="/mypage/sideMypage.do"/>
 <div class="row service-list text-center">
 	<%@include file="../incs/registexpert.jsp"%>
 					<div class="col-md-5">

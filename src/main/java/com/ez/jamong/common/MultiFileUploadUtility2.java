@@ -38,46 +38,48 @@ public class MultiFileUploadUtility2 {
 	@Resource(name="fileUploadProperties")
 	Properties props;
 	
-	public Map<String, Object> multiFileUpload(MultipartFile multifile, HttpServletRequest request,
+	public List<Map<String, Object>> multiFileUpload(MultipartFile[] multifiles, HttpServletRequest request,
 												int uploadPathGb) {
 		//파일 업로드 처리
-			Map<String, Object> map = new HashMap<String, Object>();
-
-			MultipartFile tempFile = multifile;	//업로드 파일을 임시파일 형태로 제공
-			if(!tempFile.isEmpty()) {
-				//업로드 된 경우
-				//업로드 된 파일의 파일명
-				String originalFileName = tempFile.getOriginalFilename();
-				
-				//파일명 이름 변경하기
-				String fileName = getUniqueFileName(originalFileName);
-				
-				//파일 크기
-				long fileSize = tempFile.getSize();
-				
-				//업로드 처리
-				//업로드 폴더 구하기
-				String upPath = getUploadPath(request, uploadPathGb);
-				
-				File file = new File(upPath, fileName);
-				try {
-					tempFile.transferTo(file);
-				} catch (IllegalStateException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
+			List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
+			for(int i=0;i<multifiles.length;i++) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				if(multifiles[i]==null|| multifiles[i].isEmpty()) break;
+				MultipartFile tempFile = multifiles[i];	//업로드 파일을 임시파일 형태로 제공
+				if(!tempFile.isEmpty()) {
+					//업로드 된 경우
+					//업로드 된 파일의 파일명
+					String originalFileName = tempFile.getOriginalFilename();
+					
+					//파일명 이름 변경하기
+					String fileName = getUniqueFileName(originalFileName);
+					
+					//파일 크기
+					long fileSize = tempFile.getSize();
+					
+					//업로드 처리
+					//업로드 폴더 구하기
+					String upPath = getUploadPath(request, uploadPathGb);
+					
+					File file = new File(upPath, fileName);
+					try {
+						tempFile.transferTo(file);
+					} catch (IllegalStateException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					
+					map.put("fileName", fileName);
+					map.put("fileSize", fileSize);
+					map.put("originalFileName", originalFileName);
+					
+					//map을 list에 저장
 				}
-				
-				map.put("fileName", fileName);
-				map.put("fileSize", fileSize);
-				map.put("originalFileName", originalFileName);
-				
-				//map을 list에 저장
-			}
-		logger.info("파일업로드 결과 map={}",map);
-		
-		return map;
-		
+				list.add(map);
+		}
+		logger.info("파일업로드 결과 list.size={}",list.size());
+		return list;
 	}
 	
 	public String getUniqueFileName(String fileName) {
@@ -127,6 +129,44 @@ public class MultiFileUploadUtility2 {
 		
 		logger.info("upload path={}",result);
 		return result;
+	}
+	
+	public int deleteFile(int path, String fileName, HttpServletRequest request ) {
+		String result="";
+		String type = props.getProperty("file.upload.type");
+		if(type.equals("test")) {
+			//테스트 경로
+			if(path==IMAGE_UPLOAD) {
+				result = props.getProperty("image.upload.path.test");
+			}else if(path==IMG_DETAIL_UPLOAD) {
+				result = props.getProperty("img_detail.upload.path.test");
+			}
+		}else {
+			//배포 경로
+			String key="";
+			if(path==IMAGE_UPLOAD) {
+				key="image.upload.path";
+			}else if(path==IMG_DETAIL_UPLOAD) {
+				key="img_detail.upload.path";
+			}
+			
+			String path2 = props.getProperty(key);	//pds_upload
+			//실제 물리적 경로 구하기
+			result = request.getServletContext().getRealPath(path2);
+		}
+		 File file = new File(result, fileName);
+		 int cnt=0;
+	        if( file.exists() ){
+	            if(file.delete()){
+	            	cnt=1;
+	            	logger.info("파일삭제 성공");
+	            }else{
+	            	logger.info("파일삭제 실패");
+	            }
+	        }else{
+	        	logger.info("파일이 존재하지 않습니다.");
+	        }
+	        return cnt;
 	}
 	
 }

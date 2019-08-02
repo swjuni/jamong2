@@ -10,4 +10,25 @@
 		insert into img_detail(detail_img_no,file_name,original_file_name,file_size,product_no)
 		values(#{detailImgNo},#{fileName},#{originalFileName},#{fileSize},#{productNo})
 	</insert>
+	
+	<select id="selectImgDetailByProductNo" parameterType="int" resultType="imgDetailVo">
+		select * from img_detail
+		where product_no=#{productNo}
+		order by detail_img_no
+	</select>
+	
+	<select id="selectDelete" parameterType="java.util.ArrayList" resultType="imgDetailVo">
+		select * from img_detail
+		where detail_img_no not in
+		<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+		    ${list[index]}
+		</foreach>
+	</select>
+	<delete id="deleteImgDetail" parameterType="java.util.ArrayList">
+		delete img_detail
+		where detail_img_no not in
+		<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+		    ${list[index]}
+		</foreach>
+	</delete>
 </mapper>
