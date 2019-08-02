@@ -138,6 +138,20 @@ img.cloudzoom {
 .mMove:hover{
 	background: linear-gradient(7deg,lavender , transparent);
 }
+#collHead2{
+background: orange !important;
+}
+#collBody2{
+background: orange !important;
+opacity: 0.7;
+}
+#collHead3{
+background: black !important;
+}
+#collBody3{
+background: black !important;
+opacity: 0.7;
+}
 </style>
 <section class="section lb">
 	<div class="container">
@@ -414,16 +428,16 @@ img.cloudzoom {
 								<!-- 패키지 구분 -->
 								<c:set var="packI" value="1"/>
 								<c:forEach var="packVo" items="${packageList }">
-						            <a data-toggle="collapse" data-parent="#accordion" href="#collapseA">
-										<div class="pricing-header firstch">
+						            <a data-toggle="collapse" data-parent="#accordion" href="#collapseA${packI }">
+										<div class="pricing-header firstch" id="collHead${packI }">
 											<h4 class="panel-title">
 									            ${packVo.packLevel } <i class="fa fa-angle-down"></i>
 									        </h4>
 										</div><!-- end pricing-header -->
 						            </a>
-								    <div id="collapseA" class="panel-collapse collapse">
+								    <div id="collapseA${packI }" class="panel-collapse collapse">
 								        <div class="panel-body">
-											<div class="pricing-top secondch">
+											<div class="pricing-top secondch" id="collBody${packI }">
 												<p>${packVo.packName }</p>
 												<p><fmt:formatNumber value="${packVo.packPrice }" pattern="#,###"></fmt:formatNumber></p>
 											</div><!-- end pricing-top -->
