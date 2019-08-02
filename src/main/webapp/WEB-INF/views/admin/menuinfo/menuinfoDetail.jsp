@@ -84,17 +84,15 @@
 	                                                    <c:if test="${map['ACTIVATION'] == 'N' }">
 					                                    	비활성화
 	                                                    </c:if>
+	                                                    <c:if test="${map['ACTIVATION'] == 'P' }">
+					                                    	승인 요청중
+	                                                    </c:if>
 	                                                    </td>
 	                                                    <td></td>
 	                                                </tr>
 	                                                <tr>
-	                                                    <th>요약 설명</th>
+	                                                    <th>상품 설명</th>
 	                                                    <td>${map['SUMMARY'] }</td>
-	                                                    <td></td>
-	                                                </tr>
-	                                                <tr>
-	                                                    <th>상세 설명</th>
-	                                                    <td>${map['DETAIL_DESC'] }</td>
 	                                                    <td></td>
 	                                                </tr>
 	                    						</tbody>
@@ -111,6 +109,12 @@
 										<c:if test="${map['ACTIVATION'] == 'N' }">
 								            <input type = "button" value="활성화" class="btn btn-primary"
 								            onclick="location.href='<c:url value='/admin/menuinfo/menuinfoDetail.do?productNo=${map["PRODUCT_NO"] }&activation=${map["ACTIVATION"] }'/>'">&nbsp;&nbsp;
+							            </c:if>
+										<c:if test="${map['ACTIVATION'] == 'P' }">
+								            <input type = "button" value="거부" class="btn btn-primary"
+								            onclick="location.href='<c:url value='/admin/menuinfo/menuinfoDetail.do?productNo=${map["PRODUCT_NO"] }&activation=Y'/>'">&nbsp;&nbsp;
+								            <input type = "button" value="승인" class="btn btn-primary"
+								            onclick="location.href='<c:url value='/admin/menuinfo/menuinfoDetail.do?productNo=${map["PRODUCT_NO"] }&activation=N'/>'">&nbsp;&nbsp;
 							            </c:if>
 							            <input type = "Button" value="삭제" class="btn btn-primary"
 				            			onclick="location.href='<c:url value='/admin/menuinfo/menuinfoDelete.do?productNo=${map["PRODUCT_NO"] }'/>'">&nbsp;&nbsp;

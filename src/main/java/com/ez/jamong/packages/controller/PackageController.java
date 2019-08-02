@@ -44,6 +44,7 @@ public class PackageController {
 			list.add(vo);
 			System.out.println(vo);
 		}
+		logger.info("list.size()={},productNo",list.size(),list.get(0).getProductNo());
 		int cnt=packageService.insertPackage(list);
 		
 		String msg="", url="/mypage/service.do";
