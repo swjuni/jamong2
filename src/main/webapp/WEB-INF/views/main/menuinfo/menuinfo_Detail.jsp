@@ -188,7 +188,6 @@ img.cloudzoom {
 							</div><!-- end -->
 						</div>
 					</c:if>
-					
 
 					<div class="content blog-alt">
 						<!-- 서비스 설명 -->
@@ -203,12 +202,18 @@ img.cloudzoom {
 								<div>${menuinfoVo.summary }</div>
 							</div><!-- end blog-desc -->
 						</div><!-- end blogbox -->
+						<c:if test="${!empty imgDetailList }">
+							<c:forEach var="imgDetailVo" items="${imgDetailList }">
+								<img src="/jamong/upload/img_detail/${imgDetailVo.fileName }" alt="" class="img-responsive">
+							</c:forEach>
+						</c:if>
+						<br><hr>
 
 						<!-- 수정 -->
 						<div class="blog-single"  id="menu02">
 							<h3 class="post-title" style="font-size: 1.2em;">수정 및 재진행</h3>
 						</div>
-						<div>${menuinfoVo.detailDesc }</div><br><br>
+						<div>${menuinfoVo.detailDesc }</div><br><hr>
 
 						
 						<!-- 취소환불 -->
