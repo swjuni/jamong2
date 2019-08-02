@@ -86,7 +86,7 @@ $(function(){
     };
     
     $("#next").click(function(){
-		var url = "<c:url value='/mypage/setpackageFrame.do?productNo=${param.productNo }'/>";
+		var url = "<c:url value='/mypage/setpackageFrame.do'/>";
 	    var name = "package";
 	    var option = "width = 1298px, height = 500px, top = 100, left = 200, location = no"
 		window.open(url,name,option);
