@@ -69,6 +69,7 @@ public class RegistMenuInfoController {
 		int userNo=(Integer)session.getAttribute("userNo");
 		ExpertVO expertVo=expertService.selectByUserNo(userNo);
 		MenuInfoVO menuVo=menuInfoService.NonAvtivatedProduct(expertVo.getExpertNo());
+		logger.info("메뉴={}", menuVo);
 		List<CategoryLVO> list=categoryLService.selectCategorylAll();
 		if(menuVo!=null) {
 			Map<String, Object> map=categoryMService.selectCategoryView(menuVo.getCategoryTypeNo());
@@ -148,7 +149,7 @@ public class RegistMenuInfoController {
 	@RequestMapping("/imageUpload.do")
 	public String imageUpload(@RequestParam(required = true) int productNo,@RequestParam MultipartFile[] imageFiles,
 			@RequestParam MultipartFile[] imgDetailFiles,HttpServletRequest request,
-			@RequestParam(required = false) List<Integer> imageNoR, @RequestParam(required = false) List<Integer> imgDetailNoR) {
+			@RequestParam(required = false) List<Integer> imageNoR, @RequestParam(required = false) List<Integer> imgDetailNoR, Model model) {
 		logger.info("상품번호 productNo={}", productNo);
 		logger.info("파일 개수 imageFiles={}, imgDatailFiles={}", imageFiles.length, imgDetailFiles.length);
 		//db에 등록
@@ -214,9 +215,17 @@ public class RegistMenuInfoController {
 			imgDetailVo.setFileSize(fileSize);
 			listDVo.add(imgDetailVo);
 		}
-		cnt=imgDetailService.saveImgDetail(listDVo, imgDetailNo);
+		cnt+=imgDetailService.saveImgDetail(listDVo, imgDetailNo);
 		logger.info("상세이미지 등록 결과 cnt={}",cnt);
-		return "redirect:/mypage/uploadImageView.do?productNo="+productNo;
+		String msg="", url="/mypage/uploadImageView.do?productNo="+productNo;
+		if(cnt>0) {
+			msg="저장되었습니다.";
+		}else {
+			msg="저장에 실패하였습니다.";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		return "common/message";
 		
 	}
 }

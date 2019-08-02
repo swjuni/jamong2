@@ -16,3 +16,5 @@ CREATE SEQUENCE  expert_profile_seq
     INCREMENT BY 1
     NOCACHE
 ;
+
+alter table menu_info modify(activation default null);

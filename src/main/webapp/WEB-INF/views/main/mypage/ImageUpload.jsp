@@ -145,6 +145,10 @@ $(function(){
 		display: inline-block;
 		width: 100%;
 	}
+	button:disabled{
+		opacity:0.7;
+		cursor: not-allowed;
+	}
 </style>
 </head>
 <body>
@@ -187,7 +191,11 @@ $(function(){
 	</div>
 	<div class="divbtn" style="margin-left: 235px;">
 		<button type="submit" id="save" class="btn btn-rounded">저장</button>
-		<button type="button" id="next" class="btn btn-rounded">다음</button>
+		<button type="button" id="next" class="btn btn-rounded"
+		<c:if test="${empty listImage}">
+		disabled="disabled"
+		</c:if>
+		>다음</button>
 	</div>
 </form>
 </body>

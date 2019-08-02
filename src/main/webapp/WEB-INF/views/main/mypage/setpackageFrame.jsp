@@ -13,12 +13,16 @@
 <script type="text/javascript">
 $(function(){
 	$("form").submit(function(){
-		opener.parent.location.href='<c:url value="/registExpert/registExpert.do?state=expert"/>';
+		opener.parent.location.href='<c:url value="/mypage/service.do?state=service"/>';
+		opener.parent.location.replace('<c:url value="/mypage/service.do?state=service"/>');
 	    window.close();
 	})
 	$("input[type=text]").on("keyup", function() {
 	    $(this).val($(this).val().replace(/[^0-9]/g,""));
 	});
+	$(".remove").click(function(){
+		$(this).parent().hide();
+	})
 })
 </script>
 <style type="text/css">
@@ -134,15 +138,16 @@ select{
 									</ul>
 								</div><!-- end col -->
 								<div class="col-md-2 col-sm-6 col-xs-12 colon1 nopad text-center" style="width: 23%;">
+									<img alt="" src="<c:url value='/resources/images/multiply2.png'/>" style="width:25px; float: right; cursor: pointer;" class="remove">
 									<div class="pricing-header firstch c2">
 										<p>DELUXE</p>
 									</div><!-- end pricing-header -->
 									<ul>
-										<li><textarea name="packName" required="required"></textarea></li>
-										<li><textarea name="packDesc" required="required"></textarea></li>
-										<li><input type="text" name="packPrice" required="required" onkeypress="onlyNumber();">원</i></li>
+										<li><textarea name="packName"></textarea></li>
+										<li><textarea name="packDesc"></textarea></li>
+										<li><input type="text" name="packPrice" onkeypress="onlyNumber();">원</i></li>
 										<li>
-										<select name="modifyCount" required="required">
+										<select name="modifyCount">
 										<option value="">선택해주세요</option>
 										<option value="1">1회</option>
 										<option value="2">2회</option>
@@ -201,15 +206,16 @@ select{
 									</ul>
 								</div><!-- end col -->
 								<div class="col-md-2 col-sm-6 col-xs-12 colon1 nopad text-center" style="width: 23%;">
+								<img alt="" src="<c:url value='/resources/images/multiply2.png'/>" style="width:25px; float: right; cursor: pointer;" class="remove">
 									<div class="pricing-header firstch c3">
 										<p>PREMIUM</p>
 									</div><!-- end pricing-header -->
 								<ul>
-										<li><textarea name="packName" required="required"></textarea></li>
-										<li><textarea name="packDesc" required="required"></textarea></li>
-										<li><input type="text" name="packPrice" required="required" onkeypress="onlyNumber();">원</i></li>
+										<li><textarea name="packName"></textarea></li>
+										<li><textarea name="packDesc"></textarea></li>
+										<li><input type="text" name="packPrice" onkeypress="onlyNumber();">원</i></li>
 										<li>
-										<select name="modifyCount" required="required">
+										<select name="modifyCount">
 										<option value="">선택해주세요</option>
 										<option value="1">1회</option>
 										<option value="2">2회</option>
@@ -270,7 +276,7 @@ select{
 								<div class="pricing-footer text-center" style="width: 1298px;">
 										<a class="btn c1" style="width: 100%;"><input type="submit" value="서비스등록하기" style="background: none; border: none; "></a>
 									</div>
-									<input type="hidden" name="productNo" value="${param.productNo }">
+									<input type="text" name="productNo" value="${param.productNo }">
 							</div>
 									</form>
 </body>
