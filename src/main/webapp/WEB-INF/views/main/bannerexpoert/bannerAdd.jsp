@@ -1,7 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    
-<!-- 카테고리 홈 top include -->
-<%@include file="../inc/admin_top.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../incs/top_mypage.jsp" %>
+<c:import url="/mypage/sideMypage.do"/>
 <style type="text/css">
 
 </style>
@@ -99,7 +100,7 @@
 													</select>
 												</div><br>
 	                                            <div class="form-group">
-						            				<input type="text" id="expertNo" name="expertNo" class="form-control input-default" maxlength="100" placeholder="(임시)전문가 번호를 입력하세요" required="required"/>
+						            				<input type="hidden" id="expertNo" name="expertNo" class="form-control input-default" maxlength="100" required="required" value="${expertNo}"/>
 	                                            </div>
 	                                            <div class="form-group">
 						            				<input type="text" id="requestPeriod" name="requestPeriod" class="form-control input-default" maxlength="100" placeholder="광고 기간을 입력하세요." required="required"/>
@@ -140,10 +141,31 @@
 
 
 
-	<!-- 관리자 홈 공통 bottom include -->
-	<%@include file="../inc/bottom_js.jsp" %>
+			
+					</div>
+				</div>
+			</div>
+		</section>
+
+<%@include file="../incs/bottom_main.jsp" %>
+<!-- 화면별 고유 하단js 포함할 위치 -->
+	<script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/parallax.js'/>"></script>
+	<script src="<c:url value='/resources/js/animate.js'/>"></script>
+	<script src="<c:url value='/resources/js/custom.js'/>"></script>
 	
-	<!-- 화면별 고유 scripit init -->
+	<!-- jquery vendor -->
+    <script src="<c:url value='/assets/js/lib/jquery.min.js'/>"></script>
+    <script src="<c:url value='/assets/js/lib/jquery.nanoscroller.min.js'/>"></script>
+    <!-- nano scroller -->
+    <script src="<c:url value='/assets/js/lib/preloader/pace.min.js'/>"></script>
+    <!-- sidebar -->
+    
+    <!-- bootstrap -->
 
+    <script src="<c:url value='/assets/js/lib/bootstrap.min.js'/>"></script><script src="<c:url value='/assets/js/scripts.js'/>"></script>
+    <!-- scripit init-->
 
-<%@include file="../inc/admin_bottom.jsp" %>    
+</body>
+</html>

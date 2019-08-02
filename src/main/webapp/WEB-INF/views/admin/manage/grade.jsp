@@ -25,7 +25,7 @@
 			$(this).parent().siblings('.authorlev1').contents().remove();
 			$(this).parent().siblings('.name1').append('<input type="text" class="mid">');
 			$(this).parent().siblings('.authorlev1').append('<input type="text" class="mid">');
-			$('.ok1').css('display','unset');
+			$(this).siblings('.ok1').css('display','unset');
 			$(this).css('display','none');
 			$(this).siblings('.del1').css('display','none');
 		});
@@ -34,7 +34,7 @@
 			$(this).parent().siblings('.authorlev2').contents().remove();
 			$(this).parent().siblings('.name2').append('<input type="text" class="mid">');
 			$(this).parent().siblings('.authorlev2').append('<input type="text" class="mid">');
-			$('.ok2').css('display','unset');
+			$(this).siblings('.ok2').css('display','unset');
 			$(this).css('display','none');
 			$(this).siblings('.del2').css('display','none');
 		});
@@ -44,7 +44,7 @@
 			$(this).parent().siblings('.authorlev3').contents().remove();
 			$(this).parent().siblings('.name3').append('<input type="text" class="mid">');
 			$(this).parent().siblings('.authorlev3').append('<input type="text" class="mid">');
-			$('.ok3').css('display','unset');
+			$(this).siblings('.ok3').css('display','unset');
 			$(this).css('display','none');
 			$(this).siblings('.del3').css('display','none');
 		});

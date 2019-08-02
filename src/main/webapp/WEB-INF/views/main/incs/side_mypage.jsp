@@ -47,7 +47,7 @@
 					                    			<li><a href="#">배너관리</a></li>
 					                    			<li><a href="#">인증(프로필)정보</a></li>
 					                    			<li><a href="#">일정표</a></li>
-					                    			<li><a href="<c:url value='/admin/bannerexpoert/bannerAdd.do'/>">배너 등록</a></li>
+					                    			<li><a href="<c:url value='/main/bannerexpoert/bannerAdd.do'/>">배너 등록</a></li>
 					                    		</ul>
 									        </div>
 									    </div>
@@ -59,5 +59,5 @@
 							</div>
 						</div><!-- end score -->
 					</div><!-- end col -->
-					<div class="col-md-9" style="display: contents;">
+					<div class="col-md-9">
     

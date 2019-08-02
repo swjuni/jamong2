@@ -30,6 +30,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ez.jamong.admin.model.AdminService;
 import com.ez.jamong.admin.model.AdminVO;
+import com.ez.jamong.expert.model.ExpertService;
+import com.ez.jamong.expert.model.ExpertVO;
 import com.ez.jamong.userInfo.model.UserInfoService;
 import com.ez.jamong.userInfo.model.UserInfoVO;
 
@@ -42,7 +44,8 @@ public class UserInfoController {
 	
 	@Autowired
 	UserInfoService userInfoService;
-	
+	@Autowired
+	ExpertService expertService;
 	@RequestMapping("/main/userlogin/login.do")
 	public String loginUser() {
 		logger.info("로그인 페이지 뷰");
@@ -115,8 +118,13 @@ public class UserInfoController {
 		String msg="",url="/main/userlogin/login.do";
 		if(result==UserInfoService.LOGIN_OK) {
 			UserInfoVO userVo = userInfoService.selectUser(userId);
-			//세션
+			ExpertVO expertVo=expertService.selectByUserNo(userVo.getUserNo());
 			HttpSession session = request.getSession();
+			if(expertVo!=null) {
+				int expertNo=expertVo.getExpertNo();
+				session.setAttribute("expertNo", expertNo);
+			}
+			//세션
 			session.setAttribute("userId", userId);
 			session.setAttribute("userName", userVo.getUserName());
 			session.setAttribute("userAuthor", userVo.getAuthorNo());
@@ -156,6 +164,7 @@ public class UserInfoController {
 		session.removeAttribute("userName");
 		session.removeAttribute("userAuthor");
 		session.removeAttribute("userNo");
+		session.removeAttribute("expertNo");
 		
 		return "redirect:/main/index_main.do";
 	}

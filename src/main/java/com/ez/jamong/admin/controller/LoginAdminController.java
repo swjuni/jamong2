@@ -25,6 +25,9 @@ public class LoginAdminController {
 	
 	@Autowired private AdminService adminService;
 	
+	//암호화 인코더
+	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	
 	@RequestMapping(value="/login.do",method=RequestMethod.GET)  
 	public String loginAdmin_get() {
 		logger.info("관리자 로그인화면 보기");
