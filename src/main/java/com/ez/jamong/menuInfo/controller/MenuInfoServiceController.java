@@ -133,6 +133,16 @@ public class MenuInfoServiceController {
 		
 		ExpertProfileVO expertProfileVO=expertProfileService.selectByExpertNo(menuinfoVo.getExpertNo());
 		
+		List<CategoryMVO> cmList = new ArrayList<CategoryMVO>();
+		if(expertProfileVO!=null) {
+			String[] majorArr=expertProfileVO.getMajor().split("/");
+			for(int i=0;i<majorArr.length;i++) {
+				CategoryMVO cmVo=categoryMService.selectCategorymByNo(Integer.parseInt(majorArr[i]));
+				cmList.add(cmVo);
+			}	
+		}
+		
+		model.addAttribute("majorList",cmList);
 		model.addAttribute("packageList", packageList);
 		model.addAttribute("evalList", evalList);
 		model.addAttribute("menuinfoVo", menuinfoVo);

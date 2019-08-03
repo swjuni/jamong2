@@ -18,9 +18,11 @@
 								</div>
 								<!-- end service-box -->
 								<div class="service-box nmb">
+									<a href="<c:url value='/mypage/payList/payList.do'/>">
 									<i class="flaticon-crown"></i>
 									<h4>결제 내역</h4>
 									<p>상품 결제 내역을 확인</p>
+									</a>
 								</div>
 								<!-- end service-box -->
 							</div>

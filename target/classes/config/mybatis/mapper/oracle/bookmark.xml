@@ -5,9 +5,11 @@
 <mapper namespace="config.mybatis.mapper.oracle.bookmark">
 	
 	<select id="bookmarkList" parameterType="int" resultType="map">
-		select b.bookmark_no, b.user_no, e.expert_no, e.id, e.file_name, e.introduction
+		select b.bookmark_no, b.user_no, e.expert_no, e.id, e.file_name, e.introduction, ep.MAJOR
 		from BOOKMARK b join expert e
 		on b.expert_no=e.expert_no
+		join expert_profile ep
+		on e.EXPERT_NO = ep.EXPERT_NO
 		where b.user_no=#{userNo}
 	</select>
 	

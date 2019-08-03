@@ -94,6 +94,7 @@
 .client-box img {
 	height: 100%;
 	width: 100%;
+	-webkit-filter: grayscale(0);
 }
 .case-single .case-box{
 	border: 0px;
@@ -505,7 +506,7 @@ opacity: 0.7;
 							<div style="font-size: 14px;">연락가능시간 : </div>
 							<div style="font-size: 14px;">${expertVo.serviceableTime }</div>
 						</div><!-- end pricing-top -->
-						<div class="pricing-details">
+						<div class="pricing-details" style="padding-bottom: 20px; background: white;">
 							<div class="pricing-footer text-center">
 								<div style="background: white;" >  
 									<a href="#" class="btn btn-primary" style="background:#4d4d4d; border-radius: 7px; width: 80%;
@@ -514,18 +515,18 @@ opacity: 0.7;
 									전문가에게 문의</a>
 								</div> 
 							</div>
-							<!-- 
-							<ul>
-								<li>전공<span></span></li>
-								<li>자격증<span></span></li>
-								<li>학력<span></span></li>
-								<li>경력<span></span></li>
-							</ul>
-							 -->
 						</div><!-- end pricing-details -->
-						<div style="background-color: #ffffff;padding: 10px 20px;">
-							<span><b>전문가 소개</b></span><br>
-							<span>${expertVo.introduction }</span>
+						<div style="background-color: #ffffff;padding: 10px 20px; border-top: 1px solid silver;">
+							<c:if test="${!empty majorList }">
+								<span><b style="color: sienna;">전문분야</b></span><br>
+								<c:forEach var="vo" items="${majorList }">
+									<span style="font-size: 0.9em; font-weight: bold;">&nbsp;&nbsp;&nbsp;${vo.categoryName }</span><br>
+								</c:forEach>
+							</c:if>
+						</div>
+						<div style="background-color: azure; padding: 10px 20px;">
+							<span><b style="color: sienna;">전문가 소개</b></span><br>
+							<span style="font-size: 0.9em; font-weight: bold;">&nbsp;&nbsp;&nbsp;${expertVo.introduction }</span>
 						</div>
 					</div><!-- end pricing-box -->
 				</div>

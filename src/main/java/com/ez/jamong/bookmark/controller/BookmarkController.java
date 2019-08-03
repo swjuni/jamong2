@@ -2,6 +2,7 @@ package com.ez.jamong.bookmark.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Clob;
 import java.sql.SQLException;
 import java.util.List;
@@ -23,8 +24,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ez.jamong.bookmark.model.BookmarkListVO;
 import com.ez.jamong.bookmark.model.BookmarkService;
 import com.ez.jamong.bookmark.model.BookmarkVO;
+import com.ez.jamong.categorym.model.CategoryMService;
+import com.ez.jamong.categorym.model.CategoryMVO;
 import com.ez.jamong.expert.model.ExpertService;
 import com.ez.jamong.expert.model.ExpertVO;
+import com.ez.jamong.expert_profile.model.ExpertProfileService;
+import com.ez.jamong.expert_profile.model.ExpertProfileVO;
 
 @Controller
 @RequestMapping("/mypage")
@@ -32,23 +37,17 @@ public class BookmarkController {
 	private Logger logger = LoggerFactory.getLogger(BookmarkController.class);
 	@Autowired private BookmarkService bookmarkService;
 	@Autowired private ExpertService expertService;
+	@Autowired private ExpertProfileService expertProfileService;
+	@Autowired private CategoryMService categoryMService;
 	
 	@RequestMapping("/bookmark.do")
 	public String bookmark(HttpSession session, Model model) {
 		logger.info("즐겨찾기 화면 요청");
 		
-		//인터셉터 걸고 지울 체크
-		if(session.getAttribute("userNo")==null) {
-			model.addAttribute("msg", "먼저 로그인하세요.");
-			model.addAttribute("url", "/main/index_main.do");
-			return "common/message";
-		}
-		
 		int userNo = (Integer)session.getAttribute("userNo");	//세션 userNo
 
 		List<Map<String, Object>> list = bookmarkService.bookmarkList(userNo);
 		logger.info("즐겨찾기 목록 요청 결과 list.size={}, userNo={}",list, userNo);
-		
 		
 		StringBuffer strOut = null;
 		Map<String, Object> map = null;
@@ -72,6 +71,15 @@ public class BookmarkController {
 				}
 			}
 			map.put("INTRODUCTION", strOut);
+			
+			BigDecimal expertNo = (BigDecimal) map.get("EXPERT_NO");
+			ExpertProfileVO expertProfileVO=expertProfileService.selectByExpertNo(expertNo.intValue());
+			if(expertProfileVO!=null) {
+				String[] majorArr=expertProfileVO.getMajor().split("/");
+				CategoryMVO cmVo=categoryMService.selectCategorymByNo(Integer.parseInt(majorArr[0]));
+				map.put("MAJOR", cmVo.getCategoryName());
+			}
+			
 			list.set(i, map);
 		}
 		

@@ -65,9 +65,10 @@
 											value="${map['BOOKMARK_NO']}" >
 									</div>
 									<div class="book-details">
-										<small>대표카테고리 1개 나중에 추가</small>
+										<small style="font-weight: bold;">${map['MAJOR'] }</small>
 										<h3>${map['ID'] }</h3>
-										<p>${map['INTRODUCTION'] }</p>
+										<p style="font-size: 0.9em; ">
+										${fn:substring(map['INTRODUCTION'],0,36) }</p>
 										<!-- <a href="#" class="btn btn-transparent">View All</a> -->
 									</div><!-- end details -->
 								</div><!-- end col -->
