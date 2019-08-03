@@ -49,7 +49,7 @@ function pageFunc(curPage){
 </form>
 <br><br>
 <div class="clearfix"></div>
-<c:if test="${pagingInfo.totalRecord >0}">
+<c:if test="${!empty param.startDay}">
 	<div>${param.startDay } ~ ${param.endDay }까지의 주문내역, 총 ${pagingInfo.totalRecord }건 입니다.</div>
 </c:if>
 
