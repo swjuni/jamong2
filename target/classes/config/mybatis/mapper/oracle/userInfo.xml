@@ -110,4 +110,8 @@
 	<select id="AllUserEmail" resultType="string">
 		select user_id from user_info
 	</select>
+	<select id="selectViewByUserNo" parameterType="int" resultType="map">
+		select * from user_infoView
+		where user_no=#{userNo}
+	</select>
 </mapper>

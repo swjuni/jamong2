@@ -5,4 +5,5 @@ import java.util.List;
 public interface PackageDAO {
 	public int insertPackage(PackageVO vo);
 	public List<PackageVO> packageByProductNo(int productNo);
+	public PackageVO selectByPackageNO(int packNo);
 }

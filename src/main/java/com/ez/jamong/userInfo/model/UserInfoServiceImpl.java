@@ -114,5 +114,10 @@ public class UserInfoServiceImpl implements UserInfoService{
 	public List<String> AllUserEmail() {
 		return userInfoDao.AllUserEmail();
 	}
+
+	@Override
+	public Map<String, Object> selectViewByUserNo(int userNo) {
+		return userInfoDao.selectViewByUserNo(userNo);
+	}
 	
 }

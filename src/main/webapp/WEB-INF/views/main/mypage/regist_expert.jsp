@@ -6,45 +6,6 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 	$(function(){
-		var IMP = window.IMP; // 생략가능
-		IMP.init('imp02924051'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-		
-		$("#pay").click(function(){
-			IMP.request_pay({
-			    pg : 'inicis', // version 1.1.0부터 지원.
-			    pay_method : 'card',
-			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : '주문명:결제테스트',
-			    amount : 100,
-			    buyer_email : 'iamport@siot.do',
-			    buyer_name : '구매자이름',
-			    buyer_tel : '010-1234-5678',
-			    buyer_addr : '서울특별시 강남구 삼성동',
-			    buyer_postcode : '123-456',
-			    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
-			}, function(rsp) {
-			    if ( rsp.success ) {
-			    	 // jQuery로 HTTP 요청
-			        jQuery.ajax({
-			            url: "https://www.myservice.com/payments/complete", // 가맹점 서버
-			            method: "POST",
-			            headers: { "Content-Type": "application/json" },
-			            data: {
-			                imp_uid: rsp.imp_uid,
-			                merchant_uid: rsp.merchant_uid
-			            }
-			        }).done(function (data) {
-			          // 가맹점 서버 결제 API 성공시 로직
-			          alert("성공");
-			        })
-			    } else {
-			        var msg = '결제에 실패하였습니다.';
-			        msg += '에러내용 : ' + rsp.error_msg;
-			    }
-			    alert(msg);
-			});
-		});
-		
 		$("#agree").click(function(){
 			if($("#agree").is(":checked")){
 				$("#agreeText").val("Y");
@@ -111,7 +72,6 @@
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->
 <div class="row service-list text-center">
 	<%@include file="../incs/registexpert.jsp"%>
-	<input type="button" value="click" id="pay">
 				<div class="col-md-3 mb30">
 					<div class="contact-details">
 						<ul>
