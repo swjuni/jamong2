@@ -28,4 +28,9 @@ public class PackageServiceImpl implements PackageService{
 	public List<PackageVO> packageByProductNo(int productNo) {
 		return packageDao.packageByProductNo(productNo);
 	}
+
+	@Override
+	public PackageVO selectByPackageNO(int packNo) {
+		return packageDao.selectByPackageNO(packNo);
+	}
 }

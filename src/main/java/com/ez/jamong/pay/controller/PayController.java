@@ -18,12 +18,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ez.jamong.common.DateSearchVO;
 import com.ez.jamong.common.PaginationInfo;
 import com.ez.jamong.common.WebUtility;
+import com.ez.jamong.expert.model.ExpertService;
+import com.ez.jamong.expert.model.ExpertVO;
+import com.ez.jamong.image.ImageService;
+import com.ez.jamong.image.ImageVO;
+import com.ez.jamong.menuInfo.model.MenuInfoService;
+import com.ez.jamong.menuInfo.model.MenuInfoVO;
+import com.ez.jamong.packages.model.PackageService;
+import com.ez.jamong.packages.model.PackageVO;
 import com.ez.jamong.pay.model.PayService;
+import com.ez.jamong.userInfo.model.UserInfoService;
 
 @Controller
 public class PayController {
 	private Logger logger = LoggerFactory.getLogger(PayController.class);
 	@Autowired private PayService payService;
+	@Autowired private MenuInfoService menuInfoService;
+	@Autowired private ImageService imageService;
+	@Autowired private ExpertService expertService;
+	@Autowired private PackageService packageService;
+	@Autowired private UserInfoService userInfoService;
 	
 	@RequestMapping("/mypage/payList/payList.do")
 	public String payList(@ModelAttribute DateSearchVO dateSearchVo, HttpSession session, Model model) {
@@ -65,5 +79,25 @@ public class PayController {
 		model.addAttribute("pagingInfo", pagingInfo);
 		
 		return "main/mypage/payList";
+	}
+	
+	@RequestMapping("/main/payCheck.do")
+	public String payCheckVeiw(Model model, HttpSession session) {
+		//packageNo받아와야함
+		int packNo=25;
+		int userNo=(Integer)session.getAttribute("userNo");
+		PackageVO packVo=packageService.selectByPackageNO(packNo);
+		int productNo=packVo.getProductNo();
+		ImageVO img=imageService.selectByProductNoFirstImage(productNo);
+		Map<String, Object> map=menuInfoService.selectMenuinfoView(productNo);
+		int expertNo=(Integer)map.get("EXPERT_NO");
+		ExpertVO expertVo=expertService.selectByExpertNo(expertNo);
+		Map<String, Object> userMap=userInfoService.selectViewByUserNo(userNo);
+		model.addAttribute("img",img);
+		model.addAttribute("map",map);
+		model.addAttribute("expertVo",expertVo);
+		model.addAttribute("packVo",packVo);
+		model.addAttribute("userMap",userMap);
+		return"main/payment/payCheck";
 	}
 }

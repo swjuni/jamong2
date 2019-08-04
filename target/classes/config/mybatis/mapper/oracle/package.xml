@@ -22,4 +22,7 @@
 	 <select id="packageByProductNo" parameterType="int" resultType="packageVo">
 	 	select * from package where product_no=#{productNo}
 	 </select>
+	 <select id="selectByPackageNO" parameterType="int" resultType="packageVo">
+	 	select * from package where pack_no=#{packNo}
+	 </select>
 </mapper>
