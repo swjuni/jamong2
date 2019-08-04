@@ -44,10 +44,10 @@
 					                    			<li><a href="#">나의 서비스</a></li>
 					                    			<li><a href="#">판매관리</a></li>
 					                    			<li><a href="#">수익관리</a></li>
-					                    			<li><a href="#">배너관리</a></li>
+					                    			<li><a href="<c:url value='/main/bannerexpoert/bannerAdd.do'/>">배너 관리</a></li>
 					                    			<li><a href="#">인증(프로필)정보</a></li>
 					                    			<li><a href="#">일정표</a></li>
-					                    			<li><a href="<c:url value='/main/bannerexpoert/bannerAdd.do'/>">배너 등록</a></li>
+					                    			
 					                    		</ul>
 									        </div>
 									    </div>
