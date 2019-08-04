@@ -15,7 +15,7 @@
 		<result property="ORDER_LEVEL" column="ORDER_LEVEL" />
 		<result property="RECOMMEND" column="RECOMMEND" />
 		<result property="ACTIVATION" column="ACTIVATION" />
-		<result property="EXPERT_NO" column="EXPERT_NO" />
+		<result property="EXPERT_NO" column="EXPERT_NO" javaType="Integer"/>
 		<result property="ID" column="ID" />
 		<result property="CATEGORY_NAME_L" column="CATEGORY_NAME_L" />
 		<result property="CATEGORY_NAME" column="CATEGORY_NAME" />

@@ -86,4 +86,12 @@
 		group by CATEGORY_NAME
 	</select>
 	
+	<!-- 데이터 삽입 -->
+   	<insert id="categorymInsertDB" parameterType="map">
+		<selectKey resultType="int" keyProperty="categoryNoM" order="BEFORE">
+			select category_m_seq.nextval from dual
+		</selectKey>
+		insert into category_m
+		values(#{categoryNoM}, #{categoryNoL}, #{categoryName}, #{categoryDesc}, #{imgName}, #{imgOriginalName}, 0)
+	</insert>
 </mapper>

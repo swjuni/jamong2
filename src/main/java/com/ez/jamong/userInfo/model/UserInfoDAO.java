@@ -19,5 +19,5 @@ public interface UserInfoDAO {
 	public int findUserPwd(UserInfoVO vo);
 	public int outUser(String userId);
 	public List<String> AllUserEmail();
-	
+	public Map<String, Object> selectViewByUserNo(int userNo);
 }

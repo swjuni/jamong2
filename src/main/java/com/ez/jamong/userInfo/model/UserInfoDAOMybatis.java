@@ -77,5 +77,10 @@ public class UserInfoDAOMybatis implements UserInfoDAO{
 	public List<String> AllUserEmail() {
 		return session.selectList(namespace+"AllUserEmail");
 	}
+
+	@Override
+	public Map<String, Object> selectViewByUserNo(int userNo) {
+		return session.selectOne(namespace+"selectViewByUserNo",userNo);
+	}
 	
 }

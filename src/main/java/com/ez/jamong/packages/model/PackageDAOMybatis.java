@@ -18,4 +18,8 @@ public class PackageDAOMybatis implements PackageDAO{
 	public List<PackageVO> packageByProductNo(int productNo) {
 		return session.selectList(namespace+"packageByProductNo", productNo);
 	}
+	@Override
+	public PackageVO selectByPackageNO(int packNo) {
+		return session.selectOne(namespace+"selectByPackageNO",packNo);
+	}
 }

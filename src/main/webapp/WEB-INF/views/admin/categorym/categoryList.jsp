@@ -2,6 +2,8 @@
     
 <!-- 관리자 홈 top include -->
 <%@include file="../inc/admin_top.jsp" %>
+<script type="text/javascript">
+</script>
 <style type="text/css">
 	.dt-buttons{
 		margin-bottom: 0;
@@ -105,6 +107,12 @@
                     			onclick="location.href='<c:url value='/admin/categorym/categoryAdd.do'/>'">카테고리(중) 등록</button>
                     	</div>
                     </div>
+                    <div class="row">엑셀업로드 : <br/>
+					<form name="excelUpForm" id="excelUpForm" enctype="multipart/form-data" method="POST" action="<c:url value='/admin/excelUp.do'/>">
+					    <input type="file" id="excelFile" name="excelFile" accept=".xlsx, .xls"/>
+					    <input type="submit" value="등록">
+					</form>
+					</div>
                 </section>
             </div>
         </div>

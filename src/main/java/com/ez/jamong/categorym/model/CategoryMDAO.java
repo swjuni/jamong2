@@ -12,4 +12,5 @@ public interface CategoryMDAO {
 	public Map<String, Object> selectCategoryView(int categoryNoM);
 	public List<Map<String, Object>> selectCategoryAllView();
 	public List<CategoryMVO>selectCategoryM(int categoryNoL);
+	public int categorymInsertDB(Map<String, String> map);
 }

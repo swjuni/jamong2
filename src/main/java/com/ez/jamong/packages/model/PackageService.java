@@ -5,4 +5,5 @@ import java.util.List;
 public interface PackageService {
 	public int insertPackage(List<PackageVO> list);
 	public List<PackageVO> packageByProductNo(int productNo);
+	public PackageVO selectByPackageNO(int packNo);
 }

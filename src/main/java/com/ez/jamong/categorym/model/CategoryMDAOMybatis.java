@@ -54,6 +54,11 @@ public class CategoryMDAOMybatis implements CategoryMDAO{
 		return sqlSession.selectList(namespace + "selectCategoryM",categoryNoL);
 	}
 
+	@Override
+	public int categorymInsertDB(Map<String, String> map) {
+		return sqlSession.insert(namespace+"categorymInsertDB", map);
+	}
+
 	
 	
 }
