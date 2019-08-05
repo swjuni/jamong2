@@ -33,4 +33,11 @@ public class MypageController {
 		return "main/incs/side_mypage";
 	}
 	
+	@RequestMapping("/mypage_expert.do")
+	public String mypage_expert() {
+		logger.info("전문가 마이페이지 요청");
+		
+		return "main/mypage/mypage_expert_main";
+	}
+	
 }

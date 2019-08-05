@@ -40,9 +40,9 @@ function pageFunc(curPage){
 </form>
 <!-- 페이징 처리 form 끝 -->
 
-<div style="font-size:30px;  font-weight:bolder; float: left;">결제내역</div>
+<div style="font-size:30px;  font-weight:bolder; float: left;">판매관리</div>
 <br><br>
-<p>${sessionScope.userName }님의 결제내역입니다.</p>
+<p>${sessionScope.userName }님의 판매내역입니다.</p>
 <form name="frm1" method="post" action="<c:url value='/mypage/payList/payList.do'/>" >
 	<!-- 조회기간 include -->
 	<c:import url="../incs/dateTerm.jsp"></c:import>
@@ -56,7 +56,7 @@ function pageFunc(curPage){
 <br>
 <div>
 	<table class="table table-striped table-hover"
-		summary="결제내역에 관한 표로써, 결제번호, 결제일자, 결제수단, 결제금액에 대한 정보를 제공합니다.">
+		summary="판매내역에 관한 표로써,   에 대한 정보를 제공합니다.">
 		<colgroup>
 			<col style="width: 10%" />
 			<col style="width: 15%" />

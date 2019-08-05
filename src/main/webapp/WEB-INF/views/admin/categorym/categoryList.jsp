@@ -107,12 +107,16 @@
                     			onclick="location.href='<c:url value='/admin/categorym/categoryAdd.do'/>'">카테고리(중) 등록</button>
                     	</div>
                     </div>
-                    <div class="row">엑셀업로드 : <br/>
-					<form name="excelUpForm" id="excelUpForm" enctype="multipart/form-data" method="POST" action="<c:url value='/admin/excelUp.do'/>">
-					    <input type="file" id="excelFile" name="excelFile" accept=".xlsx, .xls"/>
-					    <input type="submit" value="등록">
-					</form>
+                    <br>
+                    <div class="row"><h4 style="margin: 0; line-height: 42px;">엑셀업로드 : &nbsp;&nbsp; </h4>
+						<form name="excelUpForm" id="excelUpForm" enctype="multipart/form-data"
+							class="form-control col-lg-8"
+							method="POST" action="<c:url value='/admin/excelUp.do'/>">
+						    <input type="file" id="excelFile" name="excelFile" accept=".xlsx, .xls"/>
+						    <input type="submit" value="엑셀자료 DB등록">
+						</form>
 					</div>
+					<br><br>
                 </section>
             </div>
         </div>

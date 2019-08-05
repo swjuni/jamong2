@@ -25,7 +25,7 @@
 		text-decoration: underline !important;
 	}
 </style>
-<%@include file="../incs/side_mypage.jsp"%>
+<c:import url="/mypage/sideMypage.do"/>
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->
 				<form class="form-inline" role="search" name="frmSearch" method="post" action="<c:url value='/mypage/reportedExpert.do'/>">
 			   		<input type="hidden" name="currentPage" value="1">

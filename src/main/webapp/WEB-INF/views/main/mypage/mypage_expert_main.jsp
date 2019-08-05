@@ -12,18 +12,18 @@
 						<div class="seo-details">
 							<div class="col-md-3 col-sm-6">
 								<div class="service-box">
-									<a href="<c:url value='/mypage/orders/buyList.do'/>">
+									<a href="<c:url value='/mypage/registExpert.do?state=expert'/>">
 									<i class="flaticon-presentation"></i>
-									<h4>구매관리</h4>
-									<p>구매 한 목록을 관리</p>
+									<h4>나의 서비스</h4>
+									<p>전문가 상품 목록/등록 </p>
 									</a>
 								</div>
 								<!-- end service-box -->
 								<div class="service-box nmb">
-									<a href="<c:url value='/mypage/payList/payList.do'/>">
+									<a href="<c:url value='/mypage/orders/sellList.do'/>">
 									<i class="flaticon-crown"></i>
-									<h4>결제 내역</h4>
-									<p>상품 결제 내역을 확인</p>
+									<h4>판매 관리</h4>
+									<p>고객 주문 요청 관리</p>
 									</a>
 								</div>
 								<!-- end service-box -->
@@ -32,18 +32,18 @@
 					
 							<div class="col-md-3 col-sm-6">
 								<div class="service-box">
-									<a href="<c:url value='/mypage/bookmark.do'/>">
+									<a href="<c:url value='/'/>">
 									<i class="flaticon-responsive"></i>
-									<h4>즐겨찾기</h4>
-									<p>즐겨찾기를 한 상품을 조회</p>
+									<h4>수익 관리</h4>
+									<p>결제완료 내용 통계</p>
 									</a>
 								</div>
 								<!-- end service-box -->
 								<div class="service-box nmb">
-									<a href="<c:url value='/mypage/reportedExpert.do'/>">
+									<a href="<c:url value='/main/bannerexpoert/bannerAdd.do'/>">
 									<i class="flaticon-content"></i>
-									<h4>알림(신고)</h4>
-									<p>부적절한 전문가를 신고</p>
+									<h4>배너 관리</h4>
+									<p>사이트 광고 신청</p>
 									</a>
 								</div>
 								<!-- end service-box -->
@@ -52,18 +52,18 @@
 					
 							<div class="col-md-3 col-sm-6">
 								<div class="service-box">
-									<a href="<c:url value='/main/mypage/message.do'/>">
+									<a href="<c:url value='/mypage/registExpert.do?state=expert'/>">
 									<i class="flaticon-message"></i>
-									<h4>메시지</h4>
-									<p>상대 회원과 메시지를 주고 받기</p>
+									<h4>프로필 정보</h4>
+									<p>전문가 정보 관리</p>
 									</a>
 								</div>
 								<!-- end service-box -->
 								<div class="service-box nmb">
-									<a href="<c:url value='/main/mypage/filesExUser.do'/>">
+									<a href="<c:url value='/mypage/mypage.do'/>">
 									<i class="flaticon-presentation-1"></i>
-									<h4>자료실</h4>
-									<p>내 자료들을 확인하고 받기</p>
+									<h4>마이페이지</h4>
+									<p>회원 기본 마이페이지</p>
 									</a>
 								</div>
 								<!-- end service-box -->
@@ -72,7 +72,6 @@
 						</div>
 						
 						<!-- end details -->
-
 
 
 
