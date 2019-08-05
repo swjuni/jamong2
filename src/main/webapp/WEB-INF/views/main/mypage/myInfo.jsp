@@ -4,13 +4,20 @@
 <%@include file="../incs/top_mypage.jsp" %>
 <c:import url="/mypage/sideMypage.do"/>
 
+<script type="text/javascript">
+
+</script>
 
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->
-
+<style>
+	.black{
+		border-color: black;
+	}
+</style>
 <div class="unix-login">
         <div class="container-fluid">
             <div class="row justify-content-center">
-                <div class="col-lg-6">
+                <div class="col-lg-6" style="margin-left:20%;">
                     <div class="login-content" style="margin: auto;">
                         
                         <div class="login-form" style="padding: 10%">
@@ -23,32 +30,32 @@
                                 </div>
                                 <div class="form-group">
                                     <label>비밀번호</label>
-                                    <input type="password" class="form-control" placeholder="Password" id="pwd" name="userPwd">
+                                    <input type="password" class="form-control black" placeholder="Password" id="pwd" name="userPwd">
                                 </div>
                                 <div class="form-group">
                                     <label>비밀번호 확인</label>
-                                    <input type="password" class="form-control" placeholder="Password" id="pwdchk">
+                                    <input type="password" class="form-control black" placeholder="Password" id="pwdchk">
                                 </div>
                                 <div class="form-group">
                                     <label>이름</label>
-                                    <input type="text" class="form-control" placeholder="Name" id="name" name="userName">
+                                    <input type="text" class="form-control black" placeholder="Name" id="name" name="userName" value="${ivo.userName }">
                                 </div>
                                 <div class="form-group">
                                     <label>휴대폰번호</label>
-                                    <input type="tel" class="form-control" placeholder="HP" onkeyup="inputPhoneNumber(this)" maxlength="13" name="hp">
+                                    <input type="tel" class="form-control black" placeholder="HP" onkeyup="inputPhoneNumber(this)" maxlength="13" name="hp" value="${ivo.hp }">
                                 </div>
                                 <div class="form-group">
                                     <label style="display:block">우편번호</label>
-                                    <input type="text" class="form-control" placeholder="Zipcode" style="width:40%;display:inline;" id="zipcode" name="zipcode">
+                                    <input type="text" class="form-control black" placeholder="Zipcode" style="width:40%;display:inline;" id="zipcode" name="zipcode" value="${ivo.zipcode }">
                                     <button type="button" class="btn btn-primary btn-flat m-b-30 m-t-30" onclick="zipcode123()" style="display:inline;">우편번호</button>
                                 </div>
                                 <div class="form-group">
                                     <label>주소</label>
-                                    <input type="text" class="form-control" placeholder="Address" id="address" name="address">
+                                    <input type="text" class="form-control black" placeholder="Address" id="address" name="address" value="${ivo.address }">
                                 </div>
                                 <div class="form-group">
                                     <label>상세 주소</label>
-                                    <input type="text" class="form-control" placeholder="AddressDetail" id="addressDetail" name="addressDetail">
+                                    <input type="text" class="form-control black" placeholder="AddressDetail" id="addressDetail" name="addressDetail" value="${ivo.addressDetail }">
                                 </div>
                                 
                                 <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" id="sign">정보 수정</button>

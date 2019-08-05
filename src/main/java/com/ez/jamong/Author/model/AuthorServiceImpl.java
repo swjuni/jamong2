@@ -37,8 +37,14 @@ public class AuthorServiceImpl implements AuthorService{
 
 
 	@Override
-	public List<Integer> selectAuthorityList() {
+	public List<AuthorVO> selectAuthorityList() {
 		return admingradeDao.selectAuthorityList();
+	}
+
+
+	@Override
+	public List<String> selectAuthorName() {
+		return admingradeDao.selectAuthorName();
 	}
 	
 

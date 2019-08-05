@@ -38,8 +38,13 @@ public class AuthorDAOMybatis implements AuthorDAO{
 	}
 
 	@Override
-	public List<Integer> selectAuthorityList() {
+	public List<AuthorVO> selectAuthorityList() {
 		return sqlSession.selectList(namespace+"selectAuthorityList");
+	}
+
+	@Override
+	public List<String> selectAuthorName() {
+		return sqlSession.selectList(namespace+"selectAuthorName");
 	}
 	
 	
