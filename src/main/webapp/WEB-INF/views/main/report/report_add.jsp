@@ -20,7 +20,7 @@
 	color: #ffffff;
 }
 </style>
-<%@include file="../incs/side_mypage.jsp"%>
+<c:import url="/mypage/sideMypage.do"/>
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->
 			<div style="font-size:30px;  font-weight:bolder; margin-bottom: 30px;">상품 신고</div>
 			<div style="clear: both;"></div>

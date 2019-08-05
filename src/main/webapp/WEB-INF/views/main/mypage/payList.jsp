@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../incs/top_mypage.jsp" %>
-<%@include file="../incs/side_mypage.jsp" %>
+<c:import url="/mypage/sideMypage.do"/>
 
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->
 <script type="text/javascript">
