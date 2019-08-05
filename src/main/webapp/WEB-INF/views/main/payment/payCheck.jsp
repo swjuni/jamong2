@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../incs/top_mypage.jsp"%>
 <script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
 <script type="text/javascript"
@@ -12,70 +13,49 @@
 		IMP.init('imp02924051'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
 		$("#pay").click(function() {
+			var msg;
 			var price=$("#price").val();
+			var packNo=$("#packNo").val();
+			var userNo=$("#userNo").val();
 			IMP.request_pay({
 				pg : 'inicis', // version 1.1.0부터 지원.
 				pay_method : 'card',
 				merchant_uid : 'merchant_' + new Date().getTime(),
-				name : '주문명:결제테스트',
-				amount : price*150,
-				buyer_email : 'iamport@siot.do',
-				buyer_name : '구매자이름',
-				buyer_tel : '010-1234-5678',
-				buyer_addr : '서울특별시 강남구 삼성동',
-				buyer_postcode : '123-456',
-				m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+				name : packNo,
+				amount : price*1,
+				buyer_name : userNo,
 			}, function(rsp) {
 				if (rsp.success) {
-					// jQuery로 HTTP 요청
-					jQuery.ajax({
-						url : "https://www.myservice.com/payments/complete", // 가맹점 서버
-						method : "POST",
-						headers : {
-							"Content-Type" : "application/json"
-						},
-						data : {
-							imp_uid : rsp.imp_uid,
-							merchant_uid : rsp.merchant_uid
-						}
-					}).done(function(data) {
-						 app.use(bodyParser.json());
-						  // "/payments/complete"에 대한 POST 요청을 처리
-						  app.post("/payments/complete", async (req, res) => {
-						    try {
-						      const { imp_uid, merchant_uid } = req.body; // req의 body에서 imp_uid, merchant_uid 추출
-						      const getToken = await axios({
-						          url: "https://api.iamport.kr/users/getToken",
-						          method: "post", // POST method
-						          headers: { "Content-Type": "application/json" }, // "Content-Type": "application/json"
-						          data: {
-						            imp_key: "imp_apikey", // REST API키
-						            imp_secret: "ekKoeW8RyKuT0zgaZsUtXXTLQ4AhPFW3ZGseDA6bkA5lamv9OqDMnxyeB9wqOsuO9W3Mx9YSJ4dTqJ3f" // REST API Secret
-						          }
-						        });
-						        const { access_token } = getToken.data.response; // 인증 토큰
-						        ...
-						        // imp_uid로 아임포트 서버에서 결제 정보 조회
-						        const getPaymentData = await axios({
-						          url: \`https://api.iamport.kr/payments/\${imp_uid}\`, // imp_uid 전달
-						          method: "get", // GET method
-						          headers: { "Authorization": access_token } // 인증 토큰 Authorization header에 추가
-						        });
-						        const paymentData = getPaymentData.data.response; // 조회한 결제 정보
-						        ...
-						    } catch (e) {
-						      res.status(400).send(e);
-						    }
-						  });
-					})
+					//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+			    	jQuery.ajax({
+			    		url: '<c:url value="/payments/complete/check.do"/>', //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+			    		type: 'POST',
+			    		dataType: 'json',
+			    		async:false,
+			    		data: {
+			    			imp_uid: rsp.imp_uid,
+			    	  		//기타 필요한 데이터가 있으면 추가 전달
+			    		}
+			    		})
+			    		.done(function() {
+			                alert("요청 성공");
+			            })
+			            .fail(function() {
+			                alert("요청 실패");
+			                location.href='<c:url value="/main/index_main.do"/>';
+			            })
+			            .always(function() {
+			                alert("요청 완료");
+			            });
 				} else {
-					var msg = '결제에 실패하였습니다.';
+					msg = '결제에 실패하였습니다.';
 					msg += '에러내용 : ' + rsp.error_msg;
+					alert(msg);
 				}
-				alert(msg);
-			});
-		});
-	});
+			});//
+		});//click
+		
+	});//func
 </script>
 <style type="text/css">
 .outer {
@@ -169,9 +149,9 @@ table {
 					<p class="lead"
 						style="float: left; margin-top: -25px; font-size: 20px; font-weight: bold; margin-left: -37px; padding-bottom: 50px;">총
 						결제금액</p>
-					<c:set var="per" value="0.98" />
+					<c:set var="per" value="1" />
 					<c:if test="${userMap.AUTHOR_NAME=='우수' }">
-						<c:set var="per" value="0.95" />
+						<c:set var="per" value="0.97" />
 					</c:if>
 					<p class="lead"
 						style="float: left; margin-top: -25px; font-size: 30px; color: #f46c63; font-weight: bold; margin-left: -37px; clear: both; text-align: left;">${packVo.packPrice*per}원</p>
@@ -185,5 +165,7 @@ table {
 	</div>
 	</div>
 	<input type="hidden" name="price" value="${packVo.packPrice*per}" id="price">
+	<input type="hidden" name="price" value="${packVo.packNo}" id="packNo">
+	<input type="hidden" name="price" value="${userNo}" id="userNo">
 </div>
 <%@include file="../incs/bottom_main.jsp"%>
