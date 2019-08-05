@@ -219,21 +219,21 @@ ALTER TABLE LOGS
 
 -- 고객_주문
 CREATE TABLE ORDERS (
-	ORDER_LIST_NO  NUMBER       NOT NULL, -- 고객_주문번호
-	ORDER_DATE     DATE         DEFAULT sysdate, -- 주문일
-	PURCHASE_PRICE NUMBER       NULL,     -- 패키지구매시점금액
-	COUPON_CHECK   VARCHAR2(10) DEFAULT 'N', -- 쿠폰적용여부
-	PURCHASE_DATE  DATE         NULL,     -- 구매확정일자
-	DELFALG        VARCHAR2(10) DEFAULT 'N' NOT NULL, -- 의뢰마감결과
-	PAY_CHECK      VARCHAR2(10) DEFAULT 'N' NULL, -- 결제여부
-	PACK_NO        NUMBER       NOT NULL, -- 패키지번호
-	USER_NO        NUMBER       NOT NULL  -- 회원번호
+	ORDER_NO     NUMBER       NOT NULL, -- 고객_주문번호
+	ORDER_ID     VARCHAR2(50) NULL,     -- 주문ID
+	ORDER_DATE   DATE         DEFAULT sysdate, -- 주문일
+	PRICE        NUMBER       NULL,     -- 구매금액
+	CONFIRM_DATE DATE         DEFAULT sysdate, -- 판매확정일자
+	PROGRESS     VARCHAR2(10) DEFAULT 'W', -- 진행상태
+	FINISH_DATE  DATE         DEFAULT sysdate, -- 거래종료일
+	PACK_NO      NUMBER       NOT NULL, -- 패키지번호
+	USER_NO      NUMBER       NOT NULL  -- 회원번호
 );
 
 -- 고객_주문 기본키
 CREATE UNIQUE INDEX PK_ORDERS
 	ON ORDERS ( -- 고객_주문
-		ORDER_LIST_NO ASC -- 고객_주문번호
+		ORDER_NO ASC -- 고객_주문번호
 	);
 
 -- 고객_주문
@@ -241,7 +241,7 @@ ALTER TABLE ORDERS
 	ADD
 		CONSTRAINT PK_ORDERS -- 고객_주문 기본키
 		PRIMARY KEY (
-			ORDER_LIST_NO -- 고객_주문번호
+			ORDER_NO -- 고객_주문번호
 		);
 
 -- 권한
@@ -971,7 +971,7 @@ ALTER TABLE PAY
 			ORDER_NO -- 고객_주문번호
 		)
 		REFERENCES ORDERS ( -- 고객_주문
-			ORDER_LIST_NO -- 고객_주문번호
+			ORDER_NO -- 고객_주문번호
 		);
 
 -- 관리자
@@ -1169,7 +1169,7 @@ ALTER TABLE COUPON
 			ORDER_NO -- 고객_주문번호
 		)
 		REFERENCES ORDERS ( -- 고객_주문
-			ORDER_LIST_NO -- 고객_주문번호
+			ORDER_NO -- 고객_주문번호
 		);
 
 -- 상품상세이미지
@@ -1334,7 +1334,7 @@ ALTER TABLE FILES
 			ORDER_NO -- 고객_주문번호
 		)
 		REFERENCES ORDERS ( -- 고객_주문
-			ORDER_LIST_NO -- 고객_주문번호
+			ORDER_NO -- 고객_주문번호
 		);
 
 -- 메시지

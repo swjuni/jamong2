@@ -10,19 +10,19 @@
 		    select A.*, rownum as RNUM
 		    from 
 		    (
-				select o.ORDER_LIST_NO, o.ORDER_DATE, o.USER_NO, m.PRODUCT_NAME,
+				select o.ORDER_NO, o.ORDER_DATE, o.USER_NO, m.PRODUCT_NAME,
 				p.PACK_NAME, pa.PAY_NO, pa.PAY_METHOD, pa.PRICE, pa.REGDATE 
 				from menu_info m join package p
 				on m.PRODUCT_NO = p.PRODUCT_NO
 				join orders o
 				on o.PACK_NO = p.PACK_NO
 				join pay pa
-				on pa.ORDER_NO = o.ORDER_LIST_NO
+				on pa.ORDER_NO = o.ORDER_NO
 				<where>
 					<if test="userNo!=null and userNo!=''">
 						o.user_No=#{userNo}
 					</if>
-					and o.PAY_CHECK = 'Y'
+					and o.progress = 'F'
 					and pa.regdate>=#{startDay}
 					<![CDATA[
 					and pa.regdate<to_date(#{endDay})+1
@@ -38,7 +38,7 @@
 	<select id="selectTotalRecord" parameterType="dateSearchVo" resultType="int">
 		select count(*)
 		from pay p join orders o
-		on p.ORDER_NO = o.ORDER_LIST_NO
+		on p.ORDER_NO = o.ORDER_NO
 		<where>
 			<if test="userNo!=null and userNo!=''">
 				user_No=#{userNo}
