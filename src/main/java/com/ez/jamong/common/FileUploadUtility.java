@@ -39,6 +39,7 @@ public class FileUploadUtility {
 	public static final int BANNER_UPLOAD=5;	//배너 파일 업로드에 사용
 	public static final int MESSAGEFILE_UPLOAD=6;	//메시지 파일 업로드에 사용
 	public static final int EXPERT_UPLOAD=7; //전문가 사진 업로드에 사용
+	public static final int EXCEL_UPLOAD=8; //엑셀 업로드에 사용
 	
 	@Resource(name="fileUploadProperties")
 	Properties props;
@@ -138,6 +139,8 @@ public class FileUploadUtility {
 				result = props.getProperty("message.upload.path.test");
 			}else if(uploadPathGb==EXPERT_UPLOAD) {
 				result = props.getProperty("expert.upload.path.test");
+			}else if(uploadPathGb==EXCEL_UPLOAD) {
+				result = props.getProperty("excel.upload.path.test");
 			}
 		}else {
 			//배포 경로
@@ -156,6 +159,8 @@ public class FileUploadUtility {
 				key="message.upload.path";
 			}else if(uploadPathGb==EXPERT_UPLOAD) {
 				key="expert.upload.path";
+			}else if(uploadPathGb==EXCEL_UPLOAD) {
+				key="excel.upload.path";
 			}
 			
 			String path = props.getProperty(key);	//pds_upload
