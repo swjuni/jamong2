@@ -15,7 +15,7 @@
 	
 	<!-- 모든 관리자 출력 -->
 	<select id="selectAdminAll" resultType="adminVo">
-		select * from administrator
+		select * from administrator where admin_id not in ('admin')
 	</select>
 	
 	<update id="gradeAdminUpdate" parameterType="adminVo" >

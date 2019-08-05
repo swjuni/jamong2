@@ -60,11 +60,22 @@ public class AuthorController {
 	
 	@RequestMapping("/manage/grade_select.do")
 	@ResponseBody
-	public List<Integer> gradeSelect() {
+	public List<AuthorVO> gradeSelect() {
 		logger.info("등급 List");
 		
-		List<Integer> list = authorService.selectAuthorityList();
+		List<AuthorVO> list = authorService.selectAuthorityList();
 		logger.info("등급 List={}",list);
+		
+		return list;
+	}
+	
+	@RequestMapping("/manage/gradeName_select.do")
+	@ResponseBody
+	public List<String> gradeNameSelect() {
+		logger.info("등급 이름 List");
+		
+		List<String> list = authorService.selectAuthorName();
+		logger.info("등급 이름 List={}",list);
 		
 		return list;
 	}

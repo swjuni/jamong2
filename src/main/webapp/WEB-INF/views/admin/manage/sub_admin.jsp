@@ -97,8 +97,18 @@
     		dataType: "json",
     		success : function(res) {
     			for(var i=0;i<res.length;i++){
-    				var $a = "<option value="+res[i]+">"+res[i]+"</option>";
+    				var $a = "<option value="+res[i].authorNo+">"+res[i].authorName+"</option>";
     				$('.admininsertpok').append($a);
+    			}
+    		}
+    		});
+		
+		$.ajax({
+    		url :"<c:url value='/admin/manage/gradeName_select.do'/>",
+    		dataType: "json",
+    		success : function(res) {
+    			for(var i=0;i<res.length;i++){
+    				$('.adminauthor').eq(i).text(res[i]);
     			}
     		}
     		});
@@ -162,8 +172,8 @@
                                                 <tr>
                                                     <th>id</th>
                                                     <th>pwd</th>
-                                                    <th>name</th>
-                                                    <th>position</th>
+                                                    <th>분류</th>
+                                                    <th>권한명</th>
                                                     <th><button type="button"
 													class="adminadd btn btn-success m-b-10 m-l-5" name="add">추가</button></th>
                                                 </tr>
@@ -177,15 +187,15 @@
                                                 	</tr>
                                                 </c:if>
                                                 <c:if test="${!empty list }">
-                                                <c:forEach var="vo" items="${list }">
+                                                <c:forEach var="vo" items="${list }" varStatus="status">
                                                 <tr>
                                                 
                                                     <td class="adminid">${vo.adminId }</td>
-                                                    <td class="adminpwd">●●●●●●</td>
+                                                    <td class="adminpwd">******</td>
                                                     <td class="adminname">${vo.adminName }</td>
-                                                    <td class="adminauthor">${vo.authorNo }</td>
+                                                    <td class="adminauthor"></td>
                                                     <td>
-                                                    <button type="button" class="adminedit btn btn-info m-b-10 m-l-5">수정</button>
+                                                    <!-- <button type="button" class="adminedit btn btn-info m-b-10 m-l-5">수정</button> -->
                                                     <button type="button" class="admineditok btn btn-info m-b-10 m-l-5" style="display: none">확인</button>
                                                     <button type="button" class="admindelete btn btn-danger m-b-10 m-l-5" >삭제</button>
                                                     </td>

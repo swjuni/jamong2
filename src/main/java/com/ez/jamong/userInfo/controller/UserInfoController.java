@@ -189,6 +189,8 @@ public class UserInfoController {
 	public String userInfo(HttpSession session,Model model,
 			@ModelAttribute UserInfoVO vo) {
 		logger.info("회원정보 수정 화면");
+		UserInfoVO ivo = userInfoService.selectByuserNo((Integer)session.getAttribute("userNo"));
+		model.addAttribute("ivo",ivo);
 		
 		return "/main/mypage/myInfo";
 	}
