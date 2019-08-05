@@ -42,7 +42,7 @@
 									        <div class="panel-body">
 												<ul style="list-style: none; padding-top: 10px; padding-left: 30px;">
 					                    			<li><a href="#">나의 서비스</a></li>
-					                    			<li><a href="#">판매관리</a></li>
+					                    			<li><a href="<c:url value='/mypage/orders/sellList.do'/>">판매관리</a></li>
 					                    			<li><a href="#">수익관리</a></li>
 					                    			<li><a href="<c:url value='/main/bannerexpoert/bannerAdd.do'/>">배너 관리</a></li>
 					                    			<li><a href="#">인증(프로필)정보</a></li>

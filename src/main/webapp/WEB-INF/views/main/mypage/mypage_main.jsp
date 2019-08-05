@@ -12,9 +12,11 @@
 						<div class="seo-details">
 							<div class="col-md-3 col-sm-6">
 								<div class="service-box">
+									<a href="<c:url value='/mypage/orders/buyList.do'/>">
 									<i class="flaticon-presentation"></i>
 									<h4>구매관리</h4>
 									<p>구매 한 목록을 관리</p>
+									</a>
 								</div>
 								<!-- end service-box -->
 								<div class="service-box nmb">
