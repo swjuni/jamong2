@@ -199,7 +199,6 @@ public class PayController {
 				System.out.println("response is error : " + response.getStatusLine().getStatusCode());
 				result="결제 실패";
 			}
-
 		}catch (Exception e) {
 			logger.info(e.getLocalizedMessage());
 			logger.info(e.getStackTrace()+"");

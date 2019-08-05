@@ -37,16 +37,8 @@
 			    	  		//기타 필요한 데이터가 있으면 추가 전달
 			    		}
 			    		})
-			    		.done(function() {
-			                alert("요청 성공");
-			            })
-			            .fail(function() {
-			                alert("요청 실패");
-			                location.href='<c:url value="/main/index_main.do"/>';
-			            })
-			            .always(function() {
-			                alert("요청 완료");
-			            });
+		                alert("결제 완료");
+		                location.href='<c:url value="/main/index_main.do"/>';
 				} else {
 					msg = '결제에 실패하였습니다.';
 					msg += '에러내용 : ' + rsp.error_msg;
@@ -138,10 +130,10 @@ table {
 						style="float: left; margin-top: -25px; font-size: 17px; font-weight: bold; margin-left: -37px; clear: both; width: 50%; text-align: left; padding-top: 65px;">
 						회원 등급 할인:
 						<c:if test="${userMap.AUTHOR_NAME=='일반' }">
-							<span style="float: right;">2%</span>
+							<span style="float: right;">0%</span>
 						</c:if>
 						<c:if test="${userMap.AUTHOR_NAME=='우수' }">
-							<span style="float: right;">5%</span>
+							<span style="float: right;">3%</span>
 						</c:if>
 					</p>
 				</div>
