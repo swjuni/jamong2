@@ -452,7 +452,7 @@ opacity: 0.7;
 											</div><!-- end pricing-details -->
 											<div class="pricing-footer text-center">
 												<div class="case-box">
-													<a href="#" class="btn btn-primary c${packI }btn">주문하기</a>
+													<a href="<c:url value='/main/payCheck.do?packageNo=${packVo.packNo }'/>" class="btn btn-primary c${packI }btn">주문하기</a>
 												</div>
 											</div>
 								        </div>
