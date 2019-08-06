@@ -30,15 +30,23 @@
 			    	jQuery.ajax({
 			    		url: '<c:url value="/payments/complete/check.do"/>', //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
 			    		type: 'POST',
-			    		dataType: 'json',
 			    		async:false,
 			    		data: {
 			    			imp_uid: rsp.imp_uid,
+			    			pack_no: packNo
 			    	  		//기타 필요한 데이터가 있으면 추가 전달
 			    		}
 			    		})
-		                alert("결제 완료");
-		                location.href='<c:url value="/main/index_main.do"/>';
+			    		.done(function (data) {
+			    			if(data="fail"){
+								alert("위조된 결제 시도(고객센터로 연락주세요)");
+			    			}else{
+								location.href='<c:url value="/mypage/paySuccess.do"/>';
+			    			}
+   					   })
+   					   .fail(function(data){
+   						   alert(data);
+   					   })
 				} else {
 					msg = '결제에 실패하였습니다.';
 					msg += '에러내용 : ' + rsp.error_msg;

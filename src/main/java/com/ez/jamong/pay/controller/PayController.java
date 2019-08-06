@@ -123,10 +123,13 @@ public class PayController {
 	}
 	
 	@RequestMapping("/payments/complete/check.do")
+	@ResponseBody
 	public String checkCorrect(HttpServletRequest request) {
 		String result="";
 		logger.info("method={}",request.getMethod());
 		String imp_uid=request.getParameter("imp_uid");
+		String packNo=request.getParameter("pack_no");
+		PackageVO packageVo=packageService.selectByPackageNO(Integer.parseInt(packNo));
 		logger.info("imp_uid={}",imp_uid);
 		String access_token="";
 		//토큰 생성
@@ -183,18 +186,23 @@ public class PayController {
 				JSONObject res=(JSONObject)jsonoj.get("response");
 				long purchasePrice=(Long)res.get("amount");
 				String orderId=(String)res.get("imp_uid");
-				String packNo=(String)res.get("name");
+				String packageNo=(String)res.get("name");
 				String userNo=(String)res.get("buyer_name");
 				logger.info("json={}",res);
-				//db에 저장
-				orderVo.setOrderId(orderId);
-				orderVo.setPackNo(Integer.parseInt(packNo));
-				orderVo.setUserNo(Integer.parseInt(userNo));
-				orderVo.setPrice(purchasePrice);
-				logger.info("orderVo={}",orderVo);
-				int cnt=ordersService.insertOrders(orderVo);
-				logger.info("DB저장 결과cnt={}",cnt);
-				return "redirect:/main/index_main.do";
+				if(packageVo.getPackPrice()==purchasePrice) {
+					//db에 저장
+					orderVo.setOrderId(orderId);
+					orderVo.setPackNo(Integer.parseInt(packageNo));
+					orderVo.setUserNo(Integer.parseInt(userNo));
+					orderVo.setPrice(purchasePrice);
+					logger.info("orderVo={}",orderVo);
+					int cnt=ordersService.insertOrders(orderVo);
+					logger.info("DB저장 결과cnt={}",cnt);
+					result="success";
+				}else {
+					result="fail";
+					throw new Exception();
+				}
 			} else {
 				System.out.println("response is error : " + response.getStatusLine().getStatusCode());
 				result="결제 실패";
@@ -204,7 +212,12 @@ public class PayController {
 			logger.info(e.getStackTrace()+"");
 			result="결제 실패";
 		}
-		return "redirect:/main/index_main.do";
+		return result;
 	}//
+	
+	@RequestMapping("/mypage/paySuccess.do")
+	public String pay_success() {
+		return "main/payment/paySuccess";
+	}
 	
 }
