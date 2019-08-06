@@ -42,7 +42,7 @@
                                         </div>
                                       </div>
                                       <div class="form-group">
-                                        <label class="col-lg-2 control-label">받는사람(,로 구분하여 여러명에게 보내기)</label>
+                                        <label class="col-lg-2 control-label">받는사람</label>
                                         <div class="col-lg-10">
                                           <input type="text" placeholder="받는 사람(이메일)" id="modalrId" name="userId2" class="form-control" readonly="readonly">
                                         </div>

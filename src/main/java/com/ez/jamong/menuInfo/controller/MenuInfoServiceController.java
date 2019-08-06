@@ -142,6 +142,9 @@ public class MenuInfoServiceController {
 			}	
 		}
 		
+		String ProductUserid=menuinfoService.selectFromProductUserId(productNo);
+		
+		model.addAttribute("ProductUserid", ProductUserid);
 		model.addAttribute("majorList",cmList);
 		model.addAttribute("packageList", packageList);
 		model.addAttribute("evalList", evalList);
@@ -181,7 +184,7 @@ public class MenuInfoServiceController {
 		model.addAttribute("expertName", expertName);
 		return "main/incs/menuListCategoryM";
 	}
-	
+
 	@RequestMapping(value = "/main/menuinfo/menuinfo_List.do")
 	public String menuinfoList_get(@ModelAttribute MenuInfoSearchVO searchVo, Model model) {
 		logger.info("카테고리별 상품 리스트 목록, 파라미터 searchVo={}", searchVo);

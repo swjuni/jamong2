@@ -153,6 +153,39 @@ background: black !important;
 background: black !important;
 opacity: 0.7;
 }
+
+.fileinput-button {
+  background: none repeat scroll 0 0 #eeeeee;
+  border: 1px solid #e6e6e6;
+  float: left;
+  margin-right: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.btn {
+    border-radius: 500px;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
 </style>
 <section class="section lb">
 	<div class="container">
@@ -404,7 +437,7 @@ opacity: 0.7;
                                     </div>
                                     <div class="col-md-12 col-sm-12">
                                         <label>Comment <span class="required">*</span></label>
-                                        <textarea class="form-control" name="review" placeholder=""></textarea>
+                                        <textarea class="form-control" name="review" placeholder="" ></textarea>
                                     </div>
                                     <div class="col-md-12 col-sm-12" style="margin-bottom: 15px; text-align: right;">
                                         <input type="submit" id="submit" name="submit" class="btn btn-primary" />
@@ -495,7 +528,8 @@ opacity: 0.7;
 							</c:if>
 							<div class="client-box" style="width: 120px; display: inline-block;">
 								<c:if test="${empty expertVo.fileName }">
-									<a href="#"><img src="/jamong/assets/images/bookingSystem/2.png" alt="" class="img-responsive"></a>
+									<a href="<c:url value='/main/menuinfo/menuinfo_List.do?expertNo=${expertVo.expertNo }'/>">
+									<img src="/jamong/assets/images/bookingSystem/2.png" alt="" class="img-responsive"></a>
 								</c:if>
 								<c:if test="${!empty expertVo.fileName }">
 									<a href="<c:url value='/main/menuinfo/menuinfo_List.do?expertNo=${expertVo.expertNo }'/>">
@@ -506,11 +540,61 @@ opacity: 0.7;
 							<div style="font-size: 14px;">연락가능시간 : </div>
 							<div style="font-size: 14px;">${expertVo.serviceableTime }</div>
 						</div><!-- end pricing-top -->
+						
+						<div class="inbox-body text-center">
+						 <%--modal --%>
+                            <div aria-hidden="true" role="dialog" tabindex="-1" id="myModal1" class="modal fade">
+                              <div class="modal-dialog" style="width:50%">
+                                <div class="modal-content text-left">
+                                  <div class="modal-header">
+                                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button"><i class="ti-close"></i></button>
+                                    <h4 class="modal-title">쪽지 보내기</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form class="form-horizontal" action="<c:url value='/main/mypage/message_send.do'/>" method="POST" enctype="multipart/form-data">
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label">보내는사람</label>
+                                        <div class="col-lg-10">
+                                          <input type="text" placeholder="받는 사람(이메일)" id="userId" name="userId" class="form-control" readonly="readonly"
+                                          value=${userId }>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label">받는사람</label>
+                                        <div class="col-lg-10">
+                                          <input type="text" placeholder="받는 사람(이메일)" id="userId2" name="userId2" class="form-control" readonly="readonly"
+                                         	value=${ProductUserid }>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label">내용</label>
+                                        <div class="col-lg-10">
+                                          <textarea rows="10" cols="30" class="form-control" id="contents" name="contents" style="border-color: orange;"></textarea>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                          <span class="btn green fileinput-button">
+                                          <input type="file" name="files[]" multiple="multiple" class="btn green fileinput-button">
+                                          </span>
+                                          <button class="btn btn-primary" type="submit">보내기</button>
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <%--modal --%>
+                            </div>
+                            
 						<div class="pricing-details" style="padding-bottom: 20px; background: white;">
 							<div class="pricing-footer text-center">
 								<div style="background: white;" >  
-									<a href="#" class="btn btn-primary" style="background:#4d4d4d; border-radius: 7px; width: 80%;
-									padding: 8px; font-size: 13px; border-left: 1px solid #efefef; border-right: 1px solid #efefef;">
+									<a href="#myModal1" class="btn btn-primary" style="background:#4d4d4d; border-radius: 7px; width: 80%;
+									padding: 8px; font-size: 13px; border-left: 1px solid #efefef; border-right: 1px solid #efefef;"
+									 data-toggle="modal">
 									<i class="fa fa-envelope" style="color: white; margin-right: 8px; font-size: 1.1em;"></i>
 									전문가에게 문의</a>
 								</div> 

@@ -3,10 +3,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../incs/top_mypage.jsp" %>
 <c:import url="/mypage/sideMypage.do"/>
+<link href="<c:url value='/assets/css/style2.css'/>" rel="stylesheet">
+<link href="<c:url value='/assets/css/lib/themify-icons.css'/>" rel="stylesheet">
 <style type="text/css">
-
+	.dt-buttons{
+		margin-bottom: 0;
+	}
+	.dataTables_info{
+		margin-right: 50px;
+	}
+	.paginate_button{
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	.paginate_button.active a{
+		color: red;
+	}
+	.table{
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	.header{
+		margin-left: 0px;
+	}
 </style>
-
 <!-- 각자가 분담해서 디자인할 바디 태그 -->
     <div class="content-wrap">
         <div class="main">
@@ -117,34 +137,12 @@
 							        
 									<!-- <button class="btn btn-primary" type="submit">등록</button> -->
 									<div class="text-center">
-							            <c:if test="${map['APPROVE_DELFLAG'] == 'Y' }">
-								            <input type = "button" value="승인 취소" class="btn btn-primary"
-								            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${map["ADS_NO"] }&activation=${map["ACTIVATION"] }&approveDelflag=${map["APPROVE_DELFLAG"] }'/>'">&nbsp;&nbsp;
-											
-											
-								            <c:if test="${map['ACTIVATION'] == 'Y' }">
-									            <input type = "button" value="비활성화" class="btn btn-primary"
-									            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${map["ADS_NO"] }&activation=${map["ACTIVATION"] }&approveDelflag=${""}'/>'">&nbsp;&nbsp;
-											</c:if>
-											<c:if test="${map['ACTIVATION'] == 'N' }">
-									            <input type = "button" value="활성화" class="btn btn-primary"
-									            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${map["ADS_NO"] }&activation=${map["ACTIVATION"] }&approveDelflag=${""}'/>'">&nbsp;&nbsp;
-								            </c:if>
-										</c:if>
-										<c:if test="${map['APPROVE_DELFLAG'] == 'N' }">
-								            <input type = "button" value="승인 요청" class="btn btn-primary"
-								            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${map["ADS_NO"] }&activation=${""}&approveDelflag=${map["APPROVE_DELFLAG"] }'/>'">&nbsp;&nbsp;
-							            </c:if>
-							            <c:if test="${map['APPROVE_DELFLAG'] == 'C' }">
-								            <input type = "button" value="승인" class="btn btn-primary"
-								            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${map["ADS_NO"] }&activation=${""}&approveDelflag=${map["APPROVE_DELFLAG"] }'/>'">&nbsp;&nbsp;
-							            </c:if>
 							            <input type = "Button" value="삭제" class="btn btn-primary"
-				            			onclick="location.href='<c:url value='/admin/bannerexpoert/bannerDelete.do?adsNo=${map["ADS_NO"] }&fileName=${map["FILE_NAME"] }'/>'">&nbsp;&nbsp;
+				            			onclick="location.href='<c:url value='/main/bannerexpoert/bannerDelete.do?adsNo=${map["ADS_NO"] }&fileName=${map["FILE_NAME"] }'/>'">&nbsp;&nbsp;
 							            <input type = "button" value="수정" class="btn btn-primary"
-							            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerEdit.do?adsNo=${map["ADS_NO"] }'/>'">&nbsp;&nbsp;
+							            onclick="location.href='<c:url value='/main/bannerexpoert/bannerEdit.do?adsNo=${map["ADS_NO"] }'/>'">&nbsp;&nbsp;
 							            <input type = "Button" value="글목록" class="btn btn-primary"
-							            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerList.do'/>'">
+							            onclick="location.href='<c:url value='/main/bannerexpoert/bannerList.do'/>'">
 							        </div>
                                 </div>
                             </div>
@@ -160,7 +158,7 @@
 
 
 
-<%@include file="../incs/bottom_main.jsp" %>
+
 <!-- 화면별 고유 하단js 포함할 위치 -->
 	<script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
 	<script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>
@@ -181,4 +179,4 @@
     <!-- scripit init-->
 
 </body>
-</html>   
+</html>

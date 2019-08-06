@@ -25,4 +25,7 @@ public interface MenuInfoDAO {
 	//원준 상품목록화면 사용 메서드
 	public List<MenuInfoExtendsVO> menuinfoByList(MenuInfoSearchVO searchVo);
 	public int selectTotalCount(MenuInfoSearchVO searchVo);
+	
+	//양훈 상품등록한 회원 아이디 가져오기
+	public String selectFromProductUserId(int productNo);
 }

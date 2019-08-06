@@ -48,7 +48,7 @@
 						                    			<li><a href="#">수익관리</a></li>
 						                    			<li><a href="<c:url value='/mypage/registExpert.do?state=expert'/>">프로필 정보</a></li>
 						                    			<li><a href="<c:url value='/mypage/orders/sellList.do'/>">판매관리</a></li>
-						                    			<li><a href="<c:url value='/main/bannerexpoert/bannerAdd.do'/>">배너 관리</a></li>
+						                    			<li><a href="<c:url value='/main/bannerexpoert/bannerList.do'/>">배너 관리</a></li>
 						                    			<li><a href="<c:url value='/mypage/mypage.do'/>">마이페이지</a></li>
 						                    			
 						                    		</ul>

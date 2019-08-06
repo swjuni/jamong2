@@ -71,7 +71,12 @@
 		    dots: true,
 		    nav: true,
 		    navText: ['<span class="icon-keyboard_arrow_left">', '<span class="icon-keyboard_arrow_right">']
-		  });
+		 });
+		
+		$('#searchbutton').click(function(){
+			window.location.href=
+				"/jamong/main/menuinfo/menuinfo_List.do?searchCondition=product_Name&searchKeyword="+$('#search').val();
+		});
 	});
 
 </script>
@@ -116,7 +121,7 @@
 			</div><!-- end container -->
 		</header><!-- end header -->
 		<c:import url="/todayList.do"/>
-	<section class="section transheader bgcolor">
+	<section class="section transheader bgcolor" style="padding-top:150px ">
 
 			<div class="col-lg-6" style="margin: auto;width:100%;height:500px;">
 				<div class="card">
@@ -169,7 +174,7 @@
 			</c:if>
 			</ul>
 		</div>
-	<form name="searchKeyword" class="calculateform" method="post" action="" style="margin-top: 20px; background: antiquewhite;">
+	<form name="searchForm" class="calculateform" style="margin-top: 20px; background: antiquewhite;">
 		        <div class="item-top form-inline">
 		            <div class="form-group">
 		                <div class="input-group2">
@@ -180,6 +185,6 @@
 		                    <input type="hidden" name="idx" id="idx">
 		                </div>
 		            </div>
-		            <input type="submit" name="send" value="Search" class="btn btn-default">
+		            <input type="button" name="send" value="Search" class="btn btn-default" id="searchbutton">
 		        </div>
 		</form>

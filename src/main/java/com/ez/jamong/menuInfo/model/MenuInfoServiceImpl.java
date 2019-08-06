@@ -101,4 +101,9 @@ public class MenuInfoServiceImpl implements MenuInfoService{
 	public int registProduct(int productNo) {
 		return menuInfoDao.registProduct(productNo);
 	}
+
+	@Override
+	public String selectFromProductUserId(int productNo) {
+		return menuInfoDao.selectFromProductUserId(productNo);
+	}
 }

@@ -56,13 +56,13 @@
                                         <table id="bootstrap-data-table-export" class="table table-bordered table-hover">
                                             <thead>
                                                 <tr style="background-color: #C8D0FE; text-align: center;">
-                                                    <th>No</th>
-                                                    <th>상품명(글자 수 제한)</th>
-                                                    <th>상품 요약 설명(글자 수 제한)</th>
-                                                    <th>정렬레벨</th>
-                                                    <th>전문가 닉네임</th>
-                                                    <th>활성화 상태</th>
-                                                    <th>등록일</th>
+                                                    <th style="width: 5%">No</th>
+                                                    <th style="width: 18%">상품명</th>
+                                                    <th style="width: 35%">상품 요약 설명</th>
+                                                    <th style="width: 10%">정렬레벨</th>
+                                                    <th style="width: 12%">전문가 닉네임</th>
+                                                    <th style="width: 10%">활성화 상태</th>
+                                                    <th style="width: 10%">등록일</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -77,13 +77,12 @@
 		                                                    	</a>
 		                                                    </td>
 		                                                    <td><!-- 카테고리 설명이 긴 경우 30글자만 보여주기 -->
-															<%--	<c:if test="${fn:length(vo.summary) >=30 }">
-																		${fn:substring(vo.summary, 0,30)}...
-																	</c:if>
-																	<c:if test="${fn:length(vo.summary) <30 }">					
-																		${vo.summary}
-																	</c:if> --%>
-																	${map['SUMMARY'] }
+																<c:if test="${fn:length(map['SUMMARY']) >=24 }">
+																	${fn:substring(map['SUMMARY'], 0,24)}...
+																</c:if>
+																<c:if test="${fn:length(map['SUMMARY']) <24 }">					
+																	${map['SUMMARY']}
+																</c:if>
 															</td>
 															<td>
 		                                                    	${map['ORDER_LEVEL']}
@@ -100,7 +99,7 @@
 	                                                   		 	</c:if>	
 		                                                    </td>
 		                                                    <td>
-		                                                    	${map['REGDATE']}
+		                                                    	<fmt:formatDate value="${map['REGDATE'] }" pattern="yyyy-MM-dd"/>
 		                                                    </td>
 		                                                </tr>
 	                                            	</c:forEach>
