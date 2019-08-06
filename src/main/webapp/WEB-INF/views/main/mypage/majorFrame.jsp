@@ -154,8 +154,9 @@ $(function(){
 		background: #f58566bf;
 		color:white;
 		padding:4px 9px;
-		border-radius:12px;
+		border-radius:5px;
 		margin-right:5px;
+		margin-bottom:10px;
 		cursor:pointer;
 		display: -webkit-inline-box;
 	}

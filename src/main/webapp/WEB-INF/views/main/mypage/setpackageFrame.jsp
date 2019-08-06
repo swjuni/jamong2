@@ -4,18 +4,12 @@
 <script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
 <script type="text/javascript">
 $(function(){
-<<<<<<< HEAD
 	$(".add").hide();
-=======
-	$("form").submit(function(){
-		opener.parent.location.href='<c:url value="/mypage/service.do?state=service"/>';
-		opener.parent.location.replace('<c:url value="/mypage/service.do?state=service"/>');
-	    //window.close();
-	})
->>>>>>> branch 'master' of https://github.com/swjuni/jamong2.git
+	
 	$("input[type=text]").on("keyup", function() {
 	    $(this).val($(this).val().replace(/[^0-9]/g,""));
 	});
+	
 	$(".remove").click(function(){
 		$(this).hide();
 		$(this).parent().next(".add").show();
@@ -344,7 +338,7 @@ select{
 										</li>
 									</ul>
 									</div>
-									<img alt="" src="<c:url value='/resources/images/add_package.png'/>" class="add">
+									<img alt="" src="<c:url value='/resources/images/add_package.png'/>" class="add" style="margin-left: 27px;">
 									<a class="btn btn-primary" style="width: 230px; margin-right: 355px; margin-top: 60px;"><input type="submit" value="서비스등록하기" style="background: none; border: none; "></a>
 									<input type="text" name="productNo" value="${param.productNo }">
 									</form>

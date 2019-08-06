@@ -1,5 +1,7 @@
 package com.ez.jamong.expert_profile.model;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,6 +29,11 @@ public class ExpertProfileDAOMybatis implements ExpertProfileDAO{
 	@Override
 	public ExpertProfileVO selectByExpertNo(int expertNo) {
 		return session.selectOne(namespace+"selectByExpertNo",expertNo);
+	}
+
+	@Override
+	public int updateLicense(Map<String, Object> map) {
+		return session.update(namespace+"updateLicense",map);
 	}
 	
 }
