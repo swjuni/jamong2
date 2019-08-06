@@ -15,7 +15,7 @@ $(function(){
 	$("form").submit(function(){
 		opener.parent.location.href='<c:url value="/mypage/service.do?state=service"/>';
 		opener.parent.location.replace('<c:url value="/mypage/service.do?state=service"/>');
-	    window.close();
+	    //window.close();
 	})
 	$("input[type=text]").on("keyup", function() {
 	    $(this).val($(this).val().replace(/[^0-9]/g,""));

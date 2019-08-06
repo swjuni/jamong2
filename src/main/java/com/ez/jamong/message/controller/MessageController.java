@@ -66,7 +66,7 @@ public class MessageController {
 		cnt = messageService.updateRecieveMessage(messageNo);
 
 		logger.info("수신자 휴지통 업데이트 cnt = {}",cnt);
-		return "main/mypage/message";
+		return "redirect:/main/mypage/message.do";
 	}
 	
 	@RequestMapping("/main/mypage/messageup2.do")
@@ -75,7 +75,7 @@ public class MessageController {
 		int cnt = 0;
 		cnt = messageService.updateSendMessage(messageNo);
 		logger.info("발신자 휴지통 업데이트 cnt = {}",cnt);
-		return "main/mypage/message";
+		return "redirect:/main/mypage/message.do";
 	}
 	
 	@RequestMapping("/main/mypage/messageup3.do")
@@ -85,7 +85,7 @@ public class MessageController {
 		cnt = messageService.deleteRecieveMessage(messageNo);
 
 		logger.info("수신자 휴지통에서 삭제 cnt = {}",cnt);
-		return "main/mypage/message";
+		return "redirect:/main/mypage/message.do";
 	}
 	
 	@RequestMapping("/main/mypage/messageup4.do")
@@ -95,7 +95,7 @@ public class MessageController {
 		cnt = messageService.recoveryRecieveMessage(messageNo);
 
 		logger.info("수신자 휴지통에서 복구 cnt = {}",cnt);
-		return "main/mypage/message";
+		return "redirect:/main/mypage/message.do";
 	}
 	
 	@RequestMapping(value="/main/mypage/message_send.do",method=RequestMethod.POST)

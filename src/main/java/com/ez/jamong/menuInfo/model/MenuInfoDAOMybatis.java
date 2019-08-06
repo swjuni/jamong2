@@ -85,4 +85,9 @@ public class MenuInfoDAOMybatis implements MenuInfoDAO{
 	public int registProduct(int productNo) {
 		return sqlSession.update(namespace+"registProduct",productNo);
 	}
+	
+	@Override
+	public String selectFromProductUserId(int productNo) {
+		return sqlSession.selectOne(namespace+"selectFromProductUserId",productNo);
+	}
 }
