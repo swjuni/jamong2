@@ -528,7 +528,8 @@ opacity: 0.7;
 							</c:if>
 							<div class="client-box" style="width: 120px; display: inline-block;">
 								<c:if test="${empty expertVo.fileName }">
-									<a href="#"><img src="/jamong/assets/images/bookingSystem/2.png" alt="" class="img-responsive"></a>
+									<a href="<c:url value='/main/menuinfo/menuinfo_List.do?expertNo=${expertVo.expertNo }'/>">
+									<img src="/jamong/assets/images/bookingSystem/2.png" alt="" class="img-responsive"></a>
 								</c:if>
 								<c:if test="${!empty expertVo.fileName }">
 									<a href="<c:url value='/main/menuinfo/menuinfo_List.do?expertNo=${expertVo.expertNo }'/>">

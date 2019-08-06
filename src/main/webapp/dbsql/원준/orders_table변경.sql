@@ -6,9 +6,9 @@ CREATE TABLE ORDERS (
 	ORDER_ID     VARCHAR2(50) NULL,     -- 주문ID
 	ORDER_DATE   DATE         DEFAULT sysdate, -- 주문일
 	PRICE        NUMBER       NULL,     -- 구매금액
-	CONFIRM_DATE DATE         DEFAULT sysdate, -- 판매확정일자
+	CONFIRM_DATE DATE         NULL, -- 판매확정일자
 	PROGRESS     VARCHAR2(10) DEFAULT 'W', -- 진행상태
-	FINISH_DATE  DATE         DEFAULT sysdate, -- 거래종료일
+	FINISH_DATE  DATE         NULL, -- 거래종료일
 	PACK_NO      NUMBER       NOT NULL, -- 패키지번호
 	USER_NO      NUMBER       NOT NULL  -- 회원번호
 );

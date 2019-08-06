@@ -10,4 +10,99 @@
 		insert into orders(order_no, order_id, price, user_no, pack_no)
 		values(#{orderNo},#{orderId},#{price},#{userNo},#{packNo})
 	</insert>
+	
+	<select id="selectByUserNo" parameterType="dateSearchVo" resultType="map">
+		select *
+		from
+		(
+		    select A.*, rownum as RNUM
+		    from 
+		    (
+				select o.*, m.PRODUCT_NAME, p.PACK_NAME, m.PRODUCT_NO
+				from orders o join package p
+				on o.PACK_NO = p.PACK_NO
+				join menu_info m
+				on m.PRODUCT_NO = p.PRODUCT_NO
+				<where>
+					<if test="userNo!=null and userNo!=''">
+						o.user_No=#{userNo}
+					</if>
+					and o.order_date>=#{startDay}
+					<![CDATA[
+					and o.order_date<to_date(#{endDay})+1
+					]]>
+				</where> 
+				order by o.order_no desc
+		    ) A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex}
+		 and RNUM<= #{firstRecordIndex} + #{recordCountPerPage}]]>
+	</select>
+	
+	<select id="selectTotalRecord" parameterType="dateSearchVo" resultType="int">
+		select count(*)
+		from orders
+		<where>
+			<if test="userNo!=null and userNo!=''">
+				user_No=#{userNo}
+			</if>
+			and order_date>=#{startDay}
+			<![CDATA[
+			and order_date<to_date(#{endDay})+1
+			]]>
+		</where>
+	</select>
+	
+	<select id="expertSelectByUserNo" parameterType="dateSearchVo" resultType="map">
+		select *
+		from
+		(
+		    select A.*, rownum as RNUM
+		    from 
+		    (
+				select m.EXPERT_NO, e.USER_NO, m.PRODUCT_NAME, m.PRODUCT_NO, p.PACK_NAME, u.USER_ID, u.USER_NAME, u.HP,
+				o.ORDER_NO, o.ORDER_ID, o.ORDER_DATE, o.PRICE, o.CONFIRM_DATE, o.PROGRESS,
+				o.FINISH_DATE, o.PACK_NO, o.USER_NO as buy_user_no
+				from orders o join package p
+				on o.PACK_NO = p.PACK_NO
+				join menu_info m
+				on m.PRODUCT_NO = p.PRODUCT_NO
+				join expert e
+				on e.EXPERT_NO = m.EXPERT_NO
+				join user_info u
+				on o.USER_NO = u.USER_NO
+				<where>
+					<if test="userNo!=null and userNo!=''">
+						e.user_No=#{userNo}
+					</if>
+					and o.order_date>=#{startDay}
+					<![CDATA[
+					and o.order_date<to_date(#{endDay})+1
+					]]>
+				</where> 
+				order by o.order_no desc
+		    ) A
+		)
+		<![CDATA[where RNUM>#{firstRecordIndex}
+		 and RNUM<= #{firstRecordIndex} + #{recordCountPerPage}]]>
+	</select>
+	
+	<select id="expertSelectTotalRecord" parameterType="dateSearchVo" resultType="int">
+		select count(*)
+		from orders o join package p
+		on o.PACK_NO = p.PACK_NO
+		join menu_info m
+		on m.PRODUCT_NO = p.PRODUCT_NO
+		join expert e
+		on e.EXPERT_NO = m.EXPERT_NO
+		<where>
+			<if test="userNo!=null and userNo!=''">
+				e.USER_NO=#{userNo}
+			</if>
+			and o.order_date>=#{startDay}
+			<![CDATA[
+			and o.order_date<to_date(#{endDay})+1
+			]]>
+		</where>
+	</select>
 </mapper>
