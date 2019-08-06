@@ -3,9 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../incs/top_mypage.jsp" %>
 <c:import url="/mypage/sideMypage.do"/>
-<style type="text/css">
 
+<link href="<c:url value='/assets/css/style2.css'/>" rel="stylesheet">
+<link href="<c:url value='/assets/css/lib/themify-icons.css'/>" rel="stylesheet">
+<style>
+.header{
+	margin-left: 0px;
+}
 </style>
+
 <script type="text/javascript" src="<c:url value='/assets/js/lib/jquery.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/se2/js/service/HuskyEZCreator.js'/>" charset="utf-8"></script><!-- 스마트에디터 js -->
 <script type="text/javascript">
@@ -84,7 +90,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="basic-form">
-                                        <form name="frmWrite" method="post" action="<c:url value='/admin/bannerexpoert/bannerAdd.do'/>" enctype="multipart/form-data">
+                                        <form name="frmWrite" method="post" action="<c:url value='/main/bannerexpoert/bannerAdd.do'/>" enctype="multipart/form-data">
                                         	<fieldset>
 												<legend></legend>
 												<div>
@@ -122,7 +128,7 @@
 										            <input type = "submit" value="등록" class="btn btn-primary" onclick="submitContents(frmWrite)">&nbsp;&nbsp;
 										            <input type = "reset" value="취소" class="btn btn-danger">&nbsp;&nbsp;
 										            <input type = "Button" value="목록" class="btn btn-primary"
-										            onclick="location.href='<c:url value='/admin/bannerexpoert/bannerList.do'/>'">
+										            onclick="location.href='<c:url value='/main/bannerexpoert/bannerList.do'/>'">
 										        </div>
 										        
                                             </fieldset>
@@ -147,7 +153,6 @@
 			</div>
 		</section>
 
-<%@include file="../incs/bottom_main.jsp" %>
 <!-- 화면별 고유 하단js 포함할 위치 -->
 	<script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
 	<script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>

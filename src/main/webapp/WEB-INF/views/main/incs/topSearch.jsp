@@ -116,7 +116,7 @@
 			</div><!-- end container -->
 		</header><!-- end header -->
 		<c:import url="/todayList.do"/>
-	<section class="section transheader bgcolor">
+	<section class="section transheader bgcolor" style="padding-top:150px ">
 
 			<div class="col-lg-6" style="margin: auto;width:100%;height:500px;">
 				<div class="card">
