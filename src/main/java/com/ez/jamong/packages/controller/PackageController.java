@@ -28,7 +28,9 @@ public class PackageController {
 	
 	@RequestMapping("/registPackage.do")
 	public String registSercie(@RequestParam String[] packName, @RequestParam String[] packDesc,HttpSession session,
-			@RequestParam int[] packPrice, @RequestParam int[] modifyCount, @RequestParam int[] workingPeriod,
+			@RequestParam(defaultValue = "0",required = false) int[] packPrice,
+			@RequestParam(defaultValue = "0",required = false) int[] modifyCount,
+			@RequestParam(defaultValue = "0",required = false) int[] workingPeriod,
 			Model model) {
 		List<PackageVO> list=new ArrayList<PackageVO>();
 		int expertNo=expertService.selectByUserNo(((Integer)session.getAttribute("userNo"))).getExpertNo();

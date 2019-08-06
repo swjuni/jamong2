@@ -64,12 +64,12 @@ public class RegistExpertController {
 		int userNo=(Integer)session.getAttribute("userNo");
 		expertVo.setUserNo(userNo);
 		int cnt=expertService.InsertExpert(expertVo);
-		String msg="", url="/mypage/registProfile.do?state=profile";//페이지 생성하고 바꾸기
+		String msg="", url="/mypage/registExpert.do?state=expert";//페이지 생성하고 바꾸기
 		if(cnt>0) {
 			msg="저장되었습니다.";
 		}else {
 			msg="저장에 실패하였습니다.";
-			url="/mypage/registExpert.do";
+			url="/mypage/registExpert.do?state=expert";
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
@@ -80,6 +80,11 @@ public class RegistExpertController {
 	public String registProfile(HttpSession session, Model model) {
 		int userNo=(Integer)session.getAttribute("userNo");
 		ExpertVO vo=expertService.selectByUserNo(userNo);
+		if(vo==null) {
+			model.addAttribute("msg","전문가 등록이 필요합니다.");
+			model.addAttribute("url","/mypage/registExpert.do?state=expert");
+			return "common/message";
+		}
 		model.addAttribute("expert",vo);
 		return "main/mypage/regist_profile";
 	}

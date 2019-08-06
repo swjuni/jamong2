@@ -147,6 +147,7 @@ $(function(){
 		padding: 10px;
 		width: 80px;
 		float:right;
+		margin-top: 20px;
 	}
 	
 	span{
@@ -201,7 +202,7 @@ $(function(){
 								</li>
 							</ul>
 		<button type="button" id="next" name="next"	class="btn btn-primary"
-			onclick="location.href='<c:url value="/mypage/licenseView.do?expertNo=${expert.expertNo }"/>'"
+			onclick="location.href='<c:url value="/mypage/licenseView.do?expertNo=${expert.expertNo }"/>'" style="margin-right: 220px;"
 		<c:if test='${empty majorM }'>
 			disabled="disabled"
 		</c:if>

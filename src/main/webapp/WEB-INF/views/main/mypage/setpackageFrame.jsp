@@ -1,31 +1,82 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!doctype html>
-<!--[if IE 9]> <html class="no-js ie9 fixed-layout" lang="en"> <![endif]-->
-<!--[if gt IE 9]><!--> <html class="no-js " lang="en"> <!--<![endif]-->
-<head>
-<%@include file="../incs/head_mypage.jsp" %>
-<meta charset="UTF-8">
-<title>setpackageFrame</title>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@include file="../incs/top_mypage.jsp"%>
 <script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
 <script type="text/javascript">
 $(function(){
-	$("form").submit(function(){
-		opener.parent.location.href='<c:url value="/mypage/service.do?state=service"/>';
-		opener.parent.location.replace('<c:url value="/mypage/service.do?state=service"/>');
-	    window.close();
-	})
+	$(".add").hide();
 	$("input[type=text]").on("keyup", function() {
 	    $(this).val($(this).val().replace(/[^0-9]/g,""));
 	});
 	$(".remove").click(function(){
-		$(this).parent().hide();
+		$(this).hide();
+		$(this).parent().next(".add").show();
+		$(this).parent().attr("style","opacity:0.2;");
+		$(this).parent().parent().attr("style","width:23%;");
+		$(this).parent().find("textarea").attr("disabled",true);
+		$(this).parent().find("input[type=text]").attr("disabled",true);
+		$(this).parent().find("select").attr("style","background:#ebebe4;");
+		$(this).parent().find("select").attr("disabled",true);
+	})
+	$(".dd").find("li").click(function(){
+		$(this).parent().parent().find(".remove").show();
+		$(this).parent().parent().next(".add").hide();
+		$(this).parent().parent().attr("style","opacity:1;");
+		$(this).parent().parent().parent().attr("style","width:23%;");
+		$(this).parent().parent().find("textarea").attr("disabled",false);
+		$(this).parent().parent().find("input[type=text]").attr("disabled",false);
+		$(this).parent().parent().find("select").attr("style","background:white;");
+		$(this).parent().parent().find("select").attr("disabled",false);
 	})
 })
 </script>
 <style type="text/css">
+.col-md-3 {
+	width: 290px;
+	margin-right: -40px;
+}
+
+.col-md-9 {
+	margin-left: 42px;
+	margin-top: 5px;
+}
+
+.mb30 {
+	margin-top: 12px;
+	width: 250px;
+	height: 1000px;
+}
+
+.col-md-5 {
+	margin-top: 9px;
+	width: 665px;
+	height: 1200px;
+}
+
+.form-group {
+	margin-bottom: 35px;
+}
+
+.contact-details li {
+	margin-bottom: 42px;
+	border-bottom: none;
+}
+
+button {
+	margin-left: 70px;
+}
+
+form .btn{
+	margin-right: 22px;
+	padding: 10px;
+	width: 80px;
+	float:right;
+}
+
+.service-list .col-md-4 {
+	width: 241px;
+}
+
 textarea{
 	width: 100%;
 	height: 100%;
@@ -33,6 +84,7 @@ textarea{
 }
 .big-pricing li{
 	height:100px;
+	background-color: #fce3cf4a;
 }
 .big-pricing li:nth-of-type(3){
 	height:50px;
@@ -53,14 +105,21 @@ select{
 .big-pricing{
 	width: 1298px;
 }
+.add{
+	width: 100px;
+	cursor: pointer;
+	margin-top: -505px;
+}
 </style>
-</head>
-<body>
-<form action="<c:url value='/mypage/registPackage.do'/>" name="form" method="post">
+<c:import url="/mypage/sideMypage.do"/>
+<!-- 아래부터 mypage 각자 코딩내용 작성 -->
+<div class="row service-list text-center">
+<%@include file="../incs/registService.jsp"%>
+</div>
+<form action="<c:url value='/mypage/registPackage.do'/>" name="form" method="post" style="margin-left: 80px; margin-top: 20px;">
 <div class="row big-pricing">
-								<div class="col-md-4 col-sm-6 col-xs-12 colon1 nopad" style="width: 30%;">
-									<div class="pricing-header firstch c0">
-									<p>패키지</p>
+								<div class="col-md-4 col-sm-6 col-xs-12 colon1 nopad" style="width: 10%;">
+									<div class="pricing-header firstch c0" style="height: 146px; background-color: #f6a76b52 !important;">
 									</div><!-- end pricing-header -->
 									<ul class="first-colon">
 										<li><label>제목</label></li>
@@ -71,7 +130,7 @@ select{
 									</ul>
 								</div><!-- end col -->
 								<div class="col-md-2 col-sm-6 col-xs-12 colon1 nopad text-center" style="width: 23%;">
-									<div class="pricing-header firstch c1">
+									<div class="pricing-header firstch c1" style=" background-color: #f69b69a3 !important;">
 										<p>STANDARD</p>
 									</div><!-- end pricing-header -->
 									<ul>
@@ -100,8 +159,8 @@ select{
 										</select>
 										</li>
 										<li>
-										<select name="workingPeriod">
-										<option value="none">선택해주세요</option>
+										<select name="workingPeriod" required="required">
+										<option value="">선택해주세요</option>
 										<option value="1">1일</option>
 										<option value="2">2일</option>
 										<option value="3">3일</option>
@@ -137,17 +196,18 @@ select{
 										</li>
 									</ul>
 								</div><!-- end col -->
-								<div class="col-md-2 col-sm-6 col-xs-12 colon1 nopad text-center" style="width: 23%;">
+								<div class="col-md-2 dd col-sm-6 col-xs-12 colon1 nopad text-center" style="width: 23%;">
+								<div>
 									<img alt="" src="<c:url value='/resources/images/multiply2.png'/>" style="width:25px; float: right; cursor: pointer;" class="remove">
-									<div class="pricing-header firstch c2">
+									<div class="pricing-header firstch c2" style="background-color: #f58f68c9 !important;">
 										<p>DELUXE</p>
 									</div><!-- end pricing-header -->
 									<ul>
-										<li><textarea name="packName"></textarea></li>
-										<li><textarea name="packDesc"></textarea></li>
+										<li><textarea name="packName" required="required"></textarea></li>
+										<li><textarea name="packDesc" required="required"></textarea></li>
 										<li><input type="text" name="packPrice" onkeypress="onlyNumber();">원</i></li>
 										<li>
-										<select name="modifyCount">
+										<select name="modifyCount" required="required">
 										<option value="">선택해주세요</option>
 										<option value="1">1회</option>
 										<option value="2">2회</option>
@@ -168,8 +228,8 @@ select{
 										</select>
 										</li>
 										<li>
-										<select name="workingPeriod">
-										<option value="none">선택해주세요</option>
+										<select name="workingPeriod" required="required">
+										<option value="">선택해주세요</option>
 										<option value="1">1일</option>
 										<option value="2">2일</option>
 										<option value="3">3일</option>
@@ -204,18 +264,21 @@ select{
 										</select>
 										</li>
 									</ul>
+									</div>
+									<img alt="" src="<c:url value='/resources/images/add_package.png'/>" class="add">
 								</div><!-- end col -->
-								<div class="col-md-2 col-sm-6 col-xs-12 colon1 nopad text-center" style="width: 23%;">
+								<div class="col-md-2 dd col-sm-6 col-xs-12 colon1 nopad text-center" style="width: 23%;">
+								<div>
 								<img alt="" src="<c:url value='/resources/images/multiply2.png'/>" style="width:25px; float: right; cursor: pointer;" class="remove">
-									<div class="pricing-header firstch c3">
+									<div class="pricing-header firstch c3" style="background-color: #f47764db !important;">
 										<p>PREMIUM</p>
 									</div><!-- end pricing-header -->
 								<ul>
-										<li><textarea name="packName"></textarea></li>
-										<li><textarea name="packDesc"></textarea></li>
+										<li><textarea name="packName" required="required"></textarea></li>
+										<li><textarea name="packDesc" required="required"></textarea></li>
 										<li><input type="text" name="packPrice" onkeypress="onlyNumber();">원</i></li>
 										<li>
-										<select name="modifyCount">
+										<select name="modifyCount" required="required">
 										<option value="">선택해주세요</option>
 										<option value="1">1회</option>
 										<option value="2">2회</option>
@@ -236,8 +299,8 @@ select{
 										</select>
 										</li>
 										<li>
-										<select name="workingPeriod">
-										<option value="none">선택해주세요</option>
+										<select name="workingPeriod" required="required">
+										<option value="">선택해주세요</option>
 										<option value="1">1일</option>
 										<option value="2">2일</option>
 										<option value="3">3일</option>
@@ -272,12 +335,28 @@ select{
 										</select>
 										</li>
 									</ul>
-								</div><!-- end col -->
-								<div class="pricing-footer text-center" style="width: 1298px;">
-										<a class="btn c1" style="width: 100%;"><input type="submit" value="서비스등록하기" style="background: none; border: none; "></a>
 									</div>
+									<img alt="" src="<c:url value='/resources/images/add_package.png'/>" class="add">
+									<a class="btn btn-primary" style="width: 230px; margin-right: 355px; margin-top: 60px;"><input type="submit" value="서비스등록하기" style="background: none; border: none; "></a>
 									<input type="text" name="productNo" value="${param.productNo }">
-							</div>
 									</form>
+<!--아래는 mypage 공통 사용 코드  -->
+</div>
+<!-- end col -->
+</div>
+<!-- end row -->
+</div>
+<!-- end container -->
+</section>
+<!-- end section -->
+
+<%@include file="../incs/bottom_main.jsp"%>
+<!-- 화면별 고유 하단js 포함할 위치 -->
+<script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
+<script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>
+<script src="<c:url value='/resources/js/parallax.js'/>"></script>
+<script src="<c:url value='/resources/js/animate.js'/>"></script>
+<script src="<c:url value='/resources/js/custom.js'/>"></script>
+
 </body>
 </html>

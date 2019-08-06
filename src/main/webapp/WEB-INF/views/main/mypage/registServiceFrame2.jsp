@@ -21,10 +21,8 @@
 <script type="text/javascript">
 	$(function(){
 		$("form[name=frm]").submit(function(){
-			var summary=$("#editor-container .ql-editor").html().replace(/<p>/gi,"");
-			var summary2=summary.replace(/<&#47;p>/gi,"");
-			var detailDesc=$("#editor-container2 .ql-editor").html().replace(/<p>/gi,"");
-			var detailDesc2=detailDesc.replace(/<&#47;p>/gi,"");
+			var summary=$("#editor-container .ql-editor").html();
+			var detailDesc=$("#editor-container2 .ql-editor").html();
 			if($("#agreement").val()!="Y"){
 				alert("이용약관에 동의하셔야 저장가능합니다.");
 				return false;
@@ -43,8 +41,8 @@
 				}, 0);
 				return false;
 			}
-			$("input[name=summary]").val(summary2);
-			$("input[name=detailDesc]").val(detailDesc2);
+			$("input[name=summary]").val(summary);
+			$("input[name=detailDesc]").val(detailDesc);
 		})
 		
 		$("input[type=checkbox]").click(function(){
@@ -108,7 +106,7 @@ label{
     max-width: 100%;
 }
 .divbtn{
-	margin-left: 268px;
+	margin-left: 262px;
 }
 .form-control{
 	width: 82%;
@@ -125,27 +123,19 @@ label{
 	<label>상품 설명</label>
 	<div id="standalone-container">
 		  <div id="toolbar-container" class="ql-toolbar ql-snow">
-		    <span class="ql-formats">
+		  <span class="ql-formats">
 		      <button class="ql-bold" type="button"><svg viewBox="0 0 18 18"> <path class="ql-stroke" d="M5,4H9.5A2.5,2.5,0,0,1,12,6.5v0A2.5,2.5,0,0,1,9.5,9H5A0,0,0,0,1,5,9V4A0,0,0,0,1,5,4Z"></path> <path class="ql-stroke" d="M5,9h5.5A2.5,2.5,0,0,1,13,11.5v0A2.5,2.5,0,0,1,10.5,14H5a0,0,0,0,1,0,0V9A0,0,0,0,1,5,9Z"></path> </svg></button>
 		      <button class="ql-italic" type="button"><svg viewBox="0 0 18 18"> <line class="ql-stroke" x1="7" x2="13" y1="4" y2="4"></line> <line class="ql-stroke" x1="5" x2="11" y1="14" y2="14"></line> <line class="ql-stroke" x1="8" x2="10" y1="14" y2="4"></line> </svg></button>
 		      <button class="ql-underline" type="button"><svg viewBox="0 0 18 18"> <path class="ql-stroke" d="M5,3V9a4.012,4.012,0,0,0,4,4H9a4.012,4.012,0,0,0,4-4V3"></path> <rect class="ql-fill" height="1" rx="0.5" ry="0.5" width="12" x="3" y="15"></rect> </svg></button>
 		    </span>
-		  <div id="editor-container" class="ql-container ql-snow"><div class="ql-editor" data-gramm="false" contenteditable="true">
-		  <c:if test="${!empty menuVo}">
-		  ${menuVo.summary }
-		  </c:if>
-		  </div><div class="ql-clipboard" contenteditable="true" tabindex="-1"></div></div>
-		</div>	    
-    </div>   
+		  <div id="editor-container" class="ql-container ql-snow"><div class="ql-editor" data-gramm="false" contenteditable="true"><c:if test="${!empty menuVo}">${menuVo.summary }</c:if></div></div>
+		</div>
+	</div>
 	<!--  -->
 	<label>수정 안내</label>
 		<div id="standalone-container">
 		  <div id="toolbar-container" class="ql-toolbar ql-snow">
-		  <div id="editor-container2" class="ql-container ql-snow"><div class="ql-editor" data-gramm="false" contenteditable="true">
-		   <c:if test="${!empty menuVo}">
-		  ${menuVo.detailDesc }
-		  </c:if>
-		  </div><div class="ql-clipboard" contenteditable="true" tabindex="-1"></div></div>
+		  <div id="editor-container2" class="ql-container ql-snow"><div class="ql-editor" data-gramm="false" contenteditable="true"><c:if test="${!empty menuVo}">${menuVo.detailDesc }</c:if></div></div>
 		</div>	    
 	</div>
 	<label style="margin-top: 30px;">취소 및 환불 정책</label>
@@ -166,7 +156,7 @@ label{
 	<input type="hidden" name="detailDesc">
 	</div>
 </div>
-	<div class="divbtn" style="margin-left: 235px;">
+	<div class="divbtn">
 	<button type="submit" id="save" class="btn btn-rounded"
 	>저장</button>
 	<button type="button" id="next" class="btn btn-rounded"
@@ -186,7 +176,7 @@ label{
       syntax: true,
       toolbar: '#toolbar-container'
     },
-    placeholder: '상품에 대한 설명을 입력해주세요',
+    placeholder: '상품에 대한 설명을 입력해주세요(100자 이상 필수)',
     theme: 'snow'
   });
   

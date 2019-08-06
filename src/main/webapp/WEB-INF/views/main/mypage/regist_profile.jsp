@@ -46,7 +46,7 @@
 	}
 	
 	iframe{
-		margin-left: 16px;
+		margin-left: 80px;
 	}
 </style>
 <!-- 아래부터 mypage 각자 코딩내용 작성 -->

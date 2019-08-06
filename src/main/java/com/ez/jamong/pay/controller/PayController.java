@@ -130,6 +130,7 @@ public class PayController {
 		String imp_uid=request.getParameter("imp_uid");
 		String packNo=request.getParameter("pack_no");
 		PackageVO packageVo=packageService.selectByPackageNO(Integer.parseInt(packNo));
+		logger.info("패키지 가격"+packageVo.getPackPrice());
 		logger.info("imp_uid={}",imp_uid);
 		String access_token="";
 		//토큰 생성

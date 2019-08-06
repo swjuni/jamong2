@@ -33,6 +33,7 @@
 	}
 	
 	.mb30 {
+	    margin-left: 50px;
 		margin-top: 12px;
 	    width: 250px;
 	    height: 1000px;
@@ -66,6 +67,9 @@
 	
 	.service-list .col-md-4 {
 	    width: 241px;
+	}
+	b, strong {
+	    margin-left: -195px;
 	}
 </style>
 <c:import url="/mypage/sideMypage.do"/>
@@ -126,7 +130,7 @@
 							>
 						</div>
 						<br> 
-						<button type="submit" id="submit" name="submit"	class="btn btn-primary" style="margin-left: 29px;">저장하고 다음으로</button>
+						<button type="submit" id="submit" name="submit"	class="btn btn-primary" style="margin-left: -165px;">저장</button>
 						
 					</form>
 				</div>

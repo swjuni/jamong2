@@ -130,7 +130,22 @@ public class RegistMenuInfoController {
 	@RequestMapping("/setpackageFrame.do")
 	public String setpackageFrame(Model model, HttpSession session) {
 		logger.info("패키지 등록 화면");
-		return "main/mypage/setpackageFrame";
+		int userNo=(Integer)session.getAttribute("userNo");
+		ExpertVO expertVo=expertService.selectByUserNo(userNo);
+		MenuInfoVO menuVo=menuInfoService.NonAvtivatedProduct(expertVo.getExpertNo());
+		if(menuVo==null) {
+			model.addAttribute("msg","등록진행중인 상품이 없습니다.");
+			model.addAttribute("url","/mypage/service.do");
+			return "common/message";
+		}else {
+			ImageVO imgVo=imageService.selectByProductNoFirstImage(menuVo.getProductNo());
+			if(imgVo==null) {
+				model.addAttribute("msg","기본항목 등록이 완료 되지 않았습니다.");
+				model.addAttribute("url","/mypage/service.do");
+				return "common/message";
+			}
+			return "main/mypage/setpackageFrame";
+		}
 	}
 	
 	@RequestMapping("/uploadImageView.do")

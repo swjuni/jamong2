@@ -121,7 +121,7 @@ $(function(){
 		<c:if test='${empty expert }'>
 		 disabled="disabled"
 		</c:if>
-		onclick="location.href='<c:url value="/mypage/major.do?userNo=${sessionScope.userNo }"/>'">다음</button>
+		onclick="location.href='<c:url value="/mypage/major.do?userNo=${sessionScope.userNo }"/>'" style="margin-right: 245px;">다음</button>
 		<button type="submit" id="submit" name="submit"	class="btn btn-primary"
 		<c:if test='${empty expert }'>
 		 disabled="disabled"
