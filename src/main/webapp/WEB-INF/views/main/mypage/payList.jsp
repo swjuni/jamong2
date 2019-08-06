@@ -40,7 +40,7 @@ function pageFunc(curPage){
 </form>
 <!-- 페이징 처리 form 끝 -->
 
-<div style="font-size:30px;  font-weight:bolder; float: left;">결제내역</div>
+<div style="font-size:30px;  font-weight:bolder; float: left;">거래완료건 결제내역</div>
 <br><br>
 <p>${sessionScope.userName }님의 결제내역입니다.</p>
 <form name="frm1" method="post" action="<c:url value='/mypage/payList/payList.do'/>" >

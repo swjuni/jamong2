@@ -2,11 +2,14 @@ package com.ez.jamong.orders.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ez.jamong.common.DateSearchVO;
 import com.ez.jamong.common.PaginationInfo;
 import com.ez.jamong.common.WebUtility;
+import com.ez.jamong.orders.model.OrdersService;
 
 @Controller
 public class OrdersController {
 	private Logger logger = LoggerFactory.getLogger(OrdersController.class);
+	@Autowired private OrdersService ordersService; 
 	
 	@RequestMapping("/mypage/orders/buyList.do")
 	public String buyList(@ModelAttribute DateSearchVO dateSearchVo, HttpSession session, Model model) {
@@ -49,14 +54,14 @@ public class OrdersController {
 		dateSearchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		dateSearchVo.setRecordCountPerPage(WebUtility.RECORD_COUNT_PER_PAGE);
 		
-		//List<Map<String, Object>> list = payService.selectByUserNo(dateSearchVo);
-		//logger.info("결제내역 조회 결과, list.size={}", list.size());
+		List<Map<String, Object>> list = ordersService.selectByUserNo(dateSearchVo);
+		logger.info("구매내역 조회 결과, list.size={}", list.size());
 
-		//int totalRecord = payService.selectTotalRecord(dateSearchVo);
-		//logger.info("결제내역-전체 레코드 조회, 결과 totalRecord={}", totalRecord);
-		//pagingInfo.setTotalRecord(totalRecord);
+		int totalRecord = ordersService.selectTotalRecord(dateSearchVo);
+		logger.info("결제내역-전체 레코드 조회, 결과 totalRecord={}", totalRecord);
+		pagingInfo.setTotalRecord(totalRecord);
 		
-		//model.addAttribute("list", list);
+		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		
 		return "main/mypage/buyList";
@@ -92,16 +97,17 @@ public class OrdersController {
 		dateSearchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
 		dateSearchVo.setRecordCountPerPage(WebUtility.RECORD_COUNT_PER_PAGE);
 		
-		//List<Map<String, Object>> list = payService.selectByUserNo(dateSearchVo);
-		//logger.info("결제내역 조회 결과, list.size={}", list.size());
+		List<Map<String, Object>> list = ordersService.expertSelectByUserNo(dateSearchVo);
+		logger.info("결제내역 조회 결과, list.size={}", list.size());
 		
-		//int totalRecord = payService.selectTotalRecord(dateSearchVo);
-		//logger.info("결제내역-전체 레코드 조회, 결과 totalRecord={}", totalRecord);
-		//pagingInfo.setTotalRecord(totalRecord);
+		int totalRecord = ordersService.expertSelectTotalRecord(dateSearchVo);
+		logger.info("결제내역-전체 레코드 조회, 결과 totalRecord={}", totalRecord);
+		pagingInfo.setTotalRecord(totalRecord);
 		
-		//model.addAttribute("list", list);
+		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		
 		return "main/mypage/sellList";
 	}
+	
 }

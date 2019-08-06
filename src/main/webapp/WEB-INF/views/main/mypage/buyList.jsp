@@ -10,6 +10,12 @@ function pageFunc(curPage){
 	$("form[name=frmPage]").submit();
 }
 
+function yes(index){
+	
+}
+function no(index){
+	
+}
 </script>
 <style type="text/css">
 .divLeft{
@@ -33,7 +39,7 @@ function pageFunc(curPage){
 </style>
 
 <!-- 페이징 처리를 위한 form 시작-->
-<form name="frmPage" method="post" action="<c:url value='/mypage/payList/payList.do'/>" >
+<form name="frmPage" method="post" action="<c:url value='/mypage/orders/buyList.do'/>" >
 	<input type="hidden" name="startDay" value="${param.startDay }">
 	<input type="hidden" name="endDay" value="${param.endDay }">
 	<input type="hidden" name="currentPage">	
@@ -43,7 +49,7 @@ function pageFunc(curPage){
 <div style="font-size:30px;  font-weight:bolder; float: left;">구매관리</div>
 <br><br>
 <p>${sessionScope.userName }님의 구매내역입니다.</p>
-<form name="frm1" method="post" action="<c:url value='/mypage/payList/payList.do'/>" >
+<form name="frm1" method="post" action="<c:url value='/mypage/orders/buyList.do'/>" >
 	<!-- 조회기간 include -->
 	<c:import url="../incs/dateTerm.jsp"></c:import>
 </form>
@@ -59,37 +65,61 @@ function pageFunc(curPage){
 		summary="구매내역에 관한 표로써      에 대한 정보를 제공합니다.">
 		<colgroup>
 			<col style="width: 10%" />
-			<col style="width: 15%" />
-			<col style="width: 40%" />
-			<col style="width: 20%" />
-			<col style="width: 15%" />
+			<col style="width: 10%" />
+			<col style="width: 30%" />
+			<col style="width: 10%" />
+			<col style="width: 10%" />
+			<col style="width: 10%" />
+			<col style="width: 10%" />
+			<col style="width: 10%" />
 		</colgroup>
 		<thead class="thead-light">
-			<tr>
-				<th class="text-center" scope="col">결제번호</th>
-				<th class="text-center" scope="col">결제일자</th>
-				<th class="text-center" scope="col">상품명</th>
+			<tr style="FONT-SIZE: 13PX;">
+				<th class="text-center" scope="col">구매번호</th>
+				<th class="text-center" scope="col">주문일</th>
+				<th class="text-center" scope="col">상품/패키지명</th>
 				<th class="text-center" scope="col">결제금액</th>
-				<th class="text-center" scope="col">결제수단</th>
+				<th class="text-center" scope="col">거래종료일</th>
+				<th class="text-center" scope="col">진행상태</th>
+				<th class="text-center" scope="col">구매확정</th>
+				<th class="text-center" scope="col">구매취소</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:if test="${empty list }">
 				<tr>
-					<td colspan="5" class="text-center">결제 내역이 없습니다</td>
+					<td colspan="8" class="text-center">구매 내역이 없습니다</td>
 				</tr>
 			</c:if>
 			<c:if test="${!empty list }">
 				<!-- 반복 시작 -->
+				<c:set var="i" value="0"/>
 				<c:forEach var="map" items="${list }">
-					<tr>
-						<td class="text-right" >${map['PAY_NO'] }</td>
-						<td class="text-center" ><fmt:formatDate value="${map['REGDATE'] }"
-								pattern="yyyy-MM-dd" /></td>
-						<td >${map['PRODUCT_NAME'] }( ${map['PACK_NAME']} )</td>
-						<td class="text-center" ><fmt:formatNumber value="${map['PRICE'] }"
-								pattern="#,###" />원</td>
-						<td class="text-center" >${map['PAY_METHOD'] }</td>
+					<tr style="FONT-SIZE: 13PX;">
+						<td class="text-right" >${map['ORDER_NO'] }</td>
+						<td class="text-center" ><fmt:formatDate value="${map['ORDER_DATE'] }" pattern="yyyy-MM-dd" /></td>
+						<td ><a href="<c:url value='/main/menuinfo/menuinfo_Detail.do?productNo=${map["PRODUCT_NO"] }'/>" >
+						${map['PRODUCT_NAME'] }( ${map['PACK_NAME']} )
+						</a></td>
+						<td class="text-center" ><fmt:formatNumber value="${map['PRICE'] }" pattern="#,###" />원</td>
+						<td class="text-center" ><fmt:formatDate value="${map['FINISH_DATE'] }" pattern="yyyy-MM-dd" /></td>
+						<td class="text-center" >
+							<c:if test="${map['PROGRESS'] =='W'}">주문요청중</c:if>
+							<c:if test="${map['PROGRESS'] =='C'}">거래취소</c:if>
+							<c:if test="${map['PROGRESS'] =='P'}">진행중</c:if>
+							<c:if test="${map['PROGRESS'] =='F'}">거래완료</c:if>
+						</td>
+						<td class="text-center" >
+							<c:if test="${map['PROGRESS'] =='P'}">
+								<button type="button" onclick="yes(${i })">확정</button>
+							</c:if>
+						</td>
+						<td class="text-center" >
+							<c:if test="${map['PROGRESS'] =='W'}">
+								<button type="button" onclick="no(${i })">취소</button>
+							</c:if>
+						</td>
+						<c:set var="i" value="${i+1 }"/>
 					</tr>
 				</c:forEach>
 				<!-- 반복 끝 -->

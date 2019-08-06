@@ -72,7 +72,7 @@
 	                    							</tr>
 	                    							<tr>
 	                                                    <th>등록일</th>
-	                                                    <td>${map['REGDATE'] }</td>
+	                                                    <td><fmt:formatDate value="${map['REGDATE'] }" pattern="yyyy-MM-dd"/></td>
 	                                                    <td></td>
 	                                                </tr>
 	                                                <tr>
