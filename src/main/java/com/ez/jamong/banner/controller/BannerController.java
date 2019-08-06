@@ -111,7 +111,7 @@ public class BannerController {
 		model.addAttribute("vo", bannerExVo);
 		model.addAttribute("map", map);
 		
-		return "admin/bannerexpoert/bannerDetail";
+		return "main/bannerexpoert/bannerDetail";
 	}
 	
 	@RequestMapping(value = "/main/bannerexpoert/bannerDelete.do", method = RequestMethod.GET)

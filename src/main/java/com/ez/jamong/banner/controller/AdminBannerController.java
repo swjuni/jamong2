@@ -27,7 +27,7 @@ import com.ez.jamong.common.FileUploadUtility;
 
 @Controller
 public class AdminBannerController {
-	private Logger logger = LoggerFactory.getLogger(BannerController.class);
+	private Logger logger = LoggerFactory.getLogger(AdminBannerController.class);
 	@Autowired private CategoryLService categorylService;
 	@Autowired private BannerExService bannerExService;
 	@Autowired private FileUploadUtility fileUtility;

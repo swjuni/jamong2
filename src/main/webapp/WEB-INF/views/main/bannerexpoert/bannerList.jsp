@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../incs/top_mypage.jsp" %>
 <c:import url="/mypage/sideMypage.do"/>
+
+<link href="<c:url value='/assets/css/style2.css'/>" rel="stylesheet">
+<link href="<c:url value='/assets/css/lib/themify-icons.css'/>" rel="stylesheet">
+
 <style type="text/css">
 	.dt-buttons{
 		margin-bottom: 0;
@@ -20,6 +24,9 @@
 	.table{
 		margin-top: 15px;
 		margin-bottom: 15px;
+	}
+	.header{
+		margin-left: 0px;
 	}
 </style>
 <!-- 각자가 분담해서 디자인할 바디 태그 -->
@@ -73,7 +80,7 @@
 		                                                <tr>
 		                                                    <td>${map['ADS_NO'] }</td>
 		                                                    <td>
-		                                                    	<a href="<c:url value='/admin/bannerexpoert/bannerDetail.do?adsNo=${map["ADS_NO"] }'/>" class="text-primary">
+		                                                    	<a href="<c:url value='/main/bannerexpoert/bannerDetail.do?adsNo=${map["ADS_NO"] }'/>" class="text-primary">
 		                                                    		${map['ID'] }
 		                                                    	</a>
 		                                                    </td>
@@ -123,7 +130,7 @@
                     <div class="row">
                     	<div class="col-lg-12 text-center">
                     		<button type="button" class="btn btn-primary m-b-10 m-l-5"
-                    			onclick="location.href='<c:url value='/admin/bannerexpoert/bannerAdd.do'/>'">배너 등록</button>
+                    			onclick="location.href='<c:url value='/main/bannerexpoert/bannerAdd.do'/>'">배너 등록</button>
                     	</div>
                     </div>
                 </section>
@@ -133,7 +140,6 @@
 	
 
 
-<%@include file="../incs/bottom_main.jsp" %>
 <!-- 화면별 고유 하단js 포함할 위치 -->
 	<script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
 	<script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>

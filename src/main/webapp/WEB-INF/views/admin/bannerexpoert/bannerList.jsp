@@ -121,8 +121,6 @@
                     </div>
                     <div class="row">
                     	<div class="col-lg-12 text-center">
-                    		<button type="button" class="btn btn-primary m-b-10 m-l-5"
-                    			onclick="location.href='<c:url value='/admin/bannerexpoert/bannerAdd.do'/>'">배너 등록</button>
                     	</div>
                     </div>
                 </section>
