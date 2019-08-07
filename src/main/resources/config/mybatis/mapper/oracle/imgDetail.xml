@@ -24,11 +24,12 @@
 		    ${list[index]}
 		</foreach>
 	</select>
-	<delete id="deleteImgDetail" parameterType="java.util.ArrayList">
+	<delete id="deleteImgDetail" parameterType="map">
 		delete img_detail
 		where detail_img_no not in
 		<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
 		    ${list[index]}
 		</foreach>
+		and product_no=#{productNo}
 	</delete>
 </mapper>

@@ -266,4 +266,9 @@ public class RegistExpertController {
 		
 		return "common/message";
 	}
+	
+	@RequestMapping(value = "/registCareer.do")
+	public String regist_career(Model model,HttpSession session){
+		return "main/mypage/edu_careerFrame";
+	}
 }

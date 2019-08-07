@@ -1,6 +1,8 @@
 package com.ez.jamong.image;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,10 +36,14 @@ public class ImageServiceImpl implements ImageService{
 
 	@Override
 	@Transactional
-	public int saveImage(List<ImageVO> list, List<Integer> deleteList) {
+	public int saveImage(List<ImageVO> list, List<Integer> deleteList,int productNo) {
 		logger.info("list={},deleteList={}", list.size(),deleteList.size());
 		int cnt=0;
-		cnt=imageDao.deleteImage(deleteList);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("list", deleteList);
+		map.put("productNo", productNo);
+		cnt=imageDao.deleteImage(map);
+		logger.info("삭제결과 cnt={}",cnt);
 		for(int i=0;i<list.size();i++) {
 			cnt=imageDao.insertImage(list.get(i));
 		}

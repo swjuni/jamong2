@@ -1,6 +1,8 @@
 package com.ez.jamong.img_detail;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,10 +37,13 @@ public class ImgDetailServiceImpl implements ImgDetailService{
 
 	@Override
 	@Transactional
-	public int saveImgDetail(List<ImgDetailVO> list, List<Integer> deleteList) {
+	public int saveImgDetail(List<ImgDetailVO> list, List<Integer> deleteList,int productNo) {
 		logger.info("list={},deleteList={}",list.size(), deleteList.size());
 		int cnt=0;
-		cnt=imgDetailDao.deleteImgDetail(deleteList);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("list", deleteList);
+		map.put("productNo",productNo);
+		cnt=imgDetailDao.deleteImgDetail(map);
 		for(int i=0;i<list.size();i++) {
 			cnt=imgDetailDao.insertImgDetail(list.get(i));
 		}
