@@ -31,7 +31,7 @@ public class MypageController {
 	public String side(HttpSession session,Model model) {
 		int userNo=(Integer)session.getAttribute("userNo");	
 		ExpertVO vo=expertService.selectByUserNo(userNo);
-		int eval=0;
+		String eval="";
 		if(vo!=null) {
 			eval = evaluationService.evalAvgByExpertNo(vo.getExpertNo());
 		}

@@ -21,7 +21,7 @@
 								</c:if>
 							</div><!-- end website-screen -->
 
-							<c:if test="${eval>0 }">
+							<c:if test="${!empty eval }">
 								<div class="circle-detail">
 									<div class="progress">
 									 	<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="${eval }" aria-valuemin="0" aria-valuemax="100" style="width:${eval }%">

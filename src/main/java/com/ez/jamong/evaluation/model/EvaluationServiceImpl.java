@@ -36,7 +36,7 @@ public class EvaluationServiceImpl implements EvaluationService{
 	}
 
 	@Override
-	public int evalAvgByExpertNo(int expertNo) {
+	public String evalAvgByExpertNo(int expertNo) {
 		return evaluationDao.evalAvgByExpertNo(expertNo);
 	}
 

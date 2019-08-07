@@ -53,7 +53,7 @@
 		order by e.COL desc
 	</select>
 	
-	<select id="evalAvgByExpertNo" parameterType="int" resultType="int">
+	<select id="evalAvgByExpertNo" parameterType="int" resultType="string">
 		select avg(e.EVAL_SCORE) as eval_score
 		from evaluation e join menu_info m
 		on e.PRODUCT_NO = m.PRODUCT_NO
