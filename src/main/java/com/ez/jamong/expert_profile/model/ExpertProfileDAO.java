@@ -8,4 +8,5 @@ public interface ExpertProfileDAO {
 	public int findCount(int expertNo);
 	public ExpertProfileVO selectByExpertNo(int expertNo);
 	public int updateLicense(Map<String, Object> map);
+	public int updateCareer(Map<String, Object> map);
 }

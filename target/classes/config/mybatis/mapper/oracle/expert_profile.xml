@@ -38,4 +38,9 @@
 		where expert_no=#{expertNo}
 	</update>
 	
+	<update id="updateCareer" parameterType="map">
+		update expert_profile
+		set education=#{college},career=#{career}
+		where expert_no=#{expertNo}
+	</update>
 </mapper>
