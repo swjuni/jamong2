@@ -88,7 +88,11 @@ $(function(){
 			return false;
 		}
 		var res=name+"."+date+"."+agency;
-		$(".mylicense").append("<span class='ddd'><input readonly='readonly' type=text name='license' value='"+res+"'><small class='sma' style='cursor:pointer;'>x</small></span>")
+		$(".mylicense").append("<span class='ddd'><input readonly='readonly' type=text name='license' value='"+res+"'><small class='sma' style='cursor:pointer;'>x</small></span>");
+		$("#name").val("");
+		$("#date").val("");
+		$("#agency").val("");
+		
 	})
 	$("#33").on("click",".sma",function(){
 		$(this).parent().remove();

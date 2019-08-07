@@ -10,9 +10,9 @@ function pageFunc(curPage){
 	$("form[name=frmPage]").submit();
 }
 
-function progressChange(orderNo, progress, message){
+function progressChange(orderNo, orderId,progress, message){
 	if(confirm(message)){
-		location.href="<c:url value='/mypage/orders/updateProgress.do?orderNo="+orderNo+"&progress="+progress+"'/>";
+		location.href="<c:url value='/mypage/orders/updateProgress.do?orderId="+orderId+"&orderNo="+orderNo+"&progress="+progress+"'/>";
 	}
 }
 
@@ -126,7 +126,7 @@ function progressChange(orderNo, progress, message){
 						</td>
 						<td class="text-center" >
 							<c:if test="${map['PROGRESS'] =='W'}">
-								<button type="button" onclick="progressChange(${map['ORDER_NO'] }, 'C', '거래 요청을 거부하시겠습니다?')">거부</button>
+								<button type="button" onclick="progressChange(${map['ORDER_NO'] },'${map['ORDER_ID'] }', 'C', '거래 요청을 거부하시겠습니다?')">거부</button>
 							</c:if>
 						</td>
 					</tr>

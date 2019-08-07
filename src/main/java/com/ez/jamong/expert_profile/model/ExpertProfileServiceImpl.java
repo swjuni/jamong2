@@ -29,6 +29,11 @@ public class ExpertProfileServiceImpl implements ExpertProfileService{
 	public int updateLicense(Map<String, Object> map) {
 		return expertprofileDao.updateLicense(map);
 	}
+
+	@Override
+	public int updateCareer(Map<String, Object> map) {
+		return expertprofileDao.updateCareer(map);
+	}
 	
 	
 }
