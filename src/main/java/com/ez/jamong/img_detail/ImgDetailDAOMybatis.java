@@ -1,6 +1,7 @@
 package com.ez.jamong.img_detail;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,13 @@ public class ImgDetailDAOMybatis implements ImgDetailDAO{
 	}
 
 	@Override
-	public List<ImgDetailVO> selectDelete(List<Integer> list) {
-		return session.selectList(namespace+"selectDelete", list);
+	public List<ImgDetailVO> selectDelete(Map<String, Object> map) {
+		return session.selectList(namespace+"selectDelete", map);
 	}
 
 	@Override
-	public int deleteImgDetail(List<Integer> list) {
-		return session.delete(namespace+"deleteImgDetail",list);
+	public int deleteImgDetail(Map<String, Object> map) {
+		return session.delete(namespace+"deleteImgDetail",map);
 	}
 	
 }

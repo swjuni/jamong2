@@ -1,6 +1,7 @@
 package com.ez.jamong.image;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,13 @@ public class ImageDAOMybatis implements ImageDAO{
 	}
 
 	@Override
-	public List<ImageVO> selectDelete(List<Integer> list) {
-		return sqlSession.selectList(namespace+"selectDelete",list);
+	public List<ImageVO> selectDelete(Map<String, Object> map) {
+		return sqlSession.selectList(namespace+"selectDelete",map);
 	}
 
 	@Override
-	public int deleteImage(List<Integer> list) {
-		return sqlSession.delete(namespace+"deleteImage",list);
+	public int deleteImage(Map<String ,Object> map) {
+		return sqlSession.delete(namespace+"deleteImage",map);
 	}
 	
 	

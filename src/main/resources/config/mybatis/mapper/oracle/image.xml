@@ -30,18 +30,21 @@
 		values(#{imgNo},#{fileName},#{originalFileName},#{fileSize},#{productNo})
 	</insert>
 	
-	<select id="selectDelete" parameterType="java.util.ArrayList" resultType="imageVo">
+	<select id="selectDelete" parameterType="map" resultType="imageVo">
 		select * from image
 		where img_no not in
 		<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
 		    ${list[index]}
 		</foreach>
+		and product_no=#{productNo}
+		
 	</select>
-	<delete id="deleteImage" parameterType="java.util.ArrayList">
+	<delete id="deleteImage" parameterType="map">
 		delete image
 		where img_no not in
 		<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
 		    ${list[index]}
 		</foreach>
+		and product_no=#{productNo}
 	</delete>
 </mapper>

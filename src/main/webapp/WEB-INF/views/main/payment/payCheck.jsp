@@ -38,10 +38,10 @@
 			    		}
 			    		})
 			    		.done(function (data) {
-			    			if(data="fail"){
+			    			if(data=="fail"){
 								alert("위조된 결제 시도(고객센터로 연락주세요)");
 			    			}else{
-								location.href='<c:url value="/mypage/paySuccess.do"/>';
+								location.replace('<c:url value="/mypage/paySuccess.do"/>');
 			    			}
    					   })
    					   .fail(function(data){

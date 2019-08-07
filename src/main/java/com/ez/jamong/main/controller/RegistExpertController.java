@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -64,12 +65,12 @@ public class RegistExpertController {
 		int userNo=(Integer)session.getAttribute("userNo");
 		expertVo.setUserNo(userNo);
 		int cnt=expertService.InsertExpert(expertVo);
-		String msg="", url="/mypage/registProfile.do?state=profile";//페이지 생성하고 바꾸기
+		String msg="", url="/mypage/registExpert.do?state=expert";//페이지 생성하고 바꾸기
 		if(cnt>0) {
 			msg="저장되었습니다.";
 		}else {
 			msg="저장에 실패하였습니다.";
-			url="/mypage/registExpert.do";
+			url="/mypage/registExpert.do?state=expert";
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
@@ -80,6 +81,11 @@ public class RegistExpertController {
 	public String registProfile(HttpSession session, Model model) {
 		int userNo=(Integer)session.getAttribute("userNo");
 		ExpertVO vo=expertService.selectByUserNo(userNo);
+		if(vo==null) {
+			model.addAttribute("msg","전문가 등록이 필요합니다.");
+			model.addAttribute("url","/mypage/registExpert.do?state=expert");
+			return "common/message";
+		}
 		model.addAttribute("expert",vo);
 		return "main/mypage/regist_profile";
 	}
@@ -201,7 +207,7 @@ public class RegistExpertController {
 	}
 	
 	@RequestMapping(value = "/licenseView.do")
-	public String license_view(Model model) throws IOException {
+	public String license_view(Model model,HttpSession session) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder("http://openapi.q-net.or.kr/api/service/rest/InquiryListNationalQualifcationSVC/getList"); /*URL*/
 		urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=kurEdKOs6G1DU7HwGyGelpo2O6EeNgwlLl%2F8kk%2FalGnHa4a3hmV0KHsb1v7rHY5v9ezLlSXuVqykOlcobpKcuA%3D%3D"); /*Service Key*/
 		urlBuilder.append("&" + URLEncoder.encode("serviceKey","UTF-8") + "=" + URLEncoder.encode("kurEdKOs6G1DU7HwGyGelpo2O6EeNgwlLl%2F8kk%2FalGnHa4a3hmV0KHsb1v7rHY5v9ezLlSXuVqykOlcobpKcuA%3D%3D", "UTF-8")); /*발급받은 인증키*/
@@ -223,8 +229,46 @@ public class RegistExpertController {
 		}
 		rd.close();
 		conn.disconnect();
+		int expertNo=expertService.selectByUserNo((Integer)session.getAttribute("userNo")).getExpertNo();
+		ExpertProfileVO epVo=expertprofileService.selectByExpertNo(expertNo);
 		model.addAttribute("license1",sb.toString());
+		if(epVo.getLicense()!=null&&!epVo.getLicense().isEmpty()) {
+			String[] license=epVo.getLicense().split("/");
+			model.addAttribute("license",license);
+		}
 		return "main/mypage/licenseFrame";
 	}
 
+	@RequestMapping(value = "/registLicense.do")
+	public String regist_license(Model model,@RequestParam String[] license,HttpSession session){
+		int userNo=(Integer)session.getAttribute("userNo");
+		int expertNo=expertService.selectByUserNo(userNo).getExpertNo();
+		String licen="";
+		for(int i=0;i<license.length;i++) {
+			licen+=license[i]+"/";
+		}
+		logger.info("자격증 파라미터={}", licen);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("license", licen);
+		map.put("expertNo", expertNo);
+		
+		int cnt=expertprofileService.updateLicense(map);
+		String msg="", url="";
+		if(cnt>0) {
+			msg="저장 되었습니다.";
+			url="/mypage/licenseView.do";
+		}else {
+			msg="저장 실패";
+			url="/mypage/licenseView.do";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	@RequestMapping(value = "/registCareer.do")
+	public String regist_career(Model model,HttpSession session){
+		return "main/mypage/edu_careerFrame";
+	}
 }

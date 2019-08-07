@@ -11,95 +11,6 @@
 <title>profileFrame</title>
 <script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
 <script type="text/javascript">
-$(function(){
-	$("jmcd").remove();
-	$("mdobligfldcd").remove();
-	$("obligfldcd").remove();
-	$("qualgbcd").remove();
-	$("seriescd").remove();
-	$("qualgbnm").remove();
-	$("mdobligfldnm").remove();
-	var op="";
-	$("seriesnm").each(function (index, item) {
-		var te=$(this).text();
-		if(op.indexOf(te)==-1){
-			$(".dae").append("<option>"+te+"</option>");
-			op+=te+"/";
-		}
-	})
-	op="";
-	
-	var op2="";
-	$("#country").on("change",".dae",function(){
-		$(".so").html("<option>선택하세요</option>");
-		$("seriesnm").each(function (index, item) {
-			if($(".dae option:selected").text()==$(this).text()){
-				var te=$(this).prev().text();
-				if(op2.indexOf(te)==-1&&te!=" "){
-					$(".so").append("<option>"+te+"</option>");
-					op2+=te+"/";
-				}
-			}//if
-		});//each
-		op2="";
-		if($(".so option").length==1){
-			$(".so").append("<option>없음</option>");
-		}
-	})//daeChanged
-	
-	var op3="";
-	$("#country").on("change",".so",function(){
-		$(".soso").html("<option>선택하세요</option>");
-		var sel=$(".so option:selected").text();
-		if(sel=="없음"){
-			sel=" ";
-		}
-		$("obligfldnm").each(function (index, item) {
-			if(sel==$(this).text()&&$(".dae option:selected").text()==$(this).next().text()){
-				var te=$(this).prev().text();
-				if(op3.indexOf(te)==-1){
-					$(".soso").append("<option>"+te+"</option>");
-					op3+=te+"/";
-				}
-			}//if
-		});//each
-		op3="";
-	})//soChanged
-	
-	$("#country").on("change",".soso",function(){
-		var res=$(".soso option:selected").text();
-		$(".mylicense").append("<span readonly='readonly' class='ddd'><input type=text name='license' value='"+res+"'><small class='sma' style='cursor:pointer;'>x</small></span>")
-	});
-	$("#choice").click(function(){
-		var name=$("#name").val();
-		var date=$("#date").val();
-		var agency=$("#agency").val();
-		if(name==""){
-			alert("자격증명을 입력하세요.");
-			$("#name").focus();
-			return false;
-		}else if(date==""){
-			alert("발급일을 입력하세요.");
-			$("#date").focus();
-			return false;
-		}else if(agency==""){
-			alert("발급기관을 입력하세요.");
-			$("#agency").focus();
-			return false;
-		}
-		var res=name+"."+date+"."+agency;
-		$(".mylicense").append("<span class='ddd'><input readonly='readonly' type=text name='license' value='"+res+"'><small class='sma' style='cursor:pointer;'>x</small></span>")
-	})
-	$("#33").on("click",".sma",function(){
-		$(this).parent().remove();
-	})
-	$("#frm").submit(function(){
-		if($("input[name=license]").length==0){
-			alert("저장할 데이터가 없습니다.");
-			return false;
-		}
-	})
-})//function
 </script>
 <style type="text/css">
 body {
@@ -169,9 +80,9 @@ small{
 <div>
 	<form id="frm" name="frm" role="form" class="contactform" action="<c:url value='/mypage/registLicense.do'/>" method="post">
 		<div class="form-group">
-			<h3 style="font-size: 22px; font-weight: bold; color: #232323b8;">자격증 선택</h3>
+			<h3 style="font-size: 22px; font-weight: bold; color: #232323b8;">학력 . 경력</h3>
 			<div class="country" style="margin: 30px 10px;" id="country">
-			<h4 style="margin-left: 35%;"><국가기술자격증></h4>
+			<h4 style="margin-left: 35%;"><학력></h4>
 			<h4>대분류</h4>
 				<select class="dae form-control" >
 					<option value="">선택하세요</option>
@@ -186,7 +97,7 @@ small{
 				</select>
 			</div>
 			<div class="self">
-				<h4 style="margin-left: 43%;"><직접입력></h4>
+				<h4 style="margin-left: 43%;"><경력></h4>
 				<span class="span">자격증명</span>
 				<span class="span">발급일</span>
 				<span class="span">발급기관</span>
@@ -203,7 +114,7 @@ small{
 		</c:forEach>
 		</c:if>
 		</div>
-		<button type="button" id="next" name="next" class="btn btn-primary btn1" onclick="location.href='/jamong/mypage/registCareer.do'" style="margin-right: 245px;">다음</button>
+		<button type="button" id="next" name="next" class="btn btn-primary btn1" onclick="location.href='/jamong/mypage/major.do?userNo=14'" style="margin-right: 245px;">다음</button>
 		<button type="submit" id="submit" name="submit" class="btn btn-primary btn1">저장</button>
 	</form>
 </div>

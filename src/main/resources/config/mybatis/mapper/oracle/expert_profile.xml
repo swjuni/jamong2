@@ -32,4 +32,10 @@
 		select * from expert_profile where expert_no=#{expertNo}
 	</select>
 	
+	<update id="updateLicense" parameterType="map">
+		update expert_profile
+		set license=#{license ,jdbcType=CLOB}
+		where expert_no=#{expertNo}
+	</update>
+	
 </mapper>

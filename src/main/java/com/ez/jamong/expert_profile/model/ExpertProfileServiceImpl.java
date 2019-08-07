@@ -1,5 +1,7 @@
 package com.ez.jamong.expert_profile.model;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class ExpertProfileServiceImpl implements ExpertProfileService{
 	@Override
 	public ExpertProfileVO selectByExpertNo(int expertNo) {
 		return expertprofileDao.selectByExpertNo(expertNo);
+	}
+
+	@Override
+	public int updateLicense(Map<String, Object> map) {
+		return expertprofileDao.updateLicense(map);
 	}
 	
 	

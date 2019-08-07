@@ -20,7 +20,7 @@ $(function(){
 	$("#fir").on("click",".remove",function(){
 		var num=$(this).parent().parent().prev().find('span').text();
     	$(this).parent().parent().prev().find('span').html(Number(num)-1);
-		var i=$(this).parent().parent().find("input[type=file]").attr("id")+1;
+		var i=$(this).parent().parent().find("input[type=file]:last").attr("id")+1;
 		if($(this).parent().parent().find(".remove").length==4){
 			$(this).parent().parent().append('<div class="main"><label for="'+i+'"><img src="<c:url value="/resources/images/layers.png"/>" class="add" style="margin: 59px;"></label><input type="file" id="'+i+'" accept="image/gif,image/jpeg,image/png,image/jpg" name="imageFiles"></div>');
 		}
@@ -29,7 +29,7 @@ $(function(){
 	$("#sec").on("click",".remove",function(){
 		var num=$(this).parent().parent().prev().find('span').text();
     	$(this).parent().parent().prev().find('span').html(Number(num)-1);
-		var i=$(this).parent().parent().find("input[type=file]").attr("id")+1;
+		var i=$(this).parent().parent().find("input[type=file]:last").attr("id")+1;
 		if($(this).parent().parent().find(".remove").length==9){
 			$(this).parent().parent().append('<div class="detail"><label for="'+i+'"><img src="<c:url value="/resources/images/layers.png"/>" class="add" style="margin: 59px;"></label><input type="file" id="'+i+'" accept="image/gif,image/jpeg,image/png,image/jpg" name="imgDetailFiles"></div>');
 		}
@@ -86,10 +86,7 @@ $(function(){
     };
     
     $("#next").click(function(){
-		var url = "<c:url value='/mypage/setpackageFrame.do'/>";
-	    var name = "package";
-	    var option = "width = 1298px, height = 500px, top = 100, left = 200, location = no"
-		window.open(url,name,option);
+    	parent.location.href="<c:url value='/mypage/setpackageFrame.do'/>";
 	}) ;
 })
 </script>

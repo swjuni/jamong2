@@ -130,7 +130,22 @@ public class RegistMenuInfoController {
 	@RequestMapping("/setpackageFrame.do")
 	public String setpackageFrame(Model model, HttpSession session) {
 		logger.info("패키지 등록 화면");
-		return "main/mypage/setpackageFrame";
+		int userNo=(Integer)session.getAttribute("userNo");
+		ExpertVO expertVo=expertService.selectByUserNo(userNo);
+		MenuInfoVO menuVo=menuInfoService.NonAvtivatedProduct(expertVo.getExpertNo());
+		if(menuVo==null) {
+			model.addAttribute("msg","등록진행중인 상품이 없습니다.");
+			model.addAttribute("url","/mypage/service.do");
+			return "common/message";
+		}else {
+			ImageVO imgVo=imageService.selectByProductNoFirstImage(menuVo.getProductNo());
+			if(imgVo==null) {
+				model.addAttribute("msg","기본항목 등록이 완료 되지 않았습니다.");
+				model.addAttribute("url","/mypage/service.do");
+				return "common/message";
+			}
+			return "main/mypage/setpackageFrame";
+		}
 	}
 	
 	@RequestMapping("/uploadImageView.do")
@@ -169,12 +184,12 @@ public class RegistMenuInfoController {
 			imgDetailNo.add(-1);
 		}
 		
-		List<ImageVO> listM=imageService.selectDelete(imageNo);
+		List<ImageVO> listM=imageService.selectDelete(imageNo,productNo);
 		for(int i=0;i<listM.size();i++) {
 			multiFileUploadUtility.deleteFile(MultiFileUploadUtility2.IMAGE_UPLOAD, listM.get(i).getFileName(),request);
 		}
 		
-		List<ImgDetailVO> listD=imgDetailService.selectDelete(imgDetailNo);
+		List<ImgDetailVO> listD=imgDetailService.selectDelete(imgDetailNo,productNo);
 		for(int i=0;i<listD.size();i++) {
 			multiFileUploadUtility.deleteFile(MultiFileUploadUtility2.IMG_DETAIL_UPLOAD, listD.get(i).getFileName(),request);
 		}
@@ -196,7 +211,7 @@ public class RegistMenuInfoController {
 			imgVo.setFileSize(fileSize);
 			listMVo.add(imgVo);
 		}
-		int cnt=imageService.saveImage(listMVo, imageNo);
+		int cnt=imageService.saveImage(listMVo, imageNo,productNo);
 		logger.info("이미지 등록결과 cnt={}",cnt);
 		
 		List<Map<String, Object>> listDU=multiFileUploadUtility.multiFileUpload(imgDetailFiles, request, MultiFileUploadUtility2.IMG_DETAIL_UPLOAD);
@@ -215,13 +230,13 @@ public class RegistMenuInfoController {
 			imgDetailVo.setFileSize(fileSize);
 			listDVo.add(imgDetailVo);
 		}
-		cnt+=imgDetailService.saveImgDetail(listDVo, imgDetailNo);
+		cnt+=imgDetailService.saveImgDetail(listDVo, imgDetailNo,productNo);
 		logger.info("상세이미지 등록 결과 cnt={}",cnt);
 		String msg="", url="/mypage/uploadImageView.do?productNo="+productNo;
 		if(cnt>0) {
 			msg="저장되었습니다.";
 		}else {
-			msg="저장에 실패하였습니다.";
+			msg="변경된 데이터가 없습니다.";
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);

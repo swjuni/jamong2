@@ -118,4 +118,9 @@
 		set activation='P', regdate=sysdate
 		where product_no=#{productNo}
 	</update>
+	
+	<select id="selectFromProductUserId" parameterType="int" resultType="string">
+		select user_id from user_info where user_no=
+		(select B.USER_NO from menu_info A join expert B on A.EXPERT_NO = B.EXPERT_NO where A.product_no=#{productNo})
+	</select>
 </mapper>

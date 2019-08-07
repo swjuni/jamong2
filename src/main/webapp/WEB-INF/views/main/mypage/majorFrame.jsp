@@ -147,14 +147,16 @@ $(function(){
 		padding: 10px;
 		width: 80px;
 		float:right;
+		margin-top: 20px;
 	}
 	
 	span{
 		background: #f58566bf;
 		color:white;
 		padding:4px 9px;
-		border-radius:12px;
+		border-radius:5px;
 		margin-right:5px;
+		margin-bottom:10px;
 		cursor:pointer;
 		display: -webkit-inline-box;
 	}
@@ -201,7 +203,7 @@ $(function(){
 								</li>
 							</ul>
 		<button type="button" id="next" name="next"	class="btn btn-primary"
-			onclick="location.href='<c:url value="/mypage/licenseView.do?expertNo=${expert.expertNo }"/>'"
+			onclick="location.href='<c:url value="/mypage/licenseView.do?expertNo=${expert.expertNo }"/>'" style="margin-right: 220px;"
 		<c:if test='${empty majorM }'>
 			disabled="disabled"
 		</c:if>
