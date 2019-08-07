@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ez.jamong.ads.model.AdsService;
+import com.ez.jamong.ads.model.AdsVO;
 import com.ez.jamong.bookmark.model.BookmarkService;
 import com.ez.jamong.bookmark.model.BookmarkVO;
 import com.ez.jamong.categoryl.model.CategoryLService;
@@ -55,6 +57,8 @@ public class MenuInfoServiceController {
 	@Autowired private ImageService imageService;
 	@Autowired private ImgDetailService imgDetailservice;
 	@Autowired private ExpertProfileService expertProfileService;
+	@Autowired
+	private AdsService adsService;
 	
 	@RequestMapping(value = "/main/menuinfo/menuinfo_Detail.do")
 	public String menuinfoDetail_get(@RequestParam(defaultValue = "0") int productNo, HttpServletRequest request, HttpSession session,Model model) {
@@ -222,6 +226,10 @@ public class MenuInfoServiceController {
 		//[5] PaginationInfo에 totalRecord 값 셋팅
 		pagingInfo.setTotalRecord(totalRecord);
 		
+		//베너 리스트
+		List<AdsVO> adlist = adsService.AgreeAds();
+		
+		model.addAttribute("adlist", adlist);
 		model.addAttribute("list", list);
 		model.addAttribute("pagingInfo", pagingInfo);
 		model.addAttribute("cNameL", cNameL);

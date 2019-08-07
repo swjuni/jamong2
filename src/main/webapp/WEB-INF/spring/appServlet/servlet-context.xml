@@ -55,6 +55,14 @@
 			<exclude-mapping path="/admin/login/login.do"/>
 			<beans:ref bean="adminLoginIntercepter"/>
 		</interceptor>
+		
+		<interceptor>
+			<mapping path="/main/mypage/**"/>
+			<mapping path="/mypage/**"/>
+			<mapping path="/main/bannerexpoert/**"/>
+			<exclude-mapping path="/main/userlogin/login.do"/>
+			<beans:ref bean="userLoginIntercepter"/>
+		</interceptor>
 	</interceptors>
 	
 </beans:beans>
