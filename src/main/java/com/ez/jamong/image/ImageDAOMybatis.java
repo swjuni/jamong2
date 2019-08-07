@@ -28,8 +28,8 @@ public class ImageDAOMybatis implements ImageDAO{
 	}
 
 	@Override
-	public List<ImageVO> selectDelete(List<Integer> list) {
-		return sqlSession.selectList(namespace+"selectDelete",list);
+	public List<ImageVO> selectDelete(Map<String, Object> map) {
+		return sqlSession.selectList(namespace+"selectDelete",map);
 	}
 
 	@Override

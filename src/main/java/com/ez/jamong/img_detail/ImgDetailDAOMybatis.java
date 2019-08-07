@@ -23,8 +23,8 @@ public class ImgDetailDAOMybatis implements ImgDetailDAO{
 	}
 
 	@Override
-	public List<ImgDetailVO> selectDelete(List<Integer> list) {
-		return session.selectList(namespace+"selectDelete", list);
+	public List<ImgDetailVO> selectDelete(Map<String, Object> map) {
+		return session.selectList(namespace+"selectDelete", map);
 	}
 
 	@Override

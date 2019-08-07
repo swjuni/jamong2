@@ -31,8 +31,11 @@ public class ImgDetailServiceImpl implements ImgDetailService{
 	}
 
 	@Override
-	public List<ImgDetailVO> selectDelete(List<Integer> list) {
-		return imgDetailDao.selectDelete(list);
+	public List<ImgDetailVO> selectDelete(List<Integer> list,int productNo) {
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("productNo", productNo);
+		return imgDetailDao.selectDelete(map);
 	}
 
 	@Override

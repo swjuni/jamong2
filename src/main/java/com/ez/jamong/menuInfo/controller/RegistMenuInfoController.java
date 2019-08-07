@@ -184,12 +184,12 @@ public class RegistMenuInfoController {
 			imgDetailNo.add(-1);
 		}
 		
-		List<ImageVO> listM=imageService.selectDelete(imageNo);
+		List<ImageVO> listM=imageService.selectDelete(imageNo,productNo);
 		for(int i=0;i<listM.size();i++) {
 			multiFileUploadUtility.deleteFile(MultiFileUploadUtility2.IMAGE_UPLOAD, listM.get(i).getFileName(),request);
 		}
 		
-		List<ImgDetailVO> listD=imgDetailService.selectDelete(imgDetailNo);
+		List<ImgDetailVO> listD=imgDetailService.selectDelete(imgDetailNo,productNo);
 		for(int i=0;i<listD.size();i++) {
 			multiFileUploadUtility.deleteFile(MultiFileUploadUtility2.IMG_DETAIL_UPLOAD, listD.get(i).getFileName(),request);
 		}

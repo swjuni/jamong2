@@ -30,8 +30,11 @@ public class ImageServiceImpl implements ImageService{
 	}
 
 	@Override
-	public List<ImageVO> selectDelete(List<Integer> list) {
-		return imageDao.selectDelete(list);
+	public List<ImageVO> selectDelete(List<Integer> list,int productNo) {
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("productNo", productNo);
+		return imageDao.selectDelete(map);
 	}
 
 	@Override

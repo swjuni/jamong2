@@ -17,12 +17,13 @@
 		order by detail_img_no
 	</select>
 	
-	<select id="selectDelete" parameterType="java.util.ArrayList" resultType="imgDetailVo">
+	<select id="selectDelete" parameterType="map" resultType="imgDetailVo">
 		select * from img_detail
 		where detail_img_no not in
 		<foreach collection="list" item="item" index="index" separator="," open="(" close=")">
 		    ${list[index]}
 		</foreach>
+		and product_no=#{productNo}
 	</select>
 	<delete id="deleteImgDetail" parameterType="map">
 		delete img_detail
