@@ -52,4 +52,14 @@
 		where product_no = #{productNo}
 		order by e.COL desc
 	</select>
+	
+	<select id="evalAvgByExpertNo" parameterType="int" resultType="int">
+		select avg(e.EVAL_SCORE) as eval_score
+		from evaluation e join menu_info m
+		on e.PRODUCT_NO = m.PRODUCT_NO
+		join expert ex
+		on ex.EXPERT_NO = m.EXPERT_NO
+		group by ex.EXPERT_NO
+		having ex.EXPERT_NO=#{expertNo}
+	</select>
 </mapper>

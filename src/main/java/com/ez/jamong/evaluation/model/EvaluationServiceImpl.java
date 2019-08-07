@@ -35,4 +35,9 @@ public class EvaluationServiceImpl implements EvaluationService{
 		return evaluationDao.evaluationListByPdNo(productNo);
 	}
 
+	@Override
+	public int evalAvgByExpertNo(int expertNo) {
+		return evaluationDao.evalAvgByExpertNo(expertNo);
+	}
+
 }

@@ -136,7 +136,7 @@
 														<div>
 															<h4>${vo.id }</h4>
 															<span>${vo.productName }</span><br>
-															<div class="moneyDiv"><b>1,000,000</b>원</div> 
+															<div class="moneyDiv"><b><fmt:formatNumber value="${vo.packPrice }" pattern="#,###"/></b>원</div> 
 														</div>
 													</div><!-- end case-info -->
 													<div class="case-info clearfix  heartDiv">

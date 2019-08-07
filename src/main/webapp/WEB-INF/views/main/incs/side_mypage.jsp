@@ -21,13 +21,15 @@
 								</c:if>
 							</div><!-- end website-screen -->
 
-							<div class="circle-detail">
-								<div class="progress">
-								 	<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width:67%">
-								    	<span>100</span>
-								  	</div>
-								</div>
-							</div><!-- end circle -->
+							<c:if test="${eval>0 }">
+								<div class="circle-detail">
+									<div class="progress">
+									 	<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="${eval }" aria-valuemin="0" aria-valuemax="100" style="width:${eval }%">
+									    	<span>${eval }</span>
+									  	</div>
+									</div>
+								</div><!-- end circle -->
+						  	</c:if>
 							<hr>
 
 							<div class="seo-details">

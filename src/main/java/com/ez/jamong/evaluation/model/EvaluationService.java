@@ -9,4 +9,5 @@ public interface EvaluationService {
 	int deleteEvaluation(int evalNo);
 	int evaluationAdd(EvaluationVO evaluationVo);
 	List<EvaluationVO> evaluationListByPdNo(int productNo);
+	int evalAvgByExpertNo(int expertNo);
 }

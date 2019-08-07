@@ -31,5 +31,9 @@ public class EvaluationDAOMybatis implements EvaluationDAO{
 	public List<EvaluationVO> evaluationListByPdNo(int productNo) {
 		return sqlSession.selectList(namespace+"evaluationListByPdNo", productNo);
 	}
+	@Override
+	public int evalAvgByExpertNo(int expertNo) {
+		return sqlSession.selectOne(namespace+"evalAvgByExpertNo",expertNo);
+	}
 
 }

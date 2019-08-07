@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ import com.ez.jamong.common.DateSearchVO;
 import com.ez.jamong.common.PaginationInfo;
 import com.ez.jamong.common.WebUtility;
 import com.ez.jamong.orders.model.OrdersService;
+import com.ez.jamong.orders.model.OrdersVO;
 
 @Controller
 public class OrdersController {
@@ -108,6 +110,16 @@ public class OrdersController {
 		model.addAttribute("pagingInfo", pagingInfo);
 		
 		return "main/mypage/sellList";
+	}
+	
+	@RequestMapping("/mypage/orders/updateProgress.do")
+	public String updateProgress(@ModelAttribute OrdersVO ordersVo, HttpServletRequest request) {
+		logger.info("진행상태 업데이트, 파라미터 ordersVo={}", ordersVo);
+		
+		ordersService.updateProgressByOrderNo(ordersVo);
+		
+		String referer = request.getHeader("Referer");
+		return "redirect:"+referer;
 	}
 	
 }

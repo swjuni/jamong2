@@ -5,7 +5,7 @@ m.product_no, m.category_type_no, m.product_name,
 (select sum(eval_score)/count(*) from evaluation ev where ev.product_no=m.product_no  ) as eval_score,
 m.summary, m.detail_desc, m.regdate, m.order_level, m.recommend, m.activation, m.expert_no,
 F.FILE_NAME, cl.CATEGORY_NO, cl.CATEGORY_NAME_L, cm.CATEGORY_NAME,
-e.id, e.FILE_NAME as expert_file_name
+e.id, e.FILE_NAME as expert_file_name, p.PACK_PRICE
 from MENU_INFO m join CATEGORY_M cm
 on m.CATEGORY_TYPE_NO = cm.CATEGORY_NO_M
 join CATEGORY_L cl
@@ -23,4 +23,11 @@ join
 )F
 on m.PRODUCT_NO = F.PRODUCT_NO
 join expert e
-on e.EXPERT_NO = m.EXPERT_NO;
+on e.EXPERT_NO = m.EXPERT_NO
+join
+(
+select product_no, min(pack_price) as pack_price
+from package
+group by product_no
+) p
+on p.PRODUCT_NO = m.PRODUCT_NO;
