@@ -18,3 +18,4 @@ CREATE SEQUENCE  expert_profile_seq
 ;
 
 alter table menu_info modify(activation default null);
+commit;

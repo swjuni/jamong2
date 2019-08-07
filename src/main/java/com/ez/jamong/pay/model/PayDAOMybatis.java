@@ -24,4 +24,9 @@ public class PayDAOMybatis implements PayDAO{
 		return sqlSession.selectOne(namespace+"selectTotalRecord", dateSearchVo);
 	}
 
+	@Override
+	public Map<String, Object> selectTopSellUser() {
+		return sqlSession.selectOne(namespace+"selectTopSellUser");
+	}
+
 }
