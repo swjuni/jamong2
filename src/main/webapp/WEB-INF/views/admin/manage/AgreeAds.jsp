@@ -45,12 +45,13 @@
 
 					</div>
 					</c:if>
+					<div class="owl-carousel slide-one-item">
 					<c:if test="${!empty list }">
                     <c:forEach var="vo" items="${list }">
-					<div class="owl-carousel slide-one-item">
+					
 
 						<div class="site-section-cover overlay img-bg-section"
-							style="background-image: url(<c:url value='/resources/images/${vo.fileName }'/>); height:500px;">
+							style="background-image: url(<c:url value='/upload/banner/${vo.fileName }'/>); height:500px;">
 							
 							<div class="container">
 								<div class="row align-items-center justify-content-center">
@@ -65,9 +66,10 @@
 							</div>
 						</div>
 
-					</div>
+					
 					</c:forEach>
 					</c:if>
+					</div>
 				</div>
 				<!-- /# card -->
 

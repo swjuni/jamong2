@@ -21,4 +21,9 @@ public class PayServiceImpl implements PayService{
 	public int selectTotalRecord(DateSearchVO dateSearchVo) {
 		return payDao.selectTotalRecord(dateSearchVo);
 	}
+
+	@Override
+	public Map<String, Object> selectTopSellUser() {
+		return payDao.selectTopSellUser();
+	}
 }

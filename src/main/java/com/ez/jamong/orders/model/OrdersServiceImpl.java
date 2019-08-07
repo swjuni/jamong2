@@ -36,4 +36,9 @@ public class OrdersServiceImpl implements OrdersService{
 	public int expertSelectTotalRecord(DateSearchVO dateSearchVo) {
 		return ordersDao.expertSelectTotalRecord(dateSearchVo);
 	}
+
+	@Override
+	public int updateProgressByOrderNo(OrdersVO ordersVo) {
+		return ordersDao.updateProgressByOrderNo(ordersVo);
+	}
 }

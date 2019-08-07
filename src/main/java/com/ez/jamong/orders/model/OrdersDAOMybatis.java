@@ -33,4 +33,8 @@ public class OrdersDAOMybatis implements OrdersDAO{
 	public int expertSelectTotalRecord(DateSearchVO dateSearchVo) {
 		return session.selectOne(namespace+"expertSelectTotalRecord", dateSearchVo);
 	}
+	@Override
+	public int updateProgressByOrderNo(OrdersVO ordersVo) {
+		return session.update(namespace+"updateProgressByOrderNo", ordersVo);
+	}
 }

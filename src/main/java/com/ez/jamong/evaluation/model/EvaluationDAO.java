@@ -9,4 +9,5 @@ public interface EvaluationDAO {
 	int deleteEvaluation(int evalNo);
 	int evaluationAdd(EvaluationVO evaluationVo);
 	List<EvaluationVO> evaluationListByPdNo(int productNo);
+	String evalAvgByExpertNo(int expertNo);
 }

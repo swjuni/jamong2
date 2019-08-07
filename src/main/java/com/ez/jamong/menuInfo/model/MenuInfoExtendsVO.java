@@ -7,7 +7,16 @@ public class MenuInfoExtendsVO extends MenuInfoVO {
 	private String categoryName; //카테고리 중 이름
 	private String id;	//전문가 id
 	private String expertFileName;	//전문가 사진 파일명
+	private String packPrice;	//패키지 가격
 	
+	public String getPackPrice() {
+		return packPrice;
+	}
+
+	public void setPackPrice(String packPrice) {
+		this.packPrice = packPrice;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -60,7 +69,9 @@ public class MenuInfoExtendsVO extends MenuInfoVO {
 	public String toString() {
 		return "MenuInfoExtendsVO [fileName=" + fileName + ", categoryNo=" + categoryNo + ", categoryNameL="
 				+ categoryNameL + ", categoryName=" + categoryName + ", id=" + id + ", expertFileName=" + expertFileName
-				+ ", toString()=" + super.toString() + "]";
+				+ ", packPrice=" + packPrice + ", toString()=" + super.toString() + "]";
 	}
+
+
 
 }

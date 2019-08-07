@@ -111,7 +111,7 @@ public class UserInfoController {
 			@RequestParam (required=false) String saveId,
 			HttpServletRequest request, HttpServletResponse response,
 			Model model) {
-		logger.info("관리자 로그인 처리 파라미터 userid={}, pwd={}", userId, pwd);
+		logger.info("유저 로그인 처리 파라미터 userid={}, pwd={}", userId, pwd);
 		logger.info("saveId={}",saveId);
 		
 		int result=userInfoService.userLoginCheck(userId, pwd);

@@ -11,4 +11,5 @@ public interface OrdersDAO {
 	public int selectTotalRecord(DateSearchVO dateSearchVo);
 	public List<Map<String, Object>> expertSelectByUserNo(DateSearchVO dateSearchVo);
 	public int expertSelectTotalRecord(DateSearchVO dateSearchVo);
+	public int updateProgressByOrderNo(OrdersVO ordersVo);
 }

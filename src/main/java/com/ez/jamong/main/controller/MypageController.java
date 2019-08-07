@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ez.jamong.evaluation.model.EvaluationService;
 import com.ez.jamong.expert.model.ExpertService;
 import com.ez.jamong.expert.model.ExpertVO;
 
@@ -17,6 +18,7 @@ import com.ez.jamong.expert.model.ExpertVO;
 public class MypageController {
 	private Logger logger = LoggerFactory.getLogger(MypageController.class);
 	@Autowired private ExpertService expertService;
+	@Autowired private EvaluationService evaluationService;
 	
 	@RequestMapping("/mypage.do")
 	public String mypage() {
@@ -29,7 +31,12 @@ public class MypageController {
 	public String side(HttpSession session,Model model) {
 		int userNo=(Integer)session.getAttribute("userNo");	
 		ExpertVO vo=expertService.selectByUserNo(userNo);
+		String eval="";
+		if(vo!=null) {
+			eval = evaluationService.evalAvgByExpertNo(vo.getExpertNo());
+		}
 		model.addAttribute("expert",vo);
+		model.addAttribute("eval", eval);
 		return "main/incs/side_mypage";
 	}
 	

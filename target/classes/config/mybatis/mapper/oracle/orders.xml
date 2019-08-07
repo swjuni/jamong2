@@ -105,4 +105,10 @@
 			]]>
 		</where>
 	</select>
+	
+	<update id="updateProgressByOrderNo" parameterType="ordersVo">
+		update orders
+		set progress=#{progress}
+		where order_no=#{orderNo}
+	</update>
 </mapper>

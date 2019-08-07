@@ -10,12 +10,12 @@ function pageFunc(curPage){
 	$("form[name=frmPage]").submit();
 }
 
-function yes(index){
-	
+function progressChange(orderNo, progress, message){
+	if(confirm(message)){
+		location.href="<c:url value='/mypage/orders/updateProgress.do?orderNo="+orderNo+"&progress="+progress+"'/>";
+	}
 }
-function no(index){
-	
-}
+
 </script>
 <style type="text/css">
 .divLeft{
@@ -93,7 +93,6 @@ function no(index){
 			</c:if>
 			<c:if test="${!empty list }">
 				<!-- 반복 시작 -->
-				<c:set var="i" value="0"/>
 				<c:forEach var="map" items="${list }">
 					<tr style="FONT-SIZE: 13PX;">
 						<td class="text-right" >${map['ORDER_NO'] }</td>
@@ -111,15 +110,14 @@ function no(index){
 						</td>
 						<td class="text-center" >
 							<c:if test="${map['PROGRESS'] =='P'}">
-								<button type="button" onclick="yes(${i })">확정</button>
+								<button type="button" onclick="progressChange(${map['ORDER_NO'] }, 'F', '거래완료 처리하시겠습니까?' )">확정</button>
 							</c:if>
 						</td>
 						<td class="text-center" >
 							<c:if test="${map['PROGRESS'] =='W'}">
-								<button type="button" onclick="no(${i })">취소</button>
+								<button type="button" onclick="progressChange(${map['ORDER_NO'] }, 'C', '거래를 취소하시겠습니까?'  )">취소</button>
 							</c:if>
 						</td>
-						<c:set var="i" value="${i+1 }"/>
 					</tr>
 				</c:forEach>
 				<!-- 반복 끝 -->

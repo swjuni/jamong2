@@ -7,6 +7,24 @@
 		 document.frmSearch.submit();
 	}
 </script>
+<script type="text/javascript">/* 배너광고 */
+	$(document).ready(function(){
+		$('.slide-one-item').owlCarousel({
+		    center: false,
+		    items: 1,
+		    loop: true,
+				stagePadding: 0,
+		    margin: 0,
+		    smartSpeed: 1500,
+		    autoplay: true,
+		    pauseOnHover: false,
+		    dots: true,
+		    nav: true,
+		    navText: ['<span class="icon-keyboard_arrow_left">', '<span class="icon-keyboard_arrow_right">']
+		  });
+	});
+
+</script>
 <style type="text/css">
 .section{
 	padding-top: 10px;
@@ -105,6 +123,9 @@
 	z-index: 1;
 	border-radius: 500px !important;
 }
+.owl-stage-outer{
+	height:150px;
+}
 </style>
   
 		<section class="section">
@@ -119,6 +140,59 @@
 								<p style="font-size: 0.9em;"><b>HOME &nbsp; > &nbsp;${epName }${cNameL } &nbsp; > &nbsp; ${cNameM }</b></p>
 							</div>
 						</div>
+				
+				<!-- 배너광고 -->
+				<div class="col-lg-6" style="margin: auto;width:100%;height:150px;">
+				<div class="card">
+					<div class="owl-carousel slide-one-item">
+					<c:if test="${empty adlist }">
+
+						<div class="site-section-cover overlay img-bg-section"
+							style="height:500px;">
+							
+							<div class="container">
+								<div class="row align-items-center justify-content-center">
+									<div class="col-md-12 col-lg-7 text-center">
+										<h1>여러분의 광고를 등록하세요 !</h1>
+										<p>ProBanner 101</p>
+										<p>
+											<a href="#" class="btn btn-white-outline border-w-2 btn-md"></a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</c:if>
+					<c:if test="${!empty adlist }">
+                    <c:forEach var="vo" items="${adlist }">
+					
+
+						<div class="site-section-cover overlay img-bg-section"
+							style="background-image: url(<c:url value='/upload/banner/${vo.fileName }'/>); height:500px;">
+							
+							<div class="container">
+								<div class="row align-items-center justify-content-center">
+									<div class="col-md-12 col-lg-7 text-center" style="height: 150px">
+										<h1></h1>
+										<p></p>
+										<p>
+											<a href="#" class="btn btn-white-outline border-w-2 btn-md"></a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					
+					</c:forEach>
+					</c:if>
+					</div>
+				</div>
+				<!-- /# card -->
+
+			</div>
+	<!-- /# 배너광고 끝 -->
 						<div class="row">
 							<c:if test="${!empty list }">
 								<c:forEach var="vo" items="${list }">
@@ -136,7 +210,7 @@
 														<div>
 															<h4>${vo.id }</h4>
 															<span>${vo.productName }</span><br>
-															<div class="moneyDiv"><b>1,000,000</b>원</div> 
+															<div class="moneyDiv"><b><fmt:formatNumber value="${vo.packPrice }" pattern="#,###"/></b>원</div> 
 														</div>
 													</div><!-- end case-info -->
 													<div class="case-info clearfix  heartDiv">
