@@ -35,5 +35,10 @@ public class ExpertProfileDAOMybatis implements ExpertProfileDAO{
 	public int updateLicense(Map<String, Object> map) {
 		return session.update(namespace+"updateLicense",map);
 	}
+
+	@Override
+	public int updateCareer(Map<String, Object> map) {
+		return session.update(namespace+"updateCareer",map);
+	}
 	
 }

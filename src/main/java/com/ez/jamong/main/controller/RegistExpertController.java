@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -269,6 +270,55 @@ public class RegistExpertController {
 	
 	@RequestMapping(value = "/registCareer.do")
 	public String regist_career(Model model,HttpSession session){
+		int userNo=(Integer)session.getAttribute("userNo");
+		int expertNo=expertService.selectByUserNo(userNo).getExpertNo();
+		ExpertProfileVO expertVo=expertprofileService.selectByExpertNo(expertNo);
+		if(expertVo.getEducation()!=null&&!expertVo.getEducation().isEmpty()) {
+			String[] college=expertVo.getEducation().split("/");
+			model.addAttribute("college",college);
+		}
+
+		if(expertVo.getCareer()!=null&&!expertVo.getCareer().isEmpty()) {
+			String[] career=expertVo.getCareer().split("/");
+			model.addAttribute("career",career);
+		}
+
 		return "main/mypage/edu_careerFrame";
+	}
+	
+	@RequestMapping(value = "/registCareerData.do")
+	public String regist_career_data(Model model,HttpSession session,@RequestParam(required = false, defaultValue = "") String[] career,
+			@RequestParam(required = false, defaultValue = "") String[] college){
+		int userNo=(Integer)session.getAttribute("userNo");
+		int expertNo=expertService.selectByUserNo(userNo).getExpertNo();
+		Map<String, Object> map=new HashMap<String, Object>();
+		String car="";
+		for(int i=0;i<career.length;i++) {
+			car+=career[i]+"/";
+		}
+		logger.info("경력 파라미터={}", car);
+		map.put("career", car);
+		map.put("expertNo", expertNo);
+		
+		String col="";
+		for(int i=0;i<college.length;i++) {
+			col+=college[i]+"/";
+		}
+		logger.info("학력 파라미터={}", col);
+		map.put("college", col);
+		int cnt=expertprofileService.updateCareer(map);
+		
+		String msg="", url="";
+		if(cnt>0) {
+			msg="프로필등록이 완료 되었습니다.";
+			url="/mypage/registCareer.do";
+		}else {
+			msg="저장 실패";
+			url="/mypage/registCareer.do";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
 	}
 }
