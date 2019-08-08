@@ -1,7 +1,7 @@
 -- 회원정보
 CREATE TABLE USER_INFO (
 	USER_NO        NUMBER        NOT NULL, -- 회원번호
-	USER_ID        VARCHAR2(20)  NOT NULL, -- 아이디
+	USER_ID        VARCHAR2(50)  NOT NULL, -- 아이디
 	USER_PWD       VARCHAR2(100) NOT NULL, -- 비밀번호
 	USER_NAME      VARCHAR2(100) NOT NULL, -- 이름
 	HP             VARCHAR2(20)  NULL,     -- 연락처
@@ -788,8 +788,8 @@ ALTER TABLE FILES
 -- 메시지
 CREATE TABLE MESSAGE (
 	MESSAGE_NO         NUMBER        NOT NULL, -- 메시지번호
-	USER_ID            VARCHAR2(20)  NOT NULL, -- 보낸아이디
-	USER_ID2           VARCHAR2(20)  NOT NULL, -- 받는아이디
+	USER_ID            VARCHAR2(50)  NOT NULL, -- 보낸아이디
+	USER_ID2           VARCHAR2(50)  NOT NULL, -- 받는아이디
 	CONTENTS           VARCHAR2(500) NULL,     -- 내용
 	TRASH              VARCHAR2(10)  DEFAULT 'N' NOT NULL, -- 휴지통여부
 	TRASH2             VARCHAR2(10)  DEFAULT 'N' NOT NULL, -- 상대방휴지통

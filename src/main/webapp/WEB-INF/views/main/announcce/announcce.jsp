@@ -40,7 +40,14 @@
 							<c:forEach var="vo" items="${list }">
 								<div class="blog-box clearfix row">
 									<div class="media-box col-md-4">
-										<a href="<c:url value='/main/announcce/countUpdate.do?announceNo=${vo.announceNo }'/>" title=""><img src="/jamong/upload/announcce/${vo.fileName }" alt="" class="img-responsive img-thumbnail"></a>
+										<a href="<c:url value='/main/announcce/countUpdate.do?announceNo=${vo.announceNo }'/>" title="">
+											<c:if test="${!empty vo.fileName }">
+												<img src="/jamong/upload/announcce/${vo.fileName }" alt="" class="img-responsive img-thumbnail">
+											</c:if>
+											<c:if test="${empty vo.fileName }">
+												<img src="/jamong/resources/images/notice.png" alt="" class="img-responsive img-thumbnail">
+											</c:if>
+										</a>
 									</div><!-- end media-box -->
 									<div class="blog-desc col-md-8">
 										<h3><a href="<c:url value='/main/announcce/countUpdate.do?announceNo=${vo.announceNo }'/>" title="" id="underTitle">${vo.title }</a>
