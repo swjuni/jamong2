@@ -169,7 +169,7 @@
 					
 
 						<div class="site-section-cover overlay img-bg-section"
-							style="background-image: url(<c:url value='/upload/banner/${vo.fileName }'/>); height:500px;">
+							style="background-image: url(<c:url value='/upload/ads/${vo.fileName }'/>); height:500px;">
 							
 							<div class="container">
 								<div class="row align-items-center justify-content-center">
