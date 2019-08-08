@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ez.jamong.common.PaginationInfo;
 import com.ez.jamong.common.SearchVO;
@@ -23,6 +24,7 @@ import com.ez.jamong.expert.model.ExpertService;
 import com.ez.jamong.report.model.ReportListVO;
 import com.ez.jamong.report.model.ReportService;
 import com.ez.jamong.report.model.ReportVO;
+import com.ez.jamong.userInfo.model.UserInfoService;
 
 @Controller
 @RequestMapping("admin/expert")
@@ -30,6 +32,7 @@ public class ExpertAdminController {
 	private Logger logger=LoggerFactory.getLogger(ExpertAdminController.class);
 	@Autowired private ReportService reportService;
 	@Autowired private ExpertService expertService;
+	@Autowired private UserInfoService userInfoService;
 	
 	@RequestMapping("/expertList.do")
 	public String expert_list(@ModelAttribute SearchVO searchVo, Model model) {
@@ -216,5 +219,41 @@ public class ExpertAdminController {
 		model.addAttribute("url", url);
 		
 		return "common/message";
+	}
+	
+	@RequestMapping(value = "/restart.do",method = RequestMethod.GET)
+	@ResponseBody
+	public String restart_state(@RequestParam(required = true) int no) {
+		logger.info("no={}",no);
+		int cnt=userInfoService.memberActiveByUserNo(no);
+		logger.info("cnt={}", cnt);
+		return "활성화";
+	}
+	
+	@RequestMapping(value = "/ban.do",method = RequestMethod.GET)
+	@ResponseBody
+	public String ban_state(@RequestParam(required = true) int no) {
+		logger.info("no={}",no);
+		int cnt=userInfoService.memberInactiveByUserNo(no);
+		logger.info("cnt={}", cnt);
+		return "활성화";
+	}
+	
+	@RequestMapping(value = "/activeMulti.do")
+	@ResponseBody
+	public String active_multi(@RequestParam String[] acInacNo) {
+		logger.info("acInacNo={}",acInacNo[0]);
+		int cnt=userInfoService.memberActiveMulti(acInacNo);
+		logger.info("cnt={}", cnt);
+		return "활성화";
+	}
+	
+	@RequestMapping(value = "/InactiveMulti.do")
+	@ResponseBody
+	public String inactive_multi(@RequestParam String[] acInacNo) {
+		logger.info("acInacNo={}",acInacNo[0]);
+		int cnt=userInfoService.memberInActiveMulti(acInacNo);
+		logger.info("cnt={}", cnt);
+		return "비활성화";
 	}
 }

@@ -176,7 +176,7 @@
 															style="width: 5%;">번호</th>
 														<th
 															class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
-															style="width: 5%;" id="report_state">승인여부	</th>
+															style="width: 5%; background: #96909263;" id="report_state">승인여부	</th>
 														<th
 															class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
 															style="width: 20%;">신고타입</th>

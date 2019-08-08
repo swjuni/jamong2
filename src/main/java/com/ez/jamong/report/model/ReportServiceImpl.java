@@ -77,7 +77,7 @@ public class ReportServiceImpl implements ReportService{
 		int cnt=0;
 		try{
 			Map<String, Integer> map=new HashMap<String, Integer>();
-			map.put("reportNo", reportNo);
+			map.put("productNo", productNo);
 			map.put("adminNo", adminNo);
 			cnt=reportDao.acceptReport(map);
 			cnt=menuInfoDao.suspendedByPdNo(productNo);

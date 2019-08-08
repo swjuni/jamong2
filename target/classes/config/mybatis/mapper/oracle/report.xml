@@ -52,7 +52,7 @@
 	<update id="acceptReport" parameterType="hashmap">
 		update report
 		set delflag='Y', admin_no=#{adminNo}
-		where report_no=#{reportNo}
+		where product_no=#{productNo}
 	</update>
 
 	<update id="refuseReport" parameterType="hashmap">
