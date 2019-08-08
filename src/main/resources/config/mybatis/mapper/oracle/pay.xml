@@ -51,12 +51,10 @@
 	</select>
 	
 	<select id="selectTopSellUser" resultType="map">
-		select sum(A.price) pricesum,B.user_id userId from pay A join 
-		(user_info B join orders C on B.USER_NO = C.USER_NO) on A.ORDER_NO = C.ORDER_NO where 
-		<![CDATA[
-		rownum<=1
-		]]>
-		group by B.user_id
-		order by pricesum
+	select sum(A.price) pricesum,B.user_id userid from orders A join user_info B on
+	A.USER_NO = B.USER_NO
+	where progress='P' and confirm_date>=sysdate-365
+	group by user_id
+	order by pricesum
 	</select>
 </mapper>

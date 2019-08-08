@@ -108,7 +108,7 @@
 	
 	<update id="updateProgressByOrderNo" parameterType="ordersVo">
 		update orders
-		set progress=#{progress}
+		set progress=#{progress},confirm_date=sysdate
 		where order_no=#{orderNo}
 	</update>
 </mapper>

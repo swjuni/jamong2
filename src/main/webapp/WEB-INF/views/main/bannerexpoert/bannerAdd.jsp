@@ -28,7 +28,7 @@
 		*/
 		$('#categoryNoL').change(function(){
 			$.ajax({
-				url:"<c:url value='/admin/bannerexpoert/ajaxCategoryM.do'/>",
+				url:"<c:url value='/main/bannerexpoert/ajaxCategoryM.do'/>",
 				type:"get",
 				data:"categoryNoL="+$(this).val(),
 				dataType:"json",

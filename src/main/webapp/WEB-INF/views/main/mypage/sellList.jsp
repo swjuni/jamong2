@@ -121,7 +121,7 @@ function progressChange(orderNo, orderId,progress, message){
 						</td>
 						<td class="text-center" >
 							<c:if test="${map['PROGRESS'] =='W'}">
-								<button type="button" onclick="progressChange(${map['ORDER_NO'] }, 'P', '계약을 체결하시겠습니까?' )">확정</button>
+								<button type="button" onclick="progressChange(${map['ORDER_NO'] },'${map['ORDER_ID'] }', 'P', '계약을 체결하시겠습니까?' )">확정</button>
 							</c:if>
 						</td>
 						<td class="text-center" >

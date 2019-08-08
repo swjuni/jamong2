@@ -243,7 +243,7 @@ public class CategoryMController {
 	
 	
 	
-	@RequestMapping("/admin/bannerexpoert/ajaxCategoryM.do")
+	@RequestMapping("/main/bannerexpoert/ajaxCategoryM.do")
 	@ResponseBody
 	public List<CategoryMVO> select(@RequestParam(defaultValue = "0") int categoryNoL){
 		logger.info("ajax-select.do 요청");

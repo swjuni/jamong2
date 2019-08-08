@@ -80,7 +80,7 @@
 	
 	<select id="selectForUserLogin" parameterType="string" resultType="string">
 		select user_pwd from user_info
-		where user_id=#{userId} and outdate is null
+		where user_id=#{userId} and outdate is null and activation='Y'
 	</select>
 	
 	<select id="selectUser" parameterType="string" resultType="userinfoVo">
