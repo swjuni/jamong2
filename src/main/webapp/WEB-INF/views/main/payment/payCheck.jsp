@@ -96,16 +96,12 @@ table {
 		<h3>주문하기</h3>
 		<div class="row callout bgcolor"
 			style="background: #f7ba6d36; color: #323030;">
-			<div class="col-md-9">
-				<div>
+			<div class="col-md-9" style="text-align: left;">
 					<img src="<c:url value='/upload/image/${img.fileName }'/>"
-						class="img" />
-					<p class="lead"
-						style="float: left; margin-top: -25px; font-size: 20px; font-weight: bold;">[${map['CATEGORY_NAME']}]
-						${map['PRODUCT_NAME'] }</p>
-					<p
-						style="float: left; font-size: 17px; padding: 0; margin-top: 70px; margin-left: -224px;">${expertVo.id }</p>
-				</div>
+						class="img" style="float: left; margin-right: 40px;"/>
+					<span style="font-size: 20px; font-weight: bold;">[${map['CATEGORY_NAME']}]
+						${map['PRODUCT_NAME'] }</span><br>
+					<span style="font-size: 17px; ">${expertVo.id }</span>
 			</div>
 			<div style="clear: both;">
 				<table>

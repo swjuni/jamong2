@@ -122,22 +122,18 @@
 <section class="section">
 	<div class="container">
 		<div class="row">
-			<c:if test="${empty adsList }">
+			<c:if test="${empty map }">
 			<div class="col-md-5" style="height: 500px; width: 560px;; margin-top: -100px; border: 1px solid #ea5035c9; border-radius: 20px;">
-				<small>진행중인 광고가 없습니다.</small>
+				<small>순위권에 든 전문가가 없습니다</small>
 			</div>
 			</c:if>
-			<c:if test="${!empty adsList }">
-			<div class="col-md-5" style="height: 500px; width: 560px;; margin-top: -100px;">
-				<c:forEach var="map" items="${adsList }">
-					<div class="service-box" style="height:150px; padding: 26px 32px; margin: 25px 0px;">
-						<img alt="" src="<c:url value='/upload/ads/${map["FILE_NAME"] }'/>" style="width: 100px; height: 100px;float: left; margin-right: 32px; "class="round">
-						<small class="section-title" style="margin-bottom:0px;"><strong>${map['ID'] }</strong></small>
-						<p><small>${map['INTRODUCTION'] }</small></p>
-					</div>
-				</c:forEach>
+			<c:if test="${!empty map }">
+			<div class="col-md-5" style="height: 500px; width: 560px;; margin-top: -100px; border: 1px solid #ea5035c9; border-radius: 20px;">
+				<small>${map['PRICESUM'] }</small>
+				<small>${map['USERID'] }</small>
 			</div>
 			</c:if>
+			
 			<div class="col-md-5" style="height: 500px; width: 500px; margin-top: -75px; border: 1px solid #ea5035c9; border-radius: 20px; float: right;">
 				실시간 평가<br>
 			</div>

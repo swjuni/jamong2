@@ -18,6 +18,7 @@ import com.ez.jamong.categoryl.model.CategoryLService;
 import com.ez.jamong.categoryl.model.CategoryLVO;
 import com.ez.jamong.categorym.model.CategoryMService;
 import com.ez.jamong.categorym.model.CategoryMVO;
+import com.ez.jamong.pay.model.PayService;
 
 @Controller
 @RequestMapping("/main")
@@ -26,6 +27,7 @@ public class MainController {
 	@Autowired CategoryLService categorylService;
 	@Autowired CategoryMService categoryMService;
 	@Autowired AdsService adsService;
+	@Autowired PayService payService;
 	
 	@RequestMapping("/index_main.do")
 	public String main_view(Model model) {
@@ -35,10 +37,12 @@ public class MainController {
 		
 		//전문가 광고 영역
 		List<Map<String, Object>> adsList=adsService.selectShowAds();
+		Map<String,Object> map = payService.selectTopSellUser();
 		logger.info("전문가 광고 영역 adsList={}",adsList.size());
-		
+		logger.info("최고 판매자 map={}",map);
 		model.addAttribute("list",list);
 		model.addAttribute("adsList",adsList);
+		model.addAttribute("map",map);
 		return "main/index_main";
 	}
 	

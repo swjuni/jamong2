@@ -58,34 +58,32 @@ select e.ID, e.INTRODUCTION,a.FILE_NAME from ads a
 join expert e on e.EXPERT_NO = a.EXPERT_NO
 where start_date<=sysdate and end_date>=sysdate;
 
-
 -----------------------------------------
 
 --Àü¾çÈÆ
 create or replace view orderfilesview
 as
-select A.*,B.* from files A, orders B where A.ORDER_NO = B.ORDER_LIST_NO;
-
---Àü¾çÈÆ
-create or replace view expertmenuview
-as
-select A.product_no,A.product_name,B.* from menu_info A, expert B where A.EXPERT_NO = B.EXPERT_NO;
+select B.order_no,B.ORDER_DATE,B.PACK_NO as pack_no2,B.USER_NO as CUSTOMER_NO,A.files_no,A.files_name,A.original_file_name,A.files_size from files A, orders B where A.ORDER_NO = B.ORDER_NO;
+select * from orderfilesview;
 
 --Àü¾çÈÆ
 create or replace view packagemenuview
 as
-select A.product_name,B.* from menu_info A, package B where A.product_no = B.product_no;
+select A.*,B.pack_no from menu_info A, package B where A.product_no = B.product_no;
+select * from packagemenuview;
 
 --Àü¾çÈÆ
-create or replace view userfilesview
+create or replace view orfipameview
 as
-select A.product_no,A.product_name,B.* from packagemenuview A, orderfilesview B where A.PACK_NO = B.PACK_NO;
+select A.*,B.* from orderfilesview A, packagemenuview B where A.PACK_NO2=B.PACK_NO;
 
---Àü¾çÈÆ
-create or replace view expertfilesview
+select * from orfipameview;
+
+create or replace view EXorfipameview
 as
-select A.product_no,A.PRODUCT_NAME,A.EXPERT_NO,B.* from expertmenuview A, orderfilesview B where A.USER_NO = B.USER_NO;
+select A.*,B.user_no as SELLER_NO from orfipameview A, expert B where  A.EXPERT_NO=B.EXPERT_NO;
 
+select * from EXorfipameview;
 
 ---------------------------------------
 

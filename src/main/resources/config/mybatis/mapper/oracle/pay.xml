@@ -52,7 +52,7 @@
 	
 	<select id="selectTopSellUser" resultType="map">
 		select sum(A.price) pricesum,B.user_id userId from pay A join 
-		(user_info B join orders C on B.USER_NO = C.USER_NO) on A.ORDER_NO = C.ORDER_LIST_NO where 
+		(user_info B join orders C on B.USER_NO = C.USER_NO) on A.ORDER_NO = C.ORDER_NO where 
 		<![CDATA[
 		rownum<=1
 		]]>

@@ -74,7 +74,7 @@ public class cancelTest {
 					post.addHeader("Authorization", access_token); // token 이용시
 					ArrayList<NameValuePair> postParameters;
 					postParameters = new ArrayList<NameValuePair>();
-				    postParameters.add(new BasicNameValuePair("imp_uid", "imp_161999187319"));
+				    postParameters.add(new BasicNameValuePair("imp_uid", "imp_478002601220"));
 
 				    post.setEntity(new UrlEncodedFormEntity(postParameters, "UTF-8"));
 					HttpResponse response = client.execute(post);
