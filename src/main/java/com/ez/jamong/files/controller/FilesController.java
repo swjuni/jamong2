@@ -37,8 +37,8 @@ public class FilesController {
 		HttpSession session = request.getSession();
 		int userno=(Integer)session.getAttribute("userNo");
 		logger.info("ddddddddddddddddd={}",userno);
-		List<FilesVO> list1=filesService.selectfileUser(userno);
-		List<FilesVO> list2=filesService.selectfileExpert(userno);
+		List<Map<String, Object>> list1=filesService.selectfileUser(userno);
+		List<Map<String, Object>> list2=filesService.selectfileExpert(userno);
 		
 		logger.info("구매자(일반회원)입장 보낸자료 자료실 list.size={}",list1.size());
 		logger.info("판매자(전문가)입장 보낸자료 자료실 list.size={}",list2.size());

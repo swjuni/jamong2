@@ -117,7 +117,7 @@ public class SendMesaageController {
 		int samcnt=1;
 		int cnt=0;
 		for(String uo : userIdList) {
-			vo.setUserId("123@naver.com");
+			vo.setUserId("wjsdidgns@naver.com");
 			vo.setUserId2(uo);
 			vo.setContents("제목 : "+subjectemail+"\n내용 : "+text);
 			
