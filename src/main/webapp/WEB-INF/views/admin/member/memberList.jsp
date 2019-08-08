@@ -134,10 +134,10 @@
 															style="width: 15%;">가입일</th>
 														<th
 															class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
-															style="width: 10%;" id="outstate">가입상태</th>
+															style="width: 10%;background: #96909263;" id="outstate">가입상태</th>
 														<th
 															class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
-															style="width: 10%;" id="activation">활성화</th>
+															style="width: 10%;background: #96909263;" id="activation">활성화</th>
 														<th
 															class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
 															style="width: 10%;" id="activation">최근접속날짜</th>

@@ -45,6 +45,71 @@
 			$("input[name=currentPage]").val("1");
 			$("form[name=frmExpertInfo]").submit();
 		});
+		
+		$(".restart").click(function(){
+			var no=$(this).next().val();
+			$.ajax({
+				url:"<c:url value='/admin/expert/restart.do'/>",
+				type:"get",
+				data:"no="+no,
+				success:function(res){
+					location.reload();
+				},
+				error:function(xhr, status, error){
+					alert(status+":"+error);
+				}
+			});
+		})
+		$(".bannn").click(function(){
+			var no=$(this).next().val();
+			$.ajax({
+				url:"<c:url value='/admin/expert/ban.do'/>",
+				type:"get",
+				data:"no="+no,
+				success:function(res){
+					location.reload();
+				},
+				error:function(xhr, status, error){
+					alert(status+":"+error);
+				}
+			});
+		});
+		
+		$("#btActiveMulti").click(function(){
+			if($("input[type=checkbox]:checked").length<1){
+				alert("선택재개할 목록을 선택하여 주세요");
+				return false;
+			}
+			$.ajax({
+				url:"<c:url value='/admin/expert/activeMulti.do'/>",
+				type:"post",
+				data: $("#fromNo").serialize(),
+				success:function(res){
+					location.reload();
+				},
+				error:function(xhr, status, error){
+					alert(status+":"+error);
+				}
+			});
+		})
+		
+		$("#btInactiveMulti").click(function(){
+			if($("input[type=checkbox]:checked").length<1){
+				alert("선택중지할 목록을 선택하여 주세요");
+				return false;
+			}
+			$.ajax({
+				url:"<c:url value='/admin/expert/InactiveMulti.do'/>",
+				type:"post",
+				data: $("#fromNo").serialize(),
+				success:function(res){
+					location.reload();
+				},
+				error:function(xhr, status, error){
+					alert(status+":"+error);
+				}
+			});
+		})
 	})
 </script>
 <div class="content-wrap">
@@ -59,7 +124,7 @@
 					</div>
 				</div>
 					<div class="card container-fluid row divSearch" style="margin-left: 10px; width: 1463px;">
-						<form name="frmExpertInfo" method="post"
+						<form name="frmExpertInfo" method="post" id="frm"
 							action='<c:url value="/admin/expert/expertList.do"/>'>
 							<!-- 현재 페이지 hidden에 넣기 -->
 							<input type="hidden" name='currentPage' value="1"> <select class="form-control" style="margin-right: 10px; float:left; border-color:lightgrey; width: 120px; height:35px; font-size: 14px;"
@@ -103,10 +168,10 @@
 															style="width: 10%;">작업량</th>
 														<th
 															class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
-															style="width: 10%;" id="outstate">가입상태</th>
+															style="width: 10%; background: #96909263;" id="outstate">가입상태</th>
 														<th
 															class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
-															style="width: 10%;" id="activation">활성화</th>
+															style="width: 10%;background: #96909263;" id="activation">활성화</th>
 														<th
 															class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
 															style="width: 15%;">권한</th>
@@ -122,13 +187,14 @@
 												</tbody>
 											</table>
 										</div>
+										<form action='' method="post" id="fromNo">
 										<div class="jsgrid-grid-body" style="height: 541px;">
 											<table class="jsgrid-table">
 												<tbody>
 													<c:forEach var="map" items="${list }">
 														<tr class="jsgrid-row">
 															<td class="jsgrid-cell jsgrid-align-center"
-																style="width: 5%;"><input type="checkbox"></td>
+																style="width: 5%;"><input type="checkbox" name="acInacNo" value="${map['USER_NO'] }"></td>
 															<td class="jsgrid-cell jsgrid-align-center"
 																style="width: 10%;">${map['EXPERT_NO'] }</td>
 															<td class="jsgrid-cell jsgrid-align-center"
@@ -137,8 +203,8 @@
 																style="width: 10%;">${map['WORK_AMOUNT'] }</td>
 															<td class="jsgrid-cell jsgrid-align-center"
 																style="width: 10%;">
-																<c:if test="${empty map['OUT_DATE'] }">가입</c:if>
-																<c:if test="${!empty map['OUT_DATE'] }">탈퇴</c:if>
+																<c:if test="${empty map['OUTDATE'] }">가입</c:if>
+																<c:if test="${!empty map['OUTDATE'] }">탈퇴</c:if>
 															</td>
 															<td class="jsgrid-cell jsgrid-align-center"
 																style="width: 10%;">
@@ -152,13 +218,18 @@
 																</td>
 															<td
 																class="jsgrid-cell jsgrid-align-center"
-																style="width: 10%;"><a>사용중지</a></td>
+																style="width: 10%;">
+																<c:if test="${map['ACTIVATION']=='Y' }"><a class="bannn" style="color: red;">사용중지</a></c:if>
+																<c:if test="${map['ACTIVATION']=='N' }"><a class="restart" style="color: blue;">사용재개</a></c:if>
+																<input type="hidden" value="${map['USER_NO'] }">
+																</td>
 															<td style="width:0px;"></td>
 														</tr>
 													</c:forEach>
 												</tbody>
 											</table>
 										</div>
+										</form>
 										<!-- 페이징 처리 -->
 										<!-- <div class="jsgrid-pager-container" style="display: block;">
 											<div class="jsgrid-pager">
@@ -198,6 +269,10 @@
 											</div>
 										</div>
 										<!-- 페이징처리 끝 -->
+										<div class="jsgrid-align-center">
+											<input style="color:red; width:75px; height:40px; padding-right: 66px;" class="btn btn-grau btn-flat m-b-10 m-l-5" type="button" id="btInactiveMulti" value="선택중지">
+											<input style="color:blue; width:75px; height:40px; padding-right: 68px;" class="btn btn-gray btn-flat m-b-10 m-l-5" type="button" id="btActiveMulti" value="선택재개">
+										</div>
 									</div>
 								</div>
 							</div>
