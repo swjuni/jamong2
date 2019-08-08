@@ -59,6 +59,7 @@
 		<interceptor>
 			<mapping path="/main/mypage/**"/>
 			<mapping path="/mypage/**"/>
+			<mapping path="/main/payCheck.do"/>
 			<mapping path="/main/bannerexpoert/**"/>
 			<exclude-mapping path="/main/userlogin/login.do"/>
 			<beans:ref bean="userLoginIntercepter"/>
