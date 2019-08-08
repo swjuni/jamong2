@@ -11,12 +11,12 @@ public class FilesServiceImpl implements FilesService{
 	@Autowired FilesDAO filesDao;
 
 	@Override
-	public List<FilesVO> selectfileUser(int userno) {
+	public List<Map<String, Object>> selectfileUser(int userno) {
 		return filesDao.selectfileUser(userno);
 	}
 
 	@Override
-	public List<FilesVO> selectfileExpert(int userno) {
+	public List<Map<String, Object>> selectfileExpert(int userno) {
 		return filesDao.selectfileExpert(userno);
 	}
 

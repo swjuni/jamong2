@@ -83,8 +83,8 @@
                                                 <tr>
                                                     <th scope="row">${vo.productNo }</th>
                                                     <td>${vo.productName }</td>
-                                                    <td><span class="badge badge-danger">${vo.fileName }</span></td>
-                                                    <td><a href="<c:url value='/main/mypage/messagedownload.do?fileName=${vo.fileName }'/>" download="${vo.originalFileName }"><c:if test="${!empty vo.fileName }"><span class="ti-import"></span></c:if></a></td>
+                                                    <td><span class="badge badge-danger">${vo.filesName }</span></td>
+                                                    <td><a href="<c:url value='/main/mypage/messagedownload.do?fileName=${vo.filesName }'/>" download="${vo.originalFileName }"><c:if test="${!empty vo.fileName }"><span class="ti-import"></span></c:if></a></td>
                                                     <td class="color-danger"><fmt:formatDate value="${vo.orderDate }" type="both" pattern="yy-MM-dd HH:mm:ss "/></td>
                                                 </tr>
                                                 </c:forEach>
@@ -123,8 +123,8 @@
                                                 <tr>
                                                     <th scope="row">${vo.productNo }</th>
                                                     <td>${vo.productName }</td>
-                                                    <td><span class="badge badge-danger">${vo.fileName }</span></td>
-                                                    <td><a href="<c:url value='/main/mypage/messagedownload.do?fileName=${vo.fileName }'/>" download="${vo.originalFileName }"><c:if test="${!empty vo.fileName }"><span class="ti-import"></span></c:if></a></td>
+                                                    <td><span class="badge badge-danger">${vo.filesName }</span></td>
+                                                    <td><a href="<c:url value='/main/mypage/messagedownload.do?fileName=${vo.filesName }'/>" download="${vo.originalFileName }"><c:if test="${!empty vo.fileName }"><span class="ti-import"></span></c:if></a></td>
                                                     <td class="color-danger"><fmt:formatDate value="${vo.orderDate }" type="both" pattern="yy-MM-dd HH:mm:ss "/></td>
                                                 </tr>
                                                 </c:forEach>

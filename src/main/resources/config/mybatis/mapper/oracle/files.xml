@@ -3,13 +3,13 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="config.mybatis.mapper.oracle.files">
-	<select id="selectfileUser" parameterType="int" resultType="filesVo">
-		select product_no,product_name,files_no,files_name as file_name,original_file_name,files_size,user_no,order_date from userfilesview where user_no=#{userNo}
-		order by file_name
+	<select id="selectfileUser" parameterType="int" resultType="map">
+		select * from EXorfipameview where seller_no=#{userNo}
+		order by files_name
 	</select>
-	<select id="selectfileExpert" parameterType="int" resultType="filesVo">
-		select product_no,product_name,files_no,files_name as file_name,original_file_name,files_size,user_no,order_date from expertfilesview where user_no=#{userNo}
-		order by file_name
+	<select id="selectfileExpert" parameterType="int" resultType="map">
+		select * from EXorfipameview where expert_no=#{userNo}
+		order by files_name
 	</select>
 </mapper>
 
