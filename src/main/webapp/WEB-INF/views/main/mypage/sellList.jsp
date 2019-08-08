@@ -96,7 +96,7 @@ function progressChange(orderNo, orderId,progress, message){
 		<tbody>
 			<c:if test="${empty list }">
 				<tr>
-					<td colspan="8" class="text-center">판매 내역이 없습니다</td>
+					<td colspan="12" class="text-center">판매 내역이 없습니다</td>
 				</tr>
 			</c:if>
 			<c:if test="${!empty list }">

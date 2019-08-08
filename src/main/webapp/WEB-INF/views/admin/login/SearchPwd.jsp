@@ -57,7 +57,6 @@
 	
 	<!-- 화면별 고유 scripit init -->
     <script src="<c:url value='/assets/js/lib/data-table/datatables.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/lib/data-table/buttons.dataTables.min.js'/>"></script>
     <script src="<c:url value='/assets/js/lib/data-table/dataTables.buttons.min.js'/>"></script>
     <script src="<c:url value='/assets/js/lib/data-table/buttons.flash.min.js'/>"></script>
     <script src="<c:url value='/assets/js/lib/data-table/jszip.min.js'/>"></script>

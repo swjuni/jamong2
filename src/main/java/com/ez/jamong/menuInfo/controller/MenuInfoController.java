@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ez.jamong.menuInfo.model.MenuInfoService;
 import com.ez.jamong.menuInfo.model.MenuInfoVO;
@@ -29,7 +28,7 @@ public class MenuInfoController {
 		logger.info("상품 목록 화면 요청");
 		
 		List<Map<String, Object>> map = menuinfoService.selectMenuinfoAllView();
-		logger.info("목록 파라미터, map={}", map);
+		//logger.info("목록 파라미터, map={}", map);
 		
 		model.addAttribute("map", map);
 		

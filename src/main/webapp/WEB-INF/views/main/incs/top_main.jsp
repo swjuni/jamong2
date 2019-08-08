@@ -57,7 +57,7 @@
 		left:-10px;
 		background: white;
 		padding-bottom:15px;
-		z-index: 1;
+		z-index: 10;
 	}
 	
 	.subCategory li{
@@ -77,7 +77,7 @@
 	}
 
 	.subCategory{
-		z-index: 0;
+		z-index: 10;
 	}
 </style>
 </head>

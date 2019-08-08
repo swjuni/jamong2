@@ -151,7 +151,6 @@ function progressChange(orderNo,orderId, progress, message){
 			<li><a href="#" onclick="pageFunc(${pagingInfo.lastPage+1})">&gt;</a></li>
 		</c:if>
 	</ul>
-	<input value="${id }" type="text">
 </div>
 
 

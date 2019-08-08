@@ -266,9 +266,9 @@
     <script src="<c:url value='/assets/js/lib/bootstrap.min.js'/>"></script><script src="<c:url value='/assets/js/scripts.js'/>"></script>
     <!-- scripit init-->
     <script src="<c:url value='/assets/js/lib/data-table/datatables.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/lib/data-table/dataTables.bootstrap.min.js'/>"></script>
+    <%-- <script src="<c:url value='/assets/js/lib/data-table/dataTables.bootstrap.min.js'/>"></script> --%>
     <script src="<c:url value='/assets/js/lib/data-table/dataTables.buttons.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/lib/data-table/buttons.bootstrap.min.js'/>"></script>
+    <%-- <script src="<c:url value='/assets/js/lib/data-table/buttons.bootstrap.min.js'/>"></script> --%>
     <script src="<c:url value='/assets/js/lib/data-table/jszip.min.js'/>"></script>
     <script src="<c:url value='/assets/js/lib/data-table/pdfmake.min.js'/>"></script>
     <script src="<c:url value='/assets/js/lib/data-table/vfs_fonts.js'/>"></script>

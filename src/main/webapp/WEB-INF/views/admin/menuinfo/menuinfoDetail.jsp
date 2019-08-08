@@ -111,10 +111,10 @@
 								            onclick="location.href='<c:url value='/admin/menuinfo/menuinfoDetail.do?productNo=${map["PRODUCT_NO"] }&activation=${map["ACTIVATION"] }'/>'">&nbsp;&nbsp;
 							            </c:if>
 										<c:if test="${map['ACTIVATION'] == 'P' }">
-								            <input type = "button" value="거부" class="btn btn-primary"
-								            onclick="location.href='<c:url value='/admin/menuinfo/menuinfoDetail.do?productNo=${map["PRODUCT_NO"] }&activation=Y'/>'">&nbsp;&nbsp;
 								            <input type = "button" value="승인" class="btn btn-primary"
 								            onclick="location.href='<c:url value='/admin/menuinfo/menuinfoDetail.do?productNo=${map["PRODUCT_NO"] }&activation=N'/>'">&nbsp;&nbsp;
+								            <input type = "button" value="거부" class="btn btn-primary"
+								            onclick="location.href='<c:url value='/admin/menuinfo/menuinfoDetail.do?productNo=${map["PRODUCT_NO"] }&activation=Y'/>'">&nbsp;&nbsp;
 							            </c:if>
 							            <input type = "Button" value="삭제" class="btn btn-primary"
 				            			onclick="location.href='<c:url value='/admin/menuinfo/menuinfoDelete.do?productNo=${map["PRODUCT_NO"] }'/>'">&nbsp;&nbsp;

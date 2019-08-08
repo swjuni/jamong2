@@ -56,13 +56,11 @@
                                         <table id="bootstrap-data-table-export" class="table table-bordered table-hover">
                                             <thead>
                                                 <tr style="background-color: #C8D0FE; text-align: center;">
-                                                    <th style="width: 5%">No</th>
-                                                    <th style="width: 18%">상품명</th>
-                                                    <th style="width: 35%">상품 요약 설명</th>
-                                                    <th style="width: 10%">정렬레벨</th>
-                                                    <th style="width: 12%">전문가 닉네임</th>
-                                                    <th style="width: 10%">활성화 상태</th>
-                                                    <th style="width: 10%">등록일</th>
+                                                    <th style="width: 10%">No</th>
+                                                    <th style="width: 30%">상품명</th>
+                                                    <th style="width: 20%">전문가 닉네임</th>
+                                                    <th style="width: 20%">활성화 상태</th>
+                                                    <th style="width: 20%">등록일</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -75,17 +73,6 @@
 		                                                    	<a href="<c:url value='/admin/menuinfo/menuinfoDetail.do?productNo=${map["PRODUCT_NO"] }'/>" class="text-primary">
 		                                                    		${map['PRODUCT_NAME'] }
 		                                                    	</a>
-		                                                    </td>
-		                                                    <td><!-- 카테고리 설명이 긴 경우 30글자만 보여주기 -->
-																<c:if test="${fn:length(map['SUMMARY']) >=24 }">
-																	${fn:substring(map['SUMMARY'], 0,24)}...
-																</c:if>
-																<c:if test="${fn:length(map['SUMMARY']) <24 }">					
-																	${map['SUMMARY']}
-																</c:if>
-															</td>
-															<td>
-		                                                    	${map['ORDER_LEVEL']}
 		                                                    </td>
 		                                                    <td>
 		                                                    	${map['ID']}
@@ -125,7 +112,6 @@
 	
 	<!-- 화면별 고유 scripit init -->
     <script src="<c:url value='/assets/js/lib/data-table/datatables.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/lib/data-table/buttons.dataTables.min.js'/>"></script>
     <script src="<c:url value='/assets/js/lib/data-table/dataTables.buttons.min.js'/>"></script>
     <script src="<c:url value='/assets/js/lib/data-table/buttons.flash.min.js'/>"></script>
     <script src="<c:url value='/assets/js/lib/data-table/jszip.min.js'/>"></script>

@@ -83,7 +83,7 @@
 				</div><!-- end row -->
 			</div><!-- end container -->
 		</section><!-- end section -->
-
+ 
 <%@include file="../incs/bottom_main.jsp" %>
 <!-- 화면별 고유 하단js 포함할 위치 -->
 	<script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
@@ -91,6 +91,6 @@
 	<script src="<c:url value='/resources/js/parallax.js'/>"></script>
 	<script src="<c:url value='/resources/js/animate.js'/>"></script>
 	<script src="<c:url value='/resources/js/custom.js'/>"></script>
-
+ 
 </body>
 </html>
