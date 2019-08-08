@@ -14,7 +14,7 @@
 				</div><!-- end section-title -->
 				<div class="section-title text-center" style="margin-bottom: 0;margin-top: 110px;">
 				<a class="btn btn-primary" href="<c:url value="/main/index_main.do"/>" style="margin-right: 50px;"> ← 메인 페이지로</a>
-				<a class="btn btn-primary" href="page-seo-analysis.html" style="margin-left: 50px;"> 구매내역으로 →</a>
+				<a class="btn btn-primary" href="<c:url value='/mypage/orders/buyList.do'/>" style="margin-left: 50px;"> 구매내역으로 →</a>
 				</div>
 			</div><!-- end container -->
 		</section>
