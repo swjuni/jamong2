@@ -168,9 +168,9 @@
 	<div class="center-pricing" style="margin-top:0px">
 			<ul class="nav nav-tabs"  <c:if test="${!empty userId }">style="display: flex"</c:if>>
 			<c:if test="${empty userName }">
-			    <li><a href="<c:url value="/main/userlogin/login.do"/>" style="cursor: pointer; border-color: #ffffff;">로그인</a></li>
-			    <li><a href="<c:url value="/main/userlogin/userRegist.do"/>" style="cursor: pointer; border-color: #ffffff;">회원가입</a></li>
-			    <li><a href="<c:url value="/main/userlogin/SearchPwd.do"/>" style="cursor: pointer; border-color: #ffffff;">비밀번호 찾기</a></li>
+			    <li><a href="<c:url value="/main/userlogin/login.do"/>" style="cursor: pointer; border-color: #ffffff; color:white;">로그인</a></li>
+			    <li><a href="<c:url value="/main/userlogin/userRegist.do"/>" style="cursor: pointer; border-color: #ffffff; color:white;">회원가입</a></li>
+			    <li><a href="<c:url value="/main/userlogin/SearchPwd.do"/>" style="cursor: pointer; border-color: #ffffff; color:white;">비밀번호 찾기</a></li>
 			</c:if>
 			</ul>
 		</div>
