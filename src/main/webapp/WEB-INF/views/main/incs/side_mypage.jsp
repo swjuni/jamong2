@@ -46,7 +46,7 @@
 										    <div id="collapseSell" class="panel-collapse collapse">
 										        <div class="panel-body">
 													<ul style="list-style: none; padding-top: 10px; padding-left: 30px;">
-						                    			<li><a href="<c:url value='/mypage/registExpert.do?state=expert'/>">나의 서비스</a></li>
+						                    			<li><a href="<c:url value='/mypage/service.do'/>">나의 서비스</a></li>
 						                    			<li><a href="#">수익관리</a></li>
 						                    			<li><a href="<c:url value='/mypage/registExpert.do?state=expert'/>">프로필 정보</a></li>
 						                    			<li><a href="<c:url value='/mypage/orders/sellList.do'/>">판매관리</a></li>

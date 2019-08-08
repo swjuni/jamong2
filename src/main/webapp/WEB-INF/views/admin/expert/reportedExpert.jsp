@@ -87,6 +87,20 @@
 			$("form[name=frmList]").submit();
 		});
 		
+		$(".colorr td").mouseenter(function(){
+			var me=$(this);
+			$(this).siblings().each(function(idx,item){
+				me.css("background","#96909263");
+				$(this).css("background","#96909263");
+			})
+		})
+		$(".colorr td").mouseleave(function(){
+			var me=$(this);
+			$(this).siblings().each(function(idx,item){
+				me.css("background","white");
+				$(this).css("background","white");
+			})
+		})
 	});
 </script>
 <!-- 각자가 분담해서 디자인할 바디 태그 -->
@@ -213,7 +227,7 @@
 													</c:if>
 													<c:set var="idx" value="0"/>
 													<c:forEach var="map" items="${list }">
-														<tr class="jsgrid-row">
+														<tr class="jsgrid-row colorr">
 															<td class="jsgrid-cell jsgrid-align-center" onclick='event.cancelBubble=true;'
 																style="width: 5%;">
 																<c:if test="${empty map['DELFLAG']}">
