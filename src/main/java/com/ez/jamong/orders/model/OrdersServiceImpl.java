@@ -41,4 +41,13 @@ public class OrdersServiceImpl implements OrdersService{
 	public int updateProgressByOrderNo(OrdersVO ordersVo) {
 		return ordersDao.updateProgressByOrderNo(ordersVo);
 	}
+
+	@Override
+	public List<Map<String, Object>> selectSellerStatistics(int sellerNo) {
+		return ordersDao.selectSellerStatistics(sellerNo);
+	}
+	@Override
+	public List<Map<String, Object>> selectSellerStatisticsYear(int sellerNo) {
+		return ordersDao.selectSellerStatisticsYear(sellerNo);
+	}
 }

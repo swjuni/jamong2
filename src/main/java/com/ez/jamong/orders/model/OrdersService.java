@@ -12,4 +12,6 @@ public interface OrdersService {
 	public List<Map<String, Object>> expertSelectByUserNo(DateSearchVO dateSearchVo);
 	public int expertSelectTotalRecord(DateSearchVO dateSearchVo);
 	public int updateProgressByOrderNo(OrdersVO ordersVo);
+	public List<Map<String, Object>> selectSellerStatistics(int sellerNo);
+	public List<Map<String, Object>> selectSellerStatisticsYear(int sellerNo);
 }

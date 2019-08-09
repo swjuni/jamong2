@@ -19,5 +19,9 @@ public class FilesMybatis implements FilesDAO{
 	public List<Map<String, Object>> selectfileExpert(int userno) {
 		return sqlSession.selectList(namespace+"selectfileExpert",userno);
 	}
+	@Override
+	public int insertFiles(FilesVO vo) {
+		return sqlSession.insert(namespace+"insertFiles",vo);
+	}
 	
 }

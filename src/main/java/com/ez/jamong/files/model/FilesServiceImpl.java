@@ -20,4 +20,9 @@ public class FilesServiceImpl implements FilesService{
 		return filesDao.selectfileExpert(userno);
 	}
 
+	@Override
+	public int insertFiles(FilesVO vo) {
+		return filesDao.insertFiles(vo);
+	}
+
 }

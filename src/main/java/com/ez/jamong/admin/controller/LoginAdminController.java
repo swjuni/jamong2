@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ez.jamong.Author.model.AuthorService;
 import com.ez.jamong.admin.model.AdminService;
 import com.ez.jamong.admin.model.AdminVO;
 
@@ -24,6 +25,7 @@ public class LoginAdminController {
 	private Logger logger = LoggerFactory.getLogger(LoginAdminController.class);
 	
 	@Autowired private AdminService adminService;
+	@Autowired private AuthorService authorService;
 	
 	//암호화 인코더
 	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -54,6 +56,8 @@ public class LoginAdminController {
 			session.setAttribute("adminId", userid);
 			session.setAttribute("adminName", adminVo.getAdminName());
 			session.setAttribute("adminAuthor", adminVo.getAuthorNo());
+			int authorNo=adminVo.getAuthorNo();
+			session.setAttribute("adminAuthorLev", authorService.selectAuthorLev(authorNo));
 			session.setAttribute("adminNo", adminVo.getAdminNo());
 			
 			//쿠키
@@ -89,6 +93,7 @@ public class LoginAdminController {
 		session.removeAttribute("adminId");
 		session.removeAttribute("adminName");
 		session.removeAttribute("adminAuthor");
+		session.removeAttribute("adminAuthorLev");
 		session.removeAttribute("adminNo");
 		
 		return "redirect:/admin/login/login.do";

@@ -103,15 +103,6 @@
     		}
     		});
 		
-		$.ajax({
-    		url :"<c:url value='/admin/manage/gradeName_select.do'/>",
-    		dataType: "json",
-    		success : function(res) {
-    			for(var i=0;i<res.length;i++){
-    				$('.adminauthor').eq(i).text(res[i]);
-    			}
-    		}
-    		});
 		
 	});
 </script>
@@ -190,10 +181,10 @@
                                                 <c:forEach var="vo" items="${list }" varStatus="status">
                                                 <tr>
                                                 
-                                                    <td class="adminid">${vo.adminId }</td>
+                                                    <td class="adminid">${vo['ADMIN_ID'] }</td>
                                                     <td class="adminpwd">******</td>
-                                                    <td class="adminname">${vo.adminName }</td>
-                                                    <td class="adminauthor"></td>
+                                                    <td class="adminname">${vo['ADMIN_NAME'] }</td>
+                                                    <td class="adminauthor">${vo['AUTHOR_NAME'] }</td>
                                                     <td>
                                                     <!-- <button type="button" class="adminedit btn btn-info m-b-10 m-l-5">수정</button> -->
                                                     <button type="button" class="admineditok btn btn-info m-b-10 m-l-5" style="display: none">확인</button>

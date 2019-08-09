@@ -63,7 +63,7 @@ where start_date<=sysdate and end_date>=sysdate;
 --Àü¾çÈÆ
 create or replace view orderfilesview
 as
-select B.order_no,B.ORDER_DATE,B.PACK_NO as pack_no2,B.USER_NO as CUSTOMER_NO,A.files_no,A.files_name,A.original_file_name,A.files_size from files A, orders B where A.ORDER_NO = B.ORDER_NO;
+select B.price,B.CONFIRM_DATE,B.order_no,B.ORDER_DATE,B.PACK_NO as pack_no2,B.USER_NO as CUSTOMER_NO,A.files_no,A.files_name,A.original_file_name,A.files_size from files A, orders B where A.ORDER_NO = B.ORDER_NO;
 select * from orderfilesview;
 
 --Àü¾çÈÆ
@@ -84,6 +84,9 @@ as
 select A.*,B.user_no as SELLER_NO from orfipameview A, expert B where  A.EXPERT_NO=B.EXPERT_NO;
 
 select * from EXorfipameview;
+select sum(price) price,seller_no,TO_CHAR(confirm_date, 'yyyy-mm') confirm_date from EXorfipameview where seller_no=41
+group by seller_no,TO_CHAR(confirm_date, 'yyyy-mm');
+commit;
 
 ---------------------------------------
 

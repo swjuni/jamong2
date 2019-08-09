@@ -14,8 +14,8 @@
 	</select>
 	
 	<!-- 모든 관리자 출력 -->
-	<select id="selectAdminAll" resultType="adminVo">
-		select * from administrator where admin_id not in ('admin')
+	<select id="selectAdminAll" resultType="map">
+		select A.*,B.* from administrator A join authority B on A.AUTHOR_NO = B.AUTHOR_NO where admin_id not in ('admin')
 	</select>
 	
 	<update id="gradeAdminUpdate" parameterType="adminVo" >
