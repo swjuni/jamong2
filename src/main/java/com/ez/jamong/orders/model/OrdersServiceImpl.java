@@ -50,4 +50,13 @@ public class OrdersServiceImpl implements OrdersService{
 	public List<Map<String, Object>> selectSellerStatisticsYear(int sellerNo) {
 		return ordersDao.selectSellerStatisticsYear(sellerNo);
 	}
+	@Override
+	public String userTotalPrice(int userNo) {
+		return ordersDao.userTotalPrice(userNo);
+	}
+
+	@Override
+	public int updateUserAuthority(int userNo) {
+		return ordersDao.updateUserAuthority(userNo);
+	}
 }

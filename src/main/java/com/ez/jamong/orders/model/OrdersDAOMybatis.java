@@ -45,4 +45,12 @@ public class OrdersDAOMybatis implements OrdersDAO{
 	public List<Map<String, Object>> selectSellerStatisticsYear(int sellerNo) {
 		return session.selectList(namespace+"selectSellerStatisticsYear",sellerNo);
 	}
+	@Override
+	public String userTotalPrice(int userNo) {
+		return session.selectOne(namespace+"userTotalPrice", userNo);
+	}
+	@Override
+	public int updateUserAuthority(int userNo) {
+		return session.update(namespace+"updateUserAuthority", userNo);
+	}
 }

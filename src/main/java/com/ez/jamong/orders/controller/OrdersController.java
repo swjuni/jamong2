@@ -133,7 +133,7 @@ public class OrdersController {
 	}
 	
 	@RequestMapping("/mypage/orders/updateProgress.do")
-	public String updateProgress(Model model,@ModelAttribute OrdersVO ordersVo, HttpServletRequest request) {
+	public String updateProgress(Model model,@ModelAttribute OrdersVO ordersVo, HttpServletRequest request, HttpSession session) {
 		logger.error("진행상태 업데이트, 파라미터 ordersVo={}", ordersVo);
 		String id=ordersVo.getOrderId();
 		if(ordersVo.getProgress().equals("C")) {
@@ -205,6 +205,20 @@ public class OrdersController {
 					}catch (Exception e) {
 						e.printStackTrace();
 					}
+		}
+		
+		//"F"완료 처리시 500원 이상 구매 고객 등급 조정 메서드 추가
+		if(ordersVo.getProgress().equals("F")) {
+			int userNo = (Integer)session.getAttribute("userNo");
+			String price = ordersService.userTotalPrice(userNo);
+			int totalPrice=0;
+			if(price!=null && !price.isEmpty()) {
+				totalPrice = Integer.parseInt(price);
+				if(totalPrice>=500) {
+					int cnt = ordersService.updateUserAuthority(userNo);
+					logger.info("고객등급 조정결과 cnt={}", cnt);
+				}
+			}
 		}
 		ordersService.updateProgressByOrderNo(ordersVo);
 		String referer = request.getHeader("Referer"); 

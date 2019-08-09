@@ -112,6 +112,18 @@
 		where order_no=#{orderNo}
 	</update>
 	
+	<select id="userTotalPrice" parameterType="int" resultType="String">
+		select sum(price) as price from orders
+		where user_no=#{userNo} and progress='F'
+		group by user_no, price
+	</select>
+	
+	<update id="updateUserAuthority" parameterType="int">
+		update user_info
+		set author_no=5
+		where user_no=#{userNo}
+	</update>
+	
 	<select id="selectSellerStatistics" parameterType="int" resultType="map">
 		select sum(price) price,seller_no,TO_CHAR(confirm_date, 'yyyy-mm') confirm_date from EXorfipameview where seller_no=#{sellerNo}
 		group by seller_no,TO_CHAR(confirm_date, 'yyyy-mm')

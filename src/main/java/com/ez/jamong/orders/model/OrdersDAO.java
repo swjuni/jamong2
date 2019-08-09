@@ -14,4 +14,6 @@ public interface OrdersDAO {
 	public int updateProgressByOrderNo(OrdersVO ordersVo);
 	public List<Map<String, Object>> selectSellerStatistics(int sellerNo);
 	public List<Map<String, Object>> selectSellerStatisticsYear(int sellerNo);
+	public String userTotalPrice(int userNo);
+	public int updateUserAuthority(int userNo);
 }
