@@ -40,4 +40,14 @@ public class EvaluationServiceImpl implements EvaluationService{
 		return evaluationDao.evalAvgByExpertNo(expertNo);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectToday() {
+		return evaluationDao.selectToday();
+	}
+
+	@Override
+	public Map<String, Object> selectRecentOne(int evalNo) {
+		return evaluationDao.selectRecentOne(evalNo);
+	}
+
 }

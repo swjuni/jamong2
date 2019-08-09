@@ -35,5 +35,13 @@ public class EvaluationDAOMybatis implements EvaluationDAO{
 	public String evalAvgByExpertNo(int expertNo) {
 		return sqlSession.selectOne(namespace+"evalAvgByExpertNo",expertNo);
 	}
+	@Override
+	public List<Map<String, Object>> selectToday() {
+		return sqlSession.selectList(namespace+"selectToday");
+	}
+	@Override
+	public Map<String, Object> selectRecentOne(int evalNo) {
+		return sqlSession.selectOne(namespace+"selectRecentOne",evalNo);
+	}
 
 }

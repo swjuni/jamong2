@@ -62,4 +62,44 @@
 		group by ex.EXPERT_NO
 		having ex.EXPERT_NO=#{expertNo}
 	</select>
+	
+	<resultMap type="map" id="eval">
+		<result property="REVIEW" column="REVIEW" jdbcType="CLOB" javaType="java.lang.String" />
+	</resultMap>
+	<select id="selectToday" resultMap="eval">
+		select e.EVAL_NO, e.PRODUCT_NO, e.EVAL_SCORE, e.REVIEW, floor((e.COL-sysdate)*24*60*-1) as COL, e.USER_NO,
+		cl.CATEGORY_NAME_L, cm.CATEGORY_NAME, m.PRODUCT_NAME, u.USER_ID, id 
+		from EVALUATION e join MENU_INFO m 
+		on e.PRODUCT_NO = m.PRODUCT_NO
+		join CATEGORY_M cm
+		on m.CATEGORY_TYPE_NO = cm.CATEGORY_NO_M
+		join CATEGORY_L cl
+		on cm.CATEGORY_NO_L = cl.CATEGORY_NO
+		join USER_INFO u
+		on e.USER_NO = u.USER_NO
+		join EXPERT ex
+		on m.EXPERT_NO = ex.EXPERT_NO
+		where col>TO_char(sysdate,'YYYYMMDD')
+		order by e.COL desc
+	</select>
+	
+	<select id="selectRecentOne" parameterType="int" resultMap="eval">
+		select e.EVAL_NO, e.PRODUCT_NO, e.EVAL_SCORE, e.REVIEW, floor((e.COL-sysdate)*24*60*-1) as COL, e.USER_NO,
+		cl.CATEGORY_NAME_L, cm.CATEGORY_NAME, m.PRODUCT_NAME, u.USER_ID, id 
+		from EVALUATION e join MENU_INFO m 
+		on e.PRODUCT_NO = m.PRODUCT_NO
+		join CATEGORY_M cm
+		on m.CATEGORY_TYPE_NO = cm.CATEGORY_NO_M
+		join CATEGORY_L cl
+		on cm.CATEGORY_NO_L = cl.CATEGORY_NO
+		join USER_INFO u
+		on e.USER_NO = u.USER_NO
+		join EXPERT ex
+		on m.EXPERT_NO = ex.EXPERT_NO
+		<![CDATA[
+		where eval_no>#{evalNo} and 
+		rownum<=1
+		]]>
+		order by e.COL
+	</select>
 </mapper>
