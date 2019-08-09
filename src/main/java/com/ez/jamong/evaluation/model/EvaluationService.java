@@ -10,4 +10,6 @@ public interface EvaluationService {
 	int evaluationAdd(EvaluationVO evaluationVo);
 	List<EvaluationVO> evaluationListByPdNo(int productNo);
 	String evalAvgByExpertNo(int expertNo);
+	List<Map<String, Object>> selectToday();
+	Map<String, Object> selectRecentOne(int evalNo);
 }

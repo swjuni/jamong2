@@ -100,6 +100,13 @@
     	overflow-x: hidden;
 	}
 	
+	iframe {
+		width: 50%;
+	    height: 550px;
+	    margin-left: 2%;
+	    margin-top: -10%;
+	    border: none;
+	}
 </style>
 <section class="section section1">
 	<c:forEach begin="0" var="vo" end="1" items="${list }">
@@ -134,9 +141,7 @@
 			</div>
 			</c:if>
 			
-			<div class="col-md-5" style="height: 500px; width: 500px; margin-top: -75px; border: 1px solid #ea5035c9; border-radius: 20px; float: right;">
-				실시간 평가<br>
-			</div>
+			<iframe src="<c:url value='/main/evalUpdate.do'/>" scrolling="no"/>
 		</div>
 	</div>
 </section>
