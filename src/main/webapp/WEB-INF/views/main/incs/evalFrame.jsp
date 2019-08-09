@@ -48,26 +48,7 @@ $(function(){
 			}
 		});//ajax
 	};
-	function start()
-	{	
-		
-		setInterval("alert()",5000);
-	}
-
-	function alert()
-	{
-		location.reload();
-		window.status = " ";
-		return true;
-	}
 	setInterval(func,1000);
-})
-</script>
-<script type="text/javascript">
-$(function(){
-if(!$("body").is(':animated')){
-	start();
-}
 })
 </script>
 <style type="text/css">
