@@ -111,4 +111,14 @@
 		set progress=#{progress},confirm_date=sysdate
 		where order_no=#{orderNo}
 	</update>
+	
+	<select id="selectSellerStatistics" parameterType="int" resultType="map">
+		select sum(price) price,seller_no,TO_CHAR(confirm_date, 'yyyy-mm') confirm_date from EXorfipameview where seller_no=#{sellerNo}
+		group by seller_no,TO_CHAR(confirm_date, 'yyyy-mm')
+	</select>
+	
+	<select id="selectSellerStatisticsYear" parameterType="int" resultType="map">
+		select sum(price) price,seller_no,TO_CHAR(confirm_date, 'yyyy') confirm_date from EXorfipameview where seller_no=#{sellerNo}
+		group by seller_no,TO_CHAR(confirm_date, 'yyyy')
+	</select>
 </mapper>

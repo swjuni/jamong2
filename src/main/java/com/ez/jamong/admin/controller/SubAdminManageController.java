@@ -1,6 +1,7 @@
 package com.ez.jamong.admin.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +33,7 @@ public class SubAdminManageController {
 	public String gradeManage(Model model) {
 		logger.info("등급관리 화면");
 		
-		List<AdminVO> list = adminService.selectAdminAll();
+		List<Map<String, Object>> list = adminService.selectAdminAll();
 		
 		logger.info("등급관리 화면 관리자 list.size={}",list.size());
 		model.addAttribute("list", list);

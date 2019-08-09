@@ -8,9 +8,14 @@
 		order by files_name
 	</select>
 	<select id="selectfileExpert" parameterType="int" resultType="map">
-		select * from EXorfipameview where expert_no=#{userNo}
+		select * from EXorfipameview where customer_no=#{userNo}
 		order by files_name
 	</select>
+	
+	<insert id="insertFiles" parameterType="filesVo">
+		insert into files(files_no, order_no,files_name, original_file_name, files_size) 
+		values(files_seq.nextval, #{orderNo}, #{filesName}, #{originalFileName},#{filesSize})
+	</insert>
 </mapper>
 
 

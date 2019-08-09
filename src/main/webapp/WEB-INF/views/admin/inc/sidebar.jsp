@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
     <div class="nano">
         <div class="nano-content">
@@ -13,7 +14,7 @@
                     </ul>
                 </li>
                 <li class="label">회원 관리</li>
-                <li><a class="sidebar-sub-toggle"><i class="ti-user"></i>관리자  <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                <li <c:if test="${adminAuthorLev!=1 }"> style="display:none"</c:if>><a class="sidebar-sub-toggle"><i class="ti-user"></i>관리자  <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
 		                <li><a href="<c:url value='/admin/manage/grade.do'/>"><i class="ti-user"></i>등급 관리</a></li>
 		                <li><a href="<c:url value='/admin/manage/sub_admin.do'/>"><i class="ti-user"></i>부 관리자 등록</a></li>
@@ -58,7 +59,9 @@
                         <li><a href="<c:url value='/admin/statistics/Sales_statistics.do'/>">매출</a></li>
                     </ul>
                 </li>
-                <li><a href="<c:url value='/admin/manage/send.do'/>"><i class="ti-email"></i> 회원 메일 발송</a></li>
+                
+                <li <c:if test="${adminAuthorLev!=1 }"> style="display:none"</c:if>><a href="<c:url value='/admin/manage/send.do'/>"><i class="ti-email"></i> 회원 메일 발송</a></li>
+                
             </ul>
         </div>
     </div>

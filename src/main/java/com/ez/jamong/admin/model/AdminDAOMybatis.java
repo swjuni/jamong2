@@ -1,6 +1,7 @@
 package com.ez.jamong.admin.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class AdminDAOMybatis implements AdminDAO{
 	}
 
 	@Override
-	public List<AdminVO> selectAdminAll() {
+	public List<Map<String, Object>> selectAdminAll() {
 		return sqlSession.selectList(namespace+"selectAdminAll");
 	}
 

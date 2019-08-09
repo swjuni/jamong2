@@ -3,37 +3,22 @@ package com.ez.jamong.files.model;
 import java.sql.Timestamp;
 
 public class FilesVO {
-	private int productNo;
-	private String productName;
 	private int filesNo;
-	private String fileName;
+	private String filesName;
 	private String originalFileName;
-	private String filesSize;
-	private int userNo;
-	private Timestamp orderDate;
-	public int getProductNo() {
-		return productNo;
-	}
-	public void setProductNo(int productNo) {
-		this.productNo = productNo;
-	}
-	public String getProductName() {
-		return productName;
-	}
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
+	private long filesSize;
+	private int orderNo;
 	public int getFilesNo() {
 		return filesNo;
 	}
 	public void setFilesNo(int filesNo) {
 		this.filesNo = filesNo;
 	}
-	public String getFileName() {
-		return fileName;
+	public String getFilesName() {
+		return filesName;
 	}
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
+	public void setFilesName(String filesName) {
+		this.filesName = filesName;
 	}
 	public String getOriginalFileName() {
 		return originalFileName;
@@ -41,31 +26,25 @@ public class FilesVO {
 	public void setOriginalFileName(String originalFileName) {
 		this.originalFileName = originalFileName;
 	}
-	public String getFilesSize() {
+	public Long getFilesSize() {
 		return filesSize;
 	}
-	public void setFilesSize(String filesSize) {
+	public void setFilesSize(Long filesSize) {
 		this.filesSize = filesSize;
 	}
-	public int getUserNo() {
-		return userNo;
+	public int getOrderNo() {
+		return orderNo;
 	}
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+	public void setOrderNo(int orderNo) {
+		this.orderNo = orderNo;
 	}
-	public Timestamp getOrderDate() {
-		return orderDate;
-	}
-	public void setOrderDate(Timestamp orderDate) {
-		this.orderDate = orderDate;
-	}
-	
 	@Override
 	public String toString() {
-		return "FilesVO [productNo=" + productNo + ", productName=" + productName + ", filesNo=" + filesNo
-				+ ", fileName=" + fileName + ", originalFileName=" + originalFileName + ", filesSize=" + filesSize
-				+ ", userNo=" + userNo + ", orderDate=" + orderDate + "]";
+		return "FilesVO [filesNo=" + filesNo + ", filesName=" + filesName + ", originalFileName=" + originalFileName
+				+ ", filesSize=" + filesSize + ", orderNo=" + orderNo + "]";
 	}
+	
+	
 	
 	
 	

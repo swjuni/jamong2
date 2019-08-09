@@ -9,4 +9,5 @@ public interface AuthorDAO {
 	public int gradeDelete(String name);
 	public List<AuthorVO> selectAuthorityList();
 	public List<String> selectAuthorName();
+	public int selectAuthorLev(int authorNo);
 }

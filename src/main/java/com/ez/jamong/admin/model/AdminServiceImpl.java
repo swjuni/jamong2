@@ -1,6 +1,7 @@
 package com.ez.jamong.admin.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -37,7 +38,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<AdminVO> selectAdminAll() {
+	public List<Map<String, Object>> selectAdminAll() {
 		return adminDao.selectAdminAll();
 	}
 

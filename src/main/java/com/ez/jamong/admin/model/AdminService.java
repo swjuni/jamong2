@@ -1,6 +1,7 @@
 package com.ez.jamong.admin.model;
 
 import java.util.List;
+import java.util.Map;
 
 public interface AdminService{
 	
@@ -19,7 +20,7 @@ public interface AdminService{
 	
 	public int adminLoginCheck(String userid,String pwd);
 	public AdminVO selectAdmin(String userid);
-	public List<AdminVO> selectAdminAll();
+	public List<Map<String, Object>> selectAdminAll();
 	public int gradeAdminUpdate(AdminVO vo);
 	public int insertAdmin(AdminVO vo);
 	public int deleteAdmin(String id);

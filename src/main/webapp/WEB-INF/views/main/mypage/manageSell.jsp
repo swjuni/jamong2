@@ -1,29 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    
-<!-- 관리자 홈 top include -->
-<%@include file="../inc/admin_top.jsp" %>
-<style type="text/css">
-	.dt-buttons{
-		margin-bottom: 0;
-	}
-	.dataTables_info{
-		margin-right: 50px;
-	}
-	.paginate_button{
-		margin-left: 5px;
-		margin-right: 5px;
-	}
-	.paginate_button.active a{
-		color: red;
-	}
-	.table{
-		margin-top: 15px;
-		margin-bottom: 15px;
-	}
-</style>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@include file="../incs/top_mypage.jsp" %>
+<c:import url="/mypage/sideMypage.do"/>
 
-<!-- 각자가 분담해서 디자인할 바디 태그 -->
-	<div class="content-wrap">
+<!-- 아래부터 mypage 각자 코딩내용 작성 -->
+<div class="content-wrap">
       <div class="main">
         <div class="container-fluid">
           <div class="row">
@@ -31,6 +12,8 @@
               <div class="page-header">
                 <div class="page-title">
                   <h1>어서오세요, <span>통계 화면</span></h1>
+                  <input type="button" id="yearbutton" value="연도별 통계" class="btn btn-info m-b-10 m-l-5">
+                  <input type="button" id="monthbutton" value="월별 통계" class="btn btn-success m-b-10 m-l-5">
                 </div>
               </div>
             </div>
@@ -65,7 +48,7 @@
                 <div class="card">
                   <div class="panel-heading">
                     <div class="panel-title">
-                      <h4>상품 매출 통계</h4>
+                      <h4 id="tttext">상품 기간별 수익 통계 그래프</h4>
                     </div>
                   </div>
                   <div class="panel-body">
@@ -74,7 +57,7 @@
                 </div>
               </div>
               <!-- /# column -->
-              <div class="col-lg-6">
+              <div class="col-lg-6" style="display: none;">
                 <div class="card">
                   <div class="panel-title">
                     <h4>배너 매출 통계 </h4>
@@ -192,7 +175,6 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="footer">
-                  <p>2018 © Admin Board. - <a href="#">example.com</a></p>
                 </div>
               </div>
             </div>
@@ -203,8 +185,6 @@
               
               
 
-	<!-- 관리자 홈 공통 bottom include -->
-	<%@include file="../inc/bottom_js.jsp" %>
 	
 	<!-- 화면별 고유 scripit init -->
     <script src="<c:url value='/assets/js/lib/data-table/datatables.min.js'/>"></script>
@@ -232,44 +212,62 @@
     		var arrBannerYear = new Array();
     		var arrBannerCount = new Array();
     		
-        	$.ajax({
-    		url :"<c:url value='/admin/statistics/Sales_statistics1.do'/>",
-    		type: 'post',
-    		dataType: "json",
-    		success : function(res) {
-    		/* alert(typeof(res[0])+"<-타입:"+res[0]);
-    		alert(typeof(res[0][0])+"<-타입:"+res[0][0]);
-    		alert(typeof(res[1])+"<-타입:"+res[1]);
-    		alert(typeof(res[1][0])+"<-타입:"+res[1][0]); */
-    		/* for(var key in res[0][0]){
-    			alert(key+":"+res[key]);
-    		};
-    		var s1 = res[0][0].REGDATE+"";
-    		var s2 = res[0][1].REGDATE+"";
-    		var s3 = res[0][2].REGDATE+"";
-    		var s4 = res[0][3].REGDATE+"";
-    		var q1 = res[0][0].COUNT+0;
-    		alert("typeof="+typeof(s1));
-    		alert("typeof="+typeof(q1));
-    		alert(s1);
-    		alert(s2);
-    		alert(s3);
-    		alert(s4);
-    		alert(q1); */
+    		$.ajax({
+        		url :"<c:url value='/main/mypage/manageSell_month.do'/>",
+        		type: 'post',
+        		dataType: "json",
+        		success : function(res) {
+        		
+        		
+        		for(var i=0;i<res.length;i++){
+        			arrMenuYear[i]=res[i].CONFIRM_DATE+"";
+        			arrMenuCount[i]=res[i].PRICE+0;
+        		}
+        		myChart.update();
+        		},
+        		error: function(xhr, status, error){
+        		alert('데이터 불러오기 오류');
+        		}
+        		});
     		
-    		for(var i=0;i<res[0].length;i++){
-    			arrMenuYear[i]=res[0][i].REGDATE+"";
-    			arrMenuCount[i]=res[0][i].COUNT+0;
-    		}
-    		for(var i=0;i<res[1].length;i++){
-    			arrBannerYear[i]=res[1][i].START_DATE+"";
-    			arrBannerCount[i]=res[1][i].COUNT+0;
-    		}
-    		myChart.update();
-    		},
-    		error: function(xhr, status, error){
-    		alert('실패');
-    		}
+    		$('#monthbutton').click(function(){
+    			$.ajax({
+            		url :"<c:url value='/main/mypage/manageSell_month.do'/>",
+            		type: 'post',
+            		dataType: "json",
+            		success : function(res) {
+            		
+            		
+            		for(var i=0;i<res.length;i++){
+            			arrMenuYear[i]=res[i].CONFIRM_DATE+"";
+            			arrMenuCount[i]=res[i].PRICE+0;
+            		}
+            		myChart.update();
+            		},
+            		error: function(xhr, status, error){
+            		alert('데이터 불러오기 오류');
+            		}
+            		});
+    		});
+    		
+    		
+    		$('#yearbutton').click(function(){
+    		$.ajax({
+        		url :"<c:url value='/main/mypage/manageSell_year.do'/>",
+        		type: 'post',
+        		dataType: "json",
+        		success : function(res) {
+        		
+        		for(var i=0;i<res.length;i++){
+        			arrMenuYear[i]=res[i].CONFIRM_DATE+"";
+        			arrMenuCount[i]=res[i].PRICE+0;
+        		}
+        		myChart.update();
+        		},
+        		error: function(xhr, status, error){
+        		alert('데이터 불러오기 오류');
+        		}
+        		});
     		});
 
     	//Team chart//jeon 배너 매출 통계
@@ -284,13 +282,13 @@
     			datasets: [ {
     				data: arrBannerCount,
     				label: "Expense",
-    				backgroundColor: 'rgba(29,219,22,.15)',
-    				borderColor: 'rgba(29,219,22,0.5)',
+    				backgroundColor: 'rgba(0,103,255,.15)',
+    				borderColor: 'rgba(0,103,255,0.5)',
     				borderWidth: 3.5,
     				pointStyle: 'circle',
     				pointRadius: 5,
     				pointBorderColor: 'transparent',
-    				pointBackgroundColor: 'rgba(29,219,22,0.5)',
+    				pointBackgroundColor: 'rgba(0,103,255,0.5)',
                         }, ]
     		},
     		options: {
@@ -644,7 +642,7 @@
     		}
     	} );
 
-    	// single bar chart//jeon 상품 매출 통계
+    	// single bar chart//jeon 상품 수익 통계
     	var ctx = document.getElementById( "singelBarChart" );
     	ctx.height = 150;
     	var myChart1 = new Chart( ctx, {
@@ -653,11 +651,11 @@
     			labels: arrMenuYear,
     			datasets: [
     				{
-    					label: "연도 별 상품개수",
+    					label: "기간별 상품 수익",
     					data: arrMenuCount,
-    					borderColor: "rgba(255, 32, 32, 0.9)",
+    					borderColor: "rgba(18, 102, 255, 0.9)",
     					borderWidth: "0",
-    					backgroundColor: "rgba(255, 32, 32, 0.5)"
+    					backgroundColor: "rgba(18, 102, 255, 0.5)"
                                 }
                             ]
     		},
@@ -680,12 +678,22 @@
     	});
 	</script>
 
-	
 
-    <!-- // Chart js -->
-    <!-- // Chart js -->
-    <script src="<c:url value='/assets/js/lib/bootstrap.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/scripts.js'/>"></script>
-    <!-- scripit init-->
 
-<%@include file="../inc/admin_bottom.jsp" %>    
+<!--아래는 mypage 공통 사용 코드  -->
+			
+					</div><!-- end col -->
+				</div><!-- end row -->
+			</div><!-- end container -->
+		</section><!-- end section -->
+ 
+<%@include file="../incs/bottom_main.jsp" %>
+<!-- 화면별 고유 하단js 포함할 위치 -->
+	<script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/parallax.js'/>"></script>
+	<script src="<c:url value='/resources/js/animate.js'/>"></script>
+	<script src="<c:url value='/resources/js/custom.js'/>"></script>
+ 
+</body>
+</html>

@@ -33,6 +33,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ez.jamong.common.DateSearchVO;
 import com.ez.jamong.common.PaginationInfo;
@@ -207,6 +209,31 @@ public class OrdersController {
 		ordersService.updateProgressByOrderNo(ordersVo);
 		String referer = request.getHeader("Referer"); 
 		return "redirect:"+referer;
+	}
+	
+	@RequestMapping("/main/mypage/manageSell.do") 
+	public String sellView() {
+		logger.info("수익관리 화면 보여주기");
+		return "main/mypage/manageSell";
+	}
+	
+	@RequestMapping("/main/mypage/manageSell_month.do") 
+	@ResponseBody
+	public Object sellViewMonth(HttpSession session) {
+		logger.info("수익관리 화면에 데이터 넘겨주기");
+		int userNo=(Integer)session.getAttribute("userNo");
+		List<Map<String, Object>> list = ordersService.selectSellerStatistics(userNo);
+
+		return list;
+	}
+	@RequestMapping("/main/mypage/manageSell_year.do") 
+	@ResponseBody
+	public Object sellViewYear(HttpSession session) {
+		logger.info("수익관리 화면에 데이터 넘겨주기");
+		int userNo=(Integer)session.getAttribute("userNo");
+		List<Map<String, Object>> list = ordersService.selectSellerStatisticsYear(userNo);
+		
+		return list;
 	}
 	
 }

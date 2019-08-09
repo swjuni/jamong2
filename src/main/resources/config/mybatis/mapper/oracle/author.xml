@@ -31,7 +31,10 @@
 		select A.author_name from authority A join administrator B on
 		 A.AUTHOR_NO = B.AUTHOR_NO where A.author_desc='관리자'
 	</select>
-
+	
+	<select id="selectAuthorLev" resultType="int" parameterType="int">
+		select author_lev from authority where author_no=#{authorNo}
+	</select>
 </mapper>
 
 
