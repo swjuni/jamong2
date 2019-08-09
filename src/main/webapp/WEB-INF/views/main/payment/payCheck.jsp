@@ -17,11 +17,13 @@
 			var price=$("#price").val();
 			var packNo=$("#packNo").val();
 			var userNo=$("#userNo").val();
+			var userId=$("#userId").val();
 			IMP.request_pay({
 				pg : 'inicis', // version 1.1.0부터 지원.
 				pay_method : 'card',
 				merchant_uid : 'merchant_' + new Date().getTime(),
 				name : packNo,
+				buyer_email : userId,
 				amount : price*1,
 				buyer_name : userNo,
 			}, function(rsp) {
@@ -163,5 +165,7 @@ table {
 	<input type="hidden" name="price" value="${packVo.packPrice*per}" id="price">
 	<input type="hidden" name="price" value="${packVo.packNo}" id="packNo">
 	<input type="hidden" name="price" value="${userNo}" id="userNo">
+	<input type="hidden" name="price" value="${userMap.USER_ID}" id="userId">
+	<input type="hidden" name="price" value="${userMap.USER_ID}" id="userId">
 </div>
 <%@include file="../incs/bottom_main.jsp"%>
