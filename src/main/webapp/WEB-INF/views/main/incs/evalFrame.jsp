@@ -40,7 +40,11 @@ $(function(){
 					height=Number(height)+15;
 					height=height+"px";
 					$("body").animate({"margin-top": '-='+height},0)
-					$("body").animate({"margin-top": '+='+height},1000);
+					$("body").animate({"margin-top": '+='+height},1000,function(){
+						window.setTimeout('window.location.reload()',60000); //60초마다 새로고침
+					});
+				}else{
+					return false;
 				}
 			},
 			error:function(xhr, status, error){
@@ -48,6 +52,9 @@ $(function(){
 			}
 		});//ajax
 	};
+	if(!$("body").is(':animated')){
+		window.setTimeout('window.location.reload()',60000); //60초마다 새로고침
+	}
 	setInterval(func,1000);
 })
 </script>
