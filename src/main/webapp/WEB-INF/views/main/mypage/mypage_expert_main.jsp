@@ -32,7 +32,7 @@
 					
 							<div class="col-md-3 col-sm-6">
 								<div class="service-box">
-									<a href="<c:url value='/'/>">
+									<a href="<c:url value='/main/mypage/manageSell.do'/>">
 									<i class="flaticon-responsive"></i>
 									<h4>수익 관리</h4>
 									<p>결제완료 내용 통계</p>

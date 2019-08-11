@@ -227,11 +227,11 @@ public class UserInfoController {
 		int port=465; //포트번호 
 		
 		
-		//6자리 랜덤 코드 생성
+		//20자리 랜덤 코드 생성
 		Random rnd =new Random();
 		StringBuffer buf =new StringBuffer();
 
-		for(int i=0;i<6;i++){
+		for(int i=0;i<20;i++){
 		    if(rnd.nextBoolean()){
 		        buf.append((char)((int)(rnd.nextInt(26))+97));
 		    }else{
@@ -280,6 +280,13 @@ public class UserInfoController {
 		Transport.send(mimeMessage); //javax.mail.Transport.send() 이용 
 		
 	}
+	/*message.setContent
+    ("<h1>This is a test</h1>" 
+    + "<img src=\"http://www.rgagnon.com/images/jht.gif\">", 
+    "text/html");*/
+
+
+
 
 
 }
