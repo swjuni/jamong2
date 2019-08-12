@@ -317,7 +317,7 @@ public class UserInfoController {
 			}); 
 		
 		session1.setDebug(true); //for debug 
-		String str="<a href=\"http://localhost:9090/jamong/main/userlogin/sessionEmail.do\">Email Confirm</a>";
+		String str="<a href=\"172.16.146.19:9090/jamong/main/userlogin/sessionEmail.do\">Email Confirm</a>";
 		
 		Message mimeMessage = new MimeMessage(session1); //MimeMessage 생성
 		mimeMessage.setFrom(new InternetAddress("wjsdidgns123@daum.net")); //발신자 셋팅 , 보내는 사람의 이메일주소를 한번 더 입력합니다. 이때는 이메일 풀 주소를 다 작성해주세요.
