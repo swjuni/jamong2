@@ -148,10 +148,10 @@
 			}
 				
 		});
-    	
+    	var $address="";
     	$('#id').keyup(function(){
     		var $checkid = $(this).val();
-    		var $mailc = "window.open('http://127.0.0.1:9090/jamong/main/userlogin/userRegistMail.do?email="+$('#id').val()+
+    		var $mailc = "window.open('http://172.16.146.14:9090/jamong/main/userlogin/userRegistMail.do?email="+$('#id').val()+
     				"','체크','width=430,height=500,location=no,status=no,scrollbars=yes');";
     		$('#emailCkButton').attr('onclick',$mailc);
     		$.ajax({
@@ -179,6 +179,8 @@
        			$('#emailCheckA').val('true');
        			$('#emailCkButton').css('display','none');
        			$('#emailOkButton').css('display','inline');
+       			$('#id').val($abcd);
+       			$('#id').prop('readonly','readonly');
        		}	
        		},1000);
     	
@@ -202,7 +204,8 @@
                             <form action="<c:url value='/main/userlogin/userRegist.do'/>" method="post">
                                 <div class="form-group">
                                     <label>아이디(이메일)</label>
-                                    <input type="email" class="form-control" placeholder="Email(ex@jamong.com)" id="id" name="userId">
+                                    <input type="email" class="form-control" placeholder="Email(ex@jamong.com)" id="id" name="userId"
+                                    value=>
                                     <input type="text" value="false" id="emailCheckA" style="display: none;">
                                     <p style="color:red;visibility:hidden; " id="overlap">중복된 아이디(이메일)입니다</p>
                                    	<button type="button" value="확인 메일 전송" class="btn btn-primary btn-flat m-b-30 m-t-30" id="emailCkButton" 

@@ -105,4 +105,9 @@ public class ReportServiceImpl implements ReportService{
 	public List<ReportExtendsVO> reportListByUserNo(ReportSearchVO searchVo) {
 		return reportDao.reportListByUserNo(searchVo);
 	}
+
+	@Override
+	public int selectTotalCountByUserNo(ReportSearchVO searchVo) {
+		return reportDao.selectTotalCountByUserNo(searchVo);
+	}
 }

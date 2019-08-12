@@ -14,4 +14,5 @@ public interface ReportService {
 	public int refuseOne(int reportNo, int adminNo);
 	public int reportAdd(ReportVO reportVo);
 	public List<ReportExtendsVO> reportListByUserNo(ReportSearchVO searchVo);
+	public int selectTotalCountByUserNo(ReportSearchVO searchVo);
 }

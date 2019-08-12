@@ -157,7 +157,7 @@ select{
 										<option value="13">13회</option>
 										<option value="14">14회</option>
 										<option value="15">15회</option>
-										<option value="nonlimited">제한없음</option>
+										<option value="99">제한없음</option>
 										</select>
 										</li>
 										<li>
@@ -207,7 +207,7 @@ select{
 									<ul>
 										<li><textarea name="packName" required="required" maxlength="30" placeholder="30자 제한"></textarea></li>
 										<li><textarea name="packDesc" required="required"></textarea></li>
-										<li><input type="text" name="packPrice" onkeypress="onlyNumber();">원</i></li>
+										<li><input type="text" name="packPrice" onkeypress="onlyNumber();" required="required">원</i></li>
 										<li>
 										<select name="modifyCount" required="required">
 										<option value="">선택해주세요</option>
@@ -226,7 +226,7 @@ select{
 										<option value="13">13회</option>
 										<option value="14">14회</option>
 										<option value="15">15회</option>
-										<option value="nonlimited">제한없음</option>
+										<option value="99">제한없음</option>
 										</select>
 										</li>
 										<li>
@@ -278,7 +278,7 @@ select{
 								<ul>
 										<li><textarea name="packName" required="required" maxlength="30" placeholder="30자 제한"></textarea></li>
 										<li><textarea name="packDesc" required="required"></textarea></li>
-										<li><input type="text" name="packPrice" onkeypress="onlyNumber();">원</i></li>
+										<li><input type="text" name="packPrice" onkeypress="onlyNumber();" required="required">원</i></li>
 										<li>
 										<select name="modifyCount" required="required">
 										<option value="">선택해주세요</option>
@@ -297,7 +297,7 @@ select{
 										<option value="13">13회</option>
 										<option value="14">14회</option>
 										<option value="15">15회</option>
-										<option value="nonlimited">제한없음</option>
+										<option value="99">제한없음</option>
 										</select>
 										</li>
 										<li>

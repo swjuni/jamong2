@@ -46,7 +46,7 @@ ALTER TABLE USER_INFO
 CREATE TABLE MENU_INFO (
 	PRODUCT_NO       NUMBER        NOT NULL, -- 상품번호
 	CATEGORY_TYPE_NO NUMBER        NULL,     -- 카테고리중번호
-	PRODUCT_NAME     VARCHAR2(100) NULL,     -- 상품명
+	PRODUCT_NAME     VARCHAR2(500) NULL,     -- 상품명
 	EVAL_SCORE       NUMBER        NULL,     -- 상품평가점수
 	SUMMARY          CLOB          NULL,     -- 요약설명
 	DETAIL_DESC      CLOB          NULL,     -- 상세설명
