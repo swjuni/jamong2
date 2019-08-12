@@ -58,6 +58,24 @@ select e.ID, e.INTRODUCTION,a.FILE_NAME from ads a
 join expert e on e.EXPERT_NO = a.EXPERT_NO
 where start_date<=sysdate and end_date>=sysdate;
 
+--이주영
+CREATE OR REPLACE VIEW MENUINFO_EXPERT_VIEW
+AS
+SELECT A.PRODUCT_NO,PRODUCT_NAME,regdate,ACTIVATION,a.PACK_LEVEL,a.PACK_PRICE,EXPERT_NO,I.FILE_NAME,category_l.CATEGORY_NAME_L,category_m.CATEGORY_NAME FROM MENU_INFO
+left JOIN (
+    SELECT * FROM PACKAGE
+    WHERE  PACK_LEVEL='STANDARD'
+)a ON MENU_INFO.PRODUCT_NO = a.PRODUCT_NO
+JOIN(
+    SELECT product_no, max(file_name) as file_name FROM IMAGE
+    group by product_no
+    ORDER BY IMG_NO
+)I ON a.PRODUCT_NO = I.PRODUCT_NO
+join category_m
+on category_m.CATEGORY_NO_M=MENU_INFO.CATEGORY_TYPE_NO
+join category_l
+on category_l.CATEGORY_NO=category_m.CATEGORY_NO_L
+WHERE activation is not null order by product_no;
 -----------------------------------------
 
 --전양훈

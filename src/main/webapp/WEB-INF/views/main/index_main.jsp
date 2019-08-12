@@ -156,7 +156,7 @@
 			</div>
 			</c:if>
 			
-			<iframe src="<c:url value='/main/evalUpdate.do'/>" scrolling="no"/>
+			<iframe src="<c:url value='/main/evalUpdate.do'/>" scrolling="no"></iframe>
 		</div>
 	</div>
 </section>

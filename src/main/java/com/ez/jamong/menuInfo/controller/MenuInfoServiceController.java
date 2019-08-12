@@ -1,7 +1,9 @@
 package com.ez.jamong.menuInfo.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ez.jamong.ads.model.AdsService;
 import com.ez.jamong.ads.model.AdsVO;
@@ -24,6 +27,8 @@ import com.ez.jamong.categoryl.model.CategoryLVO;
 import com.ez.jamong.categorym.model.CategoryMService;
 import com.ez.jamong.categorym.model.CategoryMVO;
 import com.ez.jamong.common.PaginationInfo;
+import com.ez.jamong.common.SearchVO;
+import com.ez.jamong.common.WebUtility;
 import com.ez.jamong.evalComment.model.EvalCommentService;
 import com.ez.jamong.evalComment.model.EvalCommentVO;
 import com.ez.jamong.evaluation.model.EvaluationService;
@@ -237,5 +242,61 @@ public class MenuInfoServiceController {
 		model.addAttribute("epName", epName);
 		
 		return "main/menuinfo/menuinfo_List";
+	}
+	
+	@RequestMapping("/mypage/expert/menuList.do")
+	public String service_list(@ModelAttribute SearchVO searchVo, Model model,HttpSession session) {
+		int expertNo=expertService.selectByUserNo((Integer)session.getAttribute("userNo")).getExpertNo();
+		//2
+		//[1] PaginationInfo 객체 생성
+		PaginationInfo pagingInfo=new PaginationInfo();
+		pagingInfo.setBlockSize(WebUtility.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(3);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		//[2] SearchVo에 페이징 관련 변수 셋팅
+		searchVo.setRecordCountPerPage(3);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		logger.info("셋팅 후 searchVo={}", searchVo);
+		
+		//[3] 조회처리
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("expertNo", expertNo);
+		map.put("firstRecordIndex", searchVo.getFirstRecordIndex());
+		map.put("recordCountPerPage", searchVo.getRecordCountPerPage());
+		map.put("searchKeyword", searchVo.getSearchKeyword());
+		List<Map<String, Object>> list=menuinfoService.selectByExpertNo(map);
+		logger.info("글목록 결과, list.size={}",list.size());
+		
+		//[4] 전체 레코드 개수 조회
+		int totalRecord=0;
+		Map<String, Object> map1=new HashMap<String, Object>();
+		map1.put("expertNo", expertNo);
+		map1.put("searchKeyword", searchVo.getSearchKeyword());
+		totalRecord=menuinfoService.countByExpertNo(map1);
+		logger.info("전체 레코드 개수 조회 결과, totalRecord={}", totalRecord);
+		
+		//[5] PaginationInfo에 totalRecord 값 셋팅
+		pagingInfo.setTotalRecord(totalRecord);
+		
+		//3
+		model.addAttribute("list", list);
+		model.addAttribute("sk", searchVo.getSearchKeyword());
+		model.addAttribute("pagingInfo", pagingInfo);
+		logger.info("paginInfo={}",pagingInfo.getFirstPage());
+		logger.info("paginInfo={}",pagingInfo.getLastPage());
+		return "main/mypage/serviceList";
+	}
+	
+	@RequestMapping("/mypage/expert/delete.do")
+	@ResponseBody
+	public String delete(@RequestParam int no) {
+		int cnt=menuinfoService.deleteProduct(no);
+		if(cnt>0) {
+			return "s";
+		}else {
+			return "f";
+			
+		}
 	}
 }
