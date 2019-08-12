@@ -90,4 +90,16 @@ public class MenuInfoDAOMybatis implements MenuInfoDAO{
 	public String selectFromProductUserId(int productNo) {
 		return sqlSession.selectOne(namespace+"selectFromProductUserId",productNo);
 	}
+	@Override
+	public List<Map<String, Object>> selectByExpertNo(Map<String, Object> map) {
+		return sqlSession.selectList(namespace+"selectByExpertNo",map);
+	}
+	@Override
+	public int countByExpertNo(Map<String , Object> map) {
+		return sqlSession.selectOne(namespace+"countByExpertNo",map);
+	}
+	@Override
+	public int deleteProduct(int productNo) {
+		return sqlSession.update(namespace+"deleteProduct",productNo);
+	}
 }

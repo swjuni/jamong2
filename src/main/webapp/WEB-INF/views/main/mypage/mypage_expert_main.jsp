@@ -12,7 +12,7 @@
 						<div class="seo-details">
 							<div class="col-md-3 col-sm-6">
 								<div class="service-box">
-									<a href="<c:url value='/mypage/service.do'/>">
+									<a href="<c:url value='/mypage/expert/menuList.do'/>">
 									<i class="flaticon-presentation"></i>
 									<h4>나의 서비스</h4>
 									<p>전문가 상품 목록/등록 </p>

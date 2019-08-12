@@ -106,4 +106,19 @@ public class MenuInfoServiceImpl implements MenuInfoService{
 	public String selectFromProductUserId(int productNo) {
 		return menuInfoDao.selectFromProductUserId(productNo);
 	}
+
+	@Override
+	public List<Map<String, Object>> selectByExpertNo(Map<String, Object> map) {
+		return menuInfoDao.selectByExpertNo(map);
+	}
+
+	@Override
+	public int countByExpertNo(Map<String , Object> map) {
+		return menuInfoDao.countByExpertNo(map);
+	}
+
+	@Override
+	public int deleteProduct(int productNo) {
+		return menuInfoDao.deleteProduct(productNo);
+	}
 }

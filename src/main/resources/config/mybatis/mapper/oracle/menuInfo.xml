@@ -123,4 +123,25 @@
 		select user_id from user_info where user_no=
 		(select B.USER_NO from menu_info A join expert B on A.EXPERT_NO = B.EXPERT_NO where A.product_no=#{productNo})
 	</select>
+	
+	<resultMap type="map" id="menuinfoExpertViewResult">
+		<result property="SUMMARY" column="SUMMARY" jdbcType="CLOB" javaType="string"/>
+	</resultMap>
+	<select id="selectByExpertNo" parameterType="map" resultMap="menuinfoExpertViewResult">
+		select b.* from(
+		select rownum as rnum,a.* from MENUINFO_EXPERT_VIEW a
+				where expert_no=#{expertNo} and activation!='D' and activation like '%'||#{searchKeyword}||'%'
+		)b
+				<![CDATA[ where rnum>#{firstRecordIndex}  
+		and rnum<=#{firstRecordIndex} + #{recordCountPerPage}]]>
+	</select>
+	<select id="countByExpertNo" parameterType="map" resultType="int">
+		select count(*) from menu_info
+		where expert_no=#{expertNo} and activation!='D' and activation is not null and activation like '%'||#{searchKeyword}||'%'
+	</select>
+	<update id="deleteProduct" parameterType="int">
+		update menu_info
+		set activation='D'
+		where product_no=#{productNo}
+	</update>
 </mapper>

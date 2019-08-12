@@ -28,4 +28,9 @@ public interface MenuInfoDAO {
 	
 	//양훈 상품등록한 회원 아이디 가져오기
 	public String selectFromProductUserId(int productNo);
+	
+	//주영 전문가 기준 상품 목록
+	public List<Map<String, Object>> selectByExpertNo(Map<String , Object> map);
+	public int countByExpertNo(Map<String , Object> map);
+	public int deleteProduct(int productNo);
 }
