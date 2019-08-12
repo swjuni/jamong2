@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,6 +118,7 @@ $(function(){
 	    display: block;
 	    margin-left: 24%;
 	    float: left;
+		width: 100%;
 	}
 	.price{
 	    font-size: 25px;
@@ -215,7 +218,14 @@ $(function(){
 	<br>
 	</div>
 	<div style="margin-top: 20px; float: left;">
-	<span class="name"><a href="<c:url value='/main/menuinfo/menuinfo_Detail.do?productNo=${map["PRODUCT_NO"] }'/>">${map['PRODUCT_NAME'] }</a></span>
+	<span class="name"><a href="<c:url value='/main/menuinfo/menuinfo_Detail.do?productNo=${map["PRODUCT_NO"] }'/>">
+	<c:if test="${fn:length(map['PRODUCT_NAME'])<15}">
+	${map['PRODUCT_NAME'] }
+	</c:if>
+	<c:if test="${fn:length(map['PRODUCT_NAME'])>15}">
+	${fn:substring(map['PRODUCT_NAME'],0,15) }...
+	</c:if>
+	</a></span>
 	<label class="lb">price</label>
 	<span class="price">${map['PACK_PRICE'] }&nbsp;~</span>
 	<label class="lb">regdate</label>
