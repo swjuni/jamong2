@@ -162,10 +162,19 @@ opacity: 0.7;
   overflow: hidden;
   position: relative;
 }
-
+.preview{
+	 background: #fa5e6b;
+    color: white;
+    font-size: 3em;
+    height: 65px;
+    padding: 15px 5px;
+}
 </style>
 <section class="section lb">
 	<div class="container">
+	<div class="preview">
+	<c:if test="${menuinfoVo.activation!='Y' }">현재 서비스 미리보기 중입니다.</c:if>
+	</div>
 		<div class="row case-single">
 			<div class="col-md-7 col-sm-7 col-xs-12">
 				<div class="pitem">

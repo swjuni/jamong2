@@ -214,7 +214,7 @@ $(function(){
 	<br>
 	</div>
 	<div style="margin-top: 20px; float: left;">
-	<span class="name">${map['PRODUCT_NAME'] }</span>
+	<span class="name"><a href="<c:url value='/main/menuinfo/menuinfo_Detail.do?productNo=${map["PRODUCT_NO"] }'/>">${map['PRODUCT_NAME'] }</a></span>
 	<label class="lb">price</label>
 	<span class="price">${map['PACK_PRICE'] }&nbsp;~</span>
 	<label class="lb">regdate</label>
