@@ -7,7 +7,24 @@
 					<div class="col-md-3">
 						<div class="seo-score">
 							<div class="website-screen" style="text-align: center;">
-								<img src="<c:url value='/resources/images/userinfo.png'/>" alt="" class="img-thumbnail" style="width: 200px; border-radius: 50%; ">
+								<c:if test="${empty expert }">
+									<c:if test="${authorNo==5 }">
+										<img src="<c:url value='/resources/images/userinfo.png'/>" alt="" class="img-thumbnail" style="width: 200px; border-radius: 50%; border: 5px solid gold;">
+									</c:if>
+									<c:if test="${authorNo!=5 }">
+										<img src="<c:url value='/resources/images/userinfo.png'/>" alt="" class="img-thumbnail" style="width: 200px; border-radius: 50%; ">
+									</c:if>
+								</c:if>
+								<c:if test="${!empty expert }">
+									<a href="<c:url value='/main/menuinfo/menuinfo_List.do?expertNo=${expert.expertNo }'/>">
+									<c:if test="${!empty expert.fileName }">
+										<img src="<c:url value='/upload/expert/${expert.fileName }'/>" alt="" class="img-thumbnail" style="width: 200px; border-radius: 50%; ">
+									</c:if>
+									<c:if test="${empty expert.fileName }">
+										<img src="<c:url value='/resources/images/userinfo.png'/>" alt="" class="img-thumbnail" style="width: 200px; border-radius: 50%; ">
+									</c:if>
+									</a>
+								</c:if>
 								<h4 style="margin: 20px 0;">${userName}</h4>
 								<c:if test="${empty expert }">
 								<a href="<c:url value='/mypage/registExpert.do?state=expert'/>" class="btn btn-primary">

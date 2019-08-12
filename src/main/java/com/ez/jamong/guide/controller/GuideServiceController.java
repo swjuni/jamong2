@@ -42,7 +42,7 @@ public class GuideServiceController {
 	public String guideList(Model model) {
 		logger.info("bottom guideList 요청");
 		List<GuideVO> list = guideService.selectAll();
-		logger.info("guide전체 목록 요청 결과 list={}",list);
+		//logger.info("guide전체 목록 요청 결과 list={}",list);
 		
 		model.addAttribute("list", list);
 		
