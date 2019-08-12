@@ -317,7 +317,7 @@ public class UserInfoController {
 			}); 
 		
 		session1.setDebug(true); //for debug 
-		String str="<a href=\"172.16.146.19:9090/jamong/main/userlogin/sessionEmail.do\">Email Confirm</a>";
+		String str="<a href=\"http://172.16.146.14:9090/jamong/main/userlogin/sessionEmail.do?email="+email+"\">Email Confirm</a>";
 		
 		Message mimeMessage = new MimeMessage(session1); //MimeMessage 생성
 		mimeMessage.setFrom(new InternetAddress("wjsdidgns123@daum.net")); //발신자 셋팅 , 보내는 사람의 이메일주소를 한번 더 입력합니다. 이때는 이메일 풀 주소를 다 작성해주세요.
@@ -329,21 +329,21 @@ public class UserInfoController {
 	    	    "text/html"); //내용셋팅 
 		Transport.send(mimeMessage); //javax.mail.Transport.send() 이용 
 		
-		model.addAttribute("msg", "메일 전송 완료");
-		model.addAttribute("url", "/main/index_main.do");
+		model.addAttribute("email", email);
 		
 		logger.info("이것이 이메일이다 !!"+email);
 		
-		return "common/message";
+		return "main/userlogin/userRegist2";
 	}
 	
 	@RequestMapping(value = "/main/userlogin/sessionEmail.do") 
-	public void mailSender_session(HttpServletRequest request, ModelMap mo,Model model, HttpSession session) {
+	public String mailSender_session(HttpServletRequest request, ModelMap mo,Model model, HttpSession session, @RequestParam String email) {
 		session = request.getSession();
-		session.setAttribute("email", "email");
-		String abc = (String)session.getAttribute("email");
+		session.setAttribute("email", email);
+		String abc = (String)session.getAttribute(email);
 		logger.info("SESSION={}",abc);
 		
+		return "redirect:/main/userlogin/userRegist.do";
 	}
 	
 	/*message.setContent
