@@ -120,9 +120,9 @@ function progressChange(orderNo, orderId,progress, message){
 						<td class="text-center" ><fmt:formatDate value="${map['FINISH_DATE'] }" pattern="yyyy-MM-dd" /></td>
 						<td class="text-center" >
 							<c:if test="${map['PROGRESS'] =='W'}">주문요청중</c:if>
-							<c:if test="${map['PROGRESS'] =='C'}">거래취소</c:if>
+							<c:if test="${map['PROGRESS'] =='C'}"><b style="color: red; font-weight: bold;">거래취소</b></c:if>
 							<c:if test="${map['PROGRESS'] =='P'}">진행중</c:if>
-							<c:if test="${map['PROGRESS'] =='F'}">거래완료</c:if>
+							<c:if test="${map['PROGRESS'] =='F'}"><b style="color: blue; font-weight: bold;">거래완료</b></c:if>
 						</td>
 						<td class="text-center" >
 							<c:if test="${map['PROGRESS'] =='W'}">
