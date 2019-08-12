@@ -167,9 +167,9 @@
 								<c:if test="${!empty adlist }">
 			                    <c:forEach var="vo" items="${adlist }">
 								
-			
 									<div class="site-section-cover overlay img-bg-section"
-										style="background-image: url(<c:url value='/upload/ads/${vo.fileName }'/>); height:500px;">
+										style="background-image: url(<c:url value='/upload/ads/${vo.fileName }'/>); height:500px;"
+										 style=" cursor: pointer;" onclick="location.href='<c:url value='/main/menuinfo/menuinfo_List.do?expertNo=${vo.expertNo }'/>'">
 										
 										<div class="container">
 											<div class="row align-items-center justify-content-center">
