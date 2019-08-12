@@ -46,9 +46,9 @@
 										<table class="table">
 	                    						<tbody>
 	                    							<tr>
-	                    								<th>No</th>
-	                    								<td>${map['PRODUCT_NO'] }</td>
-	                    								<td></td>
+	                    								<th style="width: 15%">No</th>
+	                    								<td style="width: 85%">${map['PRODUCT_NO'] }</td>
+	                    								<td style="width: 0%"></td>
 	                    							</tr>
 	                    							<tr>
 	                    								<th>카테고리</th>

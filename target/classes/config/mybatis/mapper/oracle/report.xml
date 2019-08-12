@@ -88,4 +88,13 @@
 		<![CDATA[where RNUM>#{firstRecordIndex}
 		 and RNUM<= #{firstRecordIndex} + #{recordCountPerPage}]]>
 	</select>
+		
+	<select id="selectTotalCountByUserNo" parameterType="searchVo" resultType="int">
+		select count(*)
+		from report r join expert e
+		on r.EXPERT_NO = e.EXPERT_NO
+		join menu_info m
+		on r.PRODUCT_NO = m.PRODUCT_NO
+		where r.user_no=#{userNo}
+	</select>
 </mapper>

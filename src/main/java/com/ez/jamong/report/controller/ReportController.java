@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ez.jamong.common.PaginationInfo;
-import com.ez.jamong.common.SearchVO;
-import com.ez.jamong.common.WebUtility;
 import com.ez.jamong.expert.model.ExpertService;
 import com.ez.jamong.expert.model.ExpertVO;
 import com.ez.jamong.menuInfo.model.MenuInfoService;
@@ -105,7 +103,7 @@ public class ReportController {
 		
 		//[4] 전체 레코드 개수 조회
 		int totalRecord=0;
-		totalRecord=reportService.selectTotalCount(searchVo);
+		totalRecord=reportService.selectTotalCountByUserNo(searchVo);
 		logger.info("전체 레코드 개수 조회 결과, totalRecord={}", totalRecord);
 		//[5] PaginationInfo에 totalRecord 값 셋팅
 		pagingInfo.setTotalRecord(totalRecord);
