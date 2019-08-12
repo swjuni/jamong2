@@ -114,7 +114,7 @@
 	
 	<select id="userTotalPrice" parameterType="int" resultType="String">
 		select sum(price) as price from orders
-		where user_no=#{userNo} and progress='F'
+		where user_no=#{userNo} and (progress='F' or progress='P')
 		group by user_no, price
 	</select>
 	
