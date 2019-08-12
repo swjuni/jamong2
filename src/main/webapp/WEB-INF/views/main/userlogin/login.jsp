@@ -76,7 +76,7 @@
 					</c:if>> 아이디를 기억
 									</label>
                                     <label class="pull-right">
-										<a href="#">비밀번호를 잊어버렸나요???</a>
+										<a href="<c:url value="/main/userlogin/SearchPwd.do"/>">비밀번호를 잊어버렸나요???</a>
 									</label>
 
                                 </div>
