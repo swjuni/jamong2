@@ -43,4 +43,9 @@ public class ReportDAOMybatis implements ReportDAO{
 	public List<ReportExtendsVO> reportListByUserNo(ReportSearchVO searchVo) {
 		return session.selectList(namespace+"reportListByUserNo", searchVo);
 	}
+
+	@Override
+	public int selectTotalCountByUserNo(ReportSearchVO searchVo) {
+		return session.selectOne(namespace+"selectTotalCountByUserNo", searchVo);
+	}
 }

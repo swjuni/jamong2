@@ -210,7 +210,12 @@
 													<div class="case-info clearfix" style="height:45% ;border-bottom: 1px solid #ededed;">
 														<div>
 															<h4>${vo.id }</h4>
-															<span>${vo.productName }</span><br>
+															<c:if test="${fn:length(vo.productName)>30}">
+																<span>${fn:substring(vo.productName,0, 30)}...</span><br>
+															</c:if>
+															<c:if test="${fn:length(vo.productName)<=30}">
+																<span>${vo.productName }</span><br>
+															</c:if>
 															<div class="moneyDiv"><b><fmt:formatNumber value="${vo.packPrice }" pattern="#,###"/></b>원</div> 
 														</div>
 													</div><!-- end case-info -->

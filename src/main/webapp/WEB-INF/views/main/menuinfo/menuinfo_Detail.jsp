@@ -465,8 +465,9 @@ opacity: 0.7;
 											</div><!-- end pricing-top -->
 											<div class="pricing-details">
 												<ul>
-													<li>작업기간 <span>${packVo.workingPeriod } </span></li>
-													<li>수정횟수 <span>${packVo.modifyCount } </span></li>
+													<li>작업기간 <span>${packVo.workingPeriod }</span></li>
+													<li>수정횟수 <span><c:if test="${packVo.modifyCount == 99}">무제한</c:if>
+													<c:if test="${packVo.modifyCount != 99}">${packVo.modifyCount }</c:if></span></li>
 													<li>패키지설명</li>
 													<li>${packVo.packDesc }</li>
 												</ul>
