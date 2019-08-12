@@ -122,10 +122,10 @@ $(function(){
 		</c:if>
 		</c:forEach>
 		<span class="third">
-		<c:forEach begin="${map['EVAL_SCORE']+20 }" end="100" step="20">
+		<c:forEach begin="20" end="${map['EVAL_SCORE'] }" step="20">
 		★
 		</c:forEach>
-		<c:forEach begin="20" end="${map['EVAL_SCORE'] }" step="20">
+		<c:forEach begin="${map['EVAL_SCORE']+20 }" end="100" step="20">
 		☆
 		</c:forEach>
 		</span>
