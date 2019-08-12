@@ -80,7 +80,7 @@
 					<div class="contact-details">
 						<ul>
 							<li><i class="fa fa-phone"></i> <span>이름</span></li>
-							<li><i class="fa fa-phone"></i> <span>휴대폰 인증하기</span></li>
+							<li style="margin-top: 33%; margin-left: -34%;"><i class="fa fa-phone"></i> <span>휴대폰</span></li>
 							<li><i class="fa fa-envelope"></i> <span>수익금 출금 은행</span></li>
 							<li><i class="fa fa-twitter"></i> <span>계좌번호</span></li>
 							<li><h4 style="color:#f46c63;">&nbsp;&nbsp;약관 동의 및 서명</h4></li>

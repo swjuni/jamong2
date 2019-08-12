@@ -90,10 +90,10 @@ public class FilesController {
 		String msg="", url="";
 		if(cnt>0) {
 			msg="의뢰 자료 전송 처리되었습니다.";
-			url="/main/mypage/message.do";
+			url="/main/mypage/files.do";
 		}else {
 			msg="의뢰 자료 전송 실패";
-			url="/main/mypage/message.do";
+			url="/main/mypage/files.do";
 		}
 		
 		model.addAttribute("msg", msg);

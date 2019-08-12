@@ -30,7 +30,7 @@ $(function(){
 		$(this).parent().parent().find("select").attr("style","background:white;");
 		$(this).parent().parent().find("select").attr("disabled",false);
 	})
-})
+});
 </script>
 <style type="text/css">
 .col-md-3 {
@@ -118,7 +118,7 @@ select{
 <div class="row service-list text-center">
 <%@include file="../incs/registService.jsp"%>
 </div>
-<form action="<c:url value='/mypage/registPackage.do'/>" name="form" method="post" style="margin-left: 80px; margin-top: 20px;">
+<form id="fm" action="<c:url value='/mypage/registPackage.do'/>" name="form" method="post" style="margin-left: 80px; margin-top: 20px;">
 <div class="row big-pricing">
 								<div class="col-md-4 col-sm-6 col-xs-12 colon1 nopad" style="width: 10%;">
 									<div class="pricing-header firstch c0" style="height: 146px; background-color: #f6a76b52 !important;">
@@ -136,7 +136,7 @@ select{
 										<p>STANDARD</p>
 									</div><!-- end pricing-header -->
 									<ul>
-										<li><textarea name="packName" required="required"></textarea></li>
+										<li><textarea name="packName" required="required" maxlength="30" placeholder="30자 제한"></textarea></li>
 										<li><textarea name="packDesc" required="required"></textarea></li>
 										<li><input type="text" name="packPrice" required="required">원</i></li>
 										<li>
@@ -205,7 +205,7 @@ select{
 										<p>DELUXE</p>
 									</div><!-- end pricing-header -->
 									<ul>
-										<li><textarea name="packName" required="required"></textarea></li>
+										<li><textarea name="packName" required="required" maxlength="30" placeholder="30자 제한"></textarea></li>
 										<li><textarea name="packDesc" required="required"></textarea></li>
 										<li><input type="text" name="packPrice" onkeypress="onlyNumber();" required="required">원</i></li>
 										<li>
@@ -276,7 +276,7 @@ select{
 										<p>PREMIUM</p>
 									</div><!-- end pricing-header -->
 								<ul>
-										<li><textarea name="packName" required="required"></textarea></li>
+										<li><textarea name="packName" required="required" maxlength="30" placeholder="30자 제한"></textarea></li>
 										<li><textarea name="packDesc" required="required"></textarea></li>
 										<li><input type="text" name="packPrice" onkeypress="onlyNumber();" required="required">원</i></li>
 										<li>

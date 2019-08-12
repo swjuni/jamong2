@@ -39,7 +39,7 @@
 	</update>
 	
 	<select id="selectSumPay" resultType="int" >
-		select NVL(sum(price),0) from pay
+		select NVL(sum(price),0) from orders where progress='P' or progress='F'
 	</select>
 	
 	<select id="selectNewUser" resultType="int">

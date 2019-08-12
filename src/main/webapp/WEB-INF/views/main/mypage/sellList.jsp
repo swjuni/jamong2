@@ -64,19 +64,21 @@ function progressChange(orderNo, orderId,progress, message){
 	<table class="table table-striped table-hover"
 		summary="판매내역에 관한 표로써      에 대한 정보를 제공합니다." style="width: 1300px;">
 		<colgroup>
-			<col style="width: 8%" />
-			<col style="width: 8%" />
-			<col style="width: 12%" />
-			<col style="width: 8%" />
-			<col style="width: 8%" />
-			<col style="width: 8%" />
-			<col style="width: 8%" />
-			<col style="width: 8%" />
-			<col style="width: 8%" />
-			<col style="width: 8%" />
-			<col style="width: 8%" />
-			<col style="width: 8%" />
-			<col style="width: 8%" />
+			<col style="width: 7%" />
+			<col style="width: 7%" />
+			<col style="width: 10%" />
+			<col style="width: 7%" />
+			<col style="width: 7%" />
+			<col style="width: 7%" />
+			<col style="width: 7%" />
+			<col style="width: 7%" />
+			<col style="width: 7%" />
+			<col style="width: 7%" />
+			<col style="width: 7%" />
+			<col style="width: 7%" />
+			<c:if test="${!empty list }">
+				<col style="width: 13%" />
+			</c:if>
 		</colgroup>
 		<thead class="thead-light">
 			<tr style="FONT-SIZE: 13PX;">
@@ -92,9 +94,11 @@ function progressChange(orderNo, orderId,progress, message){
 				<th class="text-center" scope="col">진행상태</th>
 				<th class="text-center" scope="col">판매결정</th>
 				<th class="text-center" scope="col">판매거부</th>
-				<c:if test="${map['PROGRESS'] =='P'}">
-				<th class="text-center" scope="col">의뢰 자료 보내기</th>
+				<th class="text-center" scope="col">
+				<c:if test="${!empty list }">
+					의뢰 자료 보내기
 				</c:if>
+				</th>
 				
 			</tr>
 		</thead>
