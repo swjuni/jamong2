@@ -65,7 +65,7 @@ public class UserInfoController {
 	}
 	
 	@RequestMapping(value="/main/userlogin/userRegist.do",method = RequestMethod.POST)
-	public String registUser_POST(@ModelAttribute UserInfoVO vo,Model model) {
+	public String registUser_POST(@ModelAttribute UserInfoVO vo,Model model,HttpServletRequest request) {
 		logger.info("회원가입 정보 vo={}",vo);
 		vo.setUserPwd(encoder.encode(vo.getUserPwd()));
 		int cnt = userInfoService.registUser(vo);
@@ -76,6 +76,8 @@ public class UserInfoController {
 		if(cnt>0) {
 			msg="회원가입 성공!";
 			url="/main/userlogin/login.do";
+			HttpSession session11 = request.getSession();
+			session11.removeAttribute("email");
 		}else {
 			msg="회원가입 실패";
 		}
@@ -217,7 +219,7 @@ public class UserInfoController {
 		return "common/message";
 	}
 	
-	/** 자바 메일 발송 * @throws MessagingException * @throws AddressException **/ 
+	/** 자바 메일 발송 비밀번호 찾기 * @throws MessagingException * @throws AddressException **/ 
 	@RequestMapping(value = "/main/userlogin/SearchPwd.do",method = RequestMethod.POST) 
 	public void mailSender(HttpServletRequest request, ModelMap mo,@RequestParam String email) throws AddressException, MessagingException{ // 네이버일 경우 smtp.naver.com 을 입력합니다. // Google일 경우 smtp.gmail.com 을 입력합니다.
 		String host = "smtp.daum.net"; 
@@ -280,6 +282,70 @@ public class UserInfoController {
 		Transport.send(mimeMessage); //javax.mail.Transport.send() 이용 
 		
 	}
+	
+	/** 자바 메일 발송 회원가입시 * @throws MessagingException * @throws AddressException **/ 
+	@RequestMapping(value = "/main/userlogin/userRegistMail.do",method = RequestMethod.GET) 
+	public String mailSender_regist(HttpServletRequest request, ModelMap mo,@RequestParam String email,Model model, HttpSession session) throws AddressException, MessagingException{ // 네이버일 경우 smtp.naver.com 을 입력합니다. // Google일 경우 smtp.gmail.com 을 입력합니다.
+		String host = "smtp.daum.net"; 
+		
+		final String username = "wjsdidgns123"; //네이버 아이디를 입력해주세요.
+		final String password = "jamong951753"; //네이버 이메일 비밀번호를 입력해주세요. 
+		int port=465; //포트번호 
+		
+		logger.info("email 주소={}",email);
+
+		// 메일 내용 
+		String recipient = email; //받는 사람의 메일주소를 입력해주세요. 
+		String subject = "[JAMONG] "+email+"님의 확인 이메일 발송"; //메일 제목 입력해주세요. 
+		
+		Properties props = System.getProperties(); // 정보를 담기 위한 객체 생성 
+		
+		// SMTP 서버 정보 설정 
+		props.put("mail.smtp.host", host); 
+		props.put("mail.smtp.port", port); 
+		props.put("mail.smtp.auth", "true"); 
+		props.put("mail.smtp.ssl.enable", "true"); 
+		props.put("mail.smtp.ssl.trust", host); 
+		
+		//Session 생성
+		Session session1 = Session.getDefaultInstance(props, new javax.mail.Authenticator() { 
+			String un=username; 
+			String pw=password; 
+			protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+				return new javax.mail.PasswordAuthentication(un, pw); 
+				} 
+			}); 
+		
+		session1.setDebug(true); //for debug 
+		String str="<a href=\"http://localhost:9090/jamong/main/userlogin/sessionEmail.do\">Email Confirm</a>";
+		
+		Message mimeMessage = new MimeMessage(session1); //MimeMessage 생성
+		mimeMessage.setFrom(new InternetAddress("wjsdidgns123@daum.net")); //발신자 셋팅 , 보내는 사람의 이메일주소를 한번 더 입력합니다. 이때는 이메일 풀 주소를 다 작성해주세요.
+		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient)); //수신자셋팅 //.TO 외에 .CC(참조) .BCC(숨은참조) 도 있음 
+		mimeMessage.setSubject(subject); //제목셋팅 
+		mimeMessage.setContent
+	    ("<h1>[JAMONG]</h1>" 
+	    	    + str, 
+	    	    "text/html"); //내용셋팅 
+		Transport.send(mimeMessage); //javax.mail.Transport.send() 이용 
+		
+		model.addAttribute("msg", "메일 전송 완료");
+		model.addAttribute("url", "/main/index_main.do");
+		
+		logger.info("이것이 이메일이다 !!"+email);
+		
+		return "common/message";
+	}
+	
+	@RequestMapping(value = "/main/userlogin/sessionEmail.do") 
+	public void mailSender_session(HttpServletRequest request, ModelMap mo,Model model, HttpSession session) {
+		session = request.getSession();
+		session.setAttribute("email", "email");
+		String abc = (String)session.getAttribute("email");
+		logger.info("SESSION={}",abc);
+		
+	}
+	
 	/*message.setContent
     ("<h1>This is a test</h1>" 
     + "<img src=\"http://www.rgagnon.com/images/jht.gif\">", 

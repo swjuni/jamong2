@@ -141,13 +141,19 @@
 				alert('가입진행에 동의해주세요');
 				event.preventDefault();
 				$('#agree').focus();
+			}else if($('#emailCheckA').val()!='true'){
+				alert('이메일 인증을 완료해주세요, 완료하셨다면 새로고침');
+				event.preventDefault();
+				$('#id').focus();
 			}
 				
 		});
     	
     	$('#id').keyup(function(){
     		var $checkid = $(this).val();
-    		
+    		var $mailc = "window.open('http://127.0.0.1:9090/jamong/main/userlogin/userRegistMail.do?email="+$('#id').val()+
+    				"','체크','width=430,height=500,location=no,status=no,scrollbars=yes');";
+    		$('#emailCkButton').attr('onclick',$mailc);
     		$.ajax({
 	    		url :"<c:url value='/main/userlogin//userCheckId.do'/>",
 	    		type: 'post',
@@ -166,6 +172,17 @@
 	    		}
 	    		});
     	});
+    	
+    	setInterval(function(){
+    		var $abcd='${email}';
+       		if($abcd.length>0){
+       			$('#emailCheckA').val('true');
+       			$('#emailCkButton').css('display','none');
+       			$('#emailOkButton').css('display','inline');
+       		}	
+       		},1000);
+    	
+    	
     });
     </script>
 </head>
@@ -186,7 +203,12 @@
                                 <div class="form-group">
                                     <label>아이디(이메일)</label>
                                     <input type="email" class="form-control" placeholder="Email(ex@jamong.com)" id="id" name="userId">
+                                    <input type="text" value="false" id="emailCheckA" style="display: none;">
                                     <p style="color:red;visibility:hidden; " id="overlap">중복된 아이디(이메일)입니다</p>
+                                   	<button type="button" value="확인 메일 전송" class="btn btn-primary btn-flat m-b-30 m-t-30" id="emailCkButton" 
+                                   	 onclick=""> 이메일 확인 </button>
+                                   	<button type="button" value="확인 되었습니다" class="btn btn-success m-b-10 m-l-5" id="emailOkButton" style="display: none">확인 되었습니다</button>
+                                   	
                                 </div>
                                 <div class="form-group">
                                     <label>비밀번호</label>

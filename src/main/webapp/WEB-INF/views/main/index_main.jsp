@@ -114,6 +114,9 @@
 	
 	.cccenter{
 		display:table; margin-left:auto; margin-right:auto;
+		PADDING-TOP: 38%;
+    	FONT-SIZE: x-large;
+    	FONT-WEIGHT: bold;
 	}
 </style>
 <section class="section section1">
@@ -143,11 +146,11 @@
 			</div>
 			</c:if>
 			<c:if test="${!empty map }">
-			<div class="col-md-5" style="height: 500px; width: 560px;; margin-top: -100px; border: 1px solid #ea5035c9; border-radius: 20px;">
-			<div style="background-image: url(<c:url value='/resources/images/gold-medal.png'/>);" class="backimg">
+			<div class="col-md-5" style="height: 530px; width: 560px;; margin-top: -100px; border-radius: 20px;">
+			<div style="background-image: url(<c:url value='/resources/images/금메달2.PNG'/>);" class="backimg">
 			<div style="width: 100%;height: 100%">
-				<span class="cccenter">1년간 최고 매출 판매자 : ${map['USERID'] }</span>
-				<span class="cccenter">총 수익금 : ${map['PRICESUM'] } 원 </span>
+				<span class="cccenter">연간 최우수 전문가 : ${map['USERID'] }</span>
+				<span class="cccenter" style="padding-top: 5%;color:red;">총 수익금 : ${map['PRICESUM'] } 원 </span>
 			</div>
 			</div>
 			</div>
