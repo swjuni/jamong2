@@ -54,7 +54,7 @@
 	select rownum, pricesum,userid from(
 	select sum(A.price) pricesum,B.user_id userid from orders A join user_info B on
 	A.USER_NO = B.USER_NO
-	where progress='P' and confirm_date>=sysdate-365
+	where (progress='P' or progress='F')and confirm_date>=sysdate-365
 	group by user_id
 	order by pricesum desc) where 1>=rownum
 	</select>
