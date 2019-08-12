@@ -60,6 +60,9 @@
 			<mapping path="/main/mypage/**"/>
 			<mapping path="/mypage/**"/>
 			<mapping path="/main/payCheck.do"/>
+			<mapping path="/main/menuinfo/evaluationAdd.do"/>
+			<mapping path="/main/menuinfo/evaluationReply.do"/>
+			<mapping path="/main/menuinfo/evaluationReplyAdd.do"/>
 			<mapping path="/main/bannerexpoert/**"/>
 			<exclude-mapping path="/main/userlogin/login.do"/>
 			<beans:ref bean="userLoginIntercepter"/>

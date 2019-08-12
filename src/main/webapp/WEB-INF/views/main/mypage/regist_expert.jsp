@@ -95,8 +95,7 @@
 							<input type="text" class="form-control" id="userName" name="userName" value="${userInfo.userName }" disabled="disabled">
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" id="hp" name="hp" value="${userInfo.hp }" disabled="disabled" style="width: 80%; float: left;">
-							<span id="confirm" class="btn btn-primary" style="width: 20%; padding: 12px 0px; border-radius: 3px;">인증하기</span>
+							<input type="text" class="form-control" id="hp" name="hp" value="${userInfo.hp }" disabled="disabled" style="width: 100%; float: left; margin-bottom: 42px;">
 						</div>
 						<div class="form-group">
 							<input type="text" class="form-control" id="subject" name="bankName" required="required"

@@ -170,6 +170,7 @@ $(function(){
 					</div><!-- end col -->
 <div class="col-md-5">
 <select name="sel" id="search">
+	<option value="">전체</option>
 	<option value="P"
 	<c:if test="${sk=='P' }">
 	selected="selected"

@@ -172,9 +172,11 @@ opacity: 0.7;
 </style>
 <section class="section lb">
 	<div class="container">
+	<c:if test="${menuinfoVo.activation!='Y' }">
 	<div class="preview">
-	<c:if test="${menuinfoVo.activation!='Y' }">현재 서비스 미리보기 중입니다.</c:if>
+	현재 서비스 미리보기 중입니다.
 	</div>
+	</c:if>
 		<div class="row case-single">
 			<div class="col-md-7 col-sm-7 col-xs-12">
 				<div class="pitem">

@@ -54,10 +54,11 @@
 		select count(*) from MENULISTCATEGORYVIEW
 	    <where>
 			<if test="searchKeyword !=null and searchKeyword !=''">
-				${searchCondition} like '%' || #{searchKeyword} || '%'
+				${searchCondition} like '%' || #{searchKeyword} || '%' 
+				AND ACTIVATION LIKE 'Y'
 			</if>
 	        <if test="expertNo != null and expertNo !=''">
-				EXPERT_NO=#{expertNo}
+				AND EXPERT_NO=#{expertNo}
 		    </if>
 		    <if test="categoryNoL != null and categoryNoL !=''">
 		        AND CATEGORY_NO=#{categoryNoL}

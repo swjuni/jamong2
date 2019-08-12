@@ -32,20 +32,20 @@
 								</c:if>
 							</div>
 						</div>
-						<hr class="hrLine">
+						<hr class="hrLine"><!-- 
 						<div class="catLine">
 							<p><b>전문가 등급</b></p>
 							<hr class="hrSubLine">
-							<!-- 클릭이벤트에 위 카테고리 검색조건을 기본으로 주고 추가로 검색조건주는 방법으로 구현해야함 -->
+							클릭이벤트에 위 카테고리 검색조건을 기본으로 주고 추가로 검색조건주는 방법으로 구현해야함
 							<div class="forFont">등급 for위치</div>
 						</div>
 						<hr class="hrLine">
 						<div class="catLine">
 							<p><b>상품검색 태그</b></p>
 							<hr class="hrSubLine">
-							<!-- 클릭이벤트에 위 카테고리 검색조건을 기본으로 주고 추가로 검색조건주는 방법으로 구현해야함 -->
+							클릭이벤트에 위 카테고리 검색조건을 기본으로 주고 추가로 검색조건주는 방법으로 구현해야함
 							<div class="forFont">태그 for위치</div>
 						</div>
-						<br><br>
+						<br><br> -->
 					</div>
 					
