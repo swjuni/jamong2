@@ -202,7 +202,7 @@
 															style="width: 10%;">닉네임</th>
 														<th
 															class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
-															style="width: 25%;">상품이름에다가 링크추가</th>
+															style="width: 25%;">신고상품 보러가기</th>
 														<th
 															class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
 															style="width: 8%;">처리결과</th>
@@ -257,7 +257,7 @@
 																style="width: 10%;">${map['ID'] }
 																</td>
 															<td class="jsgrid-cell jsgrid-align-center"
-																style="width: 25%;">링크${map['PRODUCT_NO'] }
+																style="width: 25%;"><a style="color: #0093ffe8;" href="<c:url value='/main/menuinfo/menuinfo_Detail.do?productNo=${map["PRODUCT_NO"] }'/>">www.jamong/main/menuinfo/menuinfo_Detail.do?productNo=${map["PRODUCT_NO"] }</a>
 																</td>
 															<td class="jsgrid-cell jsgrid-align-center"
 																style="width: 8%;">
@@ -307,7 +307,7 @@
 															<td colspan="3" class="jsgrid-cell jsgrid-align-center" style="width: 150px;">
 															신고상품</td>
 															<td colspan="6" class="jsgrid-cell jsgrid-align-left" style="width: 50px;">
-															${map['PRODUCT_NO'] }&nbsp;&nbsp;:링크나중에 생기면 넣기
+															${map['PRODUCT_NO'] }&nbsp;&nbsp;:&nbsp;&nbsp;<a style="color: #0093ffe8;" href="<c:url value='/main/menuinfo/menuinfo_Detail.do?productNo=${map["PRODUCT_NO"] }'/>">www.jamong/main/menuinfo/menuinfo_Detail.do?productNo=${map["PRODUCT_NO"] }</a>
 															</td>
 															<td width="0%"></td>
 														</tr>
