@@ -195,7 +195,7 @@ public class PayController {
 				if(authorNo==5) {
 					i=0.97;
 				}
-				if(packageVo.getPackPrice()*i*2==purchasePrice) {
+				if(packageVo.getPackPrice()*i==purchasePrice) {
 					//db에 저장
 					orderVo.setOrderId(orderId);
 					orderVo.setPackNo(Integer.parseInt(packageNo));
