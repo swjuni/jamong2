@@ -190,7 +190,12 @@ public class PayController {
 				String packageNo=(String)res.get("name");
 				String userNo=(String)res.get("buyer_name");
 				logger.info("json={}",res);
-				if(packageVo.getPackPrice()==purchasePrice) {
+				double i=1;
+				int authorNo=userInfoService.selectByuserNo(Integer.parseInt(userNo)).getAuthorNo();
+				if(authorNo==5) {
+					i=0.97;
+				}
+				if(packageVo.getPackPrice()*i==purchasePrice) {
 					//db에 저장
 					orderVo.setOrderId(orderId);
 					orderVo.setPackNo(Integer.parseInt(packageNo));

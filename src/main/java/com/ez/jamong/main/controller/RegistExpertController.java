@@ -61,7 +61,7 @@ public class RegistExpertController {
 	}
 	
 	@RequestMapping("/regist.do")
-	public String regist(@ModelAttribute ExpertVO expertVo,Model model,HttpSession session) {
+	public String regist(HttpServletRequest request,@ModelAttribute ExpertVO expertVo,Model model,HttpSession session) {
 		logger.info("전문가 인증등록 파라미터 expertVo={}",expertVo);
 		int userNo=(Integer)session.getAttribute("userNo");
 		expertVo.setUserNo(userNo);
@@ -72,6 +72,11 @@ public class RegistExpertController {
 		}else {
 			msg="저장에 실패하였습니다.";
 			url="/mypage/registExpert.do?state=expert";
+		}
+		HttpSession session1 = request.getSession();
+		if(expertVo!=null) {
+			int expertNo=expertVo.getExpertNo();
+			session1.setAttribute("expertNo", expertNo);
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
