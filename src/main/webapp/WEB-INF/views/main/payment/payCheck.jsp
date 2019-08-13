@@ -40,8 +40,9 @@
 			    		}
 			    		})
 			    		.done(function (data) {
+			    			alert(data);
 			    			if(data=="fail"){
-								alert("위조된 결제 시도(고객센터로 연락주세요)");
+								alert("위조된 결제 시도(고객센터로 연락 후 취소해드립니다.)");
 			    			}else{
 								location.replace('<c:url value="/mypage/paySuccess.do"/>');
 			    			}

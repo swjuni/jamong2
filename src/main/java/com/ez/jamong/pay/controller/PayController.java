@@ -195,7 +195,7 @@ public class PayController {
 				if(authorNo==5) {
 					i=0.97;
 				}
-				if(packageVo.getPackPrice()*i==purchasePrice) {
+				if(packageVo.getPackPrice()*i*2==purchasePrice) {
 					//db에 저장
 					orderVo.setOrderId(orderId);
 					orderVo.setPackNo(Integer.parseInt(packageNo));
@@ -207,11 +207,10 @@ public class PayController {
 					result="success";
 				}else {
 					result="fail";
-					throw new Exception();
 				}
 			} else {
 				System.out.println("response is error : " + response.getStatusLine().getStatusCode());
-				result="결제 실패";
+				result="payfail";
 			}
 		}catch (Exception e) {
 			logger.info(e.getLocalizedMessage());
