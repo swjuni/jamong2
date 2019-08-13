@@ -133,10 +133,6 @@
 				alert('비밀번호가 같은지 확인하세요');
 				event.preventDefault();
 				$('#pwdchk').focus();
-			}else if($('#chkId').val()!='Y'){
-				alert('중복된 아이디입니다');
-				event.preventDefault();
-				$('#id').focus();
 			}else if(!$('#agree').is(':checked')){
 				alert('가입진행에 동의해주세요');
 				event.preventDefault();
@@ -163,10 +159,8 @@
 	    		dataType: "json",
 	    		success : function(res) {
 	    		if(res>0){
-	    			$('#chkId').val('N');
 	    			$('#overlap').css('visibility','visible');
 	    		}else{
-	    			$('#chkId').val('Y');
 	    			$('#overlap').css('visibility','hidden');
 	    		}
 	    		}
